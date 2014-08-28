@@ -1,0 +1,10 @@
+# Site settings
+title: HtML5 Rocks - Chrome updates
+description: >
+  "Html5 Rocks updates stream."
+baseurl: ""
+url: "http://updates.html5rocks.com"
+markdown: kramdown
+
+highlighter: pygments
+include: [samples]

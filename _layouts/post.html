@@ -1,0 +1,37 @@
+---
+layout: default
+---
+<section class="pattern-bg-lighter">
+  <section class="postheader">
+  <h2>{{ page.title }}</h2>
+  <div class="time-author">
+    By {% include authors.html %} at <time pubdate="" class="date">{{ page.article.written_on | date: "%d %B, %Y" }}</time>
+  </div>
+  <div class="post-info">
+    <div class="tags">
+      {% for tag in page.tags %}
+        <a href="/tag/{{tag}}" class="tag">{{tag}}</a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section>
+
+  {{content}}
+
+  <p class="prevnext">
+    {% if page.previous %}
+    <a id="prev" href="{{page.previous.url}}">⟪ {{page.previous.title}}</a>
+    {% endif %}
+    {% if page.next %}
+    <a id="next" href="{{page.next.url}}">{{page.next.title}} ⟫</a>
+    {% endif %}
+  </p>
+</section>
+
+<section class="postfooter">
+  <h3 id="comments">Comments</h3>
+</section>
+
+</section>
