@@ -15,4 +15,4 @@ tags:
 ---
 Here is a sample "source media" from picture-element sample.
 
-{% include_code picture-element source-media %}
+{% include_code css-shapes shape-outside-polygon %}
