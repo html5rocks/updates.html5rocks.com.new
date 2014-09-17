@@ -1,33 +1,31 @@
 ---
 layout: default
 ---
-
-<section class="pattern-bg-lighter">
-  <section class="postheader">
-    header
+<article class="content-wrapper">
+  <section class="container">
+    <div class="articles-list">
+      <ul class="clearfix">
+        {% for post in site.posts %}
+          <li>
+            <a href="{{ post.url | prepend: site.baseurl }}">
+              <span class="left">
+                {% include avatar.html %}
+              </span>
+              <span class="right">
+                <span class="date">{{ post.date | date: "%B %-d, %Y" }}</span>
+                <span class="title">
+                  {{ post.title }}
+                </span>
+                <span class="description">{{ post.description }}</span>
+                {% for tag in post.tags %}
+                  <span class="tag">{{tag}}</span>
+                {% endfor %}
+              </span>
+              <span class="clear"></span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
   </section>
-  <section>
-    <ul class="post-list">
-      {% for post in site.posts %}
-        <li>
-          <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-          <h2>
-            <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-          </h2>
-        </li>
-      {% endfor %}
-    </ul>
-    <p class="rss-subscribe">
-      subscribe
-      <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a>
-    </p>
-  </section>
-</section>
-<section>
-  <a id="next" href="http://updates.html5rocks.com/page/2">Older</a>
-</section>
-
-
-
-
-
+</article>

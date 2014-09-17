@@ -1,0 +1,10 @@
+{% for author in post.authors %}
+  {% assign contributor = site.data._contributors[author] %}
+  <span class="author">
+    <!-- TODO: change image address.-->
+    <img src="http://www.html5rocks.com/static/images/profiles/{{author}}.png"
+         alt="{{contributor.name.given}} {{contributor.name.family}}"
+         title="{{contributor.name.given}} {{contributor.name.family}}"
+         width="60" height="60">
+  </span>
+{% endfor %}
