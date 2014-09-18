@@ -9,17 +9,13 @@
       <section class="banner">
         <section class="container">
           <a href="/en/" class="watermark"></a>
-          <h1>Updates</h1>
-          <h2>What is new in HTML5 world</h2>
+          <h1>{{page.title}}</h1>
+          {% if page.subtitle %}<h2>{{page.subtitle}}</h2>{% endif %}
         </section>
       </section>
       {{content}}
     </div>
-    <footer class="footer">
-      <div class="container">
-        <strong>HTML5 Rocks</strong> is a <img src="/images/google_logo_small.png" alt="Google logo" title="Google"> project.
-      </div>
-    </footer>
+    {% include footer.html %}
 
     <script>
       (function() {
@@ -34,7 +30,7 @@
         });
 
       })();
-      </script>
+    </script>
 
     <!-- TODO: change UA-XXXXX-X -->
     <script>

@@ -1,5 +1,7 @@
 ---
 layout: default
+title: "Updates"
+subtitle: "New hotness from the HTML5 world"
 ---
 <article class="content-wrapper">
   <section class="container">
@@ -9,7 +11,9 @@ layout: default
           <li>
             <a href="{{ post.url | prepend: site.baseurl }}">
               <span class="left">
-                {% include avatar.html %}
+              {% for author in post.authors %}
+                {% include avatar.html author=author%}
+              {% endfor %}
               </span>
               <span class="right">
                 <span class="date">{{ post.date | date: "%B %-d, %Y" }}</span>

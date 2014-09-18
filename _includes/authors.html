@@ -1,7 +1,7 @@
-{% if page.authors %}
-  {% for author in page.authors %}
+  {% for author in include.authors %}
     {% assign contributor = site.data._contributors[author] %}
-    <a href="{{contributor.homepage}}">
-      {{contributor.name.given}} {{contributor.name.family}}</a>{% if forloop.last == false %}, {% endif %}
+    <!-- TODO: change link. -->
+    <strong>By</strong> <a href="/profiles/#{{author}}">
+      {{contributor.name.given}} {{contributor.name.family}}
+    </a> {% if forloop.last == false %} and {% endif %}
   {% endfor %}
-{% endif %}

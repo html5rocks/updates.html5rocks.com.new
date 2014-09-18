@@ -1,19 +1,118 @@
-.footer {
-  color: #444;
-  margin-top: 2em;
-  padding-top: 2em;
-  text-shadow: 0 1px 1px rgba(255,255,255,0.5);
-  text-align: center;
-  border-top: 1px solid #CBCBCB;
-  font-size: .8em;
+footer {
+  color: #DDD;
+  font-size: 16px;
+  padding-top: 60px;
+  min-height: 110px;
+  background: #444;
   position: relative;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: antialiased;
+  margin-top: 5em;
+
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .licensing {
+    width: 60%;
+    margin: 0 auto;
+    color: #777;
+    text-align: center;
+    clear: both;
+    font-size: 13px;
+    padding-bottom: 40px;
+  }
+
+  a {
+    color: #999;
+  }
+
+  a:hover {
+    color: #FFF;
+  }
 
   &:after {
-    content: '';
-    border-top: 1px solid #FFF;
     position: absolute;
-    top: 0;
+    content: '';
+    top: 10px;
     left: 0;
     width: 100%;
+    height: 0;
+    border-bottom: 1px dashed #8F8F8F;
+  }
+
+  h1 {
+    font-weight: 800;
+    font-size: 38px;
+    color: #FFF;
+    margin: 0 0 1em 0;
+  }
+
+  h2 {
+    line-height: 28px;
+    font-weight: 800;
+    font-size: 22px;
+    color: #AAA;
+    margin: 0 0 0.6em 0;
+  }
+
+  .panel {
+    margin: 0 0 30px 0;
+    padding: 0 0 40px 0;
+    border-bottom: 1px solid #5F5F5F;
+
+    a {
+      text-decoration: underline;
+      color: #FFF;
+    }
+
+    &.share {
+      width: 100%;
+    }
+
+    &.share a {
+      margin-right: 14px;
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      background-image: url(/images/icons.png);
+      background-size: 296px 56px;
+      background-repeat: no-repeat;
+      text-indent: -100em;
+      overflow: hidden;
+      font-size: 0;
+
+      &.twitter { background-position: -160px 0; }
+      &.facebook { background-position: -80px 0; }
+      &.gplus { background-position: 0 0; }
+    }
+
+    &.rss h2 {
+      padding-left: 40px;
+      background-image: url(/images/icons.png);
+      background-size: 148px 28px;
+      background-repeat: no-repeat;
+      background-position: -120px 0;
+    }
+
+    @media (min-width: $break-small-screen) {
+      & {
+        width: 30%;
+        margin-right: 3%;
+        float: left;
+        display: block;
+        border-bottom: none;
+      }
+
+      &.share {
+        min-width: 250px;
+        width: 250px;
+      }
+    }
+
   }
 }
+
+

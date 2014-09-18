@@ -1,37 +1,52 @@
 ---
 layout: default
 ---
-<section class="pattern-bg-lighter">
-  <section class="postheader">
-  <h2>{{ page.title }}</h2>
-  <div class="time-author">
-    By {% include authors.html %} at <time pubdate="" class="date">{{ page.article.written_on | date: "%d %B, %Y" }}</time>
-  </div>
-  <div class="post-info">
-    <div class="tags">
-      {% for tag in page.tags %}
-        <a href="/tag/{{tag}}" class="tag">{{tag}}</a>
+<article class="content-wrapper article">
+<div class="container">
+  <section class="byline clearfix">
+    <section class="author-images">
+      {% for author in page.authors %}
+        {% include avatar.html author=author %}
       {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section>
-
-  {{content}}
-
-  <p class="prevnext">
+    </section>
+    <section class="meta">
+      <div class="authors">
+        {% include authors.html authors=page.authors %}
+      </div>
+      <div class="published">
+        <time pubdate=""><strong>Published:</strong> {{ page.article.written_on | date: "%B %d, %Y" }}</time>
+      </div>
+      <div class="updated">
+        <time><strong>Updated:</strong> {{ page.article.updated_on | date: "%B %d, %Y" }}</time>
+      </div>
+      <div class="comments">
+        <span><strong>Comments:</strong> <a href="#disqus_thread" class="load-comments" data-disqus-identifier="http://www.html5rocks.com/tutorials/speed/high-performance-animations/">28</a></span>
+        <!-- TODO:  implement comments -->
+      </div>
+      <div id="notcompatible" class="hidden">
+        Your browser may not support the functionality in this article.
+      </div>
+    </section>
+  </section>
+  <section class="content">
+    {{content}}
+  </section>
+  <section>
+    <!-- TODO: Update link. -->
+    {% for tag in page.tags %}
+      <a href="/tag/{{tag}}" class="tag">{{tag}}</a>
+    {% endfor %}
+  </section>
+  <div class="pager">
     {% if page.previous %}
-    <a id="prev" href="{{page.previous.url}}">⟪ {{page.previous.title}}</a>
+    <a href="{{page.previous.url}}">&laquo; {{page.previous.title}}</a>
+    {% else %}
+    <a href="/">All</a><!-- TODO: Change link. -->
+    {% endif %} | {% if page.next %}
+    <a href="{{page.next.url}}">{{page.next.title}} &raquo;</a>
+    {% else %}
+    <a href="/">All</a><!-- TODO: Change link. -->
     {% endif %}
-    {% if page.next %}
-    <a id="next" href="{{page.next.url}}">{{page.next.title}} ⟫</a>
-    {% endif %}
-  </p>
-</section>
-
-<section class="postfooter">
-  <h3 id="comments">Comments</h3>
-</section>
-
-</section>
+  </div>
+</div>
+</article>
