@@ -5,6 +5,7 @@ description: >
 baseurl: ""
 url: "http://updates.html5rocks.com"
 markdown: kramdown
+permalink: /:year/:month/:title
 
 highlighter: pygments
 include: [samples]
