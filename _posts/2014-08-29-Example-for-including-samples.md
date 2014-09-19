@@ -6,7 +6,7 @@ article:
   written_on: 2014-08-27
   updated_on: 2014-08-29
 authors:
-  - ewagasperowicz
+  - ericbidelman
 tags:
   - code
   - nuts_and_bolts

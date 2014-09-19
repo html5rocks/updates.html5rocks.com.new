@@ -25,6 +25,7 @@ $font-code: "Source Code Pro", monospace;
 @import "articles_list";
 @import "disqus";
 @import "footer";
+@import "404";
 
 
 html, body {
@@ -87,7 +88,6 @@ h2, h3, h4, h5 {
   font-weight: 600;
   margin: 1.3em 0 0.7em 0;
   clear: both;
-  max-width: 85%;
 }
 h1 { font-size: 150%; }
 h2 { font-size: 135%; }

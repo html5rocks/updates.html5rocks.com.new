@@ -3,7 +3,8 @@ title: HtML5 Rocks - Chrome updates
 description: >
   "Html5 Rocks updates stream."
 baseurl: ""
-url: "http://updates.html5rocks.com"
+# TODO: change link.
+url: "http://devnook.github.io/updates.html5rocks.com.new"
 markdown: kramdown
 permalink: /:year/:month/:title
 

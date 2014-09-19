@@ -8,7 +8,7 @@ layout: default
         {% for post in site.posts %}
           {% if post.tags contains page.tag %}
           <li>
-            <a href="{{ post.url | prepend: site.baseurl }}">
+            <a href="{{ post.url | prepend: site.url }}">
               <span class="left">
               {% for author in post.authors %}
                 {% include avatar.html author=author%}
