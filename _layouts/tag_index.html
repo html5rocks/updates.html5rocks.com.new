@@ -1,0 +1,35 @@
+---
+layout: default
+---
+<article class="content-wrapper">
+  <section class="container">
+    <div class="articles-list">
+      <ul class="clearfix">
+        {% for post in site.posts %}
+          {% if post.tags contains page.tag %}
+          <li>
+            <a href="{{ post.url | prepend: site.baseurl }}">
+              <span class="left">
+              {% for author in post.authors %}
+                {% include avatar.html author=author%}
+              {% endfor %}
+              </span>
+              <span class="right">
+                <span class="date">{{ post.date | date: "%B %-d, %Y" }}</span>
+                <span class="title">
+                  {{ post.title }}
+                </span>
+                <span class="description">{{ post.description }}</span>
+                {% for tag in post.tags %}
+                  <span class="tag">{{tag}}</span>
+                {% endfor %}
+              </span>
+              <span class="clear"></span>
+            </a>
+          </li>
+          {%endif%}
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+</article>
