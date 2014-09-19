@@ -22,7 +22,7 @@ subtitle: "New hotness from the HTML5 world"
                 </span>
                 <span class="description">{{ post.description }}</span>
                 {% for tag in post.tags %}
-                  <span class="tag">{{tag}}</span>
+                  <span class="tag">{{tag | replace: '_', ' '}}</span>
                 {% endfor %}
               </span>
               <span class="clear"></span>

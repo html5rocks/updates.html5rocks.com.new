@@ -34,7 +34,7 @@ layout: default
   <section>
     <!-- TODO: Update link. -->
     {% for tag in page.tags %}
-      <a href="/tag/{{tag}}" class="tag">{{tag}}</a>
+      <a href="/tag/{{tag}}" class="tag">{{tag | replace: '_', ' '}}</a>
     {% endfor %}
   </section>
   <div class="pager">
