@@ -1,26 +1,55 @@
 <meta charset="utf-8">
+<meta property="twitter:account_id" content="1593210261" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps.">
 <meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,indexeddb,offline,audio,video,drag and drop,chrome,sse,mobile">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HTML5Rocks Updates</title>
+<title>{{page.title}}</title>
 
 <!-- Add to homescreen for Chrome on Android -->
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+<link rel="icon" sizes="192x192" href="{{site.url}}/images/HTML5_Badge_192.png">
 
 <!-- Add to homescreen for Safari on iOS -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="Web Starter Kit">
-<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+<meta name="apple-mobile-web-app-title" content="HTML5 Rocks">
+<link rel="apple-touch-icon-precomposed" href="{{site.url}}/images/HTML5_Badge_192.png">
 
 <!-- Tile icon for Win8 (144x144 + tile color) -->
-<meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+<meta name="msapplication-TileImage" content="{{site.url}}/images/HTML5_Badge_144.png">
 <meta name="msapplication-TileColor" content="#3372DF">
 
 <!-- TODO: consider rel=canonical -->
 <!-- TODO: consider rel=publisher -->
+<link rel="alternate" type="application/rss+xml" title="HTML5 Rocks RSS" href="http://feeds.feedburner.com/html5rocks">
+<link rel="publisher" href="https://plus.google.com/+GoogleChromeDevelopers">
+
+
+{% if page.article %}
+
+  {% for author in include.authors %}
+    {% assign contributor = site.data._contributors[author] %}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@ChromiumDev">
+    <meta name="twitter:creator" content="@{{contributor.twitter}}">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{page.title}} - HTML5 Rocks">
+    <meta property="og:url" content="{{page.url}}">
+    <meta property="og:description" content="{{page.description}}">
+    <meta property="og:image" content="http://www.html5rocks.com/static/images/profiles/{{author}}.png">
+    <meta property="og:site_name" content="HTML5 Rocks - A resource for open web HTML5 developers">
+
+    <link rel="author" href="https://www.google.com/profiles/{{contributor.google}}">
+  {% endfor %}
+
+{% endif %}
+
+
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,800|Source+Code+Pro" rel="stylesheet">
 <link rel="stylesheet" type="text/css" media="screen" href="{{site.url}}/css/main.css">
 
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
+<![endif]-->
