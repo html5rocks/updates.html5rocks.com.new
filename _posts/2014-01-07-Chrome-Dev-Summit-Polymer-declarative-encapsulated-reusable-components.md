@@ -15,7 +15,7 @@ permalink: /2014/01/Chrome-Dev-Summit-Polymer-declarative-encapsulated-reusable-
 ---
 [Polymer](http://www.polymer-project.org/) is one gateway into the amazing future of Web Components. We want to make it easy to consume and build custom elements. For the past year, the team has been working hard on a set of polyfills for the evolving specifications. On top of that, we've created a convenient sugaring library to make building web components easier. Lastly, we're crafting a set of UI and utility elements to reuse in your apps. At the 2013 Chrome Dev Summit, I dove into the different parts of Polymer and the philosophy behind our "Everything is an element" mantra.
 
-<iframe width="640" height="360" src="//www.youtube.com/embed/DH1vTVkqCDQ" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="//www.youtube.com/embed/DH1vTVkqCDQ" frameborder="0" allowfullscreen></iframe>
 
 **Slides**: [http://html5-demos.appspot.com/static/cds2013/index.html](http://html5-demos.appspot.com/static/cds2013/index.html)
 

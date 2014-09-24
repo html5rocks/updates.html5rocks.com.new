@@ -79,7 +79,7 @@ Object.observe(beingWatched, function(){ debugger; });
 
 Here's a [great video introduction](https://www.youtube.com/watch?feature=player_embedded&v=VO--VXFJnmE) about Object.observe() that explains it in detail.
 
-<iframe width="420" height="315" src="http://www.youtube.com/embed/VO--VXFJnmE" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="http://www.youtube.com/embed/VO--VXFJnmE" frameborder="0" allowfullscreen></iframe>
 
 There's also a [nice descriptive write-up available](http://weblog.bocoup.com/JavaScript-object-observe/) and a [working example here](http://simpl.info/observe/).
 

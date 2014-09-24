@@ -4,12 +4,16 @@ description: >
   "Html5 Rocks updates stream."
 baseurl: ""
 # TODO: change link.
-#url: "http://devnook.github.io/updates.html5rocks.com.new"
-url: "http://localhost:8000"
+#url: "http://localhost:8000"
+url: "http://devnook.github.io/updates.html5rocks.com.new"
+html5rocks_url: "http://www.html5rocks.com"
 markdown: kramdown
 permalink: /:year/:month/:title
 
 highlighter: pygments
+paginate: 6
+paginate_path: "/page/:num"
+
 include: [samples]
 sass:
   style: :compressed

@@ -24,7 +24,7 @@ Why have we done this, rather than reverting to the previous implementation?  We
 
 The rest of this update provides a guide to fixing things that may be broken in your code due to this change.  The great thing about fixing these problems is that your code is then quite likely to just work in Firefox, too!  (I’d thought for a long time that my Vocoder application was broken due to Firefox’s implementation, but it turned out to be one of these problems!)
 
-If you just want to get up and running, you may want to take a look at a [monkey-patch] (http://en.wikipedia.org/wiki/Monkey_patch) [library I wrote for applications that were written to the old Web Audio code](https://github.com/cwilso/webkitAudioContext-MonkeyPatch) - this can help you get up and running in a minimum amount of time, as it will alias the objects and methods appropriately.  Indeed, the patches the library lists is a good guide to the things that have changed.
+If you just want to get up and running, you may want to take a look at a [monkey-patch](http://en.wikipedia.org/wiki/Monkey_patch) [library I wrote for applications that were written to the old Web Audio code](https://github.com/cwilso/webkitAudioContext-MonkeyPatch) - this can help you get up and running in a minimum amount of time, as it will alias the objects and methods appropriately.  Indeed, the patches the library lists is a good guide to the things that have changed.
 
 First and foremost:
 ------------------

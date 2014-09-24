@@ -39,7 +39,7 @@ custom(url(http://is.gd/spherifyvs) mix(url(http://is.gd/spherifyfs) multiply so
 </style>
 
 <p>Recently, I have read <a href="http://www.webmonkey.com/2012/09/adobes-css-shaders-now-an-official-web-standard/" title="" target="_blank">news on Webmonkey</a> that Adobe’s CSS Shaders proposal, which will bring high-quality cinematic effects to the web through some new CSS tools, has been accepted by the W3C. If you haven't seen it yet, watch the video below:</p>
-<iframe width="560" height="315" src="http://www.youtube.com/embed/NZRqnohI3m4" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="http://www.youtube.com/embed/NZRqnohI3m4" frameborder="0" allowfullscreen></iframe>
 <!--The Web is developing so quickly, it surprises me.-->
 
 <p>Google Chrome's latest Canary added support for CSS shaders, so I decided to experiment with them.</p>
@@ -81,7 +81,7 @@ Here, we're applying a vertex shader (<code>spherify.vs</code>) which will opera
 
 <p>Below is a video of the effect. If you've got shaders enabled you can play with the real thing right below!</p>
 
-<iframe width="420" height="315" src="http://www.youtube.com/embed/5TG6TK2nueo" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="http://www.youtube.com/embed/5TG6TK2nueo" frameborder="0" allowfullscreen></iframe>
 
 <iframe class="globe" src="http://maps.google.com/?ie=UTF8&amp;ll=14.597042,-15.625&amp;spn=158.47027,316.054688&amp;t=h&amp;z=2&amp;output=embed" scrolling="no"></iframe>
 

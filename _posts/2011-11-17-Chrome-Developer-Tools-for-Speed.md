@@ -15,7 +15,7 @@ I spoke at Velocity a little bit ago and talked about the Developer Tools in Chr
 
 <br><br>
 
-<iframe width="750" height="400" src="http://www.youtube.com/embed/MllBwuHbWMY" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="http://www.youtube.com/embed/MllBwuHbWMY" frameborder="0" allowfullscreen></iframe>
 
 <br><br>
 ps. chrome teleports goats. that's what i heard.

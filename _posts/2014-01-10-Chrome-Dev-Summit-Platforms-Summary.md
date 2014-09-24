@@ -20,22 +20,22 @@ Dart compiles to JavaScript, sometimes generating code that's faster than hand-w
 
 [Slides: Dart](https://docs.google.com/presentation/d/1JU1ToBg-K7_vLC5bt2gEcEy3p12mCQG8CGELOP3vWvI/edit?usp=sharing)
 
-<iframe width="640" height="360" src="//www.youtube.com/embed/FqsU3TbUw_s" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="//www.youtube.com/embed/FqsU3TbUw_s" frameborder="0" allowfullscreen></iframe>
 
 # Chrome Apps
 
-Chrome Apps provide the power and user experience of native apps with the development simplicity and security of the Web, and integrate seamlessly with Google services like Drive. Chrome Apps run on Mac, Windows, Linux, and ChromeOS, as well as iOS and Android, right out of the box. 
+Chrome Apps provide the power and user experience of native apps with the development simplicity and security of the Web, and integrate seamlessly with Google services like Drive. Chrome Apps run on Mac, Windows, Linux, and ChromeOS, as well as iOS and Android, right out of the box.
 
 [Slides: Chrome Apps](https://docs.google.com/presentation/d/1XdSq-xRxPHwbzYKSPZknZ4dYh_TW0h6MYr85Eyt-4NQ/edit?usp=sharing)
 
-<iframe width="640" height="360" src="//www.youtube.com/embed/f3NctLbtsNE" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="//www.youtube.com/embed/f3NctLbtsNE" frameborder="0" allowfullscreen></iframe>
 
 # PNaCl
 
-Portable Native Client is a technology that enables portable, secure execution of native applications in Chrome. This extension of the Native Client project brings the performance and low-level control of native code to modern web browsers without sacrificing the security and portability of the web. 
+Portable Native Client is a technology that enables portable, secure execution of native applications in Chrome. This extension of the Native Client project brings the performance and low-level control of native code to modern web browsers without sacrificing the security and portability of the web.
 
 PNaCl helps developers produce a platform-independent form of their native application and run it in the browser without any installs. Behind the scenes, Chrome translates PNaCl applications to machine code at runtime to achieve near-native performance. On other browsers, PNaCl applications can use Emscripten and pepper.js to maintain functionality with a minimal performance hit.
 
 [Slides: PNACL](https://docs.google.com/presentation/d/1VAwkh8HoinUHWx49eQLYdqimL4YsCyg-qw6BGe0cj8E/edit#slide=id.p18)
 
-<iframe width="640" height="360" src="//www.youtube.com/embed/hfs5p1BKpxQ" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="//www.youtube.com/embed/hfs5p1BKpxQ" frameborder="0" allowfullscreen></iframe>

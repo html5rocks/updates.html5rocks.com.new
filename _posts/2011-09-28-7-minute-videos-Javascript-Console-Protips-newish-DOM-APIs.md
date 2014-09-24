@@ -16,7 +16,7 @@ permalink: /2011/09/7-minute-videos-Javascript-Console-Protips-newish-DOM-APIs
 
 <p>Level up on the Javascript console in the Chrome DevTools. Look at XHR requests, learn console helper functions to monitor events or explore objects better. We dive into all sorts of goodies in the command lines API: <code>console.time</code>, <code>$0</code>, <code>inspect()</code>, <code>$$</code>, <code>monitorEvents()</code>, <code>keys()</code>, <code>values()</code>, and <code>copy()</code>.</p>
 
-<iframe width="640" height="368" src="http://www.youtube.com/embed/4mf_yNLlgic" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="http://www.youtube.com/embed/4mf_yNLlgic" frameborder="0" allowfullscreen></iframe>
 
 <hr>
 

@@ -7,7 +7,7 @@ subtitle: "New hotness from the HTML5 world"
   <section class="container">
     <div class="articles-list">
       <ul class="clearfix">
-        {% for post in site.posts %}
+        {% for post in paginator.posts %}
           <li>
             <a href="{{ post.url | prepend: site.url }}">
               <span class="left">
@@ -31,5 +31,17 @@ subtitle: "New hotness from the HTML5 world"
         {% endfor %}
       </ul>
     </div>
+    <div class="pager">
+      {% if paginator.previous_page_path %}
+      <a href="{{site.url}}{{previous_page_path}}">Previous</a>
+      {% else %}
+      <a href="{{site.url}}">Start</a>
+      {% endif %} | {% if paginator.next_page_path %}
+      <a href="{{site.url}}{{paginator.next_page_path}}">Next</a>
+      {% else %}
+      <a href="{{site.url}}">Start</a>
+      {% endif %}
+    </div>
   </section>
+
 </article>

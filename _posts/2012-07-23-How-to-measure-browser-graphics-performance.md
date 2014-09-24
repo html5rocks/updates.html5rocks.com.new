@@ -63,4 +63,4 @@ A better way to benchmark is to use a realistic drawing load and multiply it unt
 Different graphics applications have different needs, so you should write your benchmarks with that in mind. Measure the graphics features that you are using in your app. When you find a slow scenario, try to reduce it down to the smallest piece of code that reproduces it (and file a bug report at "new.crbug.com":http://new.crbug.com if it should be faster.)
 
 To see how to write high-performance web graphics code, check out this Google I/O 2012 talk by Nat Duca and Tom Wiltzius from the Chrome GPU team:
-<center><iframe width="560" height="315" src="http://www.youtube.com/embed/hAzhayTnhEI" frameborder="0" allowfullscreen></iframe></center>
+<center><iframe width="100%" height="360" src="http://www.youtube.com/embed/hAzhayTnhEI" frameborder="0" allowfullscreen></iframe></center>

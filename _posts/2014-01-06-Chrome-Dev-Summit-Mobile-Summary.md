@@ -35,17 +35,17 @@ PageSpeed Insights just launched a [UX analysis for determining how mobile-frien
 
 [Slides: Best UX patterns for mobile web apps](http://mobile-ux.appspot.com/)
 
-<iframe width="900" height="495" src="//www.youtube.com/embed/j3YbNHtnYo4" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="//www.youtube.com/embed/j3YbNHtnYo4" frameborder="0" allowfullscreen></iframe>
 
 <hr>
 
 # Multi-device Accessibility by Alice Boxhall
 
-Users will be accessing your sites and services from a multitude of devices with a wide range of different accessibility requirements.  By using the correct semantic elements and correct ARIA roles you help give the browser and assistive technology a much improved understanding of your page. 
+Users will be accessing your sites and services from a multitude of devices with a wide range of different accessibility requirements.  By using the correct semantic elements and correct ARIA roles you help give the browser and assistive technology a much improved understanding of your page.
 
-[Slides: Multi-device Accessibility](https://docs.google.com/a/google.com/presentation/d/1xKlQZRHyLPXvrTdGkGIumc24bT4_kxRmdqIC_b7fngo/pub?start=false&loop=false&delayms=3000#slide=id.p) 
+[Slides: Multi-device Accessibility](https://docs.google.com/a/google.com/presentation/d/1xKlQZRHyLPXvrTdGkGIumc24bT4_kxRmdqIC_b7fngo/pub?start=false&loop=false&delayms=3000#slide=id.p)
 
-<iframe width="900" height="495" src="//www.youtube.com/embed/E0ojKLzXoZ4" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="//www.youtube.com/embed/E0ojKLzXoZ4" frameborder="0" allowfullscreen></iframe>
 
 ## Key ways to understand and address a11y issues
 
@@ -53,19 +53,19 @@ Users will be accessing your sites and services from a multitude of devices with
 + Express the semantics of your interface with correct element choice and ARIA
 + Use [ChromeVox](http://www.chromevox.com/) on desktop and TalkBack on Android to test.
 + Try the [Accessibility Developer Tools Chrome extension](https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb?hl=en)
-+  A more diverse audience is getting online, which further amplifies the need of making your sites accessible 
++  A more diverse audience is getting online, which further amplifies the need of making your sites accessible
 
 <hr>
 
 # Build Mobile Apps using the Chrome WebView by Matt Guant
 
-We all know the problems that developers have had in the past building for WebView:  Limited HTML5 features, no debugging tools, no build tools.  With the introduction of a [Chromium powered WebView](https://developers.google.com/chrome/mobile/docs/webview/overview) in Android 4.4 (KitKat) developers now have a huge range of new tools at their disposal to build great native apps using the WebView.  
+We all know the problems that developers have had in the past building for WebView:  Limited HTML5 features, no debugging tools, no build tools.  With the introduction of a [Chromium powered WebView](https://developers.google.com/chrome/mobile/docs/webview/overview) in Android 4.4 (KitKat) developers now have a huge range of new tools at their disposal to build great native apps using the WebView.
 
 The WebView supports full [remote debugging](https://developers.google.com/chrome-developer-tools/docs/remote-debugging#debugging-webviews) with the same tools you use for Chrome. You can also take your trusted web development workflow with Grunt and integrate that into your native stack tooling via Gradle.  Further merging worlds, there's a clever trick to use the Chrome DevTools to test your native code from Javascript.
 
 [Slides: Build Mobile Apps using the Chrome WebView](http://gauntface.co.uk/presentations/chrome-dev-summit-2013/chrome-webview/)
 
-<iframe width="900" height="495" src="//www.youtube.com/embed/BTlzw5UAjQs" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="//www.youtube.com/embed/BTlzw5UAjQs" frameborder="0" allowfullscreen></iframe>
 
 ## Effective WebView development takeaways
 
@@ -81,7 +81,7 @@ If we have to develop for Desktop, Mobile, Tablet, wearables and other form fact
 
 [Slides: Optimizing your Workflow for a Cross-device world](http://gauntface.co.uk/presentations/chrome-dev-summit-2013/cross-device-workflow/#1)
 
-<iframe width="900" height="495" src="//www.youtube.com/embed/bZRPetpUcjQ" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="//www.youtube.com/embed/bZRPetpUcjQ" frameborder="0" allowfullscreen></iframe>
 
 ## Key points
 
@@ -99,12 +99,12 @@ We learnt many things from this talk: Jake doesn’t wear shoes when presenting;
 
 [ServiceWorker](https://github.com/slightlyoff/ServiceWorker) will give us the flexibility that we need to build compelling offline first experiences with ease and not suffer the pains inflicted by AppCache.  You can even [experiment with the API using a Polyfill](https://github.com/phuu/serviceworker-demo).
 
-[Slides: Network connectivity: optional](https://speakerdeck.com/jaffathecake/network-optional) 
+[Slides: Network connectivity: optional](https://speakerdeck.com/jaffathecake/network-optional)
 
-<iframe width="900" height="495" src="//www.youtube.com/embed/Z7sRMg0f5Hk" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="//www.youtube.com/embed/Z7sRMg0f5Hk" frameborder="0" allowfullscreen></iframe>
 
 ## ServiceWorker to the rescue
 
 + In the next generation of progressive enhancement, we treat the network as a potential enhancement
 + ServiceWorker gives you full, scriptable, debuggable control over network requests
-+ If you have an offline experience, don’t wait for the network to fail before you show it, as this can take ages 
++ If you have an offline experience, don’t wait for the network to fail before you show it, as this can take ages

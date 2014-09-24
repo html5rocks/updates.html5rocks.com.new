@@ -49,7 +49,7 @@ permalink: /2013/02/WebRTC-data-channels-API-changes-and-Chrome-talks-to-Firefox
 
 <p>Tip of the hat to those at Mozilla and Google who made it all happen.</p>
 
-<iframe width="640" height="390" src="http://www.youtube.com/embed/MsAWR_rJ5n8" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="http://www.youtube.com/embed/MsAWR_rJ5n8" frameborder="0" allowfullscreen></iframe>
 
 <p>Happy coding! And please let us know of any bugs, either by commenting on this post, or at <a href="http://crbug.com/new" title="File a Chrome bug">crbug.com/new</a>.</p>
 
