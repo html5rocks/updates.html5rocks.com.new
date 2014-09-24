@@ -82,19 +82,6 @@
       dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
       sp.insertBefore(dsq, s);
     }
-
-    function outgoing(url) {
-      try {
-        ga('send', 'event', 'Outbound Links' , url);
-      } catch(err){}
-    }
-    // Open external links (also that don't have a target defined) in a new tab.
-    var externLinks = document.querySelectorAll('article.tutorial a[href^="http"]:not([target])');
-    for(var i = 0, a; a = externLinks[i]; ++i) {
-      a.target = '_blank';
-      a.addEventListener('click', new Function('outgoing(' + '"' + a.href.replace(/.*?:\/\//g, "") + '"' + ');'));
-    }
-
     var loadCommentsButtons = document.querySelectorAll('.load-comments');
     for(var l = 0; l < loadCommentsButtons.length; l++)
       loadCommentsButtons[l].addEventListener('click', loadComments);
