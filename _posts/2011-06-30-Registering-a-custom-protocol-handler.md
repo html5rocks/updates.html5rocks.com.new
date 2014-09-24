@@ -12,6 +12,7 @@ tags:
   - nuts_and_bolts
   - api
   - business
+permalink: /2011/06/Registering-a-custom-protocol-handler
 ---
 Chrome 13 finally includes `navigator.registerProtocolHandler`. This API allows web apps to register themselves as possible handlers for particular protocols. For example, users could select your application to handle "mailto" links.
 
@@ -19,12 +20,12 @@ Register a protocol scheme like:
 
 {% highlight javascript %}
 navigator.registerProtocolHandler(
-  'web+mystuff', 'http://example.com/rph?q=%s', 'My App');
+    'web+mystuff', 'http://example.com/rph?q=%s', 'My App');
 {% endhighlight %}
 
 The first parameter is the protocol. The second is the URL pattern of the application that should handle this scheme. The pattern should include a '%s' as a placeholder for data and it must must be on the same origin as the app attempting to register the protocol. Once the user approves access, you can use this link through your app, other sites, etc.:
 
-{% highlight html %}
+{% highlight HTML %}
 <a href="web+mystuff:some+data">Open in "My App"</a>
 {% endhighlight %}
 
