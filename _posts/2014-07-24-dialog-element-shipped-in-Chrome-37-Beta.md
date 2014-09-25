@@ -14,22 +14,7 @@ permalink: /2014/07/dialog-element-shipped-in-Chrome-37-Beta
 ---
 Chrome Beta has landed its native support for &lt;dialog&gt; element without needing "Enable experimental Web Platform features." flag turned on.
 
-{% highlight HTML %}
-<dialog>
-  <p>This is da dialog!</p>
-  <button id="close">Close</button>
-</dialog>
-<button id="show">Open Dialog!</button>
-<script>
-  var dialog = document.querySelector('dialog');
-  document.querySelector('#show').onclick = function() {
-    dialog.show();
-  };
-  document.querySelector('#close').onclick = function() {
-    dialog.close();
-  };
-</script>
-{% endhighlight %}
+{% include_code dialog code-block %}
 
 Check out more sample codes and how it works in detail with [a live demo](http://demo.agektmr.com/dialog/).
 
