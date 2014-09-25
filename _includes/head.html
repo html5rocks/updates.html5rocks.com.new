@@ -8,16 +8,18 @@
 
 <!-- Add to homescreen for Chrome on Android -->
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="icon" sizes="192x192" href="{{site.url}}/images/HTML5_Badge_192.png">
+<link rel="icon" sizes="192x192" href="  {% asset_path HTML5_Badge_192.png %}">
 
 <!-- Add to homescreen for Safari on iOS -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="HTML5 Rocks">
-<link rel="apple-touch-icon-precomposed" href="{{site.url}}/images/HTML5_Badge_192.png">
+<link rel="apple-touch-icon-precomposed" href="{% asset_path HTML5_Badge_192.png %}
+">
 
 <!-- Tile icon for Win8 (144x144 + tile color) -->
-<meta name="msapplication-TileImage" content="{{site.url}}/images/HTML5_Badge_144.png">
+<meta name="msapplication-TileImage" content="{% asset_path HTML5_Badge_144.png %}
+">
 <meta name="msapplication-TileColor" content="#3372DF">
 
 <!-- TODO: consider rel=canonical -->
@@ -47,7 +49,7 @@
 {% endif %}
 
 
-<link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,800|Source+Code+Pro" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Open+Sans:600,800|Source+Code+Pro" rel="stylesheet">
 {% stylesheet main %}
 
 <!--[if lt IE 9]>

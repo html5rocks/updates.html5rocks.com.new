@@ -20,4 +20,7 @@ gems: [jekyll-assets]
 assets:
   js_compressor:  uglifier
   css_compressor: sass
+  # TODO: change link.
+  #baseurl: http://localhost:8000/assets/
+  baseurl: http://devnook.github.io/updates.html5rocks.com.new/assets/
   gzip: [ text/css, application/javascript ]
