@@ -15,5 +15,9 @@ paginate: 6
 paginate_path: "/page/:num"
 
 include: [samples]
-sass:
-  style: :compressed
+
+gems: [jekyll-assets]
+assets:
+  js_compressor:  uglifier
+  css_compressor: sass
+  gzip: [ text/css, application/javascript ]
