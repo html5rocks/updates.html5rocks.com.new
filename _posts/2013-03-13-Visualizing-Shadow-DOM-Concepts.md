@@ -31,6 +31,7 @@ It allows you to visually see how Shadow DOM renders in the browser, something D
 Mouse over the nodes in the graph to highlight the relevant markup on the left. Yay for [d3.js](http://d3js.org/)! Blue nodes are coming from the host node. Yellow nodes come from the Shadow DOM. `<content>` insertion points are the bridge
 between the two worlds. Because they're logically in the Shadow DOM, they're colored yellow. Their blue border indicates that they invite blue host nodes into the rendering party.
 
-<iframe width="100%" height="360" src="http://www.youtube.com/embed/qnJ_s58ubxg" frameborder="0" allowfullscreen></iframe>
+
+{% video //www.youtube.com/embed/qnJ_s58ubxg %} {% endvideo %}
 
 Shadow DOM is available in Chrome 25 and the `<template>` element is available in Chrome 26 (although you only need the first to try the demo).

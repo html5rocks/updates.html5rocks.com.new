@@ -55,11 +55,7 @@ If you feel C++ in your blood and want to write C++ with us, all of our code is 
 
 **Slides:** [Blink](https://docs.google.com/a/chromium.org/presentation/d/1E30GMRaN-9Uj54pfjej8STWz5uwI8ZEg3K_t29_DHs4)
 
-<div class="video-container">
-<iframe width="100%" height="360" src="//www.youtube.com/embed/392VTLQyKDc" frameborder="0" allowfullscreen></iframe>
-</div>
-
-<br>
+{% video //www.youtube.com/embed/392VTLQyKDc %} {% endvideo %}
 
 <hr>
 
@@ -113,9 +109,7 @@ Transport Security (HSTS).
 
 **Slides:** [Got SSL?](http://goo.gl/y9KIw2)
 
-<div class="video-container">
-  <iframe width="100%" height="360" src="//www.youtube.com/embed/sJ8EX61fFWQ?feature=player_embedded" frameborder="0" allowfullscreen></iframe>
-</div>
+{% video //www.youtube.com/embed/sJ8EX61fFWQ?feature=player_embedded %} {% endvideo %}
 
 <br>
 
@@ -146,6 +140,4 @@ So what do we have for web developers? An ecosystem of media APIs for the open W
 
 **Slides:** [Media APIs for the multi-device Web](http://simpl.info/media/#1)
 
-<div class="video-container">
-  <iframe width="100%" height="360" src="//www.youtube.com/embed/l-BA9Ee2XuM?feature=player_embedded" frameborder="0" allowfullscreen></iframe>
-</div>
+{% video //www.youtube.com/embed/l-BA9Ee2XuM?feature=player_embedded %} {% endvideo %}

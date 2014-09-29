@@ -23,9 +23,8 @@ permalink: /2013/12/300ms-tap-delay-gone-away
 
 <p>However, as of <a href="https://play.google.com/store/apps/details?id=com.chrome.beta">Chrome 32 for Android</a>, which is currently in beta, this <strong>delay is gone</strong> for <strong>mobile-optimised</strong> sites, <strong>without removing pinch-zooming</strong>!</p>
 
-<div style="position: relative; padding-top: 56.25%;">
-  <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="//www.youtube.com/embed/AjUpiwvIa5A?rel=0" frameborder="0" allowfullscreen=""></iframe>
-</div>
+
+{% video //www.youtube.com/embed/AjUpiwvIa5A?rel=0" %} {% endvideo %}
 
 <p>This optimisation applies to any site that uses:</p>
 

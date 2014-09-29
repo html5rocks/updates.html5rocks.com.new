@@ -25,7 +25,7 @@ There's a demo at
 
 Here's a screencast:
 
-<iframe width="100%" height="360" src="http://www.youtube.com/embed/LIH_myX3Zp0"></iframe>
+{% video //www.youtube.com/embed/LIH_myX3Zp0 %} {% endvideo %}
 
 # How to make alpha videos
 

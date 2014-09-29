@@ -30,7 +30,7 @@ This feature is available to try out in Chrome behind an experimental flag. It's
 
 Here's an overview video that explains a lot about how CSS Grid Layout works ([slides are here](http://sydcss-grid.appspot.com/""):
 
-<iframe width="100%" height="360" src="//www.youtube.com/embed/hy7IMGVUHps" frameborder="0" allowfullscreen></iframe>
+{% video //www.youtube.com/embed/hy7IMGVUHps %} {% endvideo %}
 
 ### Try it out
 

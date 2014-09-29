@@ -20,7 +20,7 @@ Dart compiles to JavaScript, sometimes generating code that's faster than hand-w
 
 [Slides: Dart](https://docs.google.com/presentation/d/1JU1ToBg-K7_vLC5bt2gEcEy3p12mCQG8CGELOP3vWvI/edit?usp=sharing)
 
-<iframe width="100%" height="360" src="//www.youtube.com/embed/FqsU3TbUw_s" frameborder="0" allowfullscreen></iframe>
+{% video //www.youtube.com/embed/FqsU3TbUw_s %} {% endvideo %}
 
 # Chrome Apps
 
@@ -28,7 +28,7 @@ Chrome Apps provide the power and user experience of native apps with the develo
 
 [Slides: Chrome Apps](https://docs.google.com/presentation/d/1XdSq-xRxPHwbzYKSPZknZ4dYh_TW0h6MYr85Eyt-4NQ/edit?usp=sharing)
 
-<iframe width="100%" height="360" src="//www.youtube.com/embed/f3NctLbtsNE" frameborder="0" allowfullscreen></iframe>
+{% video //www.youtube.com/embed/f3NctLbtsNE %} {% endvideo %}
 
 # PNaCl
 
@@ -38,4 +38,4 @@ PNaCl helps developers produce a platform-independent form of their native appli
 
 [Slides: PNACL](https://docs.google.com/presentation/d/1VAwkh8HoinUHWx49eQLYdqimL4YsCyg-qw6BGe0cj8E/edit#slide=id.p18)
 
-<iframe width="100%" height="360" src="//www.youtube.com/embed/hfs5p1BKpxQ" frameborder="0" allowfullscreen></iframe>
+{% video //www.youtube.com/embed/hfs5p1BKpxQ %} {% endvideo %}

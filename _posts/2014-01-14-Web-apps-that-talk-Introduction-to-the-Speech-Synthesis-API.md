@@ -79,7 +79,7 @@ speechSynthesis.speak(msg);
 
 In my Google I/O 2013 talk, "[More Awesome Web: features you've always wanted](http://www.moreawesomeweb.com/)" ([www.moreawesomeweb.com](http://www.moreawesomeweb.com/)), I showed a Google Now/Siri-like demo of using the Web Speech API's `SpeechRecognition` service with the Google Translate API to auto-translate microphone input into another language:
 
-<iframe width="100%" height="360" src="//www.youtube.com/embed/N_wTBKMuJis?start=1695" frameborder="0" allowfullscreen></iframe>
+{% video //www.youtube.com/embed/N_wTBKMuJis?start=1695 %} {% endvideo %}
 
 DEMO: [http://www.moreawesomeweb.com/demos/speech_translate.html](http://www.moreawesomeweb.com/demos/speech_translate.html)
 

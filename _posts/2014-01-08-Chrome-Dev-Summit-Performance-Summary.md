@@ -18,7 +18,7 @@ Knowing your way around your development tools is key to becoming a performance 
 
 [Slides](https://docs.google.com/a/google.com/presentation/d/1Aa9dn8S4su_8mrm8Pb3CDlWvrWiJU_3AB6HKp3zaJUs/edit)
 
-<iframe width="100%" height="495" src="//www.youtube.com/embed/8MMmg3bDOjc" frameborder="0" allowfullscreen></iframe>
+{% video //www.youtube.com/embed/8MMmg3bDOjc %} {% endvideo %}
 
 + You can now profile Chrome on Android with the DevTools you know and love from desktop.
 + The iteration loop for performance work is: gather data, achieve insight, take action.
@@ -32,7 +32,7 @@ Network and latency typically accounts for 70% of a site’s total page load tim
 
 [Slides](http://bit.ly/cds-network)
 
-<iframe width="100%" height="360" src="//www.youtube.com/embed/MOEiQ6sjeaI" frameborder="0" allowfullscreen></iframe>
+{% video //www.youtube.com/embed/MOEiQ6sjeaI %} {% endvideo %}
 
 + Chrome M27 has a new and improved resource scheduler.
 + Chrome M28 has made SPDY sites (even) faster.
@@ -47,7 +47,7 @@ Hitting 60fps in your projects directly correlates to user engagement and is cru
 
 [Slides](https://docs.google.com/a/google.com/presentation/d/1CH8ifryioHDLT1Oryyy8amusUmq2FytpCPCpk0G3E4o/edit#slide=id.g175f55166_010)
 
-<iframe width="100%" height="360" src="//www.youtube.com/embed/YyQYhhy1dZI" frameborder="0" allowfullscreen></iframe>
+{% video //www.youtube.com/embed/YyQYhhy1dZI %} {% endvideo %}
 
 + A frame is 16ms long. It contains JavaScript, style calculations, painting and compositing.
 + Painting is _extremely_ expensive. A Paint Storm is where you unnecessarily repeat expensive paint work.
@@ -60,7 +60,7 @@ The Critical Rendering Path refers to anything (JavaScript, HTML, CSS, images) t
 
 [Slides](https://docs.google.com/a/google.com/presentation/d/1z49qp03iXAJIkbXaMtCmWW_Pnnq-MzXGW139Xw8-paM/edit#slide=id.g1764b26cd_043)
 
-<iframe width="100%" height="360" src="//www.youtube.com/embed/VKTWdaupft0" frameborder="0" allowfullscreen></iframe>
+{% video //www.youtube.com/embed/VKTWdaupft0 %} {% endvideo %}
 
 + Eliminate render-blocking JavaScript and CSS.
 + Prioritize visible content.
