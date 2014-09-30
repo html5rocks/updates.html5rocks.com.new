@@ -1,5 +1,5 @@
-application: devnook-playground
-version: 1
+application: updaterocker
+version: 20140930
 runtime: python27
 api_version: 1
 threadsafe: true
