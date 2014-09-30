@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta property="twitter:account_id" content="1593210261" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps.">
+<meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,indexeddb,offline,audio,video,drag and drop,chrome,sse,mobile">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chrome Dev Summit: Performance Summary</title>
+
+<!-- Add to homescreen for Chrome on Android -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" sizes="192x192" href="  /assets/HTML5_Badge_192-f9389f6cad587f357d82be791970c8ad.png">
+
+<!-- Add to homescreen for Safari on iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="HTML5 Rocks">
+<link rel="apple-touch-icon-precomposed" href="/assets/HTML5_Badge_192-f9389f6cad587f357d82be791970c8ad.png
+">
+
+<!-- Tile icon for Win8 (144x144 + tile color) -->
+<meta name="msapplication-TileImage" content="/assets/HTML5_Badge_144-ddcf1cea1a1204b1733041733d66f76a.png
+">
+<meta name="msapplication-TileColor" content="#3372DF">
+
+<!-- TODO: consider rel=canonical -->
+<!-- TODO: consider rel=publisher -->
+<link rel="alternate" type="application/rss+xml" title="HTML5 Rocks RSS" href="http://feeds.feedburner.com/html5rocks">
+<link rel="publisher" href="https://plus.google.com/+GoogleChromeDevelopers">
+
+
+
+
+  
+
+
+
+
+<link href="//fonts.googleapis.com/css?family=Open+Sans:600,800|Source+Code+Pro" rel="stylesheet">
+<link rel="stylesheet" href="/assets/main-8dae1b06ec239bb8b24c3d98cd1ad04b.css">
+
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
+<![endif]-->
+
+  </head>
+  <body>
+    <header class="main" id="siteheader">
+  <a href="#sitenav" id="navtoggle"></a>
+  <nav id="sitenav" class="container">
+    <ul>
+      <li id="tutorials_menu">
+        <a href="http://www.html5rocks.com" class="tutorials">Home</a>
+      </li>
+      <li id="tutorials_menu">
+        <a href="http://www.html5rocks.com/en/tutorials/?page=1" class="tutorials">Tutorials</a>
+      </li>
+      <li id="updates_menu">
+        <a href="http://www.html5rocks.com/en/updates" class="updates">Updates</a>
+      </li>
+      <li id="contrib_menu">
+        <a href="https://github.com/html5rocks/www.html5rocks.com/blob/master/CONTRIBUTING.md" target="_blank">Contribute</a>
+      </li>
+      <li id="slides_menu">
+        <a href="http://www.html5rocks.com/en/slides" class="slides">Slides</a>
+      </li>
+      <li id="resources_menu">
+        <a href="http://www.html5rocks.com/en/resources" class="resources">Resources</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+    <div class="body-content">
+      <section class="banner">
+        <section class="container">
+          <a href="/en/" class="watermark"></a>
+          <h1>Chrome Dev Summit: Performance Summary</h1>
+          
+        </section>
+      </section>
+      <article class="content-wrapper article">
+<div class="container">
+  <section class="byline clearfix">
+    <section class="author-images">
+      
+        
+<!-- TODO: change image address.-->
+
+<img src="http://www.html5rocks.com/static/images/profiles/paullewis.png"
+     alt="Paul Lewis"
+     title="Paul Lewis"
+     width="60" height="60"
+     class="avatar">
+
+
+
+      
+    </section>
+    <section class="meta">
+      <div class="authors">
+          
+    
+    <!-- TODO: change link. -->
+    <strong>By</strong> <a href="http://www.html5rocks.com/profiles/#paullewis">
+      Paul Lewis
+    </a> 
+  
+
+      </div>
+      <div class="published">
+        <time pubdate=""><strong>Published:</strong> January 08, 2014</time>
+      </div>
+      <div class="updated">
+        <time><strong>Updated:</strong> January 08, 2014</time>
+      </div>
+      <div class="comments">
+        <span><strong>Comments:</strong> <a href="#disqus_thread" class="load-comments" data-disqus-identifier="http://html5rocks.com/updates//2014/01/Chrome-Dev-Summit-Performance-Summary"></a></span>
+      </div>
+      <div id="notcompatible" class="hidden">
+        Your browser may not support the functionality in this article.
+      </div>
+    </section>
+  </section>
+  <section class="content">
+    <h2>#perfmatters: Tooling techniques for the performance ninja</h2>
+
+<p>Knowing your way around your development tools is key to becoming a performance Grand Master. Colt stepped through the three pillars of performance: network, compute and render, providing a tour of the key problem in each area and the tools available for finding and eradicating them.</p>
+
+<p><a href="https://docs.google.com/a/google.com/presentation/d/1Aa9dn8S4su_8mrm8Pb3CDlWvrWiJU_3AB6HKp3zaJUs/edit">Slides</a></p>
+
+<div class="video-container"><iframe src="//www.youtube.com/embed/8MMmg3bDOjc " frameborder="0" allowfullscreen=""></iframe></div>
+
+<ul>
+  <li>You can now profile Chrome on Android with the DevTools you know and love from desktop.</li>
+  <li>The iteration loop for performance work is: gather data, achieve insight, take action.</li>
+  <li>Prioritize assets that are on the critical rendering path for your pages.</li>
+  <li>Avoid painting; it’s super expensive.</li>
+  <li>Avoid memory churn and executing code during critical times in your app.</li>
+</ul>
+
+<h2>#perfmatters: Optimizing network performance</h2>
+
+<p>Network and latency typically accounts for 70% of a site’s total page load time. That’s a large percentage, but it also means that any improvements you make there will reap huge benefits for your users. In this talk Ilya stepped through recent changes in Chrome that will improve loading time, as well as a few changes you can make in your environment to help keep network load to an absolute minimum.</p>
+
+<p><a href="http://bit.ly/cds-network">Slides</a></p>
+
+<div class="video-container"><iframe src="//www.youtube.com/embed/MOEiQ6sjeaI " frameborder="0" allowfullscreen=""></iframe></div>
+
+<ul>
+  <li>Chrome M27 has a new and improved resource scheduler.</li>
+  <li>Chrome M28 has made SPDY sites (even) faster.</li>
+  <li>Chrome’s simple cache has received an overhaul.</li>
+  <li>SPDY / HTTP/2.0 offer huge transfer speed improvements. There are mature SPDY modules available for nginx, Apache and Jetty (to name just three).</li>
+  <li>QUIC is a new and experimental protocol built on top of UDP; it’s early days but however it works out users will win.</li>
+</ul>
+
+<h2>#perfmatters: 60fps layout and rendering</h2>
+
+<p>Hitting 60fps in your projects directly correlates to user engagement and is crucial to its success. In this talk Nat and Tom talked about Chrome’s rendering pipeline, some common causes of dropped frames and how to avoid them.</p>
+
+<p><a href="https://docs.google.com/a/google.com/presentation/d/1CH8ifryioHDLT1Oryyy8amusUmq2FytpCPCpk0G3E4o/edit#slide=id.g175f55166_010">Slides</a></p>
+
+<div class="video-container"><iframe src="//www.youtube.com/embed/YyQYhhy1dZI " frameborder="0" allowfullscreen=""></iframe></div>
+
+<ul>
+  <li>A frame is 16ms long. It contains JavaScript, style calculations, painting and compositing.</li>
+  <li>Painting is <em>extremely</em> expensive. A Paint Storm is where you unnecessarily repeat expensive paint work.</li>
+  <li>Layers are used to cache painted elements.</li>
+  <li>Input handlers (touch and mousewheel listeners) can kill responsiveness; avoid them if you can. Where you can’t keep them to a minimum.</li>
+</ul>
+
+<h2>#perfmatters: Instant mobile web apps</h2>
+
+<p>The Critical Rendering Path refers to anything (JavaScript, HTML, CSS, images) that the browser requires before it is able to begin painting the page. Prioritizing the delivery of assets on the critical rendering path is a must, particularly for users on network-constrained devices such as smartphones on cellular networks. Bryan talked through how the team at Google went through the process of identifying and prioritizing the assets for the PageSpeed Insights website, taking it from a 20 second load time to just over 1 second!</p>
+
+<p><a href="https://docs.google.com/a/google.com/presentation/d/1z49qp03iXAJIkbXaMtCmWW_Pnnq-MzXGW139Xw8-paM/edit#slide=id.g1764b26cd_043">Slides</a></p>
+
+<div class="video-container"><iframe src="//www.youtube.com/embed/VKTWdaupft0 " frameborder="0" allowfullscreen=""></iframe></div>
+
+<ul>
+  <li>Eliminate render-blocking JavaScript and CSS.</li>
+  <li>Prioritize visible content.</li>
+  <li>Load scripts asynchronously.</li>
+  <li>Render the initial view server-side as HTML and augment with JavaScript.</li>
+  <li>Minimize render-blocking CSS; deliver only the styles needed to display the initial viewport, then deliver the rest.</li>
+  <li>Large data URIs inlined in render-blocking CSS are harmful for render performance; they are blocking resources where image URLs are non-blocking.</li>
+</ul>
+
+  </section>
+  <section>
+    <!-- TODO: Update link. -->
+    
+      <a href="/tag/mobile" class="tag">mobile</a>
+    
+      <a href="/tag/performance" class="tag">performance</a>
+    
+  </section>
+  <div class="pager">
+    
+    <a href="/2014/01/Chrome-Dev-Summit-Polymer-declarative-encapsulated-reusable-components">&laquo; Chrome Dev Summit: Polymer declarative, encapsulated, reusable components</a>
+     | 
+    <a href="/2014/01/Chrome-Dev-Summit-Open-Web-Platform-Summary">Chrome Dev Summit: Open Web Platform Summary &raquo;</a>
+    
+  </div>
+</div>
+</article>
+<section class="disqus pattern-bg-lighter">
+  <div id="disqus" class="container">
+    <h2>Comments</h2>
+    <div id="disqus_thread">
+      <a href="#disqus_thread" class="load-comments"
+          data-disqus-identifier="/2014/01/Chrome-Dev-Summit-Performance-Summary">0</a>
+    </div>
+  </div>
+
+  <noscript>
+    <p class="center">
+      <strong>
+        <a href="http://disqus.com/?ref_noscript">Please enable JavaScript to view the comments powered by Disqus.</a>
+      </strong>
+    </p>
+  </noscript>
+
+  <script>
+
+    var disqus_shortname = 'html5rocks';
+    var disqus_identifier = 'http://html5rocks.com/updates//2014/01/Chrome-Dev-Summit-Performance-Summary';
+    var disqus_url = 'http://html5rocks.com/updates//2014/01/Chrome-Dev-Summit-Performance-Summary';
+    var disqus_developer = 0;
+
+    var disqus_config = function () {
+      var funky_language_code_mapping = {
+        'de': 'de_inf',
+        'es': 'es_ES',
+        'pt': 'pt_EU',
+        'sr': 'sr_CYRL',
+        'sv': 'sv_SE',
+        'zh': 'zh_HANT'
+      };
+      this.language = funky_language_code_mapping['en'] ||
+                      'en';
+
+      this.callbacks.onReady = [ function () {
+                                    try {
+                                      ga('send', 'event', 'View comments');
+                                    } catch(err){}
+                                 } ];
+      this.callbacks.onNewComment = [ function (comment) {
+                                        try {
+                                          ga('send', 'event', 'Commented');
+                                        } catch(err){}
+                                      } ];
+    };
+
+    window.addEventListener('load', function(e) {
+
+      var c = document.createElement('script');
+      c.type = 'text/javascript';
+      c.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+      c.async = true;
+
+      var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+      sp.insertBefore(c, s);
+
+      if (window.location.hash === '#disqus_thread')
+        loadComments();
+
+    }, false);
+
+    var disqus_loaded = false;
+    function loadComments() {
+
+      if (disqus_loaded)
+        return;
+
+      disqus_loaded = true;
+
+      ga('send', 'event', 'Interactions', 'Comments', 'Comments Loaded');
+
+      var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+
+      var disqusContainer = document.getElementById('disqus');
+      disqusContainer.classList.add('active');
+
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      sp.insertBefore(dsq, s);
+    }
+    var loadCommentsButtons = document.querySelectorAll('.load-comments');
+    for(var l = 0; l < loadCommentsButtons.length; l++)
+      loadCommentsButtons[l].addEventListener('click', loadComments);
+
+  </script>
+</section>
+
+
+
+    </div>
+    <footer>
+  <div class="container">
+    
+    <h1>Next steps</h1>
+    <aside class="panel share">
+      <h2>Share</h2>
+        <a href="https://twitter.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/&amp;text=Getting Started with CSS Shapes&amp;lang=en&amp;via=ChromiumDev&amp;related=ChromiumDev" class="twitter" target="_blank">Twitter</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="facebook" target="_blank">Facebook</a>
+        <a href="https://plus.google.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="gplus" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Google+</a>
+    </aside>
+    <aside class="panel rss">
+      <h2>Subscribe</h2>
+      <p>Enjoyed this article? Grab the <a href="http://feeds.feedburner.com/html5rocks">RSS feed</a> and stay up-to-date.</p>
+    </aside>
+    
+    <p class="licensing">
+      Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+    </p>
+  </div>
+</footer>
+
+
+    <script>
+      (function() {
+
+        var siteHeader = document.getElementById('siteheader');
+        var navToggle = document.getElementById('navtoggle');
+        var siteNav = document.getElementById('sitenav');
+
+        navToggle.addEventListener('click', function(e) {
+          siteNav.classList.toggle('active');
+          e.preventDefault();
+        });
+
+      })();
+    </script>
+
+    <!-- TODO: change UA-XXXXX-X -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-XXXXX-X', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>

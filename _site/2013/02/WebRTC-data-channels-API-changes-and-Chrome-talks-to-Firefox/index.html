@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta property="twitter:account_id" content="1593210261" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps.">
+<meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,indexeddb,offline,audio,video,drag and drop,chrome,sse,mobile">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebRTC: RTCDataChannel demo, API changes... and Chrome talks to Firefox!</title>
+
+<!-- Add to homescreen for Chrome on Android -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" sizes="192x192" href="  /assets/HTML5_Badge_192-f9389f6cad587f357d82be791970c8ad.png">
+
+<!-- Add to homescreen for Safari on iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="HTML5 Rocks">
+<link rel="apple-touch-icon-precomposed" href="/assets/HTML5_Badge_192-f9389f6cad587f357d82be791970c8ad.png
+">
+
+<!-- Tile icon for Win8 (144x144 + tile color) -->
+<meta name="msapplication-TileImage" content="/assets/HTML5_Badge_144-ddcf1cea1a1204b1733041733d66f76a.png
+">
+<meta name="msapplication-TileColor" content="#3372DF">
+
+<!-- TODO: consider rel=canonical -->
+<!-- TODO: consider rel=publisher -->
+<link rel="alternate" type="application/rss+xml" title="HTML5 Rocks RSS" href="http://feeds.feedburner.com/html5rocks">
+<link rel="publisher" href="https://plus.google.com/+GoogleChromeDevelopers">
+
+
+
+
+  
+
+
+
+
+<link href="//fonts.googleapis.com/css?family=Open+Sans:600,800|Source+Code+Pro" rel="stylesheet">
+<link rel="stylesheet" href="/assets/main-8dae1b06ec239bb8b24c3d98cd1ad04b.css">
+
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
+<![endif]-->
+
+  </head>
+  <body>
+    <header class="main" id="siteheader">
+  <a href="#sitenav" id="navtoggle"></a>
+  <nav id="sitenav" class="container">
+    <ul>
+      <li id="tutorials_menu">
+        <a href="http://www.html5rocks.com" class="tutorials">Home</a>
+      </li>
+      <li id="tutorials_menu">
+        <a href="http://www.html5rocks.com/en/tutorials/?page=1" class="tutorials">Tutorials</a>
+      </li>
+      <li id="updates_menu">
+        <a href="http://www.html5rocks.com/en/updates" class="updates">Updates</a>
+      </li>
+      <li id="contrib_menu">
+        <a href="https://github.com/html5rocks/www.html5rocks.com/blob/master/CONTRIBUTING.md" target="_blank">Contribute</a>
+      </li>
+      <li id="slides_menu">
+        <a href="http://www.html5rocks.com/en/slides" class="slides">Slides</a>
+      </li>
+      <li id="resources_menu">
+        <a href="http://www.html5rocks.com/en/resources" class="resources">Resources</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+    <div class="body-content">
+      <section class="banner">
+        <section class="container">
+          <a href="/en/" class="watermark"></a>
+          <h1>WebRTC: RTCDataChannel demo, API changes... and Chrome talks to Firefox!</h1>
+          
+        </section>
+      </section>
+      <article class="content-wrapper article">
+<div class="container">
+  <section class="byline clearfix">
+    <section class="author-images">
+      
+        
+<!-- TODO: change image address.-->
+
+<img src="http://www.html5rocks.com/static/images/profiles/dutton.png"
+     alt="Sam Dutton"
+     title="Sam Dutton"
+     width="60" height="60"
+     class="avatar">
+
+
+
+      
+    </section>
+    <section class="meta">
+      <div class="authors">
+          
+    
+    <!-- TODO: change link. -->
+    <strong>By</strong> <a href="http://www.html5rocks.com/profiles/#dutton">
+      Sam Dutton
+    </a> 
+  
+
+      </div>
+      <div class="published">
+        <time pubdate=""><strong>Published:</strong> February 06, 2013</time>
+      </div>
+      <div class="updated">
+        <time><strong>Updated:</strong> February 06, 2013</time>
+      </div>
+      <div class="comments">
+        <span><strong>Comments:</strong> <a href="#disqus_thread" class="load-comments" data-disqus-identifier="http://html5rocks.com/updates//2013/02/WebRTC-data-channels-API-changes-and-Chrome-talks-to-Firefox"></a></span>
+      </div>
+      <div id="notcompatible" class="hidden">
+        Your browser may not support the functionality in this article.
+      </div>
+    </section>
+  </section>
+  <section class="content">
+    <p>More good news from our old friend <a href="http://www.webrtc.org" title="webrtc.org website">WebRTC</a>...</p>
+
+<p><a href="http://en.wikipedia.org/wiki/File:Thomson_and_Thompson_in_Asterix.png" title="Thomson and Thompson in Asterix in Belgium">To be precise</a>: three pieces of good news and a couple of minor API changes.</p>
+
+<h2>RTCDataChannel for Chrome</h2>
+
+<p>RTCDataChannel has been implemented in Chrome, and there's a great little demo at <a href="http://www.simpl.info/rtcdatachannel" title="Data Channel">simpl.info/dc</a>.</p>
+
+<p>This demo shows peer-to-peer communication of arbitrary data &ndash; in less than a hundred lines of code. You'll need Chrome 25 or above for this, which at this point means <a href="https://www.google.com/intl/en/chrome/browser/beta.html" title="Download Chrome Beta">Beta</a> or <a href="https://www.google.com/intl/en/chrome/browser/canary.html" title="Download Chrome Canary">Canary</a>.</p>
+
+<p>RTCDataChannel makes the most of features built into RTCPeerConnection &ndash; not least, the use if the ICE framework to get through firewalls and NATs &ndash; and has lots of potential applications where low latency is paramount: for gaming, remote desktop applications, real-time text chat and file transfer.</p>
+
+<p>For more information about RTCDataChannel, take a look at <a href="http://www.html5rocks.com/en/tutorials/webrtc/basics/#toc-rtcdatachannel" title="Information about RTCDataChannel on HTML5 Rocks">Getting Started with WebRTC</a>.</p>
+
+<h2>API changes</h2>
+
+<p>Less exciting, but still important: from Chrome 26, some RTCPeerConnection and MediaStream API properties have become <em>getter</em> methods:</p>
+
+<ol>
+	<li>MediaStream now has the <code>getAudioTracks()</code> method instead of the audioTracks property, and <code>getVideoTracks()</code> instead of <code>videoTracks</code>.</li>
+	<li>RTCPeerConnection now has <code>getLocalStreams()</code> instead of <code>localStreams</code>, and <code>getRemoteStreams()</code> instead of <code>remoteStreams</code>.</li>
+</ol>
+
+<p>To get a glimpse of MediaStream in action, take a look at the <a href="http://simpl.info/getusermedia/" title="Simple getUserMedia demo">simpl.info/gum</a> <code>getUserMedia</code> demo. The <code>stream</code> variable is in global scope: examine it from the console. Likewise for RTCPeerConnection at <a href="Single page RTCPeerConnection demo" title="">simpl.info/pc</a>: the RTCPeerConnection objects <code>pc1</code> and <code>pc2</code> are in global scope.</p>
+
+<h2>Chrome &lt;=&gt; Firefox</h2>
+
+<p><a href="https://twitter.com/search?q=webrtc+chrome+firefox" title="Tweets about Chrome/Firefox WebRTC interop">And</a> <a href="http://www.webrtc.org/demo" title="webrtc.org demo page">in</a> <a href="https://hacks.mozilla.org/2013/02/hello-chrome-its-firefox-calling/" title="hacks.mozilla.org blog post">case</a> <a href="http://blog.chromium.org/2013/02/hello-firefox-this-is-chrome-calling.html" title="Chromium blog post">you</a> <a href="https://www.google.com/news?q=chrome+firefox+webrtc" title="News stories about Chrome/Firefox WebRTC interop">missed</a> <a href="https://news.ycombinator.com/item?id=5166239" title="Hacker News comments on Chrome Firefox WebRTC interop">it</a>, Chrome can now 'talk' to Firefox.</p>
+
+<p>You can try this out now at <a href="http://www.webrtc.org/demo" title="webrtc.org instructions for using the apprtc video chat demo on Firefox and Chrome">webrtc.org/demo</a>, which has full instructions, links to source code, and information about API differences.</p>
+
+<p>Tip of the hat to those at Mozilla and Google who made it all happen.</p>
+
+<div class="video-container"><iframe src="//www.youtube.com/embed/MsAWR_rJ5n8 " frameborder="0" allowfullscreen=""></iframe></div>
+
+<p>Happy coding! And please let us know of any bugs, either by commenting on this post, or at <a href="http://crbug.com/new" title="File a Chrome bug">crbug.com/new</a>.</p>
+
+<p>...and don't forget, you can always get up-to-date implementation information from the excellent <a href="http://www.chromestatus.com" title="chromestatus.com: implementation information for APIs in Chrome">chromestatus.com</a>.</p>
+
+  </section>
+  <section>
+    <!-- TODO: Update link. -->
+    
+      <a href="/tag/Firefox" class="tag">Firefox</a>
+    
+      <a href="/tag/RTCDataChannel" class="tag">RTCDataChannel</a>
+    
+      <a href="/tag/Mozilla" class="tag">Mozilla</a>
+    
+      <a href="/tag/WebRTC" class="tag">WebRTC</a>
+    
+      <a href="/tag/RTCPeerConnection" class="tag">RTCPeerConnection</a>
+    
+      <a href="/tag/Web Audio" class="tag">Web Audio</a>
+    
+  </section>
+  <div class="pager">
+    
+    <a href="/2013/02/CSS-Background-shorthand-coming-to-mobile-WebKit-browsers">&laquo; CSS Background shorthand coming to mobile WebKit browsers</a>
+     | 
+    <a href="/2013/02/Profiling-Long-Paint-Times-with-DevTools-Continuous-Painting-Mode">Profiling Long Paint Times with DevTools' Continuous Painting Mode &raquo;</a>
+    
+  </div>
+</div>
+</article>
+<section class="disqus pattern-bg-lighter">
+  <div id="disqus" class="container">
+    <h2>Comments</h2>
+    <div id="disqus_thread">
+      <a href="#disqus_thread" class="load-comments"
+          data-disqus-identifier="/2013/02/WebRTC-data-channels-API-changes-and-Chrome-talks-to-Firefox">0</a>
+    </div>
+  </div>
+
+  <noscript>
+    <p class="center">
+      <strong>
+        <a href="http://disqus.com/?ref_noscript">Please enable JavaScript to view the comments powered by Disqus.</a>
+      </strong>
+    </p>
+  </noscript>
+
+  <script>
+
+    var disqus_shortname = 'html5rocks';
+    var disqus_identifier = 'http://html5rocks.com/updates//2013/02/WebRTC-data-channels-API-changes-and-Chrome-talks-to-Firefox';
+    var disqus_url = 'http://html5rocks.com/updates//2013/02/WebRTC-data-channels-API-changes-and-Chrome-talks-to-Firefox';
+    var disqus_developer = 0;
+
+    var disqus_config = function () {
+      var funky_language_code_mapping = {
+        'de': 'de_inf',
+        'es': 'es_ES',
+        'pt': 'pt_EU',
+        'sr': 'sr_CYRL',
+        'sv': 'sv_SE',
+        'zh': 'zh_HANT'
+      };
+      this.language = funky_language_code_mapping['en'] ||
+                      'en';
+
+      this.callbacks.onReady = [ function () {
+                                    try {
+                                      ga('send', 'event', 'View comments');
+                                    } catch(err){}
+                                 } ];
+      this.callbacks.onNewComment = [ function (comment) {
+                                        try {
+                                          ga('send', 'event', 'Commented');
+                                        } catch(err){}
+                                      } ];
+    };
+
+    window.addEventListener('load', function(e) {
+
+      var c = document.createElement('script');
+      c.type = 'text/javascript';
+      c.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+      c.async = true;
+
+      var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+      sp.insertBefore(c, s);
+
+      if (window.location.hash === '#disqus_thread')
+        loadComments();
+
+    }, false);
+
+    var disqus_loaded = false;
+    function loadComments() {
+
+      if (disqus_loaded)
+        return;
+
+      disqus_loaded = true;
+
+      ga('send', 'event', 'Interactions', 'Comments', 'Comments Loaded');
+
+      var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+
+      var disqusContainer = document.getElementById('disqus');
+      disqusContainer.classList.add('active');
+
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      sp.insertBefore(dsq, s);
+    }
+    var loadCommentsButtons = document.querySelectorAll('.load-comments');
+    for(var l = 0; l < loadCommentsButtons.length; l++)
+      loadCommentsButtons[l].addEventListener('click', loadComments);
+
+  </script>
+</section>
+
+
+
+    </div>
+    <footer>
+  <div class="container">
+    
+    <h1>Next steps</h1>
+    <aside class="panel share">
+      <h2>Share</h2>
+        <a href="https://twitter.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/&amp;text=Getting Started with CSS Shapes&amp;lang=en&amp;via=ChromiumDev&amp;related=ChromiumDev" class="twitter" target="_blank">Twitter</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="facebook" target="_blank">Facebook</a>
+        <a href="https://plus.google.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="gplus" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Google+</a>
+    </aside>
+    <aside class="panel rss">
+      <h2>Subscribe</h2>
+      <p>Enjoyed this article? Grab the <a href="http://feeds.feedburner.com/html5rocks">RSS feed</a> and stay up-to-date.</p>
+    </aside>
+    
+    <p class="licensing">
+      Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+    </p>
+  </div>
+</footer>
+
+
+    <script>
+      (function() {
+
+        var siteHeader = document.getElementById('siteheader');
+        var navToggle = document.getElementById('navtoggle');
+        var siteNav = document.getElementById('sitenav');
+
+        navToggle.addEventListener('click', function(e) {
+          siteNav.classList.toggle('active');
+          e.preventDefault();
+        });
+
+      })();
+    </script>
+
+    <!-- TODO: change UA-XXXXX-X -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-XXXXX-X', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>

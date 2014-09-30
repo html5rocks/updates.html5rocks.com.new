@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta property="twitter:account_id" content="1593210261" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps.">
+<meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,indexeddb,offline,audio,video,drag and drop,chrome,sse,mobile">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stick your landings! position: sticky lands in WebKit</title>
+
+<!-- Add to homescreen for Chrome on Android -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" sizes="192x192" href="  /assets/HTML5_Badge_192-f9389f6cad587f357d82be791970c8ad.png">
+
+<!-- Add to homescreen for Safari on iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="HTML5 Rocks">
+<link rel="apple-touch-icon-precomposed" href="/assets/HTML5_Badge_192-f9389f6cad587f357d82be791970c8ad.png
+">
+
+<!-- Tile icon for Win8 (144x144 + tile color) -->
+<meta name="msapplication-TileImage" content="/assets/HTML5_Badge_144-ddcf1cea1a1204b1733041733d66f76a.png
+">
+<meta name="msapplication-TileColor" content="#3372DF">
+
+<!-- TODO: consider rel=canonical -->
+<!-- TODO: consider rel=publisher -->
+<link rel="alternate" type="application/rss+xml" title="HTML5 Rocks RSS" href="http://feeds.feedburner.com/html5rocks">
+<link rel="publisher" href="https://plus.google.com/+GoogleChromeDevelopers">
+
+
+
+
+  
+
+
+
+
+<link href="//fonts.googleapis.com/css?family=Open+Sans:600,800|Source+Code+Pro" rel="stylesheet">
+<link rel="stylesheet" href="/assets/main-8dae1b06ec239bb8b24c3d98cd1ad04b.css">
+
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
+<![endif]-->
+
+  </head>
+  <body>
+    <header class="main" id="siteheader">
+  <a href="#sitenav" id="navtoggle"></a>
+  <nav id="sitenav" class="container">
+    <ul>
+      <li id="tutorials_menu">
+        <a href="http://www.html5rocks.com" class="tutorials">Home</a>
+      </li>
+      <li id="tutorials_menu">
+        <a href="http://www.html5rocks.com/en/tutorials/?page=1" class="tutorials">Tutorials</a>
+      </li>
+      <li id="updates_menu">
+        <a href="http://www.html5rocks.com/en/updates" class="updates">Updates</a>
+      </li>
+      <li id="contrib_menu">
+        <a href="https://github.com/html5rocks/www.html5rocks.com/blob/master/CONTRIBUTING.md" target="_blank">Contribute</a>
+      </li>
+      <li id="slides_menu">
+        <a href="http://www.html5rocks.com/en/slides" class="slides">Slides</a>
+      </li>
+      <li id="resources_menu">
+        <a href="http://www.html5rocks.com/en/resources" class="resources">Resources</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+    <div class="body-content">
+      <section class="banner">
+        <section class="container">
+          <a href="/en/" class="watermark"></a>
+          <h1>Stick your landings! position: sticky lands in WebKit</h1>
+          
+        </section>
+      </section>
+      <article class="content-wrapper article">
+<div class="container">
+  <section class="byline clearfix">
+    <section class="author-images">
+      
+        
+<!-- TODO: change image address.-->
+
+<img src="http://www.html5rocks.com/static/images/profiles/ericbidelman.png"
+     alt="Eric Bidelman"
+     title="Eric Bidelman"
+     width="60" height="60"
+     class="avatar">
+
+
+
+      
+    </section>
+    <section class="meta">
+      <div class="authors">
+          
+    
+    <!-- TODO: change link. -->
+    <strong>By</strong> <a href="http://www.html5rocks.com/profiles/#ericbidelman">
+      Eric Bidelman
+    </a> 
+  
+
+      </div>
+      <div class="published">
+        <time pubdate=""><strong>Published:</strong> August 30, 2012</time>
+      </div>
+      <div class="updated">
+        <time><strong>Updated:</strong> August 30, 2012</time>
+      </div>
+      <div class="comments">
+        <span><strong>Comments:</strong> <a href="#disqus_thread" class="load-comments" data-disqus-identifier="http://html5rocks.com/updates//2012/08/Stick-your-landings-position-sticky-lands-in-WebKit"></a></span>
+      </div>
+      <div id="notcompatible" class="hidden">
+        Your browser may not support the functionality in this article.
+      </div>
+    </section>
+  </section>
+  <section class="content">
+    <p><code>position: sticky</code> is a new way to position elements and is conceptually similar to <code>position: fixed</code>. The difference is that an element with <code>position: sticky</code> behaves like <code>position: relative</code>  within its parent, until a given offset threshold is met in the viewport.</p>
+
+<h3 id="use-cases">Use cases</h3>
+
+<p>Paraphrasing from Edward O’Connor’s original <a href="http://lists.w3.org/Archives/Public/www-style/2012Jun/0627.html">proposal</a> of this feature:</p>
+
+<blockquote>
+  <p>Many web sites have elements that alternate between being in-flow and having <code>position: fixed</code>, depending on the user’s scroll position. This is
+often done for elements in a sidebar that the page author wants to be
+always visible as the user scrolls, but which slot into a space on the
+page when scrolled to the top. Good examples are <a href="https://news.google.com/">news.google.com</a> (the “Top Stories” sidebar) and yelp.com (<a href="http://www.yelp.com/search?find_desc=restaurants&amp;find_loc=San+Francisco%2C+CA&amp;ns=1">search results map</a>).</p>
+</blockquote>
+
+<h3 id="introducing-sticky-positioning">Introducing sticky positioning</h3>
+
+<figure style="text-align:center;float:right;margin-left: 25px;">
+<a href="http://html5-demos.appspot.com/static/css/sticky.html" target="_blank"><img src="http://updates.html5rocks.com/images/AMIfv96zitmIh5fozFLjrOVS2DNdb5833t5ANgL3HQw63hQqFnYcNAz3O3zEvomg--zn7PtTmZoM22rXwXxIuC3OA7XMr0oSD8WAq1x4w2NKfDAB7kHAkNxoYJ2kzD4czgD-GiGl3_7lD-_EjjnMhXKXKcaFHycQBQ" style="height:300px;width: 324px;" /></a>
+</figure>
+<p><a href="http://html5-demos.appspot.com/static/css/sticky.html">LAUNCH DEMO</a></p>
+
+<p>By simply adding <code>position: sticky</code> (vendor prefixed), we can tell an element to be <code>position: relative</code> until the user scrolls the item (or its parent) to be 15px from the top:</p>
+
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.sticky</span> <span class="p">{</span>
+  <span class="k">position</span><span class="o">:</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">sticky</span><span class="p">;</span>
+  <span class="k">position</span><span class="o">:</span> <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">sticky</span><span class="p">;</span>
+  <span class="k">position</span><span class="o">:</span> <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">sticky</span><span class="p">;</span>
+  <span class="k">position</span><span class="o">:</span> <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">sticky</span><span class="p">;</span>
+  <span class="k">top</span><span class="o">:</span> <span class="m">15px</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>At <code>top: 15px</code>, the element becomes fixed.</p>
+
+<p>To illustrate this feature in a practical setting, I’ve put together a <a href="http://html5-demos.appspot.com/static/css/sticky.html">DEMO</a> which sticks blog titles as you scroll.</p>
+
+<h3 id="old-approach-scroll-events">Old approach: scroll events</h3>
+
+<p>Until now, to achieve the sticky effect, sites setup <code>scroll</code> event listeners in JS. We actually use <a href="https://github.com/html5rocks/www.html5rocks.com/blob/master/templates/base.html#L417">this technique</a> as well on html5rocks tutorials. On screens smaller than 1200px, our table of contents sidebar changes to <code>position: fixed</code> after a certain amount of scrolling.</p>
+
+<p>Here’s the (now old way) to have a header that sticks to the top of the viewport when the user scrolls down, and falls back into place when the user scrolls up:</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;style&gt;</span>
+<span class="nc">.sticky</span> <span class="p">{</span>
+  <span class="k">position</span><span class="o">:</span> <span class="k">fixed</span><span class="p">;</span>
+  <span class="k">top</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.header</span> <span class="p">{</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">100%</span><span class="p">;</span>
+  <span class="k">background</span><span class="o">:</span> <span class="m">#F6D565</span><span class="p">;</span>
+  <span class="k">padding</span><span class="o">:</span> <span class="m">25px</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;header&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+<span class="kd">var</span> <span class="nx">header</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.header&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">origOffsetY</span> <span class="o">=</span> <span class="nx">header</span><span class="p">.</span><span class="nx">offsetTop</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">onScroll</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">scrollY</span> <span class="o">&gt;=</span> <span class="nx">origOffsetY</span> <span class="o">?</span> <span class="nx">header</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;sticky&#39;</span><span class="p">)</span> <span class="o">:</span>
+                                  <span class="nx">header</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;sticky&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;scroll&#39;</span><span class="p">,</span> <span class="nx">onScroll</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+<p>Try it: <a href="http://jsbin.com/omanut/2/">http://jsbin.com/omanut/2/</a></p>
+
+<p>This is easy enough, but this model quickly breaks down if you want to do
+this for a bunch of DOM nodes, say, every <code>&lt;h1&gt;</code> title of a blog as the user scrolls.</p>
+
+<p><strong>Why JS is not ideal</strong></p>
+
+<p>In general, scroll handlers are never a good idea. <a href="http://ejohn.org/blog/learning-from-twitter/">Folks</a> tend to do too much work and wonder why their UI is janky.</p>
+
+<p>Something else to consider is that more and more browsers are implementing hardware accelerated scrolling to improve performance. The problem with this is that on JS scroll handlers are in play, browsers may fall back into a slower (software) mode. Now we’re no longer running on the GPU. Instead, we’re back on the CPU. The result? User’s perceive more jank when scrolling your page.</p>
+
+<p>Thus, it makes a lot of sense to have such feature be declarative in CSS.</p>
+
+<h3 id="support">Support</h3>
+
+<p>Unfortunately, there isn’t a spec for this one. It was <a href="http://lists.w3.org/Archives/Public/www-style/2012Jun/0627.html">proposed on www-style</a> back in June and just <a href="http://trac.webkit.org/changeset/126774">landed</a> in WebKit. That means there’s no good documentation to point to. One thing to note however, according to <a href="https://bugs.webkit.org/show_bug.cgi?id=95146">this bug</a>, if both <code>left</code> and <code>right</code> are specified, <code>left</code> wins. Likewise, if <code>top</code> and <code>bottom</code> are used at the same time, <code>top</code> wins.</p>
+
+<p>Support right now is Chrome 23.0.1247.0+ (current Canary) and WebKit nightly.</p>
+
+  </section>
+  <section>
+    <!-- TODO: Update link. -->
+    
+      <a href="/tag/performance" class="tag">performance</a>
+    
+      <a href="/tag/announcement" class="tag">announcement</a>
+    
+      <a href="/tag/CSS" class="tag">CSS</a>
+    
+      <a href="/tag/nuts_and_bolts" class="tag">nuts and bolts</a>
+    
+  </section>
+  <div class="pager">
+    
+    <a href="/2012/08/Integrating-input-type-file-with-the-Filesystem-API">&laquo; Integrating input[type=&quot;file&quot;] with the Filesystem API</a>
+     | 
+    <a href="/2012/09/Stacking-Changes-Coming-to-position-fixed-elements">Stacking Changes Coming to position:fixed elements &raquo;</a>
+    
+  </div>
+</div>
+</article>
+<section class="disqus pattern-bg-lighter">
+  <div id="disqus" class="container">
+    <h2>Comments</h2>
+    <div id="disqus_thread">
+      <a href="#disqus_thread" class="load-comments"
+          data-disqus-identifier="/2012/08/Stick-your-landings-position-sticky-lands-in-WebKit">0</a>
+    </div>
+  </div>
+
+  <noscript>
+    <p class="center">
+      <strong>
+        <a href="http://disqus.com/?ref_noscript">Please enable JavaScript to view the comments powered by Disqus.</a>
+      </strong>
+    </p>
+  </noscript>
+
+  <script>
+
+    var disqus_shortname = 'html5rocks';
+    var disqus_identifier = 'http://html5rocks.com/updates//2012/08/Stick-your-landings-position-sticky-lands-in-WebKit';
+    var disqus_url = 'http://html5rocks.com/updates//2012/08/Stick-your-landings-position-sticky-lands-in-WebKit';
+    var disqus_developer = 0;
+
+    var disqus_config = function () {
+      var funky_language_code_mapping = {
+        'de': 'de_inf',
+        'es': 'es_ES',
+        'pt': 'pt_EU',
+        'sr': 'sr_CYRL',
+        'sv': 'sv_SE',
+        'zh': 'zh_HANT'
+      };
+      this.language = funky_language_code_mapping['en'] ||
+                      'en';
+
+      this.callbacks.onReady = [ function () {
+                                    try {
+                                      ga('send', 'event', 'View comments');
+                                    } catch(err){}
+                                 } ];
+      this.callbacks.onNewComment = [ function (comment) {
+                                        try {
+                                          ga('send', 'event', 'Commented');
+                                        } catch(err){}
+                                      } ];
+    };
+
+    window.addEventListener('load', function(e) {
+
+      var c = document.createElement('script');
+      c.type = 'text/javascript';
+      c.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+      c.async = true;
+
+      var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+      sp.insertBefore(c, s);
+
+      if (window.location.hash === '#disqus_thread')
+        loadComments();
+
+    }, false);
+
+    var disqus_loaded = false;
+    function loadComments() {
+
+      if (disqus_loaded)
+        return;
+
+      disqus_loaded = true;
+
+      ga('send', 'event', 'Interactions', 'Comments', 'Comments Loaded');
+
+      var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+
+      var disqusContainer = document.getElementById('disqus');
+      disqusContainer.classList.add('active');
+
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      sp.insertBefore(dsq, s);
+    }
+    var loadCommentsButtons = document.querySelectorAll('.load-comments');
+    for(var l = 0; l < loadCommentsButtons.length; l++)
+      loadCommentsButtons[l].addEventListener('click', loadComments);
+
+  </script>
+</section>
+
+
+
+    </div>
+    <footer>
+  <div class="container">
+    
+    <h1>Next steps</h1>
+    <aside class="panel share">
+      <h2>Share</h2>
+        <a href="https://twitter.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/&amp;text=Getting Started with CSS Shapes&amp;lang=en&amp;via=ChromiumDev&amp;related=ChromiumDev" class="twitter" target="_blank">Twitter</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="facebook" target="_blank">Facebook</a>
+        <a href="https://plus.google.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="gplus" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Google+</a>
+    </aside>
+    <aside class="panel rss">
+      <h2>Subscribe</h2>
+      <p>Enjoyed this article? Grab the <a href="http://feeds.feedburner.com/html5rocks">RSS feed</a> and stay up-to-date.</p>
+    </aside>
+    
+    <p class="licensing">
+      Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+    </p>
+  </div>
+</footer>
+
+
+    <script>
+      (function() {
+
+        var siteHeader = document.getElementById('siteheader');
+        var navToggle = document.getElementById('navtoggle');
+        var siteNav = document.getElementById('sitenav');
+
+        navToggle.addEventListener('click', function(e) {
+          siteNav.classList.toggle('active');
+          e.preventDefault();
+        });
+
+      })();
+    </script>
+
+    <!-- TODO: change UA-XXXXX-X -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-XXXXX-X', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta property="twitter:account_id" content="1593210261" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps.">
+<meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,indexeddb,offline,audio,video,drag and drop,chrome,sse,mobile">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Detect DOM changes with Mutation Observers</title>
+
+<!-- Add to homescreen for Chrome on Android -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" sizes="192x192" href="  /assets/HTML5_Badge_192-f9389f6cad587f357d82be791970c8ad.png">
+
+<!-- Add to homescreen for Safari on iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="HTML5 Rocks">
+<link rel="apple-touch-icon-precomposed" href="/assets/HTML5_Badge_192-f9389f6cad587f357d82be791970c8ad.png
+">
+
+<!-- Tile icon for Win8 (144x144 + tile color) -->
+<meta name="msapplication-TileImage" content="/assets/HTML5_Badge_144-ddcf1cea1a1204b1733041733d66f76a.png
+">
+<meta name="msapplication-TileColor" content="#3372DF">
+
+<!-- TODO: consider rel=canonical -->
+<!-- TODO: consider rel=publisher -->
+<link rel="alternate" type="application/rss+xml" title="HTML5 Rocks RSS" href="http://feeds.feedburner.com/html5rocks">
+<link rel="publisher" href="https://plus.google.com/+GoogleChromeDevelopers">
+
+
+
+
+  
+
+
+
+
+<link href="//fonts.googleapis.com/css?family=Open+Sans:600,800|Source+Code+Pro" rel="stylesheet">
+<link rel="stylesheet" href="/assets/main-8dae1b06ec239bb8b24c3d98cd1ad04b.css">
+
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
+<![endif]-->
+
+  </head>
+  <body>
+    <header class="main" id="siteheader">
+  <a href="#sitenav" id="navtoggle"></a>
+  <nav id="sitenav" class="container">
+    <ul>
+      <li id="tutorials_menu">
+        <a href="http://www.html5rocks.com" class="tutorials">Home</a>
+      </li>
+      <li id="tutorials_menu">
+        <a href="http://www.html5rocks.com/en/tutorials/?page=1" class="tutorials">Tutorials</a>
+      </li>
+      <li id="updates_menu">
+        <a href="http://www.html5rocks.com/en/updates" class="updates">Updates</a>
+      </li>
+      <li id="contrib_menu">
+        <a href="https://github.com/html5rocks/www.html5rocks.com/blob/master/CONTRIBUTING.md" target="_blank">Contribute</a>
+      </li>
+      <li id="slides_menu">
+        <a href="http://www.html5rocks.com/en/slides" class="slides">Slides</a>
+      </li>
+      <li id="resources_menu">
+        <a href="http://www.html5rocks.com/en/resources" class="resources">Resources</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+    <div class="body-content">
+      <section class="banner">
+        <section class="container">
+          <a href="/en/" class="watermark"></a>
+          <h1>Detect DOM changes with Mutation Observers</h1>
+          
+        </section>
+      </section>
+      <article class="content-wrapper article">
+<div class="container">
+  <section class="byline clearfix">
+    <section class="author-images">
+      
+        
+<!-- TODO: change image address.-->
+
+<img src="http://www.html5rocks.com/static/images/profiles/ernestd.png"
+     alt="Ernest Delgado"
+     title="Ernest Delgado"
+     width="60" height="60"
+     class="avatar">
+
+
+
+      
+    </section>
+    <section class="meta">
+      <div class="authors">
+          
+    
+    <!-- TODO: change link. -->
+    <strong>By</strong> <a href="http://www.html5rocks.com/profiles/#ernestd">
+      Ernest Delgado
+    </a> 
+  
+
+      </div>
+      <div class="published">
+        <time pubdate=""><strong>Published:</strong> February 16, 2012</time>
+      </div>
+      <div class="updated">
+        <time><strong>Updated:</strong> February 16, 2012</time>
+      </div>
+      <div class="comments">
+        <span><strong>Comments:</strong> <a href="#disqus_thread" class="load-comments" data-disqus-identifier="http://html5rocks.com/updates//2012/02/Detect-DOM-changes-with-Mutation-Observers"></a></span>
+      </div>
+      <div id="notcompatible" class="hidden">
+        Your browser may not support the functionality in this article.
+      </div>
+    </section>
+  </section>
+  <section class="content">
+    <p>Back in 2000, the <a href="http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-eventgroupings-mutationevents">Mutation Events API was specified</a> to make it easy for developers to react to changes in a DOM (e.g. DOMNodeRemoved, DOMAttrModified, etc).</p>
+
+<p>This feature wasn’t widely used by web developers but it presented a very convenient and popular use case for Chrome Extensions if they wanted to perform some action when something in the page changed.</p>
+
+<p>Mutation Events are useful, but at the same time they create some performance issues. The Events are slow and they are fired too frequently in a synchronous way, which causes some undesired browser bugs.</p>
+
+<p>Introduced in the <a href="http://www.w3.org/TR/dom/">DOM4 specification</a>, <a href="http://www.w3.org/TR/dom/#mutation-observers">DOM Mutation Observers</a> will replace Mutation Events. Whereas Mutation Events fired slow events for every single change, Mutation Observers are faster using callback functions that can be delivered after multiple changes in the DOM.</p>
+
+<p>You can <a href="http://www.w3.org/TR/dom/#mutationrecord">manually handle the list of changes</a> the API offers, or use a library such as <a href="https://code.google.com/p/mutation-summary/">Mutation Summary</a> which makes this task easier and adds a layer of reliability about the changes that took place in the DOM.</p>
+
+<p>You can start using Mutation Observers in Chrome Beta to detect changes in the DOM and be ready to use it when it comes to stable (Chrome 18). If you are currently using  the deprecated Mutation Events, just migrate to Mutation Observers.</p>
+
+<p>Here’s an example of listing inserted nodes with Mutation Events:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">insertedNodes</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMNodeInserted&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">insertedNodes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">);</span>
+<span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">insertedNodes</span><span class="p">);</span></code></pre></div>
+
+<p>And here’s how it looks with Mutation Observers:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">insertedNodes</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="kd">var</span> <span class="nx">observer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MutationObserver</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">mutations</span><span class="p">)</span> <span class="p">{</span>
+ <span class="nx">mutations</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">mutation</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">mutation</span><span class="p">.</span><span class="nx">addedNodes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+     <span class="nx">insertedNodes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">mutation</span><span class="p">.</span><span class="nx">addedNodes</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+ <span class="p">})</span>
+<span class="p">});</span>
+<span class="nx">observer</span><span class="p">.</span><span class="nx">observe</span><span class="p">(</span><span class="nb">document</span><span class="p">,</span> <span class="p">{</span> <span class="nx">childList</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">insertedNodes</span><span class="p">);</span></code></pre></div>
+
+
+  </section>
+  <section>
+    <!-- TODO: Update link. -->
+    
+      <a href="/tag/nuts_and_bolts" class="tag">nuts and bolts</a>
+    
+      <a href="/tag/api" class="tag">api</a>
+    
+      <a href="/tag/mutation observers" class="tag">mutation observers</a>
+    
+      <a href="/tag/dom" class="tag">dom</a>
+    
+  </section>
+  <div class="pager">
+    
+    <a href="/2012/02/Getting-Gmail-to-handle-all-mailto-links-with-registerProtocolHandler">&laquo; Getting Gmail to handle all mailto: links with registerProtocolHandler</a>
+     | 
+    <a href="/2012/02/SwiftShader-brings-software-3D-rendering-to-Chrome">SwiftShader brings software 3D rendering to Chrome &raquo;</a>
+    
+  </div>
+</div>
+</article>
+<section class="disqus pattern-bg-lighter">
+  <div id="disqus" class="container">
+    <h2>Comments</h2>
+    <div id="disqus_thread">
+      <a href="#disqus_thread" class="load-comments"
+          data-disqus-identifier="/2012/02/Detect-DOM-changes-with-Mutation-Observers">0</a>
+    </div>
+  </div>
+
+  <noscript>
+    <p class="center">
+      <strong>
+        <a href="http://disqus.com/?ref_noscript">Please enable JavaScript to view the comments powered by Disqus.</a>
+      </strong>
+    </p>
+  </noscript>
+
+  <script>
+
+    var disqus_shortname = 'html5rocks';
+    var disqus_identifier = 'http://html5rocks.com/updates//2012/02/Detect-DOM-changes-with-Mutation-Observers';
+    var disqus_url = 'http://html5rocks.com/updates//2012/02/Detect-DOM-changes-with-Mutation-Observers';
+    var disqus_developer = 0;
+
+    var disqus_config = function () {
+      var funky_language_code_mapping = {
+        'de': 'de_inf',
+        'es': 'es_ES',
+        'pt': 'pt_EU',
+        'sr': 'sr_CYRL',
+        'sv': 'sv_SE',
+        'zh': 'zh_HANT'
+      };
+      this.language = funky_language_code_mapping['en'] ||
+                      'en';
+
+      this.callbacks.onReady = [ function () {
+                                    try {
+                                      ga('send', 'event', 'View comments');
+                                    } catch(err){}
+                                 } ];
+      this.callbacks.onNewComment = [ function (comment) {
+                                        try {
+                                          ga('send', 'event', 'Commented');
+                                        } catch(err){}
+                                      } ];
+    };
+
+    window.addEventListener('load', function(e) {
+
+      var c = document.createElement('script');
+      c.type = 'text/javascript';
+      c.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+      c.async = true;
+
+      var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+      sp.insertBefore(c, s);
+
+      if (window.location.hash === '#disqus_thread')
+        loadComments();
+
+    }, false);
+
+    var disqus_loaded = false;
+    function loadComments() {
+
+      if (disqus_loaded)
+        return;
+
+      disqus_loaded = true;
+
+      ga('send', 'event', 'Interactions', 'Comments', 'Comments Loaded');
+
+      var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+
+      var disqusContainer = document.getElementById('disqus');
+      disqusContainer.classList.add('active');
+
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      sp.insertBefore(dsq, s);
+    }
+    var loadCommentsButtons = document.querySelectorAll('.load-comments');
+    for(var l = 0; l < loadCommentsButtons.length; l++)
+      loadCommentsButtons[l].addEventListener('click', loadComments);
+
+  </script>
+</section>
+
+
+
+    </div>
+    <footer>
+  <div class="container">
+    
+    <h1>Next steps</h1>
+    <aside class="panel share">
+      <h2>Share</h2>
+        <a href="https://twitter.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/&amp;text=Getting Started with CSS Shapes&amp;lang=en&amp;via=ChromiumDev&amp;related=ChromiumDev" class="twitter" target="_blank">Twitter</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="facebook" target="_blank">Facebook</a>
+        <a href="https://plus.google.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="gplus" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Google+</a>
+    </aside>
+    <aside class="panel rss">
+      <h2>Subscribe</h2>
+      <p>Enjoyed this article? Grab the <a href="http://feeds.feedburner.com/html5rocks">RSS feed</a> and stay up-to-date.</p>
+    </aside>
+    
+    <p class="licensing">
+      Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+    </p>
+  </div>
+</footer>
+
+
+    <script>
+      (function() {
+
+        var siteHeader = document.getElementById('siteheader');
+        var navToggle = document.getElementById('navtoggle');
+        var siteNav = document.getElementById('sitenav');
+
+        navToggle.addEventListener('click', function(e) {
+          siteNav.classList.toggle('active');
+          e.preventDefault();
+        });
+
+      })();
+    </script>
+
+    <!-- TODO: change UA-XXXXX-X -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-XXXXX-X', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>

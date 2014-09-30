@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta property="twitter:account_id" content="1593210261" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps.">
+<meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,indexeddb,offline,audio,video,drag and drop,chrome,sse,mobile">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stacking Changes Coming to position:fixed elements</title>
+
+<!-- Add to homescreen for Chrome on Android -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" sizes="192x192" href="  /assets/HTML5_Badge_192-f9389f6cad587f357d82be791970c8ad.png">
+
+<!-- Add to homescreen for Safari on iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="HTML5 Rocks">
+<link rel="apple-touch-icon-precomposed" href="/assets/HTML5_Badge_192-f9389f6cad587f357d82be791970c8ad.png
+">
+
+<!-- Tile icon for Win8 (144x144 + tile color) -->
+<meta name="msapplication-TileImage" content="/assets/HTML5_Badge_144-ddcf1cea1a1204b1733041733d66f76a.png
+">
+<meta name="msapplication-TileColor" content="#3372DF">
+
+<!-- TODO: consider rel=canonical -->
+<!-- TODO: consider rel=publisher -->
+<link rel="alternate" type="application/rss+xml" title="HTML5 Rocks RSS" href="http://feeds.feedburner.com/html5rocks">
+<link rel="publisher" href="https://plus.google.com/+GoogleChromeDevelopers">
+
+
+
+
+  
+
+
+
+
+<link href="//fonts.googleapis.com/css?family=Open+Sans:600,800|Source+Code+Pro" rel="stylesheet">
+<link rel="stylesheet" href="/assets/main-8dae1b06ec239bb8b24c3d98cd1ad04b.css">
+
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
+<![endif]-->
+
+  </head>
+  <body>
+    <header class="main" id="siteheader">
+  <a href="#sitenav" id="navtoggle"></a>
+  <nav id="sitenav" class="container">
+    <ul>
+      <li id="tutorials_menu">
+        <a href="http://www.html5rocks.com" class="tutorials">Home</a>
+      </li>
+      <li id="tutorials_menu">
+        <a href="http://www.html5rocks.com/en/tutorials/?page=1" class="tutorials">Tutorials</a>
+      </li>
+      <li id="updates_menu">
+        <a href="http://www.html5rocks.com/en/updates" class="updates">Updates</a>
+      </li>
+      <li id="contrib_menu">
+        <a href="https://github.com/html5rocks/www.html5rocks.com/blob/master/CONTRIBUTING.md" target="_blank">Contribute</a>
+      </li>
+      <li id="slides_menu">
+        <a href="http://www.html5rocks.com/en/slides" class="slides">Slides</a>
+      </li>
+      <li id="resources_menu">
+        <a href="http://www.html5rocks.com/en/resources" class="resources">Resources</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+    <div class="body-content">
+      <section class="banner">
+        <section class="container">
+          <a href="/en/" class="watermark"></a>
+          <h1>Stacking Changes Coming to position:fixed elements</h1>
+          
+        </section>
+      </section>
+      <article class="content-wrapper article">
+<div class="container">
+  <section class="byline clearfix">
+    <section class="author-images">
+      
+        
+<!-- TODO: change image address.-->
+
+<img src="http://www.html5rocks.com/static/images/profiles/tomwiltzius.png"
+     alt="Tom Wiltzius"
+     title="Tom Wiltzius"
+     width="60" height="60"
+     class="avatar">
+
+
+
+      
+    </section>
+    <section class="meta">
+      <div class="authors">
+          
+    
+    <!-- TODO: change link. -->
+    <strong>By</strong> <a href="http://www.html5rocks.com/profiles/#tomwiltzius">
+      Tom Wiltzius
+    </a> 
+  
+
+      </div>
+      <div class="published">
+        <time pubdate=""><strong>Published:</strong> September 11, 2012</time>
+      </div>
+      <div class="updated">
+        <time><strong>Updated:</strong> September 11, 2012</time>
+      </div>
+      <div class="comments">
+        <span><strong>Comments:</strong> <a href="#disqus_thread" class="load-comments" data-disqus-identifier="http://html5rocks.com/updates//2012/09/Stacking-Changes-Coming-to-position-fixed-elements"></a></span>
+      </div>
+      <div id="notcompatible" class="hidden">
+        Your browser may not support the functionality in this article.
+      </div>
+    </section>
+  </section>
+  <section class="content">
+    <p>In Chrome 22 the layout behavior of <code>position:fixed</code> elements is slightly different than previous versions. All <code>position:fixed</code> elements now form new stacking contexts. This will change the stacking order of some pages, which has the potential to break page layouts. The new behavior matches the behavior of WebKit browsers on mobile devices (iOS Safari and Chrome for Android).</p>
+
+<h3 id="stacking-whats">Stacking Whats?</h3>
+
+<p>Everyone knows and loves the <code>z-index</code> for determining depth ordering of elements on a page. Not all z-indexes are created equal, however: an element’s <code>z-index</code> only determines its ordering relative to other elements in the same stacking context. Most elements on a page are in a single, root stacking context, but absolutely or relatively positioned elements with non-auto <code>z-index</code> values form their own <em>stacking contexts</em> (that is, all of their children will be z-ordered within the parent and not be interleaved with content from outside the parent). As of Chrome 22, <code>position:fixed</code> elements will also create their own stacking contexts.</p>
+
+<p>For a general overview of stacking contexts <a href="https://developer.mozilla.org/en-US/docs/CSS/Understanding_z-index/The_stacking_context?redirectlocale=en-US&amp;redirectslug=Understanding_CSS_z-index%2FThe_stacking_context">this MDN article</a> is a great read.</p>
+
+<p>Compare <code>position:fixed</code> to the <a href="http://updates.html5rocks.com/2012/08/Stick-your-landings-position-sticky-lands-in-WebKit">new position:sticky attribute</a>: for reference, <code>position:sticky</code> always creates a new stacking context.</p>
+
+<h3 id="motivation">Motivation</h3>
+
+<p>Mobile browsers (Mobile Safari, Android browser, Qt-based browsers) put position:fixed elements in their own stacking contexts and have for some time (since iOS5, Android Gingerbread, etc) because it allows for certain scrolling optimizations, making web pages much more responsive to touch. The change is being brought to desktop for three reasons:</p>
+
+<ol>
+  <li>Having different rendering behavior on “mobile” and “desktop” browsers is a stumbling block for web authors; CSS should work the same everywhere when possible.</li>
+  <li>With tablets it isn’t clear which of the “mobile” or “desktop” stacking context creation algorithms is more appropriate.</li>
+  <li>Bringing the scrolling performance optimizations from mobile to desktop is good for both users and authors.</li>
+</ol>
+
+<h3 id="specifics-of-the-change">Specifics of the Change</h3>
+
+<p>Here’s an example showing the different layout behaviors: <a href="http://codepen.io/paulirish/pen/CgAof">http://codepen.io/paulirish/pen/CgAof</a></p>
+
+<p>With the change, both versions will render like the right-hand version.</p>
+
+<p>In this example, the green box has a <code>z-index: 1</code>, the pink box has a <code>z-index: 3</code>, and the orange box has a <code>z-index: 2</code>. The blue box is an ancestor of the orange box, and has <code>position:fixed</code>.</p>
+
+<p>If the blue box gets its own stacking context, the orange box’s <code>z-index</code> is computed relative to the blue box’s stacking context. Since the blue box has a <code>z-index</code> of <code>auto</code>, giving it a stacking level of zero in the root stacking context, this means the orange box ends up behind the green and pink boxes, which have z-indexes of 1 and 3 (respectively) in the root context.</p>
+
+<p>If the blue box does not get its own stacking context, the orange box’s <code>z-index</code> is computed relative to the root stacking context (along with the green and pink boxes). Hence, the orange box ends up interleaved with the pink and green boxes.</p>
+
+<p>For more detail about criteria for stacking context creation (and how stacking contexts behave in general), again refer to <a href="https://developer.mozilla.org/en-US/docs/CSS/Understanding_z-index/The_stacking_context?redirectlocale=en-US&amp;redirectslug=Understanding_CSS_z-index%2FThe_stacking_context">this MDN article</a>. In the example the right-hand side version always gave the blue box its own stacking context because its opacity is less than 1. The behavior change being made effectively adds another criterion for creating a separate stacking context, namely an element being position:fixed.</p>
+
+<h3 id="testing--the-future">Testing &amp; The Future</h3>
+
+<p>To test if your page is going to change, go to Chrome’s <code>about:flags</code> and turn on/off “fixed position elements create stacking contexts”. If your layout behaves the same in both cases, you’re set. If not, make sure it looks acceptable to you with that flag enabled, as that will be the default in Chrome 22.</p>
+
+<p>This change removes one capability - the ability to interleave content within a position:fixed subtree with non-scrolling content from outside. It’s unlikely that any web developers are doing this on purpose, and the same effect can be created by giving multiple position:fixed elements the different portions of DOM. As an example, consider these two examples:</p>
+
+<p><a href="http://codepen.io/wiltzius/pen/gcjCk">http://codepen.io/wiltzius/pen/gcjCk</a></p>
+
+<p>This page attempts to take two child divs (overlayA and overlayB) of a position:fixed element and place one above a separate content div and one below that same separate content div. It’s now impossible to do this because the position:fixed element is its own stacking context, and it (along with all of its children) will be either entirely above or entirely below the content div. Note that this example works in Chrome 21 and earlier but no longer in Chrome 22.</p>
+
+<p>To fix this, the two overlays can be broken up into their own position:fixed elements. Each is its own stacking context, one of which can go above the content div and one of which can go below the content div. See the fixed example, which works in Chrome 21 and 22:</p>
+
+<p><a href="http://codepen.io/wiltzius/pen/vhFzG">http://codepen.io/wiltzius/pen/vhFzG</a></p>
+
+<p>Credit for the genesis of this example goes to the <a href="http://software.hixie.ch/utilities/js/live-dom-viewer/?saved=1753">inimitable</a> <a href="http://software.hixie.ch/utilities/js/live-dom-viewer/?saved=1754">hixie</a>.</p>
+
+<p>Chrome is the first desktop browser to cause position:fixed elements to create their own stacking contexts. The relevant standard is the CSS z-index specification (see e.g. <a href="http://www.w3.org/TR/CSS21/zindex.html">http://www.w3.org/TR/CSS21/zindex.html</a>). There’s not yet consensus over what to do about the difference between mobile and desktop browsers here, but given the confusion of having two different behaviors on mobile and desktop, Chrome has chosen to move to this single behavior on both platforms for the time being.</p>
+
+<p><strong>Updated Oct 1, 2012:</strong> The original version of this article suggested that the CSS <code>z-index</code> specification had already been changed to reflect the new behavior of position: fixed elements. This is inaccurate; it has been discussed on the www-style list but as of yet no change has been taken into the spec.</p>
+
+  </section>
+  <section>
+    <!-- TODO: Update link. -->
+    
+      <a href="/tag/stacking" class="tag">stacking</a>
+    
+      <a href="/tag/nuts_and_bolts" class="tag">nuts and bolts</a>
+    
+      <a href="/tag/CSS" class="tag">CSS</a>
+    
+  </section>
+  <div class="pager">
+    
+    <a href="/2012/08/Stick-your-landings-position-sticky-lands-in-WebKit">&laquo; Stick your landings! position: sticky lands in WebKit</a>
+     | 
+    <a href="/2012/09/Live-Web-Audio-Input-Enabled">Live Web Audio Input Enabled! &raquo;</a>
+    
+  </div>
+</div>
+</article>
+<section class="disqus pattern-bg-lighter">
+  <div id="disqus" class="container">
+    <h2>Comments</h2>
+    <div id="disqus_thread">
+      <a href="#disqus_thread" class="load-comments"
+          data-disqus-identifier="/2012/09/Stacking-Changes-Coming-to-position-fixed-elements">0</a>
+    </div>
+  </div>
+
+  <noscript>
+    <p class="center">
+      <strong>
+        <a href="http://disqus.com/?ref_noscript">Please enable JavaScript to view the comments powered by Disqus.</a>
+      </strong>
+    </p>
+  </noscript>
+
+  <script>
+
+    var disqus_shortname = 'html5rocks';
+    var disqus_identifier = 'http://html5rocks.com/updates//2012/09/Stacking-Changes-Coming-to-position-fixed-elements';
+    var disqus_url = 'http://html5rocks.com/updates//2012/09/Stacking-Changes-Coming-to-position-fixed-elements';
+    var disqus_developer = 0;
+
+    var disqus_config = function () {
+      var funky_language_code_mapping = {
+        'de': 'de_inf',
+        'es': 'es_ES',
+        'pt': 'pt_EU',
+        'sr': 'sr_CYRL',
+        'sv': 'sv_SE',
+        'zh': 'zh_HANT'
+      };
+      this.language = funky_language_code_mapping['en'] ||
+                      'en';
+
+      this.callbacks.onReady = [ function () {
+                                    try {
+                                      ga('send', 'event', 'View comments');
+                                    } catch(err){}
+                                 } ];
+      this.callbacks.onNewComment = [ function (comment) {
+                                        try {
+                                          ga('send', 'event', 'Commented');
+                                        } catch(err){}
+                                      } ];
+    };
+
+    window.addEventListener('load', function(e) {
+
+      var c = document.createElement('script');
+      c.type = 'text/javascript';
+      c.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+      c.async = true;
+
+      var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+      sp.insertBefore(c, s);
+
+      if (window.location.hash === '#disqus_thread')
+        loadComments();
+
+    }, false);
+
+    var disqus_loaded = false;
+    function loadComments() {
+
+      if (disqus_loaded)
+        return;
+
+      disqus_loaded = true;
+
+      ga('send', 'event', 'Interactions', 'Comments', 'Comments Loaded');
+
+      var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+
+      var disqusContainer = document.getElementById('disqus');
+      disqusContainer.classList.add('active');
+
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      sp.insertBefore(dsq, s);
+    }
+    var loadCommentsButtons = document.querySelectorAll('.load-comments');
+    for(var l = 0; l < loadCommentsButtons.length; l++)
+      loadCommentsButtons[l].addEventListener('click', loadComments);
+
+  </script>
+</section>
+
+
+
+    </div>
+    <footer>
+  <div class="container">
+    
+    <h1>Next steps</h1>
+    <aside class="panel share">
+      <h2>Share</h2>
+        <a href="https://twitter.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/&amp;text=Getting Started with CSS Shapes&amp;lang=en&amp;via=ChromiumDev&amp;related=ChromiumDev" class="twitter" target="_blank">Twitter</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="facebook" target="_blank">Facebook</a>
+        <a href="https://plus.google.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="gplus" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Google+</a>
+    </aside>
+    <aside class="panel rss">
+      <h2>Subscribe</h2>
+      <p>Enjoyed this article? Grab the <a href="http://feeds.feedburner.com/html5rocks">RSS feed</a> and stay up-to-date.</p>
+    </aside>
+    
+    <p class="licensing">
+      Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+    </p>
+  </div>
+</footer>
+
+
+    <script>
+      (function() {
+
+        var siteHeader = document.getElementById('siteheader');
+        var navToggle = document.getElementById('navtoggle');
+        var siteNav = document.getElementById('sitenav');
+
+        navToggle.addEventListener('click', function(e) {
+          siteNav.classList.toggle('active');
+          e.preventDefault();
+        });
+
+      })();
+    </script>
+
+    <!-- TODO: change UA-XXXXX-X -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-XXXXX-X', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>

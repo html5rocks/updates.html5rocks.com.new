@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta property="twitter:account_id" content="1593210261" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps.">
+<meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,indexeddb,offline,audio,video,drag and drop,chrome,sse,mobile">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chrome Dev Summit: Mobile Summary</title>
+
+<!-- Add to homescreen for Chrome on Android -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" sizes="192x192" href="  /assets/HTML5_Badge_192-f9389f6cad587f357d82be791970c8ad.png">
+
+<!-- Add to homescreen for Safari on iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="HTML5 Rocks">
+<link rel="apple-touch-icon-precomposed" href="/assets/HTML5_Badge_192-f9389f6cad587f357d82be791970c8ad.png
+">
+
+<!-- Tile icon for Win8 (144x144 + tile color) -->
+<meta name="msapplication-TileImage" content="/assets/HTML5_Badge_144-ddcf1cea1a1204b1733041733d66f76a.png
+">
+<meta name="msapplication-TileColor" content="#3372DF">
+
+<!-- TODO: consider rel=canonical -->
+<!-- TODO: consider rel=publisher -->
+<link rel="alternate" type="application/rss+xml" title="HTML5 Rocks RSS" href="http://feeds.feedburner.com/html5rocks">
+<link rel="publisher" href="https://plus.google.com/+GoogleChromeDevelopers">
+
+
+
+
+  
+
+
+
+
+<link href="//fonts.googleapis.com/css?family=Open+Sans:600,800|Source+Code+Pro" rel="stylesheet">
+<link rel="stylesheet" href="/assets/main-8dae1b06ec239bb8b24c3d98cd1ad04b.css">
+
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
+<![endif]-->
+
+  </head>
+  <body>
+    <header class="main" id="siteheader">
+  <a href="#sitenav" id="navtoggle"></a>
+  <nav id="sitenav" class="container">
+    <ul>
+      <li id="tutorials_menu">
+        <a href="http://www.html5rocks.com" class="tutorials">Home</a>
+      </li>
+      <li id="tutorials_menu">
+        <a href="http://www.html5rocks.com/en/tutorials/?page=1" class="tutorials">Tutorials</a>
+      </li>
+      <li id="updates_menu">
+        <a href="http://www.html5rocks.com/en/updates" class="updates">Updates</a>
+      </li>
+      <li id="contrib_menu">
+        <a href="https://github.com/html5rocks/www.html5rocks.com/blob/master/CONTRIBUTING.md" target="_blank">Contribute</a>
+      </li>
+      <li id="slides_menu">
+        <a href="http://www.html5rocks.com/en/slides" class="slides">Slides</a>
+      </li>
+      <li id="resources_menu">
+        <a href="http://www.html5rocks.com/en/resources" class="resources">Resources</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+    <div class="body-content">
+      <section class="banner">
+        <section class="container">
+          <a href="/en/" class="watermark"></a>
+          <h1>Chrome Dev Summit: Mobile Summary</h1>
+          
+        </section>
+      </section>
+      <article class="content-wrapper article">
+<div class="container">
+  <section class="byline clearfix">
+    <section class="author-images">
+      
+        
+<!-- TODO: change image address.-->
+
+<img src="http://www.html5rocks.com/static/images/profiles/paulkinlan.png"
+     alt="Paul Kinlan"
+     title="Paul Kinlan"
+     width="60" height="60"
+     class="avatar">
+
+
+
+      
+    </section>
+    <section class="meta">
+      <div class="authors">
+          
+    
+    <!-- TODO: change link. -->
+    <strong>By</strong> <a href="http://www.html5rocks.com/profiles/#paulkinlan">
+      Paul Kinlan
+    </a> 
+  
+
+      </div>
+      <div class="published">
+        <time pubdate=""><strong>Published:</strong> January 06, 2014</time>
+      </div>
+      <div class="updated">
+        <time><strong>Updated:</strong> January 06, 2014</time>
+      </div>
+      <div class="comments">
+        <span><strong>Comments:</strong> <a href="#disqus_thread" class="load-comments" data-disqus-identifier="http://html5rocks.com/updates//2014/01/Chrome-Dev-Summit-Mobile-Summary"></a></span>
+      </div>
+      <div id="notcompatible" class="hidden">
+        Your browser may not support the functionality in this article.
+      </div>
+    </section>
+  </section>
+  <section class="content">
+    <p>The <a href="http://developer.chrome.com/devsummit‎">Chrome Dev Summit</a> finished a couple of weeks ago, and here’s the first in a series of reports from the event. There was a strong emphasis on Mobile and Cross-device development, so we’ll kick off with that!</p>
+
+<h1 id="best-ux-patterns-for-mobile-web-apps-by-paul-kinlan">Best UX patterns for mobile web apps by Paul Kinlan</h1>
+
+<p>After an analysis of the mobile-friendliness of the top 1000 sites we found some problem areas: <em>53%</em> still only provide a desktop-only experience, <em>82%</em> of sites have issues with interactivity on a mobile device and <em>64%</em> of sites have text that users will have issues reading.</p>
+
+<h2 id="quick-hits-to-dramatically-improve-your-mobile-web-experience">Quick hits to dramatically improve your mobile web experience:</h2>
+
+<ul>
+  <li>Always define a viewport</li>
+  <li>Fit content inside the viewport</li>
+  <li>Keep font sized at a readable level</li>
+  <li>Limit use of Web Fonts</li>
+  <li>Size and space out tap targets appropriately</li>
+  <li>Use the semantic types for input elements</li>
+</ul>
+
+<p>PageSpeed Insights just launched a <a href="https://developers.google.com/speed/pagespeed/insights/">UX analysis for determining how mobile-friendly</a> your site is. It will help you <a href="https://developers.google.com/speed/pagespeed/insights/?url=http%3A%2F%2Fnews.google.com">find common problems</a> with your sites mobile UX. Try it out!</p>
+
+<p><a href="http://mobile-ux.appspot.com/">Slides: Best UX patterns for mobile web apps</a></p>
+
+<div class="video-container"><iframe src="//www.youtube.com/embed/j3YbNHtnYo4 " frameborder="0" allowfullscreen=""></iframe></div>
+
+<hr />
+
+<h1 id="multi-device-accessibility-by-alice-boxhall">Multi-device Accessibility by Alice Boxhall</h1>
+
+<p>Users will be accessing your sites and services from a multitude of devices with a wide range of different accessibility requirements.  By using the correct semantic elements and correct ARIA roles you help give the browser and assistive technology a much improved understanding of your page.</p>
+
+<p><a href="https://docs.google.com/a/google.com/presentation/d/1xKlQZRHyLPXvrTdGkGIumc24bT4_kxRmdqIC_b7fngo/pub?start=false&amp;loop=false&amp;delayms=3000#slide=id.p">Slides: Multi-device Accessibility</a></p>
+
+<div class="video-container"><iframe src="//www.youtube.com/embed/E0ojKLzXoZ4 " frameborder="0" allowfullscreen=""></iframe></div>
+
+<h2 id="key-ways-to-understand-and-address-a11y-issues">Key ways to understand and address a11y issues</h2>
+
+<ul>
+  <li>Ensure you have a good keyboard-only user experience</li>
+  <li>Express the semantics of your interface with correct element choice and ARIA</li>
+  <li>Use <a href="http://www.chromevox.com/">ChromeVox</a> on desktop and TalkBack on Android to test.</li>
+  <li>Try the <a href="https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb?hl=en">Accessibility Developer Tools Chrome extension</a></li>
+  <li>A more diverse audience is getting online, which further amplifies the need of making your sites accessible</li>
+</ul>
+
+<hr />
+
+<h1 id="build-mobile-apps-using-the-chrome-webview-by-matt-guant">Build Mobile Apps using the Chrome WebView by Matt Guant</h1>
+
+<p>We all know the problems that developers have had in the past building for WebView:  Limited HTML5 features, no debugging tools, no build tools.  With the introduction of a <a href="https://developers.google.com/chrome/mobile/docs/webview/overview">Chromium powered WebView</a> in Android 4.4 (KitKat) developers now have a huge range of new tools at their disposal to build great native apps using the WebView.</p>
+
+<p>The WebView supports full <a href="https://developers.google.com/chrome-developer-tools/docs/remote-debugging#debugging-webviews">remote debugging</a> with the same tools you use for Chrome. You can also take your trusted web development workflow with Grunt and integrate that into your native stack tooling via Gradle.  Further merging worlds, there’s a clever trick to use the Chrome DevTools to test your native code from Javascript.</p>
+
+<p><a href="http://gauntface.co.uk/presentations/chrome-dev-summit-2013/chrome-webview/">Slides: Build Mobile Apps using the Chrome WebView</a></p>
+
+<div class="video-container"><iframe src="//www.youtube.com/embed/BTlzw5UAjQs " frameborder="0" allowfullscreen=""></iframe></div>
+
+<h2 id="effective-webview-development-takeaways">Effective WebView development takeaways</h2>
+
+<ul>
+  <li>It’s not the new features that are important, its the tooling that you can now use to speed up your workflow</li>
+  <li>Don’t try to emulate the native UI.  But make sure to remove some of the tells that it is Web Content.</li>
+  <li>Use native implementations of features when appropriate.  i.e, use the DownloadManager rather than XHR for large files.</li>
+</ul>
+
+<hr />
+
+<h1 id="optimizing-your-workflow-for-a-cross-device-world-by-matt-gaunt">Optimizing your Workflow for a Cross-device world by Matt Gaunt</h1>
+
+<p>If we have to develop for Desktop, Mobile, Tablet, wearables and other form factors, how can you optimise your workflow to make your life less stressful?  There’s a solid multi-device approach for quick iteration with LiveReload, Grunt, Yeoman, and the newly-unveiled <a href="https://github.com/GoogleChrome/MiniMobileDeviceLab">Mini Mobile Device Lab</a>. Lastly, if you don’t have the physical hardware you want to test, some providers make it available through the cloud.</p>
+
+<p><a href="http://gauntface.co.uk/presentations/chrome-dev-summit-2013/cross-device-workflow/#1">Slides: Optimizing your Workflow for a Cross-device world</a></p>
+
+<div class="video-container"><iframe src="//www.youtube.com/embed/bZRPetpUcjQ " frameborder="0" allowfullscreen=""></iframe></div>
+
+<h2 id="key-points">Key points</h2>
+
+<ul>
+  <li>The number of devices that we are going to have to cater for is only going to increase</li>
+  <li>Getting your workflow with the right with <a href="http://gruntjs.com/">Grunt</a> and <a href="http://yeoman.io/">Yeoman</a></li>
+  <li>Simplify cross browser and cross device testing with <a href="https://github.com/GoogleChrome/MiniMobileDeviceLab">Mini Mobile Device Lab</a></li>
+  <li>Be smart with your emulation choice using Chrome DevTools Emulation, Stock Emulators, Cloud Based Emulators like <a href="https://saucelabs.com/">Saucelabs</a>, <a href="http://www.browserstack.com/">Browserstack</a> and <a href="http://www.deviceanywhere.com/">Device Anywhere</a> and third party emulator <a href="http://www.genymotion.com/">Genymotion</a></li>
+  <li>Mobile testing means more than just testing on your wifi connection, use a proxy to simulate slower network speeds</li>
+</ul>
+
+<hr />
+
+<h1 id="network-connectivity-optional-by-jake-archibald">Network connectivity: optional by Jake Archibald</h1>
+
+<p>We learnt many things from this talk: Jake doesn’t wear shoes when presenting; <a href="https://twitter.com/Business_Kinlan/status/403231878246715392">Business Kinlan</a> has a new book coming out soon; Offline is being taken seriously by browser vendors and you will soon have the tools in your hands that help you build great experiences that work well when you are offline.</p>
+
+<p><a href="https://github.com/slightlyoff/ServiceWorker">ServiceWorker</a> will give us the flexibility that we need to build compelling offline first experiences with ease and not suffer the pains inflicted by AppCache.  You can even <a href="https://github.com/phuu/serviceworker-demo">experiment with the API using a Polyfill</a>.</p>
+
+<p><a href="https://speakerdeck.com/jaffathecake/network-optional">Slides: Network connectivity: optional</a></p>
+
+<div class="video-container"><iframe src="//www.youtube.com/embed/Z7sRMg0f5Hk " frameborder="0" allowfullscreen=""></iframe></div>
+
+<h2 id="serviceworker-to-the-rescue">ServiceWorker to the rescue</h2>
+
+<ul>
+  <li>In the next generation of progressive enhancement, we treat the network as a potential enhancement</li>
+  <li>ServiceWorker gives you full, scriptable, debuggable control over network requests</li>
+  <li>If you have an offline experience, don’t wait for the network to fail before you show it, as this can take ages</li>
+</ul>
+
+  </section>
+  <section>
+    <!-- TODO: Update link. -->
+    
+      <a href="/tag/ux" class="tag">ux</a>
+    
+      <a href="/tag/workflow" class="tag">workflow</a>
+    
+      <a href="/tag/mobile" class="tag">mobile</a>
+    
+      <a href="/tag/webview" class="tag">webview</a>
+    
+      <a href="/tag/grunt" class="tag">grunt</a>
+    
+      <a href="/tag/service worker" class="tag">service worker</a>
+    
+  </section>
+  <div class="pager">
+    
+    <a href="/2013/12/The-Yeoman-Monthly-Digest-2">&laquo; The Yeoman Monthly Digest #2</a>
+     | 
+    <a href="/2014/01/Chrome-Dev-Summit-Polymer-declarative-encapsulated-reusable-components">Chrome Dev Summit: Polymer declarative, encapsulated, reusable components &raquo;</a>
+    
+  </div>
+</div>
+</article>
+<section class="disqus pattern-bg-lighter">
+  <div id="disqus" class="container">
+    <h2>Comments</h2>
+    <div id="disqus_thread">
+      <a href="#disqus_thread" class="load-comments"
+          data-disqus-identifier="/2014/01/Chrome-Dev-Summit-Mobile-Summary">0</a>
+    </div>
+  </div>
+
+  <noscript>
+    <p class="center">
+      <strong>
+        <a href="http://disqus.com/?ref_noscript">Please enable JavaScript to view the comments powered by Disqus.</a>
+      </strong>
+    </p>
+  </noscript>
+
+  <script>
+
+    var disqus_shortname = 'html5rocks';
+    var disqus_identifier = 'http://html5rocks.com/updates//2014/01/Chrome-Dev-Summit-Mobile-Summary';
+    var disqus_url = 'http://html5rocks.com/updates//2014/01/Chrome-Dev-Summit-Mobile-Summary';
+    var disqus_developer = 0;
+
+    var disqus_config = function () {
+      var funky_language_code_mapping = {
+        'de': 'de_inf',
+        'es': 'es_ES',
+        'pt': 'pt_EU',
+        'sr': 'sr_CYRL',
+        'sv': 'sv_SE',
+        'zh': 'zh_HANT'
+      };
+      this.language = funky_language_code_mapping['en'] ||
+                      'en';
+
+      this.callbacks.onReady = [ function () {
+                                    try {
+                                      ga('send', 'event', 'View comments');
+                                    } catch(err){}
+                                 } ];
+      this.callbacks.onNewComment = [ function (comment) {
+                                        try {
+                                          ga('send', 'event', 'Commented');
+                                        } catch(err){}
+                                      } ];
+    };
+
+    window.addEventListener('load', function(e) {
+
+      var c = document.createElement('script');
+      c.type = 'text/javascript';
+      c.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+      c.async = true;
+
+      var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+      sp.insertBefore(c, s);
+
+      if (window.location.hash === '#disqus_thread')
+        loadComments();
+
+    }, false);
+
+    var disqus_loaded = false;
+    function loadComments() {
+
+      if (disqus_loaded)
+        return;
+
+      disqus_loaded = true;
+
+      ga('send', 'event', 'Interactions', 'Comments', 'Comments Loaded');
+
+      var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+
+      var disqusContainer = document.getElementById('disqus');
+      disqusContainer.classList.add('active');
+
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      sp.insertBefore(dsq, s);
+    }
+    var loadCommentsButtons = document.querySelectorAll('.load-comments');
+    for(var l = 0; l < loadCommentsButtons.length; l++)
+      loadCommentsButtons[l].addEventListener('click', loadComments);
+
+  </script>
+</section>
+
+
+
+    </div>
+    <footer>
+  <div class="container">
+    
+    <h1>Next steps</h1>
+    <aside class="panel share">
+      <h2>Share</h2>
+        <a href="https://twitter.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/&amp;text=Getting Started with CSS Shapes&amp;lang=en&amp;via=ChromiumDev&amp;related=ChromiumDev" class="twitter" target="_blank">Twitter</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="facebook" target="_blank">Facebook</a>
+        <a href="https://plus.google.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="gplus" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Google+</a>
+    </aside>
+    <aside class="panel rss">
+      <h2>Subscribe</h2>
+      <p>Enjoyed this article? Grab the <a href="http://feeds.feedburner.com/html5rocks">RSS feed</a> and stay up-to-date.</p>
+    </aside>
+    
+    <p class="licensing">
+      Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+    </p>
+  </div>
+</footer>
+
+
+    <script>
+      (function() {
+
+        var siteHeader = document.getElementById('siteheader');
+        var navToggle = document.getElementById('navtoggle');
+        var siteNav = document.getElementById('sitenav');
+
+        navToggle.addEventListener('click', function(e) {
+          siteNav.classList.toggle('active');
+          e.preventDefault();
+        });
+
+      })();
+    </script>
+
+    <!-- TODO: change UA-XXXXX-X -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-XXXXX-X', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>

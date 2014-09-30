@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta property="twitter:account_id" content="1593210261" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps.">
+<meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,indexeddb,offline,audio,video,drag and drop,chrome,sse,mobile">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chrome for Android: Accelerating the Mobile Web</title>
+
+<!-- Add to homescreen for Chrome on Android -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" sizes="192x192" href="  /assets/HTML5_Badge_192-f9389f6cad587f357d82be791970c8ad.png">
+
+<!-- Add to homescreen for Safari on iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="HTML5 Rocks">
+<link rel="apple-touch-icon-precomposed" href="/assets/HTML5_Badge_192-f9389f6cad587f357d82be791970c8ad.png
+">
+
+<!-- Tile icon for Win8 (144x144 + tile color) -->
+<meta name="msapplication-TileImage" content="/assets/HTML5_Badge_144-ddcf1cea1a1204b1733041733d66f76a.png
+">
+<meta name="msapplication-TileColor" content="#3372DF">
+
+<!-- TODO: consider rel=canonical -->
+<!-- TODO: consider rel=publisher -->
+<link rel="alternate" type="application/rss+xml" title="HTML5 Rocks RSS" href="http://feeds.feedburner.com/html5rocks">
+<link rel="publisher" href="https://plus.google.com/+GoogleChromeDevelopers">
+
+
+
+
+  
+
+
+
+
+<link href="//fonts.googleapis.com/css?family=Open+Sans:600,800|Source+Code+Pro" rel="stylesheet">
+<link rel="stylesheet" href="/assets/main-8dae1b06ec239bb8b24c3d98cd1ad04b.css">
+
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
+<![endif]-->
+
+  </head>
+  <body>
+    <header class="main" id="siteheader">
+  <a href="#sitenav" id="navtoggle"></a>
+  <nav id="sitenav" class="container">
+    <ul>
+      <li id="tutorials_menu">
+        <a href="http://www.html5rocks.com" class="tutorials">Home</a>
+      </li>
+      <li id="tutorials_menu">
+        <a href="http://www.html5rocks.com/en/tutorials/?page=1" class="tutorials">Tutorials</a>
+      </li>
+      <li id="updates_menu">
+        <a href="http://www.html5rocks.com/en/updates" class="updates">Updates</a>
+      </li>
+      <li id="contrib_menu">
+        <a href="https://github.com/html5rocks/www.html5rocks.com/blob/master/CONTRIBUTING.md" target="_blank">Contribute</a>
+      </li>
+      <li id="slides_menu">
+        <a href="http://www.html5rocks.com/en/slides" class="slides">Slides</a>
+      </li>
+      <li id="resources_menu">
+        <a href="http://www.html5rocks.com/en/resources" class="resources">Resources</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+    <div class="body-content">
+      <section class="banner">
+        <section class="container">
+          <a href="/en/" class="watermark"></a>
+          <h1>Chrome for Android: Accelerating the Mobile Web</h1>
+          
+        </section>
+      </section>
+      <article class="content-wrapper article">
+<div class="container">
+  <section class="byline clearfix">
+    <section class="author-images">
+      
+        
+<!-- TODO: change image address.-->
+
+<img src="http://www.html5rocks.com/static/images/profiles/smus.png"
+     alt="Boris Smus"
+     title="Boris Smus"
+     width="60" height="60"
+     class="avatar">
+
+
+
+      
+    </section>
+    <section class="meta">
+      <div class="authors">
+          
+    
+    <!-- TODO: change link. -->
+    <strong>By</strong> <a href="http://www.html5rocks.com/profiles/#smus">
+      Boris Smus
+    </a> 
+  
+
+      </div>
+      <div class="published">
+        <time pubdate=""><strong>Published:</strong> February 07, 2012</time>
+      </div>
+      <div class="updated">
+        <time><strong>Updated:</strong> February 07, 2012</time>
+      </div>
+      <div class="comments">
+        <span><strong>Comments:</strong> <a href="#disqus_thread" class="load-comments" data-disqus-identifier="http://html5rocks.com/updates//2012/02/Chrome-for-Android-Accelerating-the-Mobile-Web"></a></span>
+      </div>
+      <div id="notcompatible" class="hidden">
+        Your browser may not support the functionality in this article.
+      </div>
+    </section>
+  </section>
+  <section class="content">
+    <p>You’ve probably already heard that Chrome for Android Beta launched today. This
+new browser is based on the Chromium open source project, and brings with it
+many of the latest HTML5 features that Chrome developers have come to know and
+love. For an overview of the new hotness, see the launch announcement on
+<a href="http://blog.chromium.org/2012/02/deeper-look-at-chrome-for-android.html">blog.chromium.org</a> and a more detailed overview on
+<a href="http://code.google.com/chrome/mobile/">code.google.com</a>. I’ll quickly go through the stuff I personally
+find most interesting:</p>
+
+<h1 id="ui-improvements">UI Improvements</h1>
+
+<p>Chrome for Android makes it easy for developers to create modern mobile web
+user interfaces using fixed positioning, and <code>overflow: scroll</code> for
+individually scrollable elements. In addition, native-like scroll behavior is
+enabled by default. Chrome for Android supports the <a href="http://www.html5rocks.com/en/tutorials/flexbox/quick/">old flexbox
+model</a>, though be aware that the original flexbox model is deprecated
+in favor of a <a href="http://www.w3.org/TR/css3-flexbox/">new one</a>. Also supported are DateTime pickers, and
+early support for <code>&lt;input type="range"&gt;</code>.</p>
+
+<h1 id="fast-graphics">Fast graphics</h1>
+
+<p>Chrome for Android also supports hardware accelerated canvas, and performs
+quite well. There’s also support for <a href="http://paulirish.com/2011/requestanimationframe-for-smart-animating/">requestAnimationFrame</a>, which is
+important for mobile, letting the browser decide when to render, giving it a
+chance to manage battery life more efficiently in GPU intensive applications.
+Chrome for Android introduces a slew of other notable HTML5 features including
+<a href="http://www.html5rocks.com/en/tutorials/file/filesystem/">File System API</a>, <a href="http://www.html5rocks.com/en/tutorials/indexeddb/todo/">IndexedDB</a>, <a href="http://www.html5rocks.com/en/tutorials/workers/basics/">Web Workers</a> and <a href="http://www.html5rocks.com/en/tutorials/websockets/basics/">Web Sockets</a>.</p>
+
+<h1 id="remote-debugging">Remote debugging</h1>
+
+<p>Hands down, my personal favorite feature of Chrome for Android is remote
+debugging through the <a href="http://code.google.com/chrome/devtools/docs/overview.html">Chrome Developer Tools</a>. Remote debugging makes it
+very easy for web developers to debug their application as it’s running live on
+their mobile device, without having to resort to clever hacks such as Weinre.
+Here’s a quick screencast showing this feature in action:</p>
+
+<div class="video-container"><iframe src="//www.youtube.com/embed/s4zpL4VBbuU " frameborder="0" allowfullscreen=""></iframe></div>
+
+<p>For more information about remote debugging, see this <a href="http://code.google.com/chrome/mobile/docs/debugging.html">remote debugging
+article</a>.</p>
+
+<p>Try Chrome for Android Beta for yourself by <a href="https://market.android.com/details?id=com.android.chrome">downloading it from the Android
+Market</a>. If you’ve written a mobile web app to use a feature, but
+Chrome for Android doesn’t support it, keep in mind that this is a beta
+release, and see if this is already a <a href="http://mcrbug.com">known issue</a>, and star it if it is.
+Otherwise, please log a bug via <a href="http://new.mcrbug.com">new.mcrbug.com</a>.</p>
+
+<p>I’m stoked about the positive impact Chrome for Android will make on the mobile
+web developer community, and looking forward to see the great things we can
+build together! If you have additional questions, see if they are already
+answered in this <a href="http://code.google.com/chrome/mobile/docs/faq.html">FAQ</a>. Otherwise, if you have a Chrome-specific mobile
+web development question, please post it on Stack Overflow, tagged with the
+<a href="http://stackoverflow.com/questions/tagged/google-chrome+android">google-chrome and android</a> tags.</p>
+
+
+  </section>
+  <section>
+    <!-- TODO: Update link. -->
+    
+      <a href="/tag/chrome" class="tag">chrome</a>
+    
+      <a href="/tag/mobileu" class="tag">mobileu</a>
+    
+      <a href="/tag/android" class="tag">android</a>
+    
+      <a href="/tag/announcement" class="tag">announcement</a>
+    
+  </section>
+  <div class="pager">
+    
+    <a href="/2012/02/Pointer-Lock-API-Brings-FPS-Games-to-the-Browser">&laquo; Pointer Lock API Brings FPS Games to the Browser</a>
+     | 
+    <a href="/2012/02/Getting-Gmail-to-handle-all-mailto-links-with-registerProtocolHandler">Getting Gmail to handle all mailto: links with registerProtocolHandler &raquo;</a>
+    
+  </div>
+</div>
+</article>
+<section class="disqus pattern-bg-lighter">
+  <div id="disqus" class="container">
+    <h2>Comments</h2>
+    <div id="disqus_thread">
+      <a href="#disqus_thread" class="load-comments"
+          data-disqus-identifier="/2012/02/Chrome-for-Android-Accelerating-the-Mobile-Web">0</a>
+    </div>
+  </div>
+
+  <noscript>
+    <p class="center">
+      <strong>
+        <a href="http://disqus.com/?ref_noscript">Please enable JavaScript to view the comments powered by Disqus.</a>
+      </strong>
+    </p>
+  </noscript>
+
+  <script>
+
+    var disqus_shortname = 'html5rocks';
+    var disqus_identifier = 'http://html5rocks.com/updates//2012/02/Chrome-for-Android-Accelerating-the-Mobile-Web';
+    var disqus_url = 'http://html5rocks.com/updates//2012/02/Chrome-for-Android-Accelerating-the-Mobile-Web';
+    var disqus_developer = 0;
+
+    var disqus_config = function () {
+      var funky_language_code_mapping = {
+        'de': 'de_inf',
+        'es': 'es_ES',
+        'pt': 'pt_EU',
+        'sr': 'sr_CYRL',
+        'sv': 'sv_SE',
+        'zh': 'zh_HANT'
+      };
+      this.language = funky_language_code_mapping['en'] ||
+                      'en';
+
+      this.callbacks.onReady = [ function () {
+                                    try {
+                                      ga('send', 'event', 'View comments');
+                                    } catch(err){}
+                                 } ];
+      this.callbacks.onNewComment = [ function (comment) {
+                                        try {
+                                          ga('send', 'event', 'Commented');
+                                        } catch(err){}
+                                      } ];
+    };
+
+    window.addEventListener('load', function(e) {
+
+      var c = document.createElement('script');
+      c.type = 'text/javascript';
+      c.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+      c.async = true;
+
+      var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+      sp.insertBefore(c, s);
+
+      if (window.location.hash === '#disqus_thread')
+        loadComments();
+
+    }, false);
+
+    var disqus_loaded = false;
+    function loadComments() {
+
+      if (disqus_loaded)
+        return;
+
+      disqus_loaded = true;
+
+      ga('send', 'event', 'Interactions', 'Comments', 'Comments Loaded');
+
+      var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+
+      var disqusContainer = document.getElementById('disqus');
+      disqusContainer.classList.add('active');
+
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      sp.insertBefore(dsq, s);
+    }
+    var loadCommentsButtons = document.querySelectorAll('.load-comments');
+    for(var l = 0; l < loadCommentsButtons.length; l++)
+      loadCommentsButtons[l].addEventListener('click', loadComments);
+
+  </script>
+</section>
+
+
+
+    </div>
+    <footer>
+  <div class="container">
+    
+    <h1>Next steps</h1>
+    <aside class="panel share">
+      <h2>Share</h2>
+        <a href="https://twitter.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/&amp;text=Getting Started with CSS Shapes&amp;lang=en&amp;via=ChromiumDev&amp;related=ChromiumDev" class="twitter" target="_blank">Twitter</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="facebook" target="_blank">Facebook</a>
+        <a href="https://plus.google.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="gplus" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Google+</a>
+    </aside>
+    <aside class="panel rss">
+      <h2>Subscribe</h2>
+      <p>Enjoyed this article? Grab the <a href="http://feeds.feedburner.com/html5rocks">RSS feed</a> and stay up-to-date.</p>
+    </aside>
+    
+    <p class="licensing">
+      Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+    </p>
+  </div>
+</footer>
+
+
+    <script>
+      (function() {
+
+        var siteHeader = document.getElementById('siteheader');
+        var navToggle = document.getElementById('navtoggle');
+        var siteNav = document.getElementById('sitenav');
+
+        navToggle.addEventListener('click', function(e) {
+          siteNav.classList.toggle('active');
+          e.preventDefault();
+        });
+
+      })();
+    </script>
+
+    <!-- TODO: change UA-XXXXX-X -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-XXXXX-X', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
