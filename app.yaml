@@ -6,6 +6,11 @@ threadsafe: true
 
 handlers:
 
+- url: /json
+  mime_type: application/json
+  static_files: _site/index.json
+  upload: _site/index.json
+
 - url: /assets/(.+)
   static_files: _site/assets/\1
   upload: _site/assets/(.+)
