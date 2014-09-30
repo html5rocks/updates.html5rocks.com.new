@@ -69,6 +69,20 @@ mahemoff:
   email: mahemoff@google.com
   lanyrd: true
 
+mattgaunt:
+  name:
+    given: Matt
+    family: Gaunt
+  address:
+    locality: London
+    region: London
+    country: UK
+    lat: 51.4948
+    lon: -0.1467
+  homepage: http://gauntface.com
+  google: +MattGaunt
+  twitter: gauntface
+
 paulkinlan:
   name:
     given: Paul
