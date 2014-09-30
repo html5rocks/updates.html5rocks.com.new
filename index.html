@@ -32,14 +32,15 @@ subtitle: "New hotness from the HTML5 world"
       </ul>
     </div>
     <div class="pager">
-      {% if paginator.previous_page_path %}
-      <a href="{{site.url}}{{paginator.previous_page_path}}">Previous</a>
+    {{paginator}}
+      {% if paginator.previous_page > 1 %}
+      <a href="/page/{{paginator.previous_page}}">Previous</a>
       {% else %}
-      <a href="{{site.url}}">Start</a>
-      {% endif %} | {% if paginator.next_page_path %}
-      <a href="{{site.url}}{{paginator.next_page_path}}">Next</a>
+      <a href="/">Start</a>
+      {% endif %} | {% if paginator.next_page %}
+      <a href="/page/{{paginator.next_page}}">Next</a>
       {% else %}
-      <a href="{{site.url}}">Start</a>
+      <a href="/">Start</a>
       {% endif %}
     </div>
   </section>

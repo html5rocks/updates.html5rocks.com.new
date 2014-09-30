@@ -15,6 +15,19 @@ handlers:
   static_files: _site/\1/\2/\3/index.html
   upload: _site/(.+)
 
+- url: /page/1
+  mime_type: text/html
+  static_files: _site/index.html
+  upload: _site/index.html
+
+
+- url: /(\w+)/(\w+)
+  mime_type: text/html
+  static_files: _site/\1/\2/index.html
+  upload: _site/(.+)
+
+
+
 - url: /
   mime_type: text/html
   static_files: _site/index.html

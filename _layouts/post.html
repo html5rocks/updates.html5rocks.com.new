@@ -33,18 +33,18 @@ layout: default
   <section>
     <!-- TODO: Update link. -->
     {% for tag in page.tags %}
-      <a href="{{site.url}}/tag/{{tag}}" class="tag">{{tag | replace: '_', ' '}}</a>
+      <a href="/tag/{{tag}}" class="tag">{{tag | replace: '_', ' '}}</a>
     {% endfor %}
   </section>
   <div class="pager">
     {% if page.previous %}
-    <a href="{{site.url}}{{page.previous.url}}">&laquo; {{page.previous.title}}</a>
+    <a href="{{page.previous.url}}">&laquo; {{page.previous.title}}</a>
     {% else %}
-    <a href="{{site.url}}">All</a><!-- TODO: Change link. -->
+    <a href="/">All</a>
     {% endif %} | {% if page.next %}
-    <a href="{{site.url}}{{page.next.url}}">{{page.next.title}} &raquo;</a>
+    <a href="{{page.next.url}}">{{page.next.title}} &raquo;</a>
     {% else %}
-    <a href="{{site.url}}">All</a><!-- TODO: Change link. -->
+    <a href="/">All</a><!-- TODO: Change link. -->
     {% endif %}
   </div>
 </div>
