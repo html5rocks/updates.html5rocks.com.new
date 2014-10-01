@@ -1,1018 +1,1018 @@
 [
 
   {
-    "updated": "2014-09-15",
+    "updated": "2014-09-15 00:01:00.00",
     "description": "TouchEvents have changed in Chrome to return float values, instead of integers, to account for varying screen densities. This leads to more detailed feedback during slow gestures.",
     "title": "Precision Touch for Precise Gestures",
-    "published": "2014-09-15",
+    "published": "2014-09-15 00:01:00.00",
     "path": "/2014/09/Precision-Touch-for-Precise-Gestures",
     "author_id": "mattgaunt"
     },
 
   {
-    "updated": "2014-08-28",
+    "updated": "2014-08-28 00:01:00.00",
     "description": "The native Encoding API offers a straightforward way to convert between raw binary data and JavaScript strings.",
     "title": "Easier ArrayBuffer <-> String conversion with the Encoding API",
-    "published": "2014-08-28",
+    "published": "2014-08-28 00:01:00.00",
     "path": "/2014/08/Easier-ArrayBuffer---String-conversion-with-the-Encoding-API",
     "author_id": "jeffposnick"
     },
 
   {
-    "updated": "2014-08-28",
+    "updated": "2014-08-28 00:01:00.00",
     "description": "Maps, Sets, and for...of iteration are ES6 features that can change the way you work with collections of data.",
     "title": "Collecting and Iterating, the ES6 Way",
-    "published": "2014-08-28",
+    "published": "2014-08-28 00:01:00.00",
     "path": "/2014/08/Collecting-and-Iterating-the-ES6-Way",
     "author_id": "jeffposnick"
     },
 
   {
-    "updated": "2014-07-25",
+    "updated": "2014-07-25 00:01:00.00",
     "description": "Description of Web Audio standards cleanup work in m36",
     "title": "Web Audio Changes in m36",
-    "published": "2014-07-25",
+    "published": "2014-07-25 00:01:00.00",
     "path": "/2014/07/Web-Audio-Changes-in-m36",
     "author_id": "chriswilson"
     },
 
   {
-    "updated": "2014-07-24",
+    "updated": "2014-07-24 00:01:00.00",
     "description": "Chrome Beta has landed its native support for <dialog> element",
     "title": "dialog element: shipped in Chrome 37 Beta",
-    "published": "2014-07-24",
+    "published": "2014-07-24 00:01:00.00",
     "path": "/2014/07/dialog-element-shipped-in-Chrome-37-Beta",
     "author_id": "agektmr"
     },
 
   {
-    "updated": "2014-07-01",
+    "updated": "2014-07-01 00:01:00.00",
     "description": "Long awaited feature for Chrome, Blob support on IndexedDB landed in Chrome Dev.",
     "title": "Blob support for IndexedDB landed on Chrome Dev",
-    "published": "2014-07-01",
+    "published": "2014-07-01 00:01:00.00",
     "path": "/2014/07/Blob-support-for-IndexedDB-landed-on-Chrome-Dev",
     "author_id": "agektmr"
     },
 
   {
-    "updated": "2014-06-06",
+    "updated": "2014-06-06 00:01:00.00",
     "description": "Use PSI to get web performance metrics into your build process.",
     "title": "Automating Web Performance Measurement",
-    "published": "2014-06-06",
+    "published": "2014-06-06 00:01:00.00",
     "path": "/2014/06/Automating-Web-Performance-Measurement",
     "author_id": "addyosmani"
     },
 
   {
-    "updated": "2014-05-22",
+    "updated": "2014-05-22 00:01:00.00",
     "description": "Web Animations define a model for supporting animation and synchronization on the Web platform. element.animate() is the first of those pieces landing in Chrome.",
     "title": "Web Animations - element.animate() is now in Chrome 36",
-    "published": "2014-05-22",
+    "published": "2014-05-22 00:01:00.00",
     "path": "/2014/05/Web-Animations---element-animate-is-now-in-Chrome-36",
     "author_id": "brendankenny"
     },
 
   {
-    "updated": "2014-05-21",
+    "updated": "2014-05-21 00:01:00.00",
     "description": "You and your users want mobile web apps that react and scroll smoothly to the touch. Developing them should be easy but, unfortunately, how mobile web browsers react to touch events during scrolling is left as an implementation detail in the [TouchEvent](http://www.w3.org/TR/touch-events/) specification. ",
     "title": "A More Compatible, Smoother Touch",
-    "published": "2014-05-21",
+    "published": "2014-05-21 00:01:00.00",
     "path": "/2014/05/A-More-Compatible-Smoother-Touch",
     "author_id": "viviancromwell"
     },
 
   {
-    "updated": "2014-03-20",
+    "updated": "2014-03-20 00:01:00.00",
     "description": "CSS Grid Layout is a new CSS3 module that provides new layout primitives that are ideal for web applications.",
     "title": "Get on the CSS Grid!",
-    "published": "2014-03-20",
+    "published": "2014-03-20 00:01:00.00",
     "path": "/2014/03/Get-on-the-CSS-Grid",
     "author_id": "alexdanilo"
     },
 
   {
-    "updated": "2014-02-17",
+    "updated": "2014-02-17 00:01:00.00",
     "description": "A monthly digest of high-quality Yeoman articles, generators and project news.",
     "title": "The Yeoman Monthly Digest #3",
-    "published": "2014-02-17",
+    "published": "2014-02-17 00:01:00.00",
     "path": "/2014/02/The-Yeoman-Monthly-Digest-3",
     "author_id": "addyosmani"
     },
 
   {
-    "updated": "2014-01-20",
+    "updated": "2014-01-20 00:01:00.00",
     "description": "A whirlwind tour of Web Components, Polymer and front-end tooling for them.",
     "title": "Yo Polymer – A Whirlwind Tour Of Web Component Tooling",
-    "published": "2014-01-20",
+    "published": "2014-01-20 00:01:00.00",
     "path": "/2014/01/Yo-Polymer-A-Whirlwind-Tour-Of-Web-Component-Tooling",
     "author_id": "addyosmani"
     },
 
   {
-    "updated": "2014-01-14",
+    "updated": "2014-01-14 00:01:00.00",
     "description": "Introduction to the Web Speech API's synthesis feature.",
     "title": "Web apps that talk - Introduction to the Speech Synthesis API",
-    "published": "2014-01-14",
+    "published": "2014-01-14 00:01:00.00",
     "path": "/2014/01/Web-apps-that-talk---Introduction-to-the-Speech-Synthesis-API",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2014-01-10",
+    "updated": "2014-01-10 00:01:00.00",
     "description": "Platforms",
     "title": "Chrome Dev Summit: Platforms Summary",
-    "published": "2014-01-10",
+    "published": "2014-01-10 00:01:00.00",
     "path": "/2014/01/Chrome-Dev-Summit-Platforms-Summary",
     "author_id": "sethladd"
     },
 
   {
-    "updated": "2014-01-09",
+    "updated": "2014-01-09 00:01:00.00",
     "description": "The capabilities of the Open Web Platform is accelerating at a pace that has never been seen before.  At the Chrome Dev Summit we talked about how we are working on improving Blink, Security and Media for the platform",
     "title": "Chrome Dev Summit: Open Web Platform Summary",
-    "published": "2014-01-09",
+    "published": "2014-01-09 00:01:00.00",
     "path": "/2014/01/Chrome-Dev-Summit-Open-Web-Platform-Summary",
     "author_id": "dutton"
     },
 
   {
-    "updated": "2014-01-08",
+    "updated": "2014-01-08 00:01:00.00",
     "description": "Performance Matters",
     "title": "Chrome Dev Summit: Performance Summary",
-    "published": "2014-01-08",
+    "published": "2014-01-08 00:01:00.00",
     "path": "/2014/01/Chrome-Dev-Summit-Performance-Summary",
     "author_id": "paullewis"
     },
 
   {
-    "updated": "2014-01-07",
+    "updated": "2014-01-07 00:01:00.00",
     "description": "Polymer is a gateway into the amazing future of Web Components.  Learn more about Web Components and Polymer from the Chrome Dev Summit",
     "title": "Chrome Dev Summit: Polymer declarative, encapsulated, reusable components",
-    "published": "2014-01-07",
+    "published": "2014-01-07 00:01:00.00",
     "path": "/2014/01/Chrome-Dev-Summit-Polymer-declarative-encapsulated-reusable-components",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2014-01-06",
+    "updated": "2014-01-06 00:01:00.00",
     "description": "Here's the first in a series of reports from Chrome Dev Summit. There was a strong emphasis on Mobile and Cross-device development, so we'll kick off with that!",
     "title": "Chrome Dev Summit: Mobile Summary",
-    "published": "2014-01-06",
+    "published": "2014-01-06 00:01:00.00",
     "path": "/2014/01/Chrome-Dev-Summit-Mobile-Summary",
     "author_id": "paulkinlan"
     },
 
   {
-    "updated": "2013-12-26",
+    "updated": "2013-12-26 00:01:00.00",
     "description": "A regular round-up of articles, videos and talks authored by the Yeoman community.",
     "title": "The Yeoman Monthly Digest #2",
-    "published": "2013-12-26",
+    "published": "2013-12-26 00:01:00.00",
     "path": "/2013/12/The-Yeoman-Monthly-Digest-2",
     "author_id": "addyosmani"
     },
 
   {
-    "updated": "2013-12-19",
+    "updated": "2013-12-19 00:01:00.00",
     "description": "An implementation of Web Animations 1.0 has landed in Blink powering CSS Animations and Transitions.",
     "title": "New Web Animations engine in Blink drives CSS Animations & Transitions",
-    "published": "2013-12-19",
+    "published": "2013-12-19 00:01:00.00",
     "path": "/2013/12/New-Web-Animations-engine-in-Blink-drives-CSS-Animations-Transitions",
     "author_id": "alexdanilo"
     },
 
   {
-    "updated": "2013-12-19",
+    "updated": "2013-12-19 00:01:00.00",
     "description": "The latest update for changes to the Chrome DevTools.",
     "title": "DevTools Digest December 2013",
-    "published": "2013-12-19",
+    "published": "2013-12-19 00:01:00.00",
     "path": "/2013/12/DevTools-Digest-December-2013",
     "author_id": "umarhansa"
     },
 
   {
-    "updated": "2013-12-13",
+    "updated": "2013-12-13 00:01:00.00",
     "description": "Every click interaction in mobile browsers is hampered with a 300ms delay, but that's gone in Chrome 32 for mobile-optimised sites!",
     "title": "300ms tap delay, gone away",
-    "published": "2013-12-13",
+    "published": "2013-12-13 00:01:00.00",
     "path": "/2013/12/300ms-tap-delay-gone-away",
     "author_id": "jakearchibald"
     },
 
   {
-    "updated": "2013-11-07",
+    "updated": "2013-11-07 00:01:00.00",
     "description": "A regular round-up of articles, videos and talks authored by the Yeoman community.",
     "title": "The Yeoman Monthly Digest #1",
-    "published": "2013-11-07",
+    "published": "2013-11-07 00:01:00.00",
     "path": "/2013/11/The-Yeoman-Monthly-Digest-1",
     "author_id": "addyosmani"
     },
 
   {
-    "updated": "2013-11-04",
+    "updated": "2013-11-04 00:01:00.00",
     "description": "Learn how to improve your front-end productivity with tools for workflow automation.",
     "title": "The Landscape Of Front-end Development Automation (Slides)",
-    "published": "2013-11-04",
+    "published": "2013-11-04 00:01:00.00",
     "path": "/2013/11/The-Landscape-Of-Front-end-Development-Automation-Slides",
     "author_id": "addyosmani"
     },
 
   {
-    "updated": "2013-10-15",
+    "updated": "2013-10-15 00:01:00.00",
     "description": "Chrome for Android (v31.0.1650+) has just landed support for audio input via the Web Audio API!",
     "title": "Web Audio live audio input - now on Android!",
-    "published": "2013-10-15",
+    "published": "2013-10-15 00:01:00.00",
     "path": "/2013/10/Web-Audio-live-audio-input---now-on-Android",
     "author_id": "chriswilson"
     },
 
   {
-    "updated": "2013-10-07",
+    "updated": "2013-10-07 00:01:00.00",
     "description": "Good news: new flexbox (display: flex) is 2.3x faster than old flexbox (display: box)!",
     "title": "Flexbox layout isn't slow",
-    "published": "2013-10-07",
+    "published": "2013-10-07 00:01:00.00",
     "path": "/2013/10/Flexbox-layout-isn-t-slow",
     "author_id": "paulirish"
     },
 
   {
-    "updated": "2013-09-28",
+    "updated": "2013-09-28 00:01:00.00",
     "description": "Ever wondered which font is actually being used to render text? Wonder no more as Chrome DevTools reveals all!",
     "title": "DevTools answers: What font is that? ",
-    "published": "2013-09-28",
+    "published": "2013-09-28 00:01:00.00",
     "path": "/2013/09/DevTools-answers-What-font-is-that",
     "author_id": "paulirish"
     },
 
   {
-    "updated": "2013-09-23",
+    "updated": "2013-09-23 00:01:00.00",
     "description": "Have you ever created your own modal dialog box? Soon, you won't need to ever again; dialog boxes are becoming a part of the web platform.",
     "title": "dialog element: Modals made easy",
-    "published": "2013-09-23",
+    "published": "2013-09-23 00:01:00.00",
     "path": "/2013/09/dialog-element-Modals-made-easy",
     "author_id": "agektmr"
     },
 
   {
-    "updated": "2013-07-26",
+    "updated": "2013-07-26 00:01:00.00",
     "description": "WebM just added alpha transparency, and support for it has landed in Chrome Canary.",
     "title": "Alpha transparency in Chrome video",
-    "published": "2013-07-26",
+    "published": "2013-07-26 00:01:00.00",
     "path": "/2013/07/Alpha-transparency-in-Chrome-video",
     "author_id": "dutton"
     },
 
   {
-    "updated": "2013-06-13",
+    "updated": "2013-06-13 00:01:00.00",
     "description": "",
     "title": "sourceMappingURL and sourceURL syntax changed",
-    "published": "2013-06-13",
+    "published": "2013-06-13 00:01:00.00",
     "path": "/2013/06/sourceMappingURL-and-sourceURL-syntax-changed",
     "author_id": "paulirish"
     },
 
   {
-    "updated": "2013-03-25",
+    "updated": "2013-03-25 00:01:00.00",
     "description": "",
     "title": "Introduction to Custom Filters (aka CSS Shaders)",
-    "published": "2013-03-25",
+    "published": "2013-03-25 00:01:00.00",
     "path": "/2013/03/Introduction-to-Custom-Filters-aka-CSS-Shaders",
     "author_id": "paullewis"
     },
 
   {
-    "updated": "2013-03-22",
+    "updated": "2013-03-22 00:01:00.00",
     "description": "",
     "title": "What's the CSS :scope pseudo-class for?",
-    "published": "2013-03-22",
+    "published": "2013-03-22 00:01:00.00",
     "path": "/2013/03/What-s-the-CSS-scope-pseudo-class-for",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2013-03-13",
+    "updated": "2013-03-13 00:01:00.00",
     "description": "",
     "title": "Visualizing Shadow DOM Concepts",
-    "published": "2013-03-13",
+    "published": "2013-03-13 00:01:00.00",
     "path": "/2013/03/Visualizing-Shadow-DOM-Concepts",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2013-02-19",
+    "updated": "2013-02-19 00:01:00.00",
     "description": "",
     "title": "Profiling Long Paint Times with DevTools' Continuous Painting Mode",
-    "published": "2013-02-19",
+    "published": "2013-02-19 00:01:00.00",
     "path": "/2013/02/Profiling-Long-Paint-Times-with-DevTools-Continuous-Painting-Mode",
     "author_id": "paulirish"
     },
 
   {
-    "updated": "2013-02-06",
+    "updated": "2013-02-06 00:01:00.00",
     "description": "",
     "title": "WebRTC: RTCDataChannel demo, API changes... and Chrome talks to Firefox!",
-    "published": "2013-02-06",
+    "published": "2013-02-06 00:01:00.00",
     "path": "/2013/02/WebRTC-data-channels-API-changes-and-Chrome-talks-to-Firefox",
     "author_id": "dutton"
     },
 
   {
-    "updated": "2013-02-01",
+    "updated": "2013-02-01 00:01:00.00",
     "description": "",
     "title": "CSS Background shorthand coming to mobile WebKit browsers",
-    "published": "2013-02-01",
+    "published": "2013-02-01 00:01:00.00",
     "path": "/2013/02/CSS-Background-shorthand-coming-to-mobile-WebKit-browsers",
     "author_id": "petele"
     },
 
   {
-    "updated": "2013-01-14",
+    "updated": "2013-01-14 00:01:00.00",
     "description": "",
     "title": "Voice Driven Web Apps: Introduction to the Web Speech API",
-    "published": "2013-01-14",
+    "published": "2013-01-14 00:01:00.00",
     "path": "/2013/01/Voice-Driven-Web-Apps-Introduction-to-the-Web-Speech-API",
     "author_id": "glenshires"
     },
 
   {
-    "updated": "2012-12-24",
+    "updated": "2012-12-24 00:01:00.00",
     "description": "",
     "title": "Screensharing with WebRTC",
-    "published": "2012-12-24",
+    "published": "2012-12-24 00:01:00.00",
     "path": "/2012/12/Screensharing-with-WebRTC",
     "author_id": "dutton"
     },
 
   {
-    "updated": "2012-12-12",
+    "updated": "2012-12-12 00:01:00.00",
     "description": "Powering a css background using canvas or webgl",
     "title": "Canvas-driven background images",
-    "published": "2012-12-12",
+    "published": "2012-12-12 00:01:00.00",
     "path": "/2012/12/Canvas-driven-background-images",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2012-12-10",
+    "updated": "2012-12-10 00:01:00.00",
     "description": "",
     "title": "WebRTC hits Firefox, Android and iOS",
-    "published": "2012-12-10",
+    "published": "2012-12-10 00:01:00.00",
     "path": "/2012/12/WebRTC-hits-Firefox-Android-and-iOS",
     "author_id": "dutton"
     },
 
   {
-    "updated": "2012-11-28",
+    "updated": "2012-11-28 00:01:00.00",
     "description": "",
     "title": "Respond to change with Object.observe",
-    "published": "2012-11-28",
+    "published": "2012-11-28 00:01:00.00",
     "path": "/2012/11/Respond-to-change-with-Object-observe",
     "author_id": "alexdanilo"
     },
 
   {
-    "updated": "2012-11-16",
+    "updated": "2012-11-16 00:01:00.00",
     "description": "",
     "title": "Content Security Policy 1.0 is officially awesome.",
-    "published": "2012-11-16",
+    "published": "2012-11-16 00:01:00.00",
     "path": "/2012/11/Content-Security-Policy-1-0-is-officially-awesome",
     "author_id": "mikewest"
     },
 
   {
-    "updated": "2012-09-26",
+    "updated": "2012-09-26 00:01:00.00",
     "description": "",
     "title": "Interactive Globe with CSS shaders & Google Maps",
-    "published": "2012-09-26",
+    "published": "2012-09-26 00:01:00.00",
     "path": "/2012/09/Interactive-Globe-with-CSS-shaders-Google-Maps",
     "author_id": "paulirish"
     },
 
   {
-    "updated": "2012-09-19",
+    "updated": "2012-09-19 00:01:00.00",
     "description": "",
     "title": "Live Web Audio Input Enabled!",
-    "published": "2012-09-19",
+    "published": "2012-09-19 00:01:00.00",
     "path": "/2012/09/Live-Web-Audio-Input-Enabled",
     "author_id": "chriswilson"
     },
 
   {
-    "updated": "2012-09-11",
+    "updated": "2012-09-11 00:01:00.00",
     "description": "",
     "title": "Stacking Changes Coming to position:fixed elements",
-    "published": "2012-09-11",
+    "published": "2012-09-11 00:01:00.00",
     "path": "/2012/09/Stacking-Changes-Coming-to-position-fixed-elements",
     "author_id": "tomwiltzius"
     },
 
   {
-    "updated": "2012-08-30",
+    "updated": "2012-08-30 00:01:00.00",
     "description": "",
     "title": "Stick your landings! position: sticky lands in WebKit",
-    "published": "2012-08-30",
+    "published": "2012-08-30 00:01:00.00",
     "path": "/2012/08/Stick-your-landings-position-sticky-lands-in-WebKit",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2012-08-23",
+    "updated": "2012-08-23 00:01:00.00",
     "description": "",
     "title": "Integrating input[type=&quot;file&quot;] with the Filesystem API",
-    "published": "2012-08-23",
+    "published": "2012-08-23 00:01:00.00",
     "path": "/2012/08/Integrating-input-type-file-with-the-Filesystem-API",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2012-08-16",
+    "updated": "2012-08-16 00:01:00.00",
     "description": "",
     "title": "When milliseconds are not enough: performance.now()",
-    "published": "2012-08-16",
+    "published": "2012-08-16 00:01:00.00",
     "path": "/2012/08/When-milliseconds-are-not-enough-performance-now",
     "author_id": "paulirish"
     },
 
   {
-    "updated": "2012-08-15",
+    "updated": "2012-08-15 00:01:00.00",
     "description": "",
     "title": "[datalist] for range/color inputs offer some default choices  ",
-    "published": "2012-08-15",
+    "published": "2012-08-15 00:01:00.00",
     "path": "/2012/08/datalist-for-range-color-inputs-offer-some-default-choices",
     "author_id": "agektmr"
     },
 
   {
-    "updated": "2012-08-06",
+    "updated": "2012-08-06 00:01:00.00",
     "description": "",
     "title": "Quick FAQs on input[type=date] in Google Chrome",
-    "published": "2012-08-06",
+    "published": "2012-08-06 00:01:00.00",
     "path": "/2012/08/Quick-FAQs-on-input-type-date-in-Google-Chrome",
     "author_id": "agektmr"
     },
 
   {
-    "updated": "2012-07-23",
+    "updated": "2012-07-23 00:01:00.00",
     "description": "",
     "title": "How to measure browser graphics performance",
-    "published": "2012-07-23",
+    "published": "2012-07-23 00:01:00.00",
     "path": "/2012/07/How-to-measure-browser-graphics-performance",
     "author_id": "ilmari"
     },
 
   {
-    "updated": "2012-07-23",
+    "updated": "2012-07-23 00:01:00.00",
     "description": "",
     "title": "Drag and drop a folder onto Chrome now available ",
-    "published": "2012-07-23",
+    "published": "2012-07-23 00:01:00.00",
     "path": "/2012/07/Drag-and-drop-a-folder-onto-Chrome-now-available",
     "author_id": "agektmr"
     },
 
   {
-    "updated": "2012-07-16",
+    "updated": "2012-07-16 00:01:00.00",
     "description": "",
     "title": "Arrived! xhr.send(ArrayBufferViews)",
-    "published": "2012-07-16",
+    "published": "2012-07-16 00:01:00.00",
     "path": "/2012/07/Arrived-xhr-send-ArrayBufferViews",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2012-07-05",
+    "updated": "2012-07-05 00:01:00.00",
     "description": "",
     "title": "Taking advantage of GPU acceleration in the 2D canvas",
-    "published": "2012-07-05",
+    "published": "2012-07-05 00:01:00.00",
     "path": "/2012/07/Taking-advantage-of-GPU-acceleration-in-the-2D-canvas",
     "author_id": "ilmari"
     },
 
   {
-    "updated": "2012-07-04",
+    "updated": "2012-07-04 00:01:00.00",
     "description": "",
     "title": "Writing a flippable book using CSS Regions and 3D transforms",
-    "published": "2012-07-04",
+    "published": "2012-07-04 00:01:00.00",
     "path": "/2012/07/Writing-a-flippable-book-using-CSS-Regions-and-3D-transforms",
     "author_id": "ilmari"
     },
 
   {
-    "updated": "2012-06-20",
+    "updated": "2012-06-20 00:01:00.00",
     "description": "",
     "title": "The amazing powers of CSS",
-    "published": "2012-06-20",
+    "published": "2012-06-20 00:01:00.00",
     "path": "/2012/06/The-amazing-powers-of-CSS",
     "author_id": "ilmari"
     },
 
   {
-    "updated": "2012-06-15",
+    "updated": "2012-06-15 00:01:00.00",
     "description": "How to convert ArrayBuffer to and from String",
     "title": "How to convert ArrayBuffer to and from String",
-    "published": "2012-06-15",
+    "published": "2012-06-15 00:01:00.00",
     "path": "/2012/06/How-to-convert-ArrayBuffer-to-and-from-String",
     "author_id": "renatomangini"
     },
 
   {
-    "updated": "2012-06-11",
+    "updated": "2012-06-11 00:01:00.00",
     "description": "",
     "title": "Don't Build Blobs, Construct Them",
-    "published": "2012-06-11",
+    "published": "2012-06-11 00:01:00.00",
     "path": "/2012/06/Don-t-Build-Blobs-Construct-Them",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2012-05-22",
+    "updated": "2012-05-22 00:01:00.00",
     "description": "",
     "title": "requestAnimationFrame API: now with sub-millisecond precision",
-    "published": "2012-05-22",
+    "published": "2012-05-22 00:01:00.00",
     "path": "/2012/05/requestAnimationFrame-API-now-with-sub-millisecond-precision",
     "author_id": "paulirish"
     },
 
   {
-    "updated": "2012-05-08",
+    "updated": "2012-05-08 00:01:00.00",
     "description": "",
     "title": "Websocket Frame Inspection now in Chrome DevTools",
-    "published": "2012-05-08",
+    "published": "2012-05-08 00:01:00.00",
     "path": "/2012/05/Websocket-Frame-Inspection-now-in-Chrome-DevTools",
     "author_id": "paulirish"
     },
 
   {
-    "updated": "2012-04-23",
+    "updated": "2012-04-23 00:01:00.00",
     "description": "",
     "title": "datalist landed in Chrome Canary",
-    "published": "2012-04-23",
+    "published": "2012-04-23 00:01:00.00",
     "path": "/2012/04/datalist-landed-in-Chrome-Canary",
     "author_id": "agektmr"
     },
 
   {
-    "updated": "2012-04-18",
+    "updated": "2012-04-18 00:01:00.00",
     "description": "",
     "title": "WebRTC Protothon",
-    "published": "2012-04-18",
+    "published": "2012-04-18 00:01:00.00",
     "path": "/2012/04/WebRTC-Protothon",
     "author_id": "ilmari"
     },
 
   {
-    "updated": "2012-04-18",
+    "updated": "2012-04-18 00:01:00.00",
     "description": "",
     "title": "Processing XHR2 file uploads in PHP",
-    "published": "2012-04-18",
+    "published": "2012-04-18 00:01:00.00",
     "path": "/2012/04/Processing-XHR2-file-uploads-in-PHP",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2012-04-11",
+    "updated": "2012-04-11 00:01:00.00",
     "description": "",
     "title": "Big boost to DOM performance - WebKit's innerHTML is 240% faster",
-    "published": "2012-04-11",
+    "published": "2012-04-11 00:01:00.00",
     "path": "/2012/04/Big-boost-to-DOM-performance---WebKit-s-innerHTML-is-240-faster",
     "author_id": "dutton"
     },
 
   {
-    "updated": "2012-04-10",
+    "updated": "2012-04-10 00:01:00.00",
     "description": "",
     "title": "Round-up of Web Browser Internals Resources",
-    "published": "2012-04-10",
+    "published": "2012-04-10 00:01:00.00",
     "path": "/2012/04/Round-up-of-Web-Browser-Internals-Resources",
     "author_id": "paulirish"
     },
 
   {
-    "updated": "2012-04-05",
+    "updated": "2012-04-05 00:01:00.00",
     "description": "",
     "title": "Taking an Entire Page Offline using the HTML5 FileSystem API",
-    "published": "2012-04-05",
+    "published": "2012-04-05 00:01:00.00",
     "path": "/2012/04/Taking-an-Entire-Page-Offline-using-the-HTML5-FileSystem-API",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2012-03-29",
+    "updated": "2012-03-29 00:01:00.00",
     "description": "",
     "title": "CSS layout gets smarter with calc()",
-    "published": "2012-03-29",
+    "published": "2012-03-29 00:01:00.00",
     "path": "/2012/03/CSS-layout-gets-smarter-with-calc",
     "author_id": "alexdanilo"
     },
 
   {
-    "updated": "2012-03-16",
+    "updated": "2012-03-16 00:01:00.00",
     "description": "",
     "title": "Optimizing JavaScript",
-    "published": "2012-03-16",
+    "published": "2012-03-16 00:01:00.00",
     "path": "/2012/03/Optimizing-JavaScript",
     "author_id": "sethladd"
     },
 
   {
-    "updated": "2012-03-06",
+    "updated": "2012-03-06 00:01:00.00",
     "description": "",
     "title": "A New Experimental Feature: scoped stylesheets",
-    "published": "2012-03-06",
+    "published": "2012-03-06 00:01:00.00",
     "path": "/2012/03/A-New-Experimental-Feature-style-scoped",
     "author_id": "alexdanilo"
     },
 
   {
-    "updated": "2012-02-20",
+    "updated": "2012-02-20 00:01:00.00",
     "description": "",
     "title": "WebGL and Web Audio API demo roundup",
-    "published": "2012-02-20",
+    "published": "2012-02-20 00:01:00.00",
     "path": "/2012/02/WebGL-and-Web-Audio-API-demo-roundup",
     "author_id": "ilmari"
     },
 
   {
-    "updated": "2012-02-18",
+    "updated": "2012-02-18 00:01:00.00",
     "description": "",
     "title": "SwiftShader brings software 3D rendering to Chrome",
-    "published": "2012-02-18",
+    "published": "2012-02-18 00:01:00.00",
     "path": "/2012/02/SwiftShader-brings-software-3D-rendering-to-Chrome",
     "author_id": "ilmari"
     },
 
   {
-    "updated": "2012-02-16",
+    "updated": "2012-02-16 00:01:00.00",
     "description": "An introduction to Mutation Observers.",
     "title": "Detect DOM changes with Mutation Observers",
-    "published": "2012-02-16",
+    "published": "2012-02-16 00:01:00.00",
     "path": "/2012/02/Detect-DOM-changes-with-Mutation-Observers",
     "author_id": "ernestd"
     },
 
   {
-    "updated": "2012-02-08",
+    "updated": "2012-02-08 00:01:00.00",
     "description": "",
     "title": "Getting Gmail to handle all mailto: links with registerProtocolHandler",
-    "published": "2012-02-08",
+    "published": "2012-02-08 00:01:00.00",
     "path": "/2012/02/Getting-Gmail-to-handle-all-mailto-links-with-registerProtocolHandler",
     "author_id": "paulirish"
     },
 
   {
-    "updated": "2012-02-07",
+    "updated": "2012-02-07 00:01:00.00",
     "description": "",
     "title": "Chrome for Android: Accelerating the Mobile Web",
-    "published": "2012-02-07",
+    "published": "2012-02-07 00:01:00.00",
     "path": "/2012/02/Chrome-for-Android-Accelerating-the-Mobile-Web",
     "author_id": "smus"
     },
 
   {
-    "updated": "2012-02-06",
+    "updated": "2012-02-06 00:01:00.00",
     "description": "",
     "title": "Pointer Lock API Brings FPS Games to the Browser",
-    "published": "2012-02-06",
+    "published": "2012-02-06 00:01:00.00",
     "path": "/2012/02/Pointer-Lock-API-Brings-FPS-Games-to-the-Browser",
     "author_id": "ilmari"
     },
 
   {
-    "updated": "2012-02-03",
+    "updated": "2012-02-03 00:01:00.00",
     "description": "",
     "title": "HTML5 &lt;audio&gt; and the Web Audio API are BFFs!",
-    "published": "2012-02-03",
+    "published": "2012-02-03 00:01:00.00",
     "path": "/2012/02/HTML5-audio-and-the-Web-Audio-API-are-BFFs",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2012-01-26",
+    "updated": "2012-01-26 00:01:00.00",
     "description": "",
     "title": "Getting Rid of Synchronous XHRs",
-    "published": "2012-01-26",
+    "published": "2012-01-26 00:01:00.00",
     "path": "/2012/01/Getting-Rid-of-Synchronous-XHRs",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2012-01-10",
+    "updated": "2012-01-10 00:01:00.00",
     "description": "",
     "title": "Web Audio FAQ",
-    "published": "2012-01-10",
+    "published": "2012-01-10 00:01:00.00",
     "path": "/2012/01/Web-Audio-FAQ",
     "author_id": "smus"
     },
 
   {
-    "updated": "2012-01-07",
+    "updated": "2012-01-07 00:01:00.00",
     "description": "",
     "title": "Introducing Video Player Sample",
-    "published": "2012-01-07",
+    "published": "2012-01-07 00:01:00.00",
     "path": "/2012/01/Introducing-Video-Player-Sample",
     "author_id": "petele"
     },
 
   {
-    "updated": "2011-12-22",
+    "updated": "2011-12-22 00:01:00.00",
     "description": "",
     "title": "CSS Filter Effects Landing in WebKit",
-    "published": "2011-12-22",
+    "published": "2011-12-22 00:01:00.00",
     "path": "/2011/12/CSS-Filter-Effects-Landing-in-WebKit",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2011-12-10",
+    "updated": "2011-12-10 00:01:00.00",
     "description": "",
     "title": "Transferable Objects: Lightning Fast!",
-    "published": "2011-12-10",
+    "published": "2011-12-10 00:01:00.00",
     "path": "/2011/12/Transferable-Objects-Lightning-Fast",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2011-12-08",
+    "updated": "2011-12-08 00:01:00.00",
     "description": "",
     "title": "Use mediump precision in WebGL when possible",
-    "published": "2011-12-08",
+    "published": "2011-12-08 00:01:00.00",
     "path": "/2011/12/Use-mediump-precision-in-WebGL-when-possible",
     "author_id": "ilmari"
     },
 
   {
-    "updated": "2011-11-17",
+    "updated": "2011-11-17 00:01:00.00",
     "description": "",
     "title": "Chrome Developer Tools for Speed",
-    "published": "2011-11-17",
+    "published": "2011-11-17 00:01:00.00",
     "path": "/2011/11/Chrome-Developer-Tools-for-Speed",
     "author_id": "paulirish"
     },
 
   {
-    "updated": "2011-11-15",
+    "updated": "2011-11-15 00:01:00.00",
     "description": "",
     "title": "&quot;Stream&quot; video using the MediaSource API",
-    "published": "2011-11-15",
+    "published": "2011-11-15 00:01:00.00",
     "path": "/2011/11/Stream-video-using-the-MediaSource-API",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2011-11-11",
+    "updated": "2011-11-11 00:01:00.00",
     "description": "",
     "title": "Quota Management API : Fast Facts",
-    "published": "2011-11-11",
+    "published": "2011-11-11 00:01:00.00",
     "path": "/2011/11/Quota-Management-API-Fast-Facts",
     "author_id": "agektmr"
     },
 
   {
-    "updated": "2011-11-08",
+    "updated": "2011-11-08 00:01:00.00",
     "description": "",
     "title": "WebGL demo roundup",
-    "published": "2011-11-08",
+    "published": "2011-11-08 00:01:00.00",
     "path": "/2011/11/WebGL-demo-roundup",
     "author_id": "ilmari"
     },
 
   {
-    "updated": "2011-10-28",
+    "updated": "2011-10-28 00:01:00.00",
     "description": "",
     "title": "App Cache Tools and Auto-Generators",
-    "published": "2011-10-28",
+    "published": "2011-10-28 00:01:00.00",
     "path": "/2011/10/App-Cache-Tools-and-Auto-Generators",
     "author_id": "sethladd"
     },
 
   {
-    "updated": "2011-10-27",
+    "updated": "2011-10-27 00:01:00.00",
     "description": "",
     "title": "Spooktacular HTML5 Pumpkin",
-    "published": "2011-10-27",
+    "published": "2011-10-27 00:01:00.00",
     "path": "/2011/10/Spooktacular-HTML5-Pumpkin",
     "author_id": "sethladd"
     },
 
   {
-    "updated": "2011-10-27",
+    "updated": "2011-10-27 00:01:00.00",
     "description": "",
     "title": "Defining Scope In IndexedDB Transactions",
-    "published": "2011-10-27",
+    "published": "2011-10-27 00:01:00.00",
     "path": "/2011/10/Defining-Scope-In-IndexedDB-Transactions",
     "author_id": "idogreen"
     },
 
   {
-    "updated": "2011-10-26",
+    "updated": "2011-10-26 00:01:00.00",
     "description": "Intro to the Full Screen API",
     "title": "Let Your Content Do the Talking: Fullscreen API",
-    "published": "2011-10-26",
+    "published": "2011-10-26 00:01:00.00",
     "path": "/2011/10/Let-Your-Content-Do-the-Talking-Fullscreen-API",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2011-10-14",
+    "updated": "2011-10-14 00:01:00.00",
     "description": "",
     "title": "WebSockets updated to latest version in Chrome Canary",
-    "published": "2011-10-14",
+    "published": "2011-10-14 00:01:00.00",
     "path": "/2011/10/WebSockets-updated-to-latest-version-in-Chrome-Canary",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2011-10-13",
+    "updated": "2011-10-13 00:01:00.00",
     "description": "",
     "title": "Keeping up with HTML5 and browser support",
-    "published": "2011-10-13",
+    "published": "2011-10-13 00:01:00.00",
     "path": "/2011/10/Keeping-up-with-HTML5-and-browser-support",
     "author_id": "sethladd"
     },
 
   {
-    "updated": "2011-10-07",
+    "updated": "2011-10-07 00:01:00.00",
     "description": "",
     "title": "Having a ride with Three.js",
-    "published": "2011-10-07",
+    "published": "2011-10-07 00:01:00.00",
     "path": "/2011/10/Having-a-ride-with-Three-js",
     "author_id": "ernestd"
     },
 
   {
-    "updated": "2011-09-29",
+    "updated": "2011-09-29 00:01:00.00",
     "description": "",
     "title": "New Game Conference for HTML5 Game Developers Coupon",
-    "published": "2011-09-29",
+    "published": "2011-09-29 00:01:00.00",
     "path": "/2011/09/New-Game-Conference-for-HTML5-Game-Developers-Coupon",
     "author_id": "sethladd"
     },
 
   {
-    "updated": "2011-09-28",
+    "updated": "2011-09-28 00:01:00.00",
     "description": "",
     "title": "7 minute videos: Javascript Console Protips & newish DOM APIs",
-    "published": "2011-09-28",
+    "published": "2011-09-28 00:01:00.00",
     "path": "/2011/09/7-minute-videos-Javascript-Console-Protips-newish-DOM-APIs",
     "author_id": "paulirish"
     },
 
   {
-    "updated": "2011-09-01",
+    "updated": "2011-09-01 00:01:00.00",
     "description": "",
     "title": "Workers ♥ ArrayBuffer",
-    "published": "2011-09-01",
+    "published": "2011-09-01 00:01:00.00",
     "path": "/2011/09/Workers-ArrayBuffer",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2011-08-31",
+    "updated": "2011-08-31 00:01:00.00",
     "description": "",
     "title": "What's different in the new WebSocket protocol",
-    "published": "2011-08-31",
+    "published": "2011-08-31 00:01:00.00",
     "path": "/2011/08/What-s-different-in-the-new-WebSocket-protocol",
     "author_id": "agektmr"
     },
 
   {
-    "updated": "2011-08-28",
+    "updated": "2011-08-28 00:01:00.00",
     "description": "",
     "title": "insertAdjacentHTML Everywhere",
-    "published": "2011-08-28",
+    "published": "2011-08-28 00:01:00.00",
     "path": "/2011/08/insertAdjacentHTML-Everywhere",
     "author_id": "ernestd"
     },
 
   {
-    "updated": "2011-08-18",
+    "updated": "2011-08-18 00:01:00.00",
     "description": "",
     "title": "Debugging the Filesystem API",
-    "published": "2011-08-18",
+    "published": "2011-08-18 00:01:00.00",
     "path": "/2011/08/Debugging-the-Filesystem-API",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2011-08-08",
+    "updated": "2011-08-08 00:01:00.00",
     "description": "",
     "title": "Saving generated files on the client-side",
-    "published": "2011-08-08",
+    "published": "2011-08-08 00:01:00.00",
     "path": "/2011/08/Saving-generated-files-on-the-client-side",
     "author_id": "eligrey"
     },
 
   {
-    "updated": "2011-08-05",
+    "updated": "2011-08-05 00:01:00.00",
     "description": "",
     "title": "Seek into local files with the File System API",
-    "published": "2011-08-05",
+    "published": "2011-08-05 00:01:00.00",
     "path": "/2011/08/Seek-into-local-files-with-the-File-System-API",
     "author_id": "sethladd"
     },
 
   {
-    "updated": "2011-08-02",
+    "updated": "2011-08-02 00:01:00.00",
     "description": "",
     "title": "Downloading resources in HTML5: a[download]",
-    "published": "2011-08-02",
+    "published": "2011-08-02 00:01:00.00",
     "path": "/2011/08/Downloading-resources-in-HTML5-a-download",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2011-07-26",
+    "updated": "2011-07-26 00:01:00.00",
     "description": "",
     "title": "HTML5 Libraries/polyfills - Mid July",
-    "published": "2011-07-26",
+    "published": "2011-07-26 00:01:00.00",
     "path": "/2011/07/HTML5-Libraries-Pollyfills---Mid-July",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2011-07-16",
+    "updated": "2011-07-16 00:01:00.00",
     "description": "",
     "title": "Don't Miss a Frame: Using the Page Visibility API + HTML5 Video",
-    "published": "2011-07-16",
+    "published": "2011-07-16 00:01:00.00",
     "path": "/2011/07/Don-t-Miss-a-Frame-Using-the-Page-Visibility-API-HTML5-Video",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2011-07-16",
+    "updated": "2011-07-16 00:01:00.00",
     "description": "",
     "title": "Announcing New Game, the conference for HTML5 game developers",
-    "published": "2011-07-16",
+    "published": "2011-07-16 00:01:00.00",
     "path": "/2011/07/Announcing-New-Game-the-conference-for-HTML5-game-developers",
     "author_id": "sethladd"
     },
 
   {
-    "updated": "2011-07-15",
+    "updated": "2011-07-15 00:01:00.00",
     "description": "",
     "title": "Multiplayer Audio Fun",
-    "published": "2011-07-15",
+    "published": "2011-07-15 00:01:00.00",
     "path": "/2011/07/Multiplayer-Audio-Fun",
     "author_id": "ernestd"
     },
 
   {
-    "updated": "2011-07-06",
+    "updated": "2011-07-06 00:01:00.00",
     "description": "",
     "title": "Using Cross-domain images in WebGL",
-    "published": "2011-07-06",
+    "published": "2011-07-06 00:01:00.00",
     "path": "/2011/07/Using-Cross-domain-images-in-WebGL",
     "author_id": "ernestd"
     },
 
   {
-    "updated": "2011-06-30",
+    "updated": "2011-06-30 00:01:00.00",
     "description": "",
     "title": "Registering a custom protocol handler",
-    "published": "2011-06-30",
+    "published": "2011-06-30 00:01:00.00",
     "path": "/2011/06/Registering-a-custom-protocol-handler",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2011-06-29",
+    "updated": "2011-06-29 00:01:00.00",
     "description": "",
     "title": "HTML5 Libraries - Late June",
-    "published": "2011-06-29",
+    "published": "2011-06-29 00:01:00.00",
     "path": "/2011/06/HTML5-Libraries---Late-June",
     "author_id": "paulirish"
     },
 
   {
-    "updated": "2011-06-28",
+    "updated": "2011-06-28 00:01:00.00",
     "description": "",
     "title": "Page Visibility API: Have I got your attention? ",
-    "published": "2011-06-28",
+    "published": "2011-06-28 00:01:00.00",
     "path": "/2011/06/Page-Visibility-API-Have-I-got-your-attention",
     "author_id": "mahemoff"
     },
 
   {
-    "updated": "2011-06-27",
+    "updated": "2011-06-27 00:01:00.00",
     "description": "",
     "title": "Contra in HTML5 + Web Audio API",
-    "published": "2011-06-27",
+    "published": "2011-06-27 00:01:00.00",
     "path": "/2011/06/Contra-in-HTML5-Web-Audio-API",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2011-06-24",
+    "updated": "2011-06-24 00:01:00.00",
     "description": "",
     "title": "navigator.onLine in Chrome Dev channel",
-    "published": "2011-06-24",
+    "published": "2011-06-24 00:01:00.00",
     "path": "/2011/06/navigator-onLine-in-Chrome-Dev-channel-1",
     "author_id": "ericbidelman"
     },
 
   {
-    "updated": "2011-06-23",
+    "updated": "2011-06-23 00:01:00.00",
     "description": "",
     "title": "Welcome to updates.html5rocks.com!",
-    "published": "2011-06-23",
+    "published": "2011-06-23 00:01:00.00",
     "path": "/2011/06/Welcome-to-updates-html5rocks-com-1",
     "author_id": "ericbidelman"
     }

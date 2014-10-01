@@ -3,10 +3,10 @@
 [
 {% for post in site.posts %}
   {
-    "updated": "{{post.article.updated_on}}",
+    "updated": "{{post.article.updated_on}} 00:01:00.00",
     "description": "{{post.description}}",
     "title": "{{post.title}}",
-    "published": "{{post.article.written_on}}",
+    "published": "{{post.article.written_on}} 00:01:00.00",
     "path": "{{post.permalink}}",
     "author_id": "{{post.authors[0]}}"
     }{% if forloop.last == false %},{% endif %}
