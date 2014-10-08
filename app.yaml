@@ -15,6 +15,11 @@ handlers:
   static_files: _site/assets/\1
   upload: _site/assets/(.+)
 
+- url: /samples/(\w+)/(.+)
+  mime_type: text/html
+  static_files: _site/samples/\1/index.html
+  upload: _site/(.+)
+
 - url: /(\d+)/(\d+)/(.+)
   mime_type: text/html
   static_files: _site/\1/\2/\3/index.html
