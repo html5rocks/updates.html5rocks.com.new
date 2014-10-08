@@ -15,6 +15,17 @@ ericbidelman:
   google: 118075919496626375791
   twitter: ebidel
   email: e.bidelman@google.com
+
+ewagasperowicz:
+  name:
+    given: Ewa
+    family: Gasperowicz
+  org:
+    name: Google
+    unit: Developer Relations
+  twitter: devnook
+  email: ewag@google.com
+
 brendankenny:
   name:
     given: Brendan

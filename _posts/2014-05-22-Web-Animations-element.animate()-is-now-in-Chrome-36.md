@@ -4,7 +4,7 @@ title: "Web Animations - element.animate() is now in Chrome 36"
 description: "Web Animations define a model for supporting animation and synchronization on the Web platform. element.animate() is the first of those pieces landing in Chrome."
 article:
   written_on: 2014-05-22
-  updated_on: 2014-05-22
+  updated_on: 2014-10-07
 authors:
   - brendankenny
 tags:
@@ -119,5 +119,7 @@ A demo of the snow effect is available for you to try using both the <a href="ht
 Really, though, this is a preview of what's to come, and is being released specifically to get developer feedback right away. We're not sure yet if we've hit every use case, or sanded down every rough edge of the current APIs for animation. The only way for us to know and to really get this right is for developers to try it out and let us know what they think.
 
 Comments on this post are of course valuable, and comments on the standard itself can be addressed to the CSS and SVG Working Groups via the [public-fx mailing list](http://lists.w3.org/Archives/Public/public-fx/).
+
+**Update, October 2014**: Chrome 39 adds support for [several additional methods](https://www.chromestatus.com/feature/5633748733263872) related to controlling playback, such as `play()`, `pause()`, and `reverse()`. It also supports jumping to a specific point in an animation's timeline via the `currentTime` property. You can see this functionality in action in [this new demo](http://web-animations.github.io/web-animations-demos/#playback-control).
 
 <em>Thanks to Addy Osmani and Max Heinritz for their assistance with this post.</em>
