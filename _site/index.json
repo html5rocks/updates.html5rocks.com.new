@@ -1,6 +1,24 @@
 [
 
   {
+    "updated": "2014-10-07 00:01:00.00",
+    "description": "An exploration of ES6 Generators.",
+    "title": "Generators: the Gnarly Bits",
+    "published": "2014-10-07 00:01:00.00",
+    "path": "/2014/10/Generators-the-Gnarly-Bits",
+    "author_id": "jeffposnick"
+    },
+
+  {
+    "updated": "2014-10-02 00:01:00.00",
+    "description": "Chrome 39 implements the Beacon API, which allows to send small async HTTP requests during the page unload events.",
+    "title": "Send beacon data in Chrome 39",
+    "published": "2014-10-02 00:01:00.00",
+    "path": "/2014/10/Send-beacon-data-in-Chrome-39",
+    "author_id": "ewagasperowicz"
+    },
+
+  {
     "updated": "2014-09-15 00:01:00.00",
     "description": "TouchEvents have changed in Chrome to return float values, instead of integers, to account for varying screen densities. This leads to more detailed feedback during slow gestures.",
     "title": "Precision Touch for Precise Gestures",
@@ -64,7 +82,7 @@
     },
 
   {
-    "updated": "2014-05-22 00:01:00.00",
+    "updated": "2014-10-07 00:01:00.00",
     "description": "Web Animations define a model for supporting animation and synchronization on the Web platform. element.animate() is the first of those pieces landing in Chrome.",
     "title": "Web Animations - element.animate() is now in Chrome 36",
     "published": "2014-05-22 00:01:00.00",
