@@ -6,9 +6,213 @@
 </description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 01 Oct 2014 13:39:52 +0100</pubDate>
-    <lastBuildDate>Wed, 01 Oct 2014 13:39:52 +0100</lastBuildDate>
+    <pubDate>Wed, 08 Oct 2014 16:40:02 -0600</pubDate>
+    <lastBuildDate>Wed, 08 Oct 2014 16:40:02 -0600</lastBuildDate>
     <generator>Jekyll v2.3.0</generator>
+    
+      <item>
+        <title>Generators: the Gnarly Bits</title>
+        <description>&lt;p&gt;The &lt;a href=&quot;http://people.mozilla.org/~jorendorff/es6-draft.html&quot;&gt;ECMAScript 6 draft specification&lt;/a&gt; has already yielded many sources of joy for the modern JavaScript developer. We covered some new collections classes and &lt;code&gt;for..of&lt;/code&gt; iteration loops in a &lt;a href=&quot;http://updates.html5rocks.com/2014/08/Collecting-and-Iterating-the-ES6-Way&quot;&gt;previous post&lt;/a&gt;. In this post, we’re going to talk about something that goes hand-in-hand with &lt;code&gt;for..of&lt;/code&gt; loops: &lt;a href=&quot;https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generator-function-definitions&quot;&gt;generator functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;There’s a &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*&quot;&gt;host&lt;/a&gt; of &lt;a href=&quot;http://www.2ality.com/2013/06/iterators-generators.html&quot;&gt;great material&lt;/a&gt; out there already that covers the why and how of using generators. In a nutshell, generators are special functions which create &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/The_Iterator_protocol&quot;&gt;iterators&lt;/a&gt;, and iterators are objects that have a &lt;code&gt;next()&lt;/code&gt; method, which can be called to obtain a value. Within a generator function, the keyword &lt;code&gt;yield&lt;/code&gt; provides the value for &lt;code&gt;next()&lt;/code&gt;. Using &lt;code&gt;yield&lt;/code&gt; &lt;em&gt;suspends&lt;/em&gt; execution of the generator function, preserving the state until &lt;code&gt;next()&lt;/code&gt; is called again, at which point the code starts back up and continues, until it &lt;code&gt;yield&lt;/code&gt;s another value (or until the generator function terminates). There are several canonical use cases for generator functions, like &lt;a href=&quot;http://wiki.ecmascript.org/doku.php?id=harmony:generators&quot;&gt;using them&lt;/a&gt; to iterate over the numbers in the &lt;a href=&quot;http://en.wikipedia.org/wiki/Fibonacci_number&quot;&gt;Fibonacci sequence&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;With the basics out of the way, let’s go in-depth with a JavaScript sample that covers some of the gotchas, or “gnarly bits”, of working with generators. There are extensive comments throughout, and you can play around with the &lt;a href=&quot;https://googlechrome.github.io/samples/generators/index.html&quot;&gt;live version&lt;/a&gt; of the code before reading through it:&lt;/p&gt;
+
+&lt;div class=&quot;highlight-module highlight-module--code highlight-module--right&quot;&gt;
+    &lt;div class=&quot;highlight-module__container&quot;&gt;
+      &lt;code class=&quot;html&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;loremIpsumArray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+      &lt;span class=&quot;c1&quot;&gt;// The &amp;#39;*&amp;#39; character after &amp;#39;function&amp;#39; indicates that this is a generator, not a normal function.&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;loremIpsumGenerator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;maxWords&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;uppercase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Initialize state. Each iterator based on this generator maintains its own state.&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// Assuming maxWords isn&amp;#39;t set via the generator constructor, this will repeat infinitely.&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// If maxWords is set, then terminate the loop once count is equal to it.&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;maxWords&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;maxWords&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;Infinity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;maxWords&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nextWord&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;loremIpsumArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// uppercase takes its value from the generator constructor the first time through the loop,&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// and takes its value from an optional parameter to .next() each subsequent time.&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;uppercase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;nextWord&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nextWord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toUpperCase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+          &lt;span class=&quot;nx&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// Wrap around to the beginning of the array if we&amp;#39;ve reach the end.&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;loremIpsumArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+          &lt;span class=&quot;c1&quot;&gt;// uppercase is assigned the value passed into the .next() invoked following&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// the yield, when execution flow switches back to this generator.&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// It is not assigned a value until another .next() is called and generator execution resumes!&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// The value is used the subsequent time through the loop.&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;uppercase&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nextWord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// If we reach this point due to loop termination, then there&amp;#39;s an implicit&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//   return undefined;&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// which in turn yields {done: true, value: undefined}.&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// If you iterate with a for..of loop, it will automatically terminate when .done is true,&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// but be sure to check the .done property if you&amp;#39;re iterating with .next()!&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+      &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;#add-many-words&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// This will iterate over an infinite sequence of words.&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;infiniteIpsumIterator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;loremIpsumGenerator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;manyWordsElement&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;#many-words&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;word&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;infiniteIpsumIterator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// The for..of loop automatically sets the variable to the .value yielded by the iterator each time through.&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// It will terminate whenever the iterator yields a .done value of true, which never happens in this case.&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// Therefore, we need to break out of the loop explicitly.&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;manyWordsElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientHeight&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+          &lt;span class=&quot;nx&quot;&gt;manyWordsElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;textContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;word&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fiveWordIpsumIterator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fiveWordsElement&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;#five-words&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;#add-word&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;addNextWord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;#add-uppercase-word&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;addNextWord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+      &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;addNextWord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;uppercase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fiveWordIpsumIterator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// Create an iterator from the generator if it doesn&amp;#39;t already exist.&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// The iterator will yield 5 words, and whether the first word is in uppercase&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// or not depends on the value of the &amp;#39;uppercase&amp;#39; parameter.&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;fiveWordIpsumIterator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;loremIpsumGenerator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;uppercase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// Get the next value from the iterator.&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// The uppercase parameter will be effectively ignored if this is the first time&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// we&amp;#39;re calling .next(); the value passed in when constructing the iterator&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// is used the first time through.&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nextResult&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fiveWordIpsumIterator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;uppercase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// You need to explicitly check if .done is true&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// (or alternatively check if .value is undefined, if you know your generator never normally&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// yields undefined) when iterating with .next().&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nextResult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;fiveWordsElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;textContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Hey, the iterator is done! Stop pressing me! &amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// If we&amp;#39;re not done, .value is set to whatever is yielded by the generator.&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;fiveWordsElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;textContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nextResult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    
+&lt;/pre&gt;&lt;/div&gt;&lt;/code&gt;
+      &lt;a class=&quot;highlight-module__cta&quot; href=&quot;/samples/generators/index.html&quot; target=&quot;_blank&quot;&gt;View full sample&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;p&gt;So what are some big takeaways from the code?&lt;/p&gt;
+
+&lt;p&gt;First, constructing a generator results in a unique iterator with it’s own distinct state, and you can pass in parameters to the generator constructor that can control behavior.&lt;/p&gt;
+
+&lt;p&gt;Second, you can pass in a parameter when calling an iterator’s &lt;code&gt;next()&lt;/code&gt; method, and that value will be assigned to whatever’s on the left-hand side of the &lt;code&gt;yield&lt;/code&gt; statement from the previous iterator invocation. This is a great way to vary the output of the iterator—here, we use it to control whether the word that’s yielded is in uppercase or not. If you want to influence the very first value that’s yielded, do it via a parameter to the generator’s constructor.&lt;/p&gt;
+
+&lt;p&gt;Finally, generators can produce either finite or infinite iterators. If you’re working with an infinite iterator, make sure that you have some sort of terminal condition based on the value &lt;code&gt;yield&lt;/code&gt;ed—it’s very easy to accidentally write infinite loops, especially when using &lt;code&gt;for..of&lt;/code&gt; for iteration. If you’re working with a finite iterator via calls to &lt;code&gt;next()&lt;/code&gt;, then the &lt;code&gt;.done&lt;/code&gt; property of the object that’s returned signals whether iteration is complete.&lt;/p&gt;
+
+&lt;p&gt;We hope this sample, along with the other resources available on the web, yields some excitement and gets you thinking about how you can use generators in your own code. Versions of Firefox starting with 31 and Chrome starting with 39 support generators natively. The Regenerator project offers generator support for other browsers, and using Traceur is an option as well.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thanks to &lt;a href=&quot;https://twitter.com/ErikArvidsson&quot;&gt;Erik Arvidsson&lt;/a&gt; for his help reviewing this article.&lt;/em&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 07 Oct 2014 00:00:00 -0600</pubDate>
+        <link>/2014/10/Generators-the-Gnarly-Bits</link>
+        <guid isPermaLink="true">/2014/10/Generators-the-Gnarly-Bits</guid>
+        
+        <category>iterators</category>
+        
+        <category>generators</category>
+        
+        <category>ES6</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Send beacon data in Chrome 39</title>
+        <description>&lt;p&gt;Sometimes it is handy to send some data from a web page to a web server
+without the need to wait for a reply. For example, we might want
+to submit analytics or diagnostic data before the user exits a page.&lt;/p&gt;
+
+&lt;p&gt;Typically, sending data before the exit involved listening to the &lt;code&gt;unload&lt;/code&gt; event,
+because sending the request anytime earlier would result in incomplete data
+- e.g. we might have missed a click that happened just before the exit.
+The caveat was that the requests sent in the unload handler needed
+to be synchronous, because most browsers typically ignore asynchronous XMLHttpRequests made in an unload handler.
+This approach slows down navigation, as the user needs
+to wait for the request to come back before a new page could be rendered.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;http://www.w3.org/TR/beacon/&quot;&gt;&lt;em&gt;Beacon API&lt;/em&gt;&lt;/a&gt; solves this problem by letting you asynchronously
+send HTTP requests with small data payloads from a browser to a web server,
+without delaying other code in the page’s unload event or
+affecting the performance of the next page navigation.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;navigator.sendBeacon()&lt;/code&gt; method queues the data to be
+transmitted by the browser as soon as possible,
+but does not slow down navigation.
+It returns &lt;code&gt;true&lt;/code&gt; if the browser is able to successfully queue
+the data for transfer. Otherwise it returns &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let’s say we have a server endpoint available for receiving
+beacon data from our page at this address:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;https://putsreq.herokuapp.com/Dt7t2QzUkG18aDTMMcop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If we add a &lt;code&gt;sendBeacon()&lt;/code&gt; method in the &lt;code&gt;pagehide&lt;/code&gt; event handler,
+the endpoint will receive the data when the user navigates away from the page:&lt;/p&gt;
+
+&lt;div class=&quot;highlight-module highlight-module--code highlight-module--right&quot;&gt;
+    &lt;div class=&quot;highlight-module__container&quot;&gt;
+      &lt;code class=&quot;html&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;pagehide&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;logData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;logData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;navigator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sendBeacon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+              &lt;span class=&quot;s1&quot;&gt;&amp;#39;https://putsreq.herokuapp.com/Dt7t2QzUkG18aDTMMcop&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+              &lt;span class=&quot;s1&quot;&gt;&amp;#39;Sent by a beacon!&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}();&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/code&gt;
+      &lt;a class=&quot;highlight-module__cta&quot; href=&quot;/samples/beacon/index.html&quot; target=&quot;_blank&quot;&gt;View full sample&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;p&gt;If you inspect the network tab in Chrome Dev Tools with the
+&lt;strong&gt;preserve logs&lt;/strong&gt; checkbox ticked, you’ll see an HTTP POST request
+to the above endpoint being sent when you navigate away from the page.&lt;/p&gt;
+
+&lt;p&gt;Alternatively, you can visit the
+&lt;a href=&quot;https://putsreq.herokuapp.com/Dt7t2QzUkG18aDTMMcop/inspect&quot;&gt;PutsReq inspect page&lt;/a&gt;
+to see if the beacon data was received.&lt;/p&gt;
+
+&lt;p&gt;There is also a &lt;a href=&quot;http://www.polymer-project.org/&quot;&gt;Polymer&lt;/a&gt; custom element that lets you send beacon data - &lt;code&gt;&amp;lt;beacon-send&amp;gt;&lt;/code&gt;. Check it out at &lt;a href=&quot;http://ebidel.github.io/beacon-send/components/beacon-send/&quot;&gt;ebidel.github.io/beacon-send&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 02 Oct 2014 00:00:00 -0600</pubDate>
+        <link>/2014/10/Send-beacon-data-in-Chrome-39</link>
+        <guid isPermaLink="true">/2014/10/Send-beacon-data-in-Chrome-39</guid>
+        
+        <category>api</category>
+        
+        
+      </item>
     
       <item>
         <title>Precision Touch for Precise Gestures</title>
@@ -85,7 +289,7 @@ especially for slow gestures.&lt;/p&gt;
 
 &lt;p&gt;There is also plan to bring this improvement to mobile Safari as well: &lt;a href=&quot;https://bugs.webkit.org/show_bug.cgi?id=133180&quot;&gt;https://bugs.webkit.org/show_bug.cgi?id=133180&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 15 Sep 2014 00:00:00 +0100</pubDate>
+        <pubDate>Mon, 15 Sep 2014 00:00:00 -0600</pubDate>
         <link>/2014/09/Precision-Touch-for-Precise-Gestures</link>
         <guid isPermaLink="true">/2014/09/Precision-Touch-for-Precise-Gestures</guid>
         
@@ -146,7 +350,7 @@ especially for slow gestures.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Update, September 2014&lt;/strong&gt;: Modified the sample to illustrate checking whether the Encoding API is available in the current browser.&lt;/p&gt;
 </description>
-        <pubDate>Thu, 28 Aug 2014 00:00:00 +0100</pubDate>
+        <pubDate>Thu, 28 Aug 2014 00:00:00 -0600</pubDate>
         <link>/2014/08/Easier-ArrayBuffer---String-conversion-with-the-Encoding-API</link>
         <guid isPermaLink="true">/2014/08/Easier-ArrayBuffer---String-conversion-with-the-Encoding-API</guid>
         
@@ -241,7 +445,7 @@ especially for slow gestures.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Update, September 2014&lt;/strong&gt;: Linked to an additional polyfill option, &lt;a href=&quot;https://github.com/paulmillr/es6-shim/&quot;&gt;es6-shim&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Thu, 28 Aug 2014 00:00:00 +0100</pubDate>
+        <pubDate>Thu, 28 Aug 2014 00:00:00 -0600</pubDate>
         <link>/2014/08/Collecting-and-Iterating-the-ES6-Way</link>
         <guid isPermaLink="true">/2014/08/Collecting-and-Iterating-the-ES6-Way</guid>
         
@@ -348,7 +552,7 @@ especially for slow gestures.&lt;/p&gt;
 
 &lt;p&gt;Once more, if you’re in a hurry and want to get up and running, just grab a copy of &lt;a href=&quot;https://github.com/cwilso/webkitAudioContext-MonkeyPatch&quot;&gt;my monkeypatch webkitAudioContext library&lt;/a&gt; and include it in your application.  Happy Audio Hacking!&lt;/p&gt;
 </description>
-        <pubDate>Fri, 25 Jul 2014 00:00:00 +0100</pubDate>
+        <pubDate>Fri, 25 Jul 2014 00:00:00 -0600</pubDate>
         <link>/2014/07/Web-Audio-Changes-in-m36</link>
         <guid isPermaLink="true">/2014/07/Web-Audio-Changes-in-m36</guid>
         
@@ -396,7 +600,7 @@ especially for slow gestures.&lt;/p&gt;
 
 &lt;p&gt;If you are curious about further details on the spec update, check out diffs &lt;a href=&quot;http://html5.org/r/8448&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;http://html5.org/r/8457&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Thu, 24 Jul 2014 00:00:00 +0100</pubDate>
+        <pubDate>Thu, 24 Jul 2014 00:00:00 -0600</pubDate>
         <link>/2014/07/dialog-element-shipped-in-Chrome-37-Beta</link>
         <guid isPermaLink="true">/2014/07/dialog-element-shipped-in-Chrome-37-Beta</guid>
         
@@ -458,7 +662,7 @@ especially for slow gestures.&lt;/p&gt;
 
 &lt;p&gt;Enjoy!&lt;/p&gt;
 </description>
-        <pubDate>Tue, 01 Jul 2014 00:00:00 +0100</pubDate>
+        <pubDate>Tue, 01 Jul 2014 00:00:00 -0600</pubDate>
         <link>/2014/07/Blob-support-for-IndexedDB-landed-on-Chrome-Dev</link>
         <guid isPermaLink="true">/2014/07/Blob-support-for-IndexedDB-landed-on-Chrome-Dev</guid>
         
@@ -576,7 +780,7 @@ especially for slow gestures.&lt;/p&gt;
 
 &lt;p&gt;We’re eager to hear of any feedback you might have and hope PSI helps improve the performance culture on your team.&lt;/p&gt;
 </description>
-        <pubDate>Fri, 06 Jun 2014 00:00:00 +0100</pubDate>
+        <pubDate>Fri, 06 Jun 2014 00:00:00 -0600</pubDate>
         <link>/2014/06/Automating-Web-Performance-Measurement</link>
         <guid isPermaLink="true">/2014/06/Automating-Web-Performance-Measurement</guid>
         
@@ -684,9 +888,11 @@ especially for slow gestures.&lt;/p&gt;
 
 &lt;p&gt;Comments on this post are of course valuable, and comments on the standard itself can be addressed to the CSS and SVG Working Groups via the &lt;a href=&quot;http://lists.w3.org/Archives/Public/public-fx/&quot;&gt;public-fx mailing list&lt;/a&gt;.&lt;/p&gt;
 
+&lt;p&gt;&lt;strong&gt;Update, October 2014&lt;/strong&gt;: Chrome 39 adds support for &lt;a href=&quot;https://www.chromestatus.com/feature/5633748733263872&quot;&gt;several additional methods&lt;/a&gt; related to controlling playback, such as &lt;code&gt;play()&lt;/code&gt;, &lt;code&gt;pause()&lt;/code&gt;, and &lt;code&gt;reverse()&lt;/code&gt;. It also supports jumping to a specific point in an animation’s timeline via the &lt;code&gt;currentTime&lt;/code&gt; property. You can see this functionality in action in &lt;a href=&quot;http://web-animations.github.io/web-animations-demos/#playback-control&quot;&gt;this new demo&lt;/a&gt;.&lt;/p&gt;
+
 &lt;p&gt;&lt;em&gt;Thanks to Addy Osmani and Max Heinritz for their assistance with this post.&lt;/em&gt;&lt;/p&gt;
 </description>
-        <pubDate>Thu, 22 May 2014 00:00:00 +0100</pubDate>
+        <pubDate>Thu, 22 May 2014 00:00:00 -0600</pubDate>
         <link>/2014/05/Web-Animations---element-animate-is-now-in-Chrome-36</link>
         <guid isPermaLink="true">/2014/05/Web-Animations---element-animate-is-now-in-Chrome-36</guid>
         
@@ -695,180 +901,6 @@ especially for slow gestures.&lt;/p&gt;
         <category>Web Animations</category>
         
         <category>animations</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>A More Compatible, Smoother Touch</title>
-        <description>&lt;p&gt;You and your users want mobile web apps that react and scroll smoothly to the 
-touch. Developing them &lt;a href=&quot;https://developers.google.com/web/fundamentals/documentation/user-input/touch-input/&quot;&gt;should be easy&lt;/a&gt; but, unfortunately, how mobile web 
-browsers react to touch events during scrolling is left as an implementation 
-detail in the &lt;a href=&quot;http://www.w3.org/TR/touch-events/&quot;&gt;TouchEvent&lt;/a&gt; specification. As 
-a result, approaches can be broken down roughly into 4 categories. This 
-situation exposes a fundamental tension between delivering scroll smoothness and 
-maintaining developer control. &lt;/p&gt;
-
-&lt;h2 id=&quot;four-different-models-of-touch-event-processing&quot;&gt;Four different models of touch event processing?&lt;/h2&gt;
-
-&lt;p&gt;The behavior differences between the browsers break down into four models.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Normal synchronous event processing&lt;/strong&gt;&lt;/p&gt;
-
-    &lt;p&gt;Touchmove events are sent during scrolling and each scroll update blocks until touchmove handling has completed. This is good as the simplest to understand and the most powerful but bad for scroll performance because it means that each frame during the scroll must block on the main thread.&lt;/p&gt;
-
-    &lt;blockquote&gt;
-      &lt;p&gt;Browsers: Android Browser (Android 4.0.4, 4.3), Mobile Safari (when 
-   scrolling div)&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Asynchronous touchmove processing&lt;/strong&gt;&lt;/p&gt;
-
-    &lt;p&gt;Touchmove events are sent during scrolling, but scrolling can proceed asynchronously (the touchmove event is ignored after scrolling has begun). This can result in “double handling” of events, for example, continuing to  scroll after the web site does something with the touchmove and calls &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/event.preventDefault&quot;&gt;preventDefault&lt;/a&gt; on the event, telling the browser not to handle it.&lt;/p&gt;
-
-    &lt;blockquote&gt;
-      &lt;p&gt;Browsers: Mobile Safari (when scrolling Document), Firefox&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Touchmove suppressed while scrolling&lt;/strong&gt;&lt;/p&gt;
-
-    &lt;p&gt;Touchmove events are not sent after scrolling starts and do not resume until after the touchend event. In this model, it’s hard to tell the difference between a stationary touch and a scroll.&lt;/p&gt;
-
-    &lt;blockquote&gt;
-      &lt;p&gt;Browsers: Samsung Browser (mousemove events sent)&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Touchcancel on scroll start&lt;/strong&gt;&lt;/p&gt;
-
-    &lt;p&gt;You can’t have it both ways – scroll smoothness and developer control – and this model makes clear the trade-off between smooth scrolling and event handling, similar to the semantics of the &lt;a href=&quot;http://www.w3.org/TR/pointerevents/&quot;&gt;Pointer Events&lt;/a&gt; specification. Some experiences that may need to track the finger, like pull-to-refresh, are not possible.&lt;/p&gt;
-
-    &lt;blockquote&gt;
-      &lt;p&gt;Browsers: Chrome Desktop M32+, Chrome Android&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;why-change&quot;&gt;Why Change?&lt;/h2&gt;
-
-&lt;p&gt;Chrome for Android currently uses Chrome’s Old Model: touchcancel on scroll 
-start, which enhances scrolling performance, but leads to developer confusion. 
-In particular, some developers aren’t aware of the touchcancel event or how to 
-deal with it, and this has caused some web sites to break. More importantly, an 
-entire class of UI scrolling effects and behaviors, such as &lt;strong&gt;pull-to-refresh&lt;/strong&gt;, 
-&lt;strong&gt;hidey bars&lt;/strong&gt;, and &lt;strong&gt;snap points&lt;/strong&gt; are difficult or impossible to implement 
-well.&lt;/p&gt;
-
-&lt;p&gt;Rather than adding specifically hardcoded features to support these effects, 
-Chrome aims to concentrate on adding platform primitives that allow developers 
-to implement these effects directly. See &lt;a href=&quot;https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/4jBAnIVwrt0&quot;&gt;A Rational Web 
-Platform&lt;/a&gt; 
-for a general exposition of this philosophy.&lt;/p&gt;
-
-&lt;h2 id=&quot;chromes-new-model-the-throttled-async-touchmove-model&quot;&gt;Chrome’s New Model: The Throttled Async Touchmove Model&lt;/h2&gt;
-
-&lt;p&gt;Chrome is introducing &lt;a href=&quot;https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/wHnyukcYBcA&quot;&gt;a new 
-behavior&lt;/a&gt; 
-designed to improve compatibility with code written for other browsers when 
-scrolling, as well as enabling other scenarios that depend on getting touchmove 
-events while scrolling. This feature is enabled by default and you can turn it 
-off with the following flag,  &lt;strong&gt;chrome://flags#touch-scrolling-mode&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;The new behavior is:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;The &lt;strong&gt;first&lt;/strong&gt; touchmove is sent &lt;strong&gt;synchronously&lt;/strong&gt; to allow scroll to be 
-&lt;strong&gt;canceled&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;During active scrolling
-    &lt;ul&gt;
-      &lt;li&gt;touchmove events are sent &lt;strong&gt;asynchronously&lt;/strong&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;throttled&lt;/strong&gt; to 1 event per &lt;strong&gt;200ms&lt;/strong&gt;, or if a CSS &lt;strong&gt;15px&lt;/strong&gt; slop region 
-is exceeded&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;Event.cancelable&lt;/strong&gt; is &lt;strong&gt;false&lt;/strong&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Otherwise, touchmove events fire synchronously as normal when active scrolling 
-terminates or isn’t possible because the scroll limit has been hit&lt;/li&gt;
-  &lt;li&gt;A touchend event &lt;strong&gt;always&lt;/strong&gt; occurs when the user lifts their finger&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You can try this &lt;a href=&quot;http://www.rbyers.net/touchevent-scroll.html&quot;&gt;demo&lt;/a&gt; in Chrome for Android and toggle the 
-chrome://flags#touch-scrolling-mode flag to see the difference.&lt;/p&gt;
-
-&lt;h2 id=&quot;let-us-know-what-you-think&quot;&gt;Let us know what you think&lt;/h2&gt;
-
-&lt;p&gt;The Async Touchmove Model has the potential to improve cross-browser 
-compatibility and enable a new class of touch gesture effects. We’re interested 
-in hearing what developers think, and in seeing the creative things you can do 
-with it. &lt;/p&gt;
-</description>
-        <pubDate>Wed, 21 May 2014 00:00:00 +0100</pubDate>
-        <link>/2014/05/A-More-Compatible-Smoother-Touch</link>
-        <guid isPermaLink="true">/2014/05/A-More-Compatible-Smoother-Touch</guid>
-        
-        <category>mobile</category>
-        
-        <category>Touch</category>
-        
-        <category>TouchEvent</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Get on the CSS Grid!</title>
-        <description>&lt;p&gt;When building a Web Application, one of the first things that’s needed is a way to lay out the content of your app.&lt;/p&gt;
-
-&lt;p&gt;Lots of designers use imaginary grids to lay out content, whether it’s for a site or app. The CSS group has been working hard to make layouts easier, and as part of that have produced the &lt;a href=&quot;http://www.w3.org/TR/css-grid-1/&quot;&gt;CSS Grid Layout Module&lt;/a&gt; which is now emerging in browsers.&lt;/p&gt;
-
-&lt;p&gt;This feature is available to try out in Chrome behind an experimental flag. It’s also implemented in IE since version 10, and likely to be in most browsers soon.&lt;/p&gt;
-
-&lt;h3 id=&quot;executive-summary&quot;&gt;Executive summary&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;CSS Grid Layout lets you define rows and columns for your layout&lt;/li&gt;
-  &lt;li&gt;Grids can adapt to make use of available space&lt;/li&gt;
-  &lt;li&gt;Content order can be independent from grid container display order&lt;/li&gt;
-  &lt;li&gt;Layouts can change based on media queries, making responsive design easier&lt;/li&gt;
-  &lt;li&gt;Content can overlap (enabling layout that’s impossible with other methods)&lt;/li&gt;
-  &lt;li&gt;Grid Layout is fast&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here’s an overview video that explains a lot about how CSS Grid Layout works (&lt;a href=&quot;http://sydcss-grid.appspot.com/&amp;quot;&amp;quot;&quot;&gt;slides are here&lt;/a&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;video-container&quot;&gt;&lt;iframe src=&quot;//www.youtube.com/embed/hy7IMGVUHps &quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;try-it-out&quot;&gt;Try it out&lt;/h3&gt;
-
-&lt;p&gt;Using CSS Grid Layout in Chrome now is easy. First thing you need to do is turn on the experimental flag to enable the feature.&lt;/p&gt;
-
-&lt;p&gt;First load the &lt;em&gt;chrome://flags&lt;/em&gt; URL and scroll down to the option to &lt;em&gt;Enable experimental Web Platform features&lt;/em&gt; as shown below:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://sydcss-grid.appspot.com/images/enable-flag.png&quot; alt=&quot;Image of experimental flag option&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Just click &lt;em&gt;Enable&lt;/em&gt; to turn the flag on, and you should see a prompt to restart the browser that looks like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://sydcss-grid.appspot.com/images/enable-relaunch.png&quot; alt=&quot;Image of Relaunch button&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now just click the &lt;em&gt;Relaunch Now&lt;/em&gt; button to restart your browser and you’ll be all set to try out CSS Grid Layout.&lt;/p&gt;
-
-&lt;h3 id=&quot;let-us-know-what-you-think&quot;&gt;Let us know what you think&lt;/h3&gt;
-
-&lt;p&gt;CSS Grid Layout is a great new primitive for web content, but as usual we’re all keen to hear what developers think about it. There are lots of ways to give feedback - leave a comment here, send mail to the &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#119;&amp;#119;&amp;#119;&amp;#045;&amp;#115;&amp;#116;&amp;#121;&amp;#108;&amp;#101;&amp;#064;&amp;#119;&amp;#051;&amp;#046;&amp;#111;&amp;#114;&amp;#103;&quot;&gt;W3C CSS Working Group list&lt;/a&gt; with “[css-grid]” in the subject line, log bugs, or blog and tweet what you think of it. We look forward to seeing the great layouts you build with this super useful new feature.&lt;/p&gt;
-</description>
-        <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
-        <link>/2014/03/Get-on-the-CSS-Grid</link>
-        <guid isPermaLink="true">/2014/03/Get-on-the-CSS-Grid</guid>
-        
-        <category>layout</category>
-        
-        <category>CSS</category>
-        
-        <category>grids</category>
         
         
       </item>
