@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta property="twitter:account_id" content="1593210261" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps.">
+<meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,indexeddb,offline,audio,video,drag and drop,chrome,sse,mobile">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generators: the Gnarly Bits</title>
+
+<!-- Add to homescreen for Chrome on Android -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" sizes="192x192" href="  /assets/HTML5_Badge_192-f9389f6cad587f357d82be791970c8ad.png">
+
+<!-- Add to homescreen for Safari on iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="HTML5 Rocks">
+<link rel="apple-touch-icon-precomposed" href="/assets/HTML5_Badge_192-f9389f6cad587f357d82be791970c8ad.png
+">
+
+<!-- Tile icon for Win8 (144x144 + tile color) -->
+<meta name="msapplication-TileImage" content="/assets/HTML5_Badge_144-ddcf1cea1a1204b1733041733d66f76a.png
+">
+<meta name="msapplication-TileColor" content="#3372DF">
+
+<!-- TODO: consider rel=canonical -->
+<!-- TODO: consider rel=publisher -->
+<link rel="alternate" type="application/rss+xml" title="HTML5 Rocks RSS" href="http://feeds.feedburner.com/html5rocks">
+<link rel="publisher" href="https://plus.google.com/+GoogleChromeDevelopers">
+
+
+
+
+  
+
+
+
+
+<link href="//fonts.googleapis.com/css?family=Open+Sans:600,800|Source+Code+Pro" rel="stylesheet">
+<link rel="stylesheet" href="/assets/main-8dae1b06ec239bb8b24c3d98cd1ad04b.css">
+
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
+<![endif]-->
+
+  </head>
+  <body>
+    <header class="main" id="siteheader">
+  <a href="#sitenav" id="navtoggle"></a>
+  <nav id="sitenav" class="container">
+    <ul>
+      <li id="tutorials_menu">
+        <a href="http://www.html5rocks.com" class="tutorials">Home</a>
+      </li>
+      <li id="tutorials_menu">
+        <a href="http://www.html5rocks.com/en/tutorials/?page=1" class="tutorials">Tutorials</a>
+      </li>
+      <li id="updates_menu">
+        <a href="http://www.html5rocks.com/en/updates" class="updates">Updates</a>
+      </li>
+      <li id="contrib_menu">
+        <a href="https://github.com/html5rocks/www.html5rocks.com/blob/master/CONTRIBUTING.md" target="_blank">Contribute</a>
+      </li>
+      <li id="slides_menu">
+        <a href="http://www.html5rocks.com/en/slides" class="slides">Slides</a>
+      </li>
+      <li id="resources_menu">
+        <a href="http://www.html5rocks.com/en/resources" class="resources">Resources</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+    <div class="body-content">
+      <section class="banner">
+        <section class="container">
+          <a href="/en/" class="watermark"></a>
+          <h1>Generators: the Gnarly Bits</h1>
+          
+        </section>
+      </section>
+      <article class="content-wrapper article">
+<div class="container">
+  <section class="byline clearfix">
+    <section class="author-images">
+      
+        
+<!-- TODO: change image address.-->
+
+<img src="http://www.html5rocks.com/static/images/profiles/jeffposnick.png"
+     alt="Jeff Posnick"
+     title="Jeff Posnick"
+     width="60" height="60"
+     class="avatar">
+
+
+
+      
+    </section>
+    <section class="meta">
+      <div class="authors">
+          
+    
+    <!-- TODO: change link. -->
+    <strong>By</strong> <a href="http://www.html5rocks.com/profiles/#jeffposnick">
+      Jeff Posnick
+    </a> 
+  
+
+      </div>
+      <div class="published">
+        <time pubdate=""><strong>Published:</strong> October 07, 2014</time>
+      </div>
+      <div class="updated">
+        <time><strong>Updated:</strong> October 07, 2014</time>
+      </div>
+      <div class="comments">
+        <span><strong>Comments:</strong> <a href="#disqus_thread" class="load-comments" data-disqus-identifier="http://updates.html5rocks.com/2014/10/Generators-the-Gnarly-Bits">0</a></span>
+      </div>
+      <div id="notcompatible" class="hidden">
+        Your browser may not support the functionality in this article.
+      </div>
+    </section>
+  </section>
+  <section class="content">
+    <p>The <a href="http://people.mozilla.org/~jorendorff/es6-draft.html">ECMAScript 6 draft specification</a> has already yielded many sources of joy for the modern JavaScript developer. We covered some new collections classes and <code>for..of</code> iteration loops in a <a href="http://updates.html5rocks.com/2014/08/Collecting-and-Iterating-the-ES6-Way">previous post</a>. In this post, we’re going to talk about something that goes hand-in-hand with <code>for..of</code> loops: <a href="https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generator-function-definitions">generator functions</a>.</p>
+
+<p>There’s a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*">host</a> of <a href="http://www.2ality.com/2013/06/iterators-generators.html">great material</a> out there already that covers the why and how of using generators. In a nutshell, generators are special functions which create <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/The_Iterator_protocol">iterators</a>, and iterators are objects that have a <code>next()</code> method, which can be called to obtain a value. Within a generator function, the keyword <code>yield</code> provides the value for <code>next()</code>. Using <code>yield</code> <em>suspends</em> execution of the generator function, preserving the state until <code>next()</code> is called again, at which point the code starts back up and continues, until it <code>yield</code>s another value (or until the generator function terminates). There are several canonical use cases for generator functions, like <a href="http://wiki.ecmascript.org/doku.php?id=harmony:generators">using them</a> to iterate over the numbers in the <a href="http://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci sequence</a>.</p>
+
+<p>With the basics out of the way, let’s go in-depth with a JavaScript sample that covers some of the gotchas, or “gnarly bits”, of working with generators. There are extensive comments throughout, and you can play around with the <a href="https://googlechrome.github.io/samples/generators/index.html">live version</a> of the code before reading through it:</p>
+
+<div class="highlight-module highlight-module--code highlight-module--right">
+    <div class="highlight-module__container">
+      <code class="html"><div class="highlight"><pre>    <span class="nt">&lt;script&gt;</span>
+      <span class="kd">var</span> <span class="nx">loremIpsumArray</span> <span class="o">=</span> <span class="s1">&#39;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&#39;</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
+
+      <span class="c1">// The &#39;*&#39; character after &#39;function&#39; indicates that this is a generator, not a normal function.</span>
+      <span class="kd">function</span><span class="o">*</span> <span class="nx">loremIpsumGenerator</span><span class="p">(</span><span class="nx">maxWords</span><span class="p">,</span> <span class="nx">uppercase</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Initialize state. Each iterator based on this generator maintains its own state.</span>
+        <span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="c1">// Assuming maxWords isn&#39;t set via the generator constructor, this will repeat infinitely.</span>
+        <span class="c1">// If maxWords is set, then terminate the loop once count is equal to it.</span>
+        <span class="nx">maxWords</span> <span class="o">=</span> <span class="nx">maxWords</span> <span class="o">||</span> <span class="kc">Infinity</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">count</span> <span class="o">&lt;</span> <span class="nx">maxWords</span><span class="p">)</span> <span class="p">{</span>
+          <span class="kd">var</span> <span class="nx">nextWord</span> <span class="o">=</span> <span class="nx">loremIpsumArray</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+          <span class="c1">// uppercase takes its value from the generator constructor the first time through the loop,</span>
+          <span class="c1">// and takes its value from an optional parameter to .next() each subsequent time.</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">uppercase</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">nextWord</span> <span class="o">=</span> <span class="nx">nextWord</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
+          <span class="p">}</span>
+
+          <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+          <span class="c1">// Wrap around to the beginning of the array if we&#39;ve reach the end.</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&gt;=</span> <span class="nx">loremIpsumArray</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+          <span class="p">}</span>
+
+          <span class="c1">// uppercase is assigned the value passed into the .next() invoked following</span>
+          <span class="c1">// the yield, when execution flow switches back to this generator.</span>
+          <span class="c1">// It is not assigned a value until another .next() is called and generator execution resumes!</span>
+          <span class="c1">// The value is used the subsequent time through the loop.</span>
+          <span class="nx">uppercase</span> <span class="o">=</span> <span class="k">yield</span> <span class="nx">nextWord</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// If we reach this point due to loop termination, then there&#39;s an implicit</span>
+        <span class="c1">//   return undefined;</span>
+        <span class="c1">// which in turn yields {done: true, value: undefined}.</span>
+        <span class="c1">// If you iterate with a for..of loop, it will automatically terminate when .done is true,</span>
+        <span class="c1">// but be sure to check the .done property if you&#39;re iterating with .next()!</span>
+      <span class="p">}</span>
+
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#add-many-words&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// This will iterate over an infinite sequence of words.</span>
+        <span class="kd">var</span> <span class="nx">infiniteIpsumIterator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">loremIpsumGenerator</span><span class="p">();</span>
+        <span class="kd">var</span> <span class="nx">manyWordsElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#many-words&#39;</span><span class="p">);</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">word</span> <span class="nx">of</span> <span class="nx">infiniteIpsumIterator</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// The for..of loop automatically sets the variable to the .value yielded by the iterator each time through.</span>
+          <span class="c1">// It will terminate whenever the iterator yields a .done value of true, which never happens in this case.</span>
+          <span class="c1">// Therefore, we need to break out of the loop explicitly.</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">manyWordsElement</span><span class="p">.</span><span class="nx">clientHeight</span> <span class="o">&gt;</span> <span class="mi">300</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">break</span><span class="p">;</span>
+          <span class="p">}</span>
+
+          <span class="nx">manyWordsElement</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">+=</span> <span class="nx">word</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">});</span>
+
+      <span class="kd">var</span> <span class="nx">fiveWordIpsumIterator</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">fiveWordsElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#five-words&#39;</span><span class="p">);</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#add-word&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">addNextWord</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      <span class="p">});</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#add-uppercase-word&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">addNextWord</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+      <span class="p">});</span>
+
+      <span class="kd">function</span> <span class="nx">addNextWord</span><span class="p">(</span><span class="nx">uppercase</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">fiveWordIpsumIterator</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// Create an iterator from the generator if it doesn&#39;t already exist.</span>
+          <span class="c1">// The iterator will yield 5 words, and whether the first word is in uppercase</span>
+          <span class="c1">// or not depends on the value of the &#39;uppercase&#39; parameter.</span>
+          <span class="nx">fiveWordIpsumIterator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">loremIpsumGenerator</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nx">uppercase</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Get the next value from the iterator.</span>
+        <span class="c1">// The uppercase parameter will be effectively ignored if this is the first time</span>
+        <span class="c1">// we&#39;re calling .next(); the value passed in when constructing the iterator</span>
+        <span class="c1">// is used the first time through.</span>
+        <span class="kd">var</span> <span class="nx">nextResult</span> <span class="o">=</span> <span class="nx">fiveWordIpsumIterator</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="nx">uppercase</span><span class="p">);</span>
+
+        <span class="c1">// You need to explicitly check if .done is true</span>
+        <span class="c1">// (or alternatively check if .value is undefined, if you know your generator never normally</span>
+        <span class="c1">// yields undefined) when iterating with .next().</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">nextResult</span><span class="p">.</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">fiveWordsElement</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">+=</span> <span class="s1">&#39;Hey, the iterator is done! Stop pressing me! &#39;</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="c1">// If we&#39;re not done, .value is set to whatever is yielded by the generator.</span>
+          <span class="nx">fiveWordsElement</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">+=</span> <span class="nx">nextResult</span><span class="p">.</span><span class="nx">value</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="nt">&lt;/script&gt;</span>
+    
+</pre></div></code>
+      <a class="highlight-module__cta" href="/samples/generators/index.html" target="_blank">View full sample</a>
+    </div>
+  </div>
+
+<p>So what are some big takeaways from the code?</p>
+
+<p>First, constructing a generator results in a unique iterator with it’s own distinct state, and you can pass in parameters to the generator constructor that can control behavior.</p>
+
+<p>Second, you can pass in a parameter when calling an iterator’s <code>next()</code> method, and that value will be assigned to whatever’s on the left-hand side of the <code>yield</code> statement from the previous iterator invocation. This is a great way to vary the output of the iterator—here, we use it to control whether the word that’s yielded is in uppercase or not. If you want to influence the very first value that’s yielded, do it via a parameter to the generator’s constructor.</p>
+
+<p>Finally, generators can produce either finite or infinite iterators. If you’re working with an infinite iterator, make sure that you have some sort of terminal condition based on the value <code>yield</code>ed—it’s very easy to accidentally write infinite loops, especially when using <code>for..of</code> for iteration. If you’re working with a finite iterator via calls to <code>next()</code>, then the <code>.done</code> property of the object that’s returned signals whether iteration is complete.</p>
+
+<p>We hope this sample, along with the other resources available on the web, yields some excitement and gets you thinking about how you can use generators in your own code. Versions of Firefox starting with 31 and Chrome starting with 39 support generators natively. The Regenerator project offers generator support for other browsers, and using Traceur is an option as well.</p>
+
+<p><em>Thanks to <a href="https://twitter.com/ErikArvidsson">Erik Arvidsson</a> for his help reviewing this article.</em></p>
+
+  </section>
+  <section>
+    <!-- TODO: Update link. -->
+    
+      <a href="/tag/iterators" class="tag">iterators</a>
+    
+      <a href="/tag/generators" class="tag">generators</a>
+    
+      <a href="/tag/ES6" class="tag">ES6</a>
+    
+  </section>
+  <div class="pager">
+    
+    <a href="/2014/10/Send-beacon-data-in-Chrome-39">&laquo; Send beacon data in Chrome 39</a>
+     | 
+    <a href="/">All</a><!-- TODO: Change link. -->
+    
+  </div>
+</div>
+</article>
+<section class="disqus pattern-bg-lighter">
+  <div id="disqus" class="container">
+    <h2>Comments</h2>
+    <div id="disqus_thread">
+      <a href="#disqus_thread" class="load-comments"
+          data-disqus-identifier="http://updates.html5rocks.com/2014/10/Generators-the-Gnarly-Bits">0</a>
+    </div>
+  </div>
+
+  <noscript>
+    <p class="center">
+      <strong>
+        <a href="http://disqus.com/?ref_noscript">Please enable JavaScript to view the comments powered by Disqus.</a>
+      </strong>
+    </p>
+  </noscript>
+
+  <script>
+
+    var disqus_shortname = 'html5rocks';
+    var disqus_identifier = 'http://updates.html5rocks.com/2014/10/Generators-the-Gnarly-Bits';
+    var disqus_url = 'http://updates.html5rocks.com/2014/10/Generators-the-Gnarly-Bits';
+    var disqus_developer = 0;
+
+    var disqus_config = function () {
+      var funky_language_code_mapping = {
+        'de': 'de_inf',
+        'es': 'es_ES',
+        'pt': 'pt_EU',
+        'sr': 'sr_CYRL',
+        'sv': 'sv_SE',
+        'zh': 'zh_HANT'
+      };
+      this.language = funky_language_code_mapping['en'] ||
+                      'en';
+
+      this.callbacks.onReady = [ function () {
+                                    try {
+                                      ga('send', 'event', 'View comments');
+                                    } catch(err){}
+                                 } ];
+      this.callbacks.onNewComment = [ function (comment) {
+                                        try {
+                                          ga('send', 'event', 'Commented');
+                                        } catch(err){}
+                                      } ];
+    };
+
+    window.addEventListener('load', function(e) {
+
+      var c = document.createElement('script');
+      c.type = 'text/javascript';
+      c.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+      c.async = true;
+
+      var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+      sp.insertBefore(c, s);
+
+      if (window.location.hash === '#disqus_thread')
+        loadComments();
+
+    }, false);
+
+    var disqus_loaded = false;
+    function loadComments() {
+
+      if (disqus_loaded)
+        return;
+
+      disqus_loaded = true;
+
+      ga('send', 'event', 'Interactions', 'Comments', 'Comments Loaded');
+
+      var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+
+      var disqusContainer = document.getElementById('disqus');
+      disqusContainer.classList.add('active');
+
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      sp.insertBefore(dsq, s);
+    }
+    var loadCommentsButtons = document.querySelectorAll('.load-comments');
+    for(var l = 0; l < loadCommentsButtons.length; l++)
+      loadCommentsButtons[l].addEventListener('click', loadComments);
+
+  </script>
+</section>
+
+
+
+    </div>
+    <footer>
+  <div class="container">
+    
+    <h1>Next steps</h1>
+    <aside class="panel share">
+      <h2>Share</h2>
+        <a href="https://twitter.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/&amp;text=Getting Started with CSS Shapes&amp;lang=en&amp;via=ChromiumDev&amp;related=ChromiumDev" class="twitter" target="_blank">Twitter</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="facebook" target="_blank">Facebook</a>
+        <a href="https://plus.google.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="gplus" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Google+</a>
+    </aside>
+    <aside class="panel rss">
+      <h2>Subscribe</h2>
+      <p>Enjoyed this article? Grab the <a href="http://feeds.feedburner.com/html5rocks">RSS feed</a> and stay up-to-date.</p>
+    </aside>
+    
+    <p class="licensing">
+      Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+    </p>
+  </div>
+</footer>
+
+
+    <script>
+      (function() {
+
+        var siteHeader = document.getElementById('siteheader');
+        var navToggle = document.getElementById('navtoggle');
+        var siteNav = document.getElementById('sitenav');
+
+        navToggle.addEventListener('click', function(e) {
+          siteNav.classList.toggle('active');
+          e.preventDefault();
+        });
+
+      })();
+    </script>
+
+    <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create','UA-15028909-7','auto');
+      ga('create','UA-49880327-4','auto',{'name':'html5rocks'});
+      ga('send','pageview');
+      ga('html5rocks.send','pageview');
+    </script>
+  </body>
+</html>
