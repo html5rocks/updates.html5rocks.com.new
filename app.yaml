@@ -19,6 +19,12 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
 
+- url: /samples/styles/(.+)
+  static_files: _site/samples/styles/\1
+  upload: _site/(.+)
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+
 - url: /samples/(\w+)/(.+)
   mime_type: text/html
   static_files: _site/samples/\1/index.html
