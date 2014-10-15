@@ -6,8 +6,8 @@
 </description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 08 Oct 2014 16:43:41 -0600</pubDate>
-    <lastBuildDate>Wed, 08 Oct 2014 16:43:41 -0600</lastBuildDate>
+    <pubDate>Wed, 15 Oct 2014 20:09:40 +0100</pubDate>
+    <lastBuildDate>Wed, 15 Oct 2014 20:09:40 +0100</lastBuildDate>
     <generator>Jekyll v2.3.0</generator>
     
       <item>
@@ -131,7 +131,7 @@
 
 &lt;p&gt;&lt;em&gt;Thanks to &lt;a href=&quot;https://twitter.com/ErikArvidsson&quot;&gt;Erik Arvidsson&lt;/a&gt; for his help reviewing this article.&lt;/em&gt;&lt;/p&gt;
 </description>
-        <pubDate>Tue, 07 Oct 2014 00:00:00 -0600</pubDate>
+        <pubDate>Tue, 07 Oct 2014 00:00:00 +0100</pubDate>
         <link>/2014/10/Generators-the-Gnarly-Bits</link>
         <guid isPermaLink="true">/2014/10/Generators-the-Gnarly-Bits</guid>
         
@@ -205,7 +205,7 @@ to see if the beacon data was received.&lt;/p&gt;
 &lt;p&gt;There is also a &lt;a href=&quot;http://www.polymer-project.org/&quot;&gt;Polymer&lt;/a&gt; custom element that lets you send beacon data - &lt;code&gt;&amp;lt;beacon-send&amp;gt;&lt;/code&gt;. Check it out at &lt;a href=&quot;http://ebidel.github.io/beacon-send/components/beacon-send/&quot;&gt;ebidel.github.io/beacon-send&lt;/a&gt;.&lt;/p&gt;
 
 </description>
-        <pubDate>Thu, 02 Oct 2014 00:00:00 -0600</pubDate>
+        <pubDate>Thu, 02 Oct 2014 00:00:00 +0100</pubDate>
         <link>/2014/10/Send-beacon-data-in-Chrome-39</link>
         <guid isPermaLink="true">/2014/10/Send-beacon-data-in-Chrome-39</guid>
         
@@ -289,7 +289,7 @@ especially for slow gestures.&lt;/p&gt;
 
 &lt;p&gt;There is also plan to bring this improvement to mobile Safari as well: &lt;a href=&quot;https://bugs.webkit.org/show_bug.cgi?id=133180&quot;&gt;https://bugs.webkit.org/show_bug.cgi?id=133180&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 15 Sep 2014 00:00:00 -0600</pubDate>
+        <pubDate>Mon, 15 Sep 2014 00:00:00 +0100</pubDate>
         <link>/2014/09/Precision-Touch-for-Precise-Gestures</link>
         <guid isPermaLink="true">/2014/09/Precision-Touch-for-Precise-Gestures</guid>
         
@@ -350,7 +350,7 @@ especially for slow gestures.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Update, September 2014&lt;/strong&gt;: Modified the sample to illustrate checking whether the Encoding API is available in the current browser.&lt;/p&gt;
 </description>
-        <pubDate>Thu, 28 Aug 2014 00:00:00 -0600</pubDate>
+        <pubDate>Thu, 28 Aug 2014 00:00:00 +0100</pubDate>
         <link>/2014/08/Easier-ArrayBuffer---String-conversion-with-the-Encoding-API</link>
         <guid isPermaLink="true">/2014/08/Easier-ArrayBuffer---String-conversion-with-the-Encoding-API</guid>
         
@@ -445,7 +445,7 @@ especially for slow gestures.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Update, September 2014&lt;/strong&gt;: Linked to an additional polyfill option, &lt;a href=&quot;https://github.com/paulmillr/es6-shim/&quot;&gt;es6-shim&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Thu, 28 Aug 2014 00:00:00 -0600</pubDate>
+        <pubDate>Thu, 28 Aug 2014 00:00:00 +0100</pubDate>
         <link>/2014/08/Collecting-and-Iterating-the-ES6-Way</link>
         <guid isPermaLink="true">/2014/08/Collecting-and-Iterating-the-ES6-Way</guid>
         
@@ -552,7 +552,7 @@ especially for slow gestures.&lt;/p&gt;
 
 &lt;p&gt;Once more, if you’re in a hurry and want to get up and running, just grab a copy of &lt;a href=&quot;https://github.com/cwilso/webkitAudioContext-MonkeyPatch&quot;&gt;my monkeypatch webkitAudioContext library&lt;/a&gt; and include it in your application.  Happy Audio Hacking!&lt;/p&gt;
 </description>
-        <pubDate>Fri, 25 Jul 2014 00:00:00 -0600</pubDate>
+        <pubDate>Fri, 25 Jul 2014 00:00:00 +0100</pubDate>
         <link>/2014/07/Web-Audio-Changes-in-m36</link>
         <guid isPermaLink="true">/2014/07/Web-Audio-Changes-in-m36</guid>
         
@@ -600,7 +600,7 @@ especially for slow gestures.&lt;/p&gt;
 
 &lt;p&gt;If you are curious about further details on the spec update, check out diffs &lt;a href=&quot;http://html5.org/r/8448&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;http://html5.org/r/8457&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Thu, 24 Jul 2014 00:00:00 -0600</pubDate>
+        <pubDate>Thu, 24 Jul 2014 00:00:00 +0100</pubDate>
         <link>/2014/07/dialog-element-shipped-in-Chrome-37-Beta</link>
         <guid isPermaLink="true">/2014/07/dialog-element-shipped-in-Chrome-37-Beta</guid>
         
@@ -662,7 +662,7 @@ especially for slow gestures.&lt;/p&gt;
 
 &lt;p&gt;Enjoy!&lt;/p&gt;
 </description>
-        <pubDate>Tue, 01 Jul 2014 00:00:00 -0600</pubDate>
+        <pubDate>Tue, 01 Jul 2014 00:00:00 +0100</pubDate>
         <link>/2014/07/Blob-support-for-IndexedDB-landed-on-Chrome-Dev</link>
         <guid isPermaLink="true">/2014/07/Blob-support-for-IndexedDB-landed-on-Chrome-Dev</guid>
         
@@ -780,7 +780,7 @@ especially for slow gestures.&lt;/p&gt;
 
 &lt;p&gt;We’re eager to hear of any feedback you might have and hope PSI helps improve the performance culture on your team.&lt;/p&gt;
 </description>
-        <pubDate>Fri, 06 Jun 2014 00:00:00 -0600</pubDate>
+        <pubDate>Fri, 06 Jun 2014 00:00:00 +0100</pubDate>
         <link>/2014/06/Automating-Web-Performance-Measurement</link>
         <guid isPermaLink="true">/2014/06/Automating-Web-Performance-Measurement</guid>
         
@@ -892,7 +892,7 @@ especially for slow gestures.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Thanks to Addy Osmani and Max Heinritz for their assistance with this post.&lt;/em&gt;&lt;/p&gt;
 </description>
-        <pubDate>Thu, 22 May 2014 00:00:00 -0600</pubDate>
+        <pubDate>Thu, 22 May 2014 00:00:00 +0100</pubDate>
         <link>/2014/05/Web-Animations---element-animate-is-now-in-Chrome-36</link>
         <guid isPermaLink="true">/2014/05/Web-Animations---element-animate-is-now-in-Chrome-36</guid>
         
