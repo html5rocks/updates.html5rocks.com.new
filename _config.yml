@@ -12,7 +12,7 @@ markdown: kramdown
 permalink: /:year/:month/:title
 
 highlighter: pygments
-paginate: 6
+paginate: 10
 paginate_path: "/page/:num"
 
 include: [samples]
