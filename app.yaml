@@ -13,6 +13,12 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
 
+- url: /rss
+  static_files: _site/feed.xml
+  upload: _site/feed.xml
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+
 - url: /assets/(.+)
   static_files: _site/assets/\1
   upload: _site/assets/(.+)

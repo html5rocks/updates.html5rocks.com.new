@@ -10,7 +10,7 @@
 <!-- Add to homescreen for Chrome on Android -->
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="icon" sizes="192x192" href="  {% asset_path HTML5_Badge_192.png %}">
-<meta name="theme-color" content="#3372DF">
+<meta name="theme-color" content="#f04530">
 
 <!-- Add to homescreen for Safari on iOS -->
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -22,35 +22,28 @@
 <!-- Tile icon for Win8 (144x144 + tile color) -->
 <meta name="msapplication-TileImage" content="{% asset_path HTML5_Badge_144.png %}
 ">
-<meta name="msapplication-TileColor" content="#3372DF">
+<meta name="msapplication-TileColor" content="#f04530">
 
 <!-- TODO: consider rel=canonical -->
-<!-- TODO: consider rel=publisher -->
 <link rel="alternate" type="application/rss+xml" title="HTML5 Rocks RSS" href="http://feeds.feedburner.com/html5rocks">
 <link rel="publisher" href="https://plus.google.com/+GoogleChromeDevelopers">
-
-
 {% if page.article %}
-
-  {% for author in include.authors %}
+  {% for author in page.authors %}
     {% assign contributor = site.data._contributors[author] %}
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@ChromiumDev">
-    <meta name="twitter:creator" content="@{{contributor.twitter}}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@ChromiumDev">
+<meta name="twitter:creator" content="@{{contributor.twitter}}">
 
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="{{page.title}} - HTML5 Rocks">
-    <meta property="og:url" content="{{page.url}}">
-    <meta property="og:description" content="{{page.description}}">
-    <meta property="og:image" content="http://www.html5rocks.com/static/images/profiles/{{author}}.png">
-    <meta property="og:site_name" content="HTML5 Rocks - A resource for open web HTML5 developers">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{page.title}} - HTML5 Rocks">
+<meta property="og:url" content="{{page.url}}">
+<meta property="og:description" content="{{page.description}}">
+<meta property="og:image" content="http://www.html5rocks.com/static/images/profiles/{{author}}.png">
+<meta property="og:site_name" content="HTML5 Rocks - A resource for open web HTML5 developers">
 
-    <link rel="author" href="https://www.google.com/profiles/{{contributor.google}}">
+<link rel="author" href="https://www.google.com/profiles/{{contributor.google}}">
   {% endfor %}
-
 {% endif %}
-
-
 <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800|Source+Code+Pro" rel="stylesheet">
 {% stylesheet main %}
 
