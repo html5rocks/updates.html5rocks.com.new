@@ -9,6 +9,7 @@ authors:
   - paulkinlan
 tags:
   - mobile
+  - apps
   - front-end
 permalink: /2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android
 ---
@@ -86,10 +87,13 @@ The majority of games will benifit from this immedidately,
 The majority of games will benifit from this immedidately,
 *  Add a manifest
 *  Add icons
+*  Set the start_url
 *  Tell the app to launch full screen
 *  Tell the app to launch in the orientation that you want the game to be played in.
 
-### Sites
+### News Sites
+
+If the user is adding the site to the homescreen the intent is to treat it like an,
 
 ## Detecting if you are launched from the homescreen?
 
