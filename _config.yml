@@ -1,7 +1,7 @@
 # Site settings
-title: HtML5 Rocks - Chrome updates
+title: HTML5 Rocks - Chrome updates
 description: >
-  "Html5 Rocks updates stream."
+  "HTML5Rocks updates stream."
 baseurl: ""
 # TODO: change link.
 url: ""
