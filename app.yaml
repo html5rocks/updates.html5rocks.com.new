@@ -13,6 +13,13 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
 
+- url: /manifest.json
+  mime_type: application/json
+  static_files: _site/manifest.json
+  upload: _site/manifest.json
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+
 - url: /rss
   static_files: _site/feed.xml
   upload: _site/feed.xml
