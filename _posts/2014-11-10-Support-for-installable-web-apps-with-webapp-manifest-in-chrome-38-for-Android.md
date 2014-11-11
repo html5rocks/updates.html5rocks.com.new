@@ -109,7 +109,7 @@ For every type of app you are always going to do the following:
 
 ## Utility Apps
 
-The majority of games will benefit from this immediately.  You are more than likely going to want to launch as a standalone experience much like every other app on a mobile platform. Tell it to launch `standalone`
+The majority of utility apps will benefit from this immediately.  You are more than likely going to want to launch as a standalone experience much like every other app on a mobile platform. Tell it to launch `standalone`
 
 {% highlight javascript %}
 "display": "standalone"
@@ -135,7 +135,7 @@ If on the other-hand you are building a puzzler or a game like X-Com then you wi
 
 ## News Sites
 
-News sites in most cases are pure content based experiences.  Most developers naturally wouldn't think of adding a manifest to a news site however
+News sites in most cases are pure content based experiences.  Most developers naturally wouldn't think of adding a manifest to a news site however.
 
 If you want your site to have all the Browser Chrome that you would expect a content site to have you can set the display to `browser`.
 
