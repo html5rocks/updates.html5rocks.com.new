@@ -109,7 +109,7 @@ For every type of app you are always going to do the following:
 
 ## Utility Apps
 
-The majority of games will benefit from this immedidately.  You are more than likely going to want to launch as a standalone experience much like every other app on a mobile platform. Tell it to launch `standalone`
+The majority of games will benefit from this immediately.  You are more than likely going to want to launch as a standalone experience much like every other app on a mobile platform. Tell it to launch `standalone`
 
 {% highlight javascript %}
 "display": "standalone"
@@ -117,7 +117,7 @@ The majority of games will benefit from this immedidately.  You are more than li
 
 ## Games 
 
-The majority of games will benifit from a manifest immediately.  The vast majoirty of games will want to launch fullscreen straight away and be forced into a [specific orientation](https://w3c.github.io/screen-orientation/#idl-def-OrientationLockType).
+The majority of games will benefit from a manifest immediately.  The vast majority of games will want to launch full-screen straight away and be forced into a [specific orientation](https://w3c.github.io/screen-orientation/#idl-def-OrientationLockType).
 
 If you are developing a vertical scroller or a game like Flappy Birds then you will most likely want your game to always be in portrait mode.
 
@@ -126,7 +126,7 @@ If you are developing a vertical scroller or a game like Flappy Birds then you w
 "orientation": "portrait"
 {% endhighlight %}
 
-If on the otherhand you are building a puzzler or a game like X-Com then you will probably want the game to always be in the landscape orientation.
+If on the other-hand you are building a puzzler or a game like X-Com then you will probably want the game to always be in the landscape orientation.
 
 {% highlight javascript %}
 "display": "fullscreen",
@@ -155,7 +155,7 @@ A question that keeps popping up about Chrome's implementation of "mobile-web-ap
 I am running as launched from the homescreen?  On iOS you can use `navigator.standalone` to see if it is running
 like a native app, but we don't have this on Chrome for Android.
 
-The simple answer is: Because you can now define how your app is launchedAdd a query string parameter to your `start_url` that indicates how it was launched.  For example `start_url: /index.html?standalone=1`
+A naive approach is: Because you can now define how your app is launched, add a query string parameter to your `start_url` that indicates how it was launched.  For example `start_url: /index.html?homescreen=1`.  This will help in some cases but it is not infallible.
 
 # Learning More
 
