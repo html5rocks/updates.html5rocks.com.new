@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Support for installable Web Apps with WebApp Manifest in Chrome 38 for Android"
+title: "Installable Web Apps with the WebApp Manifest in Chrome for Android"
 description: "Use the WebApp manifest to control how your web app launches"
 article:
   written_on: 2014-11-10
@@ -18,7 +18,7 @@ For Web Apps to be successful they need to work how the user would expect an nat
 
 The [Manifest for Web applications](https://w3c.github.io/manifest/) is a simple JSON file that gives you, the developer, the ability to control how your app appears to the user in the areas that they would expect to see apps (for example the mobile homescreen), direct what the user can launch and more importantly *how* they can launch it.  In the future the manifest will give you even more control over your app, but right now we are just focusing on how your app can be launched.
 
-Chrome has had support for Manifests since version 38 for Android (October 2014) and it gives you the control over how your web app appears when it is installed to the homescreen via the `name` and `icons` properties and how it should be launched when the user clicks on the launch icon with the `start_url`, `display` and `orientation`.  Check out [our sample](https://github.com/GoogleChrome/samples/tree/gh-pages/web-application-manifest) to see this in action.
+Chrome has had support for Manifests since version 38 for Android (October 2014) and it gives you the control over how your web app appears when it is installed to the homescreen via the `short_name`, `name` and `icons` properties and how it should be launched when the user clicks on the launch icon with the `start_url`, `display` and `orientation`.  Check out [our sample](https://github.com/GoogleChrome/samples/tree/gh-pages/web-application-manifest) to see this in action.
 
 # Deploying the manifest
 
@@ -31,13 +31,10 @@ To integrate the manifest in to your own site you just need to do two things:
 
 You can call the manifest whatever you want.  Most people will probably just use manifest.json.
 
-
-
-
-
 {% highlight json %}
 {
-  "name": "Kinlan's Amaze App",
+  "short_name": "Kinlan's Amaze App"
+  "name": "Kinlan's Amazing Application ++",
   "icons": [
     {
       "src": "launcher-icon-0-75x.png",
@@ -82,6 +79,12 @@ You can call the manifest whatever you want.  Most people will probably just use
 }
 {% endhighlight %}
 
+Some interesting points in Chrome's implementation:
+
+*  The `short_name` is preferred over `name` and if provided will be used.
+*  If you don't supply a `start_url` it will use the current page's url.
+*  Chrome will [first look for icons](https://code.google.com/p/chromium/codesearch#chromium/src/chrome/browser/android/shortcut_helper.cc&l=182) that match the density of the display and are sized to [48dp * screen density](https://code.google.com/p/chromium/codesearch#chromium/src/chrome/browser/android/shortcut_helper.cc&l=42)
+
 ## Telling the browser about your manifest
 
 Once you have the manifest created and it is hosted on your site all you need to do is add a `link` tag from all your pages that encompass your app as follows.
@@ -106,7 +109,7 @@ For every type of app you are always going to do the following:
 
 ## Utility Apps
 
-The majority of games will benifit from this immedidately.  You are more than likely going to want to launch as a standalone experience much like every other app on a mobile platform. Tell it to launch `standalone`
+The majority of games will benefit from this immedidately.  You are more than likely going to want to launch as a standalone experience much like every other app on a mobile platform. Tell it to launch `standalone`
 
 {% highlight javascript %}
 "display": "standalone"
@@ -165,6 +168,6 @@ Let's face it, the majority of us love to see under the hood about how a feature
 
 If like me your are interested about how this is implemented in Chrome here are some useful links:
 
-*  The [logic for parsing the data](https://code.google.com/p/chromium/codesearch#chromium/src/chrome/browser/android/shortcut_helper.cc&sq=package:chromium&q=file:shortcut_helper.cc&l=1) from the manifest (including what do with fallbacks)
+*  The [logic for extracting the data](https://code.google.com/p/chromium/codesearch#chromium/src/chrome/browser/android/shortcut_helper.cc&sq=package:chromium&q=file:shortcut_helper.cc&l=1) from the manifest and managing how to use the fallback
 *  Check [OnDidGetManifest](https://code.google.com/p/chromium/codesearch#chromium/src/chrome/browser/android/shortcut_helper.cc&l=233) - This is where Chrome does all the grunt work and you can see what parameters are supported.
 *  The code for showing the [Add to homescreen UI](https://code.google.com/p/chromium/codesearch#chromium/src/chrome/android/java/src/org/chromium/chrome/browser/webapps/AddToHomescreenDialog.java&sq=package:chromium)
