@@ -29,11 +29,11 @@ To integrate the manifest in to your own site you just need to do two things:
 
 ## Creating the manifest
 
-You can call the manifest whatever you want.  Most people will probably just use manifest.json.
+You can call the manifest whatever you want.  Most people will probably just use `manifest.json`.
 
 {% highlight json %}
 {
-  "short_name": "Kinlan's Amaze App"
+  "short_name": "Kinlan's Amaze App",
   "name": "Kinlan's Amazing Application ++",
   "icons": [
     {
