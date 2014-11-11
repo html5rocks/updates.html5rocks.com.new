@@ -25,6 +25,6 @@ permalink: /manifest.json
       "density": "1"
     }
   ],
-  "start_url": "/index.html",
+  "start_url": "/",
   "display": "standalone"
 }
