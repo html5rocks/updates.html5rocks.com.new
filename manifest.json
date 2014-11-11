@@ -2,11 +2,10 @@
 layout: manifest
 permalink: /manifest.json
 ---
-
 {
-	name: "HTML5Rocks updates",
-	short_name: "HTML5Rocks updates",
-	"icons": [
+  "name": "HTML5Rocks updates",
+  "short_name": "HTML5Rocks updates",
+  "icons": [
     {
       "src": "{% asset_path HTML5_Badge_192.png %}",
       "sizes": "192x192",
@@ -24,8 +23,7 @@ permalink: /manifest.json
       "sizes": "256x256",
       "type": "image/png",
       "density": "1"
-    },
-    
+    }
   ],
   "start_url": "/index.html",
   "display": "standalone"
