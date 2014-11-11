@@ -97,7 +97,7 @@ That's it.
 
 # What every developer should do today
 
-This feature is entirely progressive and allows you create better, more integrated experiences for users that are using a browser that supports the feature.  As of Nov 2014 Chrome has implemented the manifest, Opera and Mozilla are implementing and [IE is exploring the area](https://status.modern.ie/webapplicationmanifest?term=manifest).
+This feature is entirely progressive and allows you create better, more integrated experiences for users that are using a browser that supports the feature.  As of Nov 2014 Chrome has implemented the manifest, Mozilla are implementing and [IE is exploring the area](https://status.modern.ie/webapplicationmanifest?term=manifest).
 
 When a user adds your site or app to the homescreen there is an intent by the user to treat it like an app.  This means you should aim to direct the user to the functionality of your app rather than a product landing page, for example if the user is required to sign-in to your app then that is a good page to launch in to.
 
