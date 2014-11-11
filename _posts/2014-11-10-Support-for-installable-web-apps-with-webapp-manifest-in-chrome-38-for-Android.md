@@ -16,7 +16,7 @@ permalink: /2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chr
 
 For Web Apps to be successful they need to work how the user would expect an native application to work. The ability for the developer to control how their web app is launched is just one part of UX that needs to be solved.  
 
-The [Manifest for Web applications](https://w3c.github.io/manifest/) is a simple JSON file that gives you, the developer, the ability to control how your app appears to the user in the areas that they would expect to see apps (for example the mobile homescree), direct what the user can launch and more importantly *how* they can launch it.  In the future the manifest will give you even more control over your app, but right now we are just focusing on how your app can be launched.
+The [Manifest for Web applications](https://w3c.github.io/manifest/) is a simple JSON file that gives you, the developer, the ability to control how your app appears to the user in the areas that they would expect to see apps (for example the mobile homescreen), direct what the user can launch and more importantly *how* they can launch it.  In the future the manifest will give you even more control over your app, but right now we are just focusing on how your app can be launched.
 
 Chrome has had support for Manifests since version 38 for Android (October 2014) and it gives you the control over how your web app appears when it is installed to the homescreen via the `name` and `icons` properties and how it should be launched when the user clicks on the launch icon with the `start_url`, `display` and `orientation`.  Check out [our sample](https://github.com/GoogleChrome/samples/tree/gh-pages/web-application-manifest) to see this in action.
 
@@ -30,6 +30,10 @@ To integrate the manifest in to your own site you just need to do two things:
 ## Creating the manifest
 
 You can call the manifest whatever you want.  Most people will probably just use manifest.json.
+
+
+
+
 
 {% highlight json %}
 {
