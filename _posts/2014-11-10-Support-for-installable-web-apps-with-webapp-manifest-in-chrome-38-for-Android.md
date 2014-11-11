@@ -170,4 +170,12 @@ If like me your are interested about how this is implemented in Chrome here are 
 
 *  The [logic for extracting the data](https://code.google.com/p/chromium/codesearch#chromium/src/chrome/browser/android/shortcut_helper.cc&sq=package:chromium&q=file:shortcut_helper.cc&l=1) from the manifest and managing how to use the fallback
 *  Check [OnDidGetManifest](https://code.google.com/p/chromium/codesearch#chromium/src/chrome/browser/android/shortcut_helper.cc&l=233) - This is where Chrome does all the grunt work and you can see what parameters are supported.
-*  The code for showing the [Add to homescreen UI](https://code.google.com/p/chromium/codesearch#chromium/src/chrome/android/java/src/org/chromium/chrome/browser/webapps/AddToHomescreenDialog.java&sq=package:chromium)
+*  The code for showing the [Add to homescreen UI](https://code.google.com/p/chromium/codesearch#chromium/src/chrome/android/java/src/org/chromium/chrome/browser/webapps/AddToHomescreenDialog.java&sq=package:chromium
+
+# We crave feedback
+
+This spec is a critical part in bringing Web Apps to all users and we need your feedback. You can help us in a number of ways:
+
+*  Add it to your site and tell us what needs work and what works well (adding comments here is a good start).
+*  Let us know good practice you have discovered
+*  [Contribute to the specification](https://w3c.github.io/manifest/) and give the team feedback.
