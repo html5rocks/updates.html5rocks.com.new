@@ -21,16 +21,14 @@ handlers:
     Access-Control-Allow-Origin: "*"
 
 - url: /feeds/rss.xml
+  mime_type: application/rss+xml
   static_files: _site/rss.xml
   upload: _site/rss.xml
-  http_headers:
-    Access-Control-Allow-Origin: "*"
 
 - url: /feeds/atom.xml
+  mime_type: application/atom+xml
   static_files: _site/atom.xml
   upload: _site/atom.xml
-  http_headers:
-    Access-Control-Allow-Origin: "*"
 
 - url: /assets/(.+)
   static_files: _site/assets/\1
