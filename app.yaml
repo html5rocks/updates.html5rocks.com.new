@@ -20,9 +20,9 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
 
-- url: /rss
-  static_files: _site/feed.xml
-  upload: _site/feed.xml
+- url: /feeds/rss.xml
+  static_files: _site/rss.xml
+  upload: _site/rss.xml
   http_headers:
     Access-Control-Allow-Origin: "*"
 
