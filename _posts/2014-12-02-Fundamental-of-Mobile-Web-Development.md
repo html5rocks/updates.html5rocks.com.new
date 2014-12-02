@@ -3,14 +3,14 @@ layout: post
 title: "Fundamentals of Mobile Web Development"
 description: "A quick look at some of the efforts the Chrome team are doing to helps developers get started with Web Development and iterate on their sites."
 article:
-written_on: 2014-12-02
-updated_on: 2014-12-02
+  written_on: 2014-12-02
+  updated_on: 2014-12-02
 authors:
-- paulkinlan
+  - paulkinlan
 tags:
-- fundamentals
-- mobile
-- front-end
+  - fundamentals
+  - mobile
+  - front-end
 permalink: /2014/12/fundamental-of-web-dev
 ---
 
