@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Fundamentals of Mobile Web Development"
-description: ""
+description: "A quick look at some of the efforts the Chrome team are doing to helps developers get started with Web Development and iterate on their sites."
 article:
 written_on: 2014-12-02
 updated_on: 2014-12-02
