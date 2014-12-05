@@ -546,6 +546,21 @@ agektmr:
   twitter: agektmr
   email: agektmr@google.com
 
+samthorogood:
+  name:
+    given: Sam
+    family: Thorogood
+  org:
+    name: Google
+    unit: Developer Relations
+  address:
+    locality: Sydney
+    country: Australia
+    lat: 51.4948
+    lon: -0.1467
+  email: thorogood@google.com
+  lanyrd: false
+
 dutton:
   name:
     given: Sam
