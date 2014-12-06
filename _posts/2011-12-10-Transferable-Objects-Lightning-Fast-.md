@@ -20,11 +20,11 @@ Chrome 13 introduced sending `ArrayBuffer`s to/from a Web Worker using an algori
 ### Faster is better
 
 Structured cloning is great, but it's still a copy operation. The overhead of passing a 32MB `ArrayBuffer` to a Worker can be hundreds of milliseconds.
-New versions of Chrome [contain](http://trac.webkit.org/changeset/101682) a huge performance improvement for message passing, called [Transferable Objects](http://dev.w3.org/html5/spec/common-dom-interfaces.html#transferable-objects).
+New versions of browsers contain a huge performance improvement for message passing, called [Transferable Objects](http://dev.w3.org/html5/spec/common-dom-interfaces.html#transferable-objects).
 
 With transferable objects, data is transferred from one context to another. It is zero-copy, which vastly improves the performance of sending data to a Worker. Think of it as pass-by-reference if you're from the C/C++ world. However, unlike pass-by-reference, the 'version' from the calling context is no longer available once transferred to the new context. For example, when transferring an `ArrayBuffer` from your main app to Worker, the original `ArrayBuffer` is cleared and no longer usable. Its contents are (quiet literally) transferred to the Worker context.
 
-To play with transferables, there's a new version of `postMessage()` in Chrome/V8 that supports transferable objects:
+To play with transferables, there's a new version of `postMessage()` that supports transferable objects:
 
 {% highlight javascript %}
 worker.webkitPostMessage(arrayBuffer, [arrayBuffer]);
@@ -61,6 +61,6 @@ if (ab.byteLength) {
 }
 {% endhighlight %}
 
-*Support:* Currently Chrome 17+
+*Support:* Currently Chrome 17+, Firefox, Opera, Safari, and IE10+
 
 *Updated (2011-12-13):* Code snippet to show `webkitPostMessage()` signature is different for window and worker.
