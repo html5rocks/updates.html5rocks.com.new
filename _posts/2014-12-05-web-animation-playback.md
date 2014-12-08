@@ -80,6 +80,13 @@ As you drag over the document, the `currentTime` will be changed to reflect the 
 
 This could even be combined with reversing behavior, depending on where the mouse was lifted from the page ([combined demo](http://codepen.io/samthor/pen/jEbxmR?editors=001)).
 
+<div style="max-width: 420px; margin: auto">
+  <div style="height: 0; position: relative; padding-bottom: 75%; overflow: hidden">
+    <!-- width="420" height="315" -->
+    <iframe src="https://www.youtube.com/embed/_KaWmWFLcmY" frameborder="0" allowfullscreen style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;"></iframe>
+  </div>
+</div>
+
 Instead of scrubbing an `AnimationPlayer` in response to a user interaction, its `currentTime` could also be used to show progress or status: for example, to show the status of a download.
 
 The utility here is that an `AnimationPlayer` allows a value to be set and have the underlying native implementation take care of its progress visualization. In the download case, an animation's duration could be set to the total download size, and the `currentTime` set to the currently downloaded size ([demo](http://codepen.io/samthor/pen/QwbBbQ)).
@@ -122,6 +129,11 @@ This creates an additional animation that performs a 'drift'. This plays between
 This works as animations have a priority based on their creation order: in this case, `driftPlayer` will take precedence over player. When `driftPlayer` completes, it and its effects will disappear. However, its final time will match the underlying player's currentTime, so your UI will remain consistent.
 
 Finally, if you like kittens, there's a [demo web application](http://whistlr.info/static/stuff/player/index.html) which shows off these gestures. It's mobile-friendly and uses the polyfill for backwards-compatability, so try loading it on your mobile device!
+
+<p style="text-align: center">
+  <!-- vertical page video -->
+  <iframe style="height: 420px; width: 300px" src="//www.youtube.com/embed/Lq0u_d4qd2w" frameborder="0" allowfullscreen></iframe>
+</p>
 
 ## Go forth and element.animate
 
