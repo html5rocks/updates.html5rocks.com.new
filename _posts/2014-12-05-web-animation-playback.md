@@ -10,7 +10,7 @@ authors:
 tags:
   - animation
   - web-animation
-permalink: /2014/12/web-animation-playback.md
+permalink: /2014/12/web-animation-playback
 ---
 
 # Web Animations Playback Control in Chrome 39
