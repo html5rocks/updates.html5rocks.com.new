@@ -19,6 +19,8 @@ Earlier this year, [Chrome 36 landed the element.animate method](http://updates.
 
 For a quick refresher, here's how you might animate a cloud across the screen, with a callback when done:
 
+{% highlight javascript %}
+
     var player = cloud.animate([
       {transform: 'translateX(' + start + 'px)'},
       {transform: 'translateX(' + end + 'px)'}
@@ -28,6 +30,8 @@ For a quick refresher, here's how you might animate a cloud across the screen, w
       startRaining(cloud);
     };
 
+{% endhighlight %}
+
 This alone is incredibly easy and is well worth considering as part of your toolbox when building animations or transitions imperatively. However, in Chrome 39, playback control features have been added to the `AnimationPlayer` object returned by `element.animate`. Previously, once an animation was created, you could only call `cancel()` or listen to the finish event.
 
 These playback additions open up the possibilities of what Web Animations can do - turning animations into a general-purpose tool, rather than being prescriptive about transitions, i.e., 'fixed' or predefined animations.
@@ -36,15 +40,23 @@ These playback additions open up the possibilities of what Web Animations can do
 
 Let's start by updating the above example to pause the animation if the cloud is clicked:
 
+{% highlight javascript %}
+
     cloud.addEventListener('mousedown', function() {
       player.pause();
     });
 
+{% endhighlight %}
+
 You could also modify the `playbackRate` property:
-  
+
+{% highlight javascript %}
+
     function changeWindSpeed() {
       player.playbackRate *= (Math.random() * 2.0);
     }
+
+{% endhighlight %}
 
 You can also call the `reverse()` method, which is normally equivalent to inverting the current `playbackRate` (mutiply by -1). There are a couple of special cases, however:
 
@@ -57,6 +69,8 @@ You can also call the `reverse()` method, which is normally equivalent to invert
 An `AnimationPlayer` now allows its `currentTime` to be modified while an animation is running. Normally, this value will increase over time (or decrease, if the `playbackRate` is negative). This might allow an animation's position to be externally controlled, perhaps through user interaction. This is commonly referred to as [scrubbing](http://en.wikipedia.org/wiki/Scrubbing_%28audio%29).
 
 For example, if your HTML page represented the sky, and you'd like a drag gesture to change the position of a currently playing cloud, you could add some handlers to the document:
+
+{% highlight javascript %}
 
     var startEvent, startEventTime;
     document.addEventListener('touchstart', function(event) {
@@ -71,12 +85,18 @@ For example, if your HTML page represented the sky, and you'd like a drag gestur
       player.currentTime = startEventTime + delta;
     });
 
+{% endhighlight %}
+
 As you drag over the document, the `currentTime` will be changed to reflect the distance from your original event. You might also like to resume playing the animation when the gesture ends:
+
+{% highlight javascript %}
 
     document.addEventListener('touchend', function(event) {
       startEvent = null;
       player.play();
     });
+
+{% endhighlight %}
 
 This could even be combined with reversing behavior, depending on where the mouse was lifted from the page ([combined demo](http://codepen.io/samthor/pen/jEbxmR?editors=001)).
 
@@ -96,6 +116,8 @@ The utility here is that an `AnimationPlayer` allows a value to be set and have 
 Mobile platforms have long been the realm of common gestures: dragging, sliding, flinging and the like. These gestures tend to have a common theme: a draggable UI component, such as a list view's "pull to refresh" or a sidebar being wrought from the left side of the screen.
 
 With Web Animations, a similar effect is very easy to replicate here on the web - on desktop or on mobile. For example, when a gesture controlling `currentTime` completes:
+
+{% highlight javascript %}
 
     var steps = [ /* animation steps */ ];
     var duration = 1000;
@@ -123,6 +145,8 @@ With Web Animations, a similar effect is very easy to replicate here on the web 
       driftPlayer.onfinish = function() { runCallback(dstTime); };
       player.currentTime = dstTime;
     });
+
+{% endhighlight %}
 
 This creates an additional animation that performs a 'drift'. This plays between where the gesture was completed, through to our known good target.
 
