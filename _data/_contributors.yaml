@@ -555,9 +555,13 @@ samthorogood:
     unit: Developer Relations
   address:
     locality: Sydney
+    region: NSW
     country: Australia
-    lat: 51.4948
-    lon: -0.1467
+    lat: -33.866674
+    lon: 151.195650
+  homepage: http://whistlr.info
+  google: 118404069988837396840
+  twitter: samthor
   email: thorogood@google.com
   lanyrd: false
 
