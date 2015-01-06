@@ -81,3 +81,6 @@ handlers:
   mime_type: text/html
   static_files: _site/404.html
   upload: _site/404.html
+
+skip_files:
+  _posts/*

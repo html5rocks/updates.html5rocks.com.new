@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "When milliseconds are not enough: performance.now()"
+title: "When milliseconds are not enough: performance.now"
 description: ""
 article:
   written_on: 2012-08-16

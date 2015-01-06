@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Chrome Dev Summit 2015: The Applied Science of Runtime Performance"
+title: "Chrome Dev Summit 2014: The Applied Science of Runtime Performance"
 description: "The story of building the Chrome Dev Summit site."
 article:
   written_on: 2015-01-05
