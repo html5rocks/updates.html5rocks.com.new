@@ -1572,3 +1572,21 @@ oslego:
   google: 117174884507780256974
   twitter: razvancaliman
   email: razvan.caliman@gmail.com
+
+robdodson:
+  name:
+    given: Rob
+    family: Dodson
+  org:
+    name: Google
+    unit: Developer Relations
+  address:
+    locality: Mountain View
+    region: California
+    country: USA
+    lat: 37.42192
+    lon: -122.087824
+  homepage: http://robdodson.me
+  google: 118271135596408598424
+  twitter: rob_dodson
+  email: robdodson@google.com
