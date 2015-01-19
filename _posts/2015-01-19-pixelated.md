@@ -47,16 +47,14 @@ see the application of the property has a significant effect on how the image is
 This property can be applied in many places:
 
 *  `<img>` elements
-*  `<canvas>` elements
-*  `background-image` properties
+*  `<canvas style="image-rendering: pixelated">` elements
+*  Any element with a `background-image` property
 
 ## I still don't get it.  Where should I use this?
 
 If you are just showing photos on your site, then you probably don't want this. 
 
 A great use-case is games, you frequently have to scale up the canvas to make it fit the screen size correctly. Prior to this CSS property the browser would interpolate the canvas in such a way that it would look blurry (see below [sic]).
-
-<img hreg
 
 <style>
     blockquote.twitter-tweet, iframe.twitter-tweet {
