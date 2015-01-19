@@ -84,3 +84,4 @@ handlers:
 
 skip_files:
   _posts/*
+  *.md
