@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Chrome Dev Summit 2014: Polymer - State of the Union"
-description: "The story of building the Chrome Dev Summit site."
+description: "The state of the Polymer Union."
 article:
   written_on: 2015-01-06
   updated_on: 2015-01-06
@@ -95,7 +95,8 @@ To make this distinction more clear, the polyfills are being moved to the webcom
 </p>
 
 This move is designed to help other library authors take advantage of the polyfills without any confusion. The Polymer team will continue to contribute to the polyfills, but the hope is that this change makes them into more of a shared resource for the community.
-## Results
+
+### Results
 
 So what are the results from all these changes?
 
