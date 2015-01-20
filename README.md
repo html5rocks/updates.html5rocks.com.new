@@ -16,6 +16,38 @@ Make sure you have `ruby` and `jekyll` installed:
 [jekyllrb.com](http://jekyllrb.com/). Then run:
 
     jekyll serve --watch
+    
+## Create a new post
+
+Updates.html5rocks.com is all about fresh content, so that means you need to post to it.  
+
+*  Create a file in _posts/
+*  Name the file in the following format  YYYY-MM-DD-SOME-TEXT-NAME.md
+*  Add a Yaml header (use the template below - NOTE change every field)
+*  Write your content.
+
+```
+---
+layout: post
+title: "Getting Literal With ES6 Template Strings"
+description: "Template String literals with embedded expressions. We've been waiting for this for ages. Literally"
+article:
+  written_on: 2015-01-20
+  updated_on: 2015-01-20
+authors:
+  - addyosmani
+tags:
+  - es6
+  - javascript
+  - ecmascript
+permalink: /2015/01/ES6-Template-Strings
+---
+```
+
+## Getting your post live.
+
+*  Commit to development branch, or file a PR to the project
+*  Ask someone to test locally, and then get them to merge to master.
 
 ## Include samples
 
