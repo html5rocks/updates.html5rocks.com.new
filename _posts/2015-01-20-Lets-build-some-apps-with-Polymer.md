@@ -34,7 +34,7 @@ For Chrome Dev Summit, I tried to answer these questions by building a small con
 Breaking an application into modular pieces that can be combined and reused is a central tenant of Web Components. Polymer's core-\* and paper-\* elements make it easy to start with small pieces, like [core-toolbar](https://www.polymer-project.org/docs/elements/core-elements.html#core-toolbar) and [paper-icon-button](https://www.polymer-project.org/docs/elements/paper-elements.html#paper-icon-button)...
 
 <p style="text-align: center;">
-  <img src="{% asset_path 2015-01-20-lets-build-some-apps-with-Polymer/core-toolbar.jpg %}" alt="Polymer helps developers build applications faster" width="800" />
+  <img src="{% asset_path 2015-01-20-lets-build-some-apps-with-polymer/core-toolbar.jpg %}" alt="Polymer helps developers build applications faster" width="800" />
 </p>
 
 ...and through the power of composition, combine them with any number of elements to create an application scaffold.
