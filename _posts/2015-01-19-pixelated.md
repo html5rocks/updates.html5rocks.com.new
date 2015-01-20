@@ -14,13 +14,13 @@ permalink: /2015/01/pixelated
 As web developers we play with images all the time and in most cases browsers are great 
 at scaling images to fit the boundaries of our site designs whilst keeping the images pretty. But what happens when you want to control how the browser scales the images on your page? 
 
-Chrome 41 (Beta in January 2015) introduces a new CSS property [`image-rendering: pixelated`](https://developer.mozilla.org/en/docs/Web/CSS/image-rendering) ([Spec](http://dev.w3.org/csswg/css-images-3/#the-image-rendering)) that gives you a little more control over how the browser renders a scaled up image. 
+Chrome 41 (Beta in January 2015) introduces a new CSS property [`image-rendering: pixelated`](https://developer.mozilla.org/en/docs/Web/CSS/image-rendering) ([Spec](http://dev.w3.org/csswg/css-images-3/#the-image-rendering)) that gives you a little more control over how the browser renders a scaled up image.
 
 The CSS property `image-rendering` and the value `pixelated` are interesting because they turn off the 
 browser's standard smooth scaling (normally bi-linear interpolation) and replaces it with another 
-scaling algorithm (Nearest neighbor in most cases) when resizing the images.
+scaling algorithm (nearest neighbor in most cases) when resizing the images.
 
-Imagine you had an image that was 2x2 pixels and you scaled it up to 100x100 pixels, the browser
+Imagine you had an image that was 2×2 pixels and you scaled it up to 100×100 pixels, the browser
 would render it in a way that didn't make it look blocky. Something like:
 
 <p style="text-align: center;">
@@ -47,16 +47,14 @@ see the application of the property has a significant effect on how the image is
 This property can be applied in many places:
 
 *  `<img>` elements
-*  `<canvas>` elements
-*  `background-image` properties
+*  `<canvas style="image-rendering: pixelated">` elements
+*  Any element with a `background-image` property
 
 ## I still don't get it.  Where should I use this?
 
 If you are just showing photos on your site, then you probably don't want this. 
 
 A great use-case is games, you frequently have to scale up the canvas to make it fit the screen size correctly. Prior to this CSS property the browser would interpolate the canvas in such a way that it would look blurry (see below [sic]).
-
-<img hreg
 
 <style>
     blockquote.twitter-tweet, iframe.twitter-tweet {
@@ -71,16 +69,16 @@ A great use-case is games, you frequently have to scale up the canvas to make it
 If you are building an airline ticketing tool, or an app that displays [QR codes](https://twitter.com/andreasbovens/status/556696829421953024) then frequently the user will want it to be full screen so that it is easier to scan, so controlling the image-rendering is critical.
 
 <figure style="text-align: center;">
-<img src="http://goo.gl/nWBBg.qr"
+<img src="https://goo.gl/nWBBg.qr"
     width="280" height="280">
     <figcaption>Default Smoothing</figcaption>
 </figure>
 
 <figure style="text-align: center;">
-<img src="http://goo.gl/nWBBg.qr"
+<img src="https://goo.gl/nWBBg.qr"
     style="image-rendering: pixelated;"
     width="280" height="280">
-    <figcaption>Preserving pixelation (only visible in Chrome M41+)</figcaption>
+    <figcaption>Preserving pixelation (only visible in Chrome M41+ or Opera 26+)</figcaption>
 </figure>
 
 If you are interested in seeing the implementation, checkout [Issue 317991](https://code.google.com/p/chromium/issues/detail?id=317991) (it is left open for the implementation of the crisp-edges value. Star the issue to track the implementation).
