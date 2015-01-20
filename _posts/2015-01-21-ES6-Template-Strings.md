@@ -14,8 +14,6 @@ tags:
 permalink: /2015/01/polymer-state-of-the-union
 ---
 
-# Getting Literal With ES6 Template Strings
-
 Strings in JavaScript have been historically limited, lacking the capabilities one might expect coming from languages like Python or Ruby. ES6 [Template Strings](https://www.chromestatus.com/feature/4743002513735680) (available in Chrome 41+), fundamentally change that. They introduce a way to define strings with  domain-specific languages (DSLs), bringing better:
 
 * String interpolation
