@@ -117,17 +117,15 @@ For example, you could write a HTML-escaping function such that..
 
     html`<p title="${title}">Hello ${you}!</p>`
 
-returns a string with the appropriate variables substituted in, but with all HTML-unsafe characters replaced. Let’s do that. Our HTML-escaping function will take two arguments: a username and a comment. Both may contain HTML unsafe characters (namely ', ", <, >, and &). For example, if the username is "Domenic Denicola" and the comment is "
-is a fun tag", we should output:
+returns a string with the appropriate variables substituted in, but with all HTML-unsafe characters replaced. Let’s do that. Our HTML-escaping function will take two arguments: a username and a comment. Both may contain HTML unsafe characters (namely ', ", <, >, and &). For example, if the username is "Domenic Denicola" and the comment is "& is a fun tag", we should output:
 
-    <b>Domenic Denicola says:</b> "&lt;dl&gt; is a fun tag"
+    <b>Domenic Denicola says:</b> "&amp; is a fun tag"
 
 Our tagged template solution could thus be written as follows:
 
-    console.log(html`<b>${process.argv[2]} says</b>: "${process.argv[3]}"`);
-
-    function html(pieces, ...substitutions) {
+    function html(pieces) {
         var result = pieces[0];
+        var substitutions = [].slice.call(arguments, 1); 
         for (var i = 0; i < substitutions.length; ++i) {
             result += escape(substitutions[i]) + pieces[i + 1];
         }
@@ -142,6 +140,12 @@ Our tagged template solution could thus be written as follows:
                 .replace(/'/g, "&#39;")
                 .replace(/"/g, "&quot;");
     }
+    
+    var username = "Domenic Denicola";
+    var tag = "& is a fun tag";
+    console.log(html`<b>${username} says</b>: "${tag}"`);
+    //=> <b>Domenic Denicola says</b>: "&amp; is a fun tag"
+
 
 Other possible uses include auto-escaping, formatting, localisation and in general, more complex substitutions:
 
