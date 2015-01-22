@@ -4,7 +4,7 @@ title: "Let Your Content Do the Talking: Fullscreen API"
 description: "Intro to the Full Screen API"
 article:
   written_on: 2011-10-26
-  updated_on: 2015-01-22
+  updated_on: 2011-10-26
 authors:
   - ericbidelman
 tags:

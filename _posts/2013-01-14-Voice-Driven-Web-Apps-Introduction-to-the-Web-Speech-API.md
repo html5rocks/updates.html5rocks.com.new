@@ -4,7 +4,7 @@ title: "Voice Driven Web Apps: Introduction to the Web Speech API"
 description: ""
 article:
   written_on: 2013-01-14
-  updated_on: 2015-01-22
+  updated_on: 2013-01-14
 authors:
   - glenshires
 tags:
