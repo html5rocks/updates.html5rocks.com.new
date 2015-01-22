@@ -23,7 +23,7 @@ Copying entire CSS rules in the Styles pane will now include styles you toggled 
 
 ‘Copy as CSS path’ is now available as a menu item for DOM nodes in the Elements panel (similar to the Copy XPath menu item).
 
-![image alt text](http://updates.html5rocks.com/images/AMIfv95185jJiijbsmNm9-6ixteI2B1XXGbIJ4YZzJwGjE4c2f-ff9vSwA_kkNwqVu4hBs6w85iPl5nRziXA8e8HN9dDWrKP94tO6Alt-R_dhNf0wFj1leWwxkBjnw_39GALo7xTHqadqKRe_YsSZ_A9GVf0As0Yjx3i_QrdC943KjQjG5W91RI)
+![copy css path]({% asset_path 2013-12-19-devtools-digest-december-2013/copy-css-path.jpg %})
 
 Generation of CSS selectors do not have to be limited to your stylesheets/JavaScript, they can also be alternatives for locator strategies in [WebDriver](http://www.seleniumhq.org/docs/03_webdriver.jsp#by-css) tests. [[crbug.com/277286](http://crbug.com/277286)]
 
@@ -49,7 +49,7 @@ Those "*Invalid CSS property value*"-style warnings you might have seen are now 
 
 ### Timeline operations summarized in pie chart
 
-<img src="http://updates.html5rocks.com/images/AMIfv97OQBSOH1xAh_WmgnuSFCX-5KJZw2Qa6DF_CStzyvG550xTRaz_HLAY9CKwt9xNvJA2dh1QQVaJXm8v0P51UOZXKpAxkX3WcH75Lp8R8x85Ze6ddqf9-v99c7Qx_0MNrB3TWLH6-el2gCaNGW-9jZoiIOJxeYPbubwqPX-1ztQHn_qyy_o" style="float:right">The Timeline panel now contains a pie chart in the Details pane which visually shows the source of your rendering costs - this helps you identify your bottlenecks at a glance.
+<img src="{% asset_path 2013-12-19-devtools-digest-december-2013/timeline-operations-chart.jpg %}" style="float:right">The Timeline panel now contains a pie chart in the Details pane which visually shows the source of your rendering costs - this helps you identify your bottlenecks at a glance.
 
 You’ll find that much of the information which used to be displayed in popovers has now been promoted to its own pane. To view, start a Timeline recording and select a frame, take note of the new Details pane which contains a pie chart. When in Frames view, you’ll get interesting stats like average FPS (`1000ms/frame duration`) for the selected frame(s). [[crbug.com/247786](https://code.google.com/p/chromium/issues/detail?id=247786)]
 
@@ -57,7 +57,7 @@ You’ll find that much of the information which used to be displayed in popover
 
 Image resize and decode events in the Timeline panel now contain a link to the DOM node in the Elements panel.
 
-![image alt text](http://updates.html5rocks.com/images/AMIfv94BWaMZ3gqzavJEMObw_L8d_P5UusoB6sQji4J9EewmTS6N_JzEhsweSY_jjBR2QwILW7s-8e1jQH9Rj2oFeiz1M-Tsbfr1X43EdF2xbWhllAAkTX2AyWJ6alryzLMQYayZIj3wYZJ1vV72_JKWFKW_aQIUeBf6B0djM6QlzDzwSD8I5nQ)
+![image resize]({% asset_path 2013-12-19-devtools-digest-december-2013/image-resize.jpg %})
 
 The Image URL link takes you to the corresponding resource in the Resources Panel.  [[crbug.com/244159](http://crbug.com/244159)]
 
@@ -75,15 +75,15 @@ Opening the drawer now presents a number of panes, one of which is the Rendering
 
 ### Copy image as data URL
 
-<img src="http://updates.html5rocks.com/images/AMIfv97-nkjke3aVPpNpWLw0jr8bKKbwP4SkmEEeYGiANKkVJlIqKrl8fheXFU0moWxlspQqYs5aq3G8D441h2vRGivXzToe0zQJcXEv23rt5ZRIn2f6-bqLTGdYDXZx9F7agLn_rVNsY-XzLtRGZzIwQDyijcFJM6ZdCJN-gRwwLDpNPWvlzqw"  style="float:right"> Image assets in the Resources panel can now have their contents copied as a [data URI](http://en.wikipedia.org/wiki/Data_URI_scheme#HTML) (`data:image/png;base64,iVBO...`).
+<img src="{% asset_path 2013-12-19-devtools-digest-december-2013/copy-image-as-data-url.jpg %}"  style="float:right"> Image assets in the Resources panel can now have their contents copied as a [data URI](http://en.wikipedia.org/wiki/Data_URI_scheme#HTML) (`data:image/png;base64,iVBO...`).
 
 To try this out, find the image resource within Frames > [Resource] > Images and right click on the image preview to access the context menu, then select ‘Copy Image as Data URL’. [[crbug.com/321132](http://crbug.com/321132)]
 
 <h3 style="clear:both">Data URI filtering</h3>
 
-If you've never thought they belong, Data URIs can now be filtered out of the Network tab. Select the Filter icon ![image alt text](http://updates.html5rocks.com/images/AMIfv95hgCfLTpo7DIdUFUpvtzJlfyoTg6fOXB-N6drDChL2EwnFgqBG2GMSQ9TeU4gPmtFhxzsjUeKHVvy7bWXLT3ZGXz0_EkZ0XNEmZ2d9R38L01VH2nrPxOdJ9V0Z8TMOp4mqPqRHHAKPswLNKNnrZsYzIZCnKg) to view other resource filter types. [[crbug.com/313845](http://crbug.com/313845)]
+If you've never thought they belong, Data URIs can now be filtered out of the Network tab. Select the Filter icon ![filter icon]({% asset_path 2013-12-19-devtools-digest-december-2013/filter-icon.jpg %}) to view other resource filter types. [[crbug.com/313845](http://crbug.com/313845)]
 
-![image alt text](http://updates.html5rocks.com/images/AMIfv95zJ7I2mIMqp8WwqjIVUB1xUXTPG9NcPmw6_FlQQWFgfNknnXOhs3N3CtjcJA6ekXa3NuFB62MWY_YJHaZpljVAbqLpvslEPWixV_oBqnFE_SupZauQ9oJH0DMhMTc2Sl7r9ev6zLPodhqRh_UbMbEAdjCwtQ)
+![Data URI filtering]({% asset_path 2013-12-19-devtools-digest-december-2013/data-uri-filtering.jpg %})
 
 ### Network Timing bugs fixed
 
