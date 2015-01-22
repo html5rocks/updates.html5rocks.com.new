@@ -12,7 +12,7 @@ which points to
 
 ## Run it locally
 
-Make sure you have `ruby` and `jekyll` installed:
+Make sure you have `ruby`, `jekyll` and `jekyll-assets` installed:
 [jekyllrb.com](http://jekyllrb.com/). Then run:
 
     jekyll serve --watch
