@@ -22,7 +22,7 @@ As we have received a lot of feedback from developers, we'd like to clarify a fe
 
 Users can type a date value into the text field of an `input[type=date]` with the date format shown in the box as gray text. This format is obtained from the operating system's setting.
 
-![format](http://updates.html5rocks.com/images/AMIfv95tj4fOBOpcsCvszXQ4aD90Nd9nLUGlvOLp_mlYlm4DMPWoC4dwNeEcF_GtRVoEHYPiU7Q1i5BPsGCI03Q6C4ehHhoGRlb8j43gOk6ZFGYSiHr0EG-8WvwoFHkspjPSGNPCdmiz7-Il73AKJWqOWORYfCpj6g)
+![format]({% asset_path 2012-08-06-quick-faqs-on-input-type-date-in-google-chrome/date-formats.jpg %})
 
 Web authors have no way to change the date format because there currently is no standards to specify the format.
 

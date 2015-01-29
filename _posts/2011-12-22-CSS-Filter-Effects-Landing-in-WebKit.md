@@ -38,7 +38,7 @@ Enabling filters directly in CSS means that nearly any DOM element can take adva
 
 #### Demo
 
-<figure><a href="http://html5-demos.appspot.com/static/css/filters/index.html"><img src="http://updates.html5rocks.com/images/AMIfv97NicvMPbxUxXlXQFdeDi-MwulwEadB5BWY1nwymY2363XhXTsYq-jKtnmas0F8goOlHDJFpNsTqeb__0iqovNurmBYZw5TaBJfOiUbrY1dMUoeVacxB2prrXDV2M4CxbUBYbWGQ8UrcIF2ygmBuSWR-6mqIA" style="border-radius:3px;border:1px solid #ccc;"></a></figure>
+<figure><a href="http://html5-demos.appspot.com/static/css/filters/index.html"><img src="{% asset_path 2011-12-22-css-filter-effects-landing-in-webkit/filter-effects-demo.jpg %}" style="border-radius:3px;border:1px solid #ccc;"></a></figure>
 
 [Try it out!](http://html5-demos.appspot.com/static/css/filters/index.html) (works in Chrome Canary and WebKit nightlies)
 

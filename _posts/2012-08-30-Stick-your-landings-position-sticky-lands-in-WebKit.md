@@ -28,7 +28,7 @@ page when scrolled to the top. Good examples are [news.google.com](https://news.
 ###Introducing sticky positioning
 
 <figure style="text-align:center;float:right;margin-left: 25px;">
-<a href="http://html5-demos.appspot.com/static/css/sticky.html" target="_blank"><img src="http://updates.html5rocks.com/images/AMIfv96zitmIh5fozFLjrOVS2DNdb5833t5ANgL3HQw63hQqFnYcNAz3O3zEvomg--zn7PtTmZoM22rXwXxIuC3OA7XMr0oSD8WAq1x4w2NKfDAB7kHAkNxoYJ2kzD4czgD-GiGl3_7lD-_EjjnMhXKXKcaFHycQBQ" style="height:300px;width: 324px;"></a>
+<a href="http://html5-demos.appspot.com/static/css/sticky.html" target="_blank"><img src="{% asset_path 2012-08-30-stick-your-landings-position-sticky-lands-in-webkit/sticky-demo.jpg %}" style="height:300px;width: 324px;"></a>
 </figure>
 [LAUNCH DEMO](http://html5-demos.appspot.com/static/css/sticky.html)
 

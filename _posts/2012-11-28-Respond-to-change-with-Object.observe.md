@@ -23,7 +23,7 @@ You can try it out now in [Chrome Canary](https://tools.google.com/dlpage/chrome
 
 To experiment with this feature, you need to enable the *Enable Experimental JavaScript* flag in Chrome Canary and restart the browser. The flag can be found under 'about:flags' as shown in the image below:
 
-<img src="/images/AMIfv95OLcv7FCAxzBOKUS3pzzp8SWBRJfEcGUZRs88VbIrR0zrLh54ihIPN3mmvxXT_bG4FQoo1gK2EGPvdtJzVPTnwHmEwk4_JeXWCZgn0_zjFMR3J4yHmU49tc7KBFrYEKYtZmucJNIZD3xmIi_qyLKVPflIZxw"/>
+<img src="{% asset_path 2012-11-28-respond-to-change-with-object.observe/chrome-flags.jpg %}"/>
 
 
 Here's a simple example of how to set up an observer on an object:

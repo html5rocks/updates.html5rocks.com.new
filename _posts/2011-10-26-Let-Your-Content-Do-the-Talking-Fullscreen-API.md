@@ -21,7 +21,7 @@ The [Fullscreen API](http://dvcs.w3.org/hg/fullscreen/raw-file/tip/Overview.html
 
 If you want to skip the details, here's a [demo](http://html5-demos.appspot.com/static/fullscreen.html):
 
-<a href="http://html5-demos.appspot.com/static/fullscreen.html"><img src="http://updates.html5rocks.com/images/AMIfv95-0qdDBfiWj-b4c9Z9yqN1VetWYYNTiIfQC0XLZwHc2XFFjxJXmzZ8wNNujSWEMNyyBmWMZCgBjmnTuMtm9IlNJPgKqmWFjxK2GVdhoatTvD9nk5FzuPcKIQhJOIbTqx1rs35-j8nzbSVz3KNXN0u2rdN_LA"></a>
+<a href="http://html5-demos.appspot.com/static/fullscreen.html"><img src="{% asset_path 2011-10-26-let-your-content-do-the-talking-fullscreen-api/fullscreen-demo.jpg %}"></a>
 
 So how does the API work? If you wanted a `<div>`, for example, to go fullscreen, simple tell it to:
 
