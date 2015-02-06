@@ -1,7 +1,12 @@
 language: ruby
 rvm:
 - 2.2
-# script: ./script/cibuild
+
+script: 
+  - bundle exec jekyll build
+
+before_install:
+  - git submodule foreach git pull origin master
 
 # branch whitelist
 branches:
