@@ -6,7 +6,7 @@ script:
   - bundle exec jekyll build
 
 before_install:
-  - git submodule foreach git pull origin master
+  - git submodule update --init --recursive
 
 # branch whitelist
 branches:
