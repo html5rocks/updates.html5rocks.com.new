@@ -8,7 +8,7 @@ env:
   - CLOUDSDK_PYTHON_SITEPACKAGES=1
   - PROJECT_ID=updaterocker
   - SRV_ACCOUNT=439900835842-962b8icmhgpo018ksse9g73mamn8ah45@developer.gserviceaccount.com
-  - CURRENT_BRANCH=`git branch | sed -n '/\* /s///p'`
+  - CURRENT_BRANCH=$(git branch | sed -n '/\* /s///p')
 
 script: 
   - bundle exec jekyll build
