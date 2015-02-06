@@ -8,12 +8,13 @@ env:
   - CLOUDSDK_PYTHON_SITEPACKAGES=1
   - PROJECT_ID=updaterocker
   - SRV_ACCOUNT=439900835842-962b8icmhgpo018ksse9g73mamn8ah45@developer.gserviceaccount.com
-  - CURRENT_BRANCH=$(git branch | sed -n '/\* /s///p')
+  - 
 
 script: 
   - bundle exec jekyll build
 
 before_install:
+  - export CURRENT_BRANCH=$(git branch | sed -n '/\* /s///p')
   - echo $CURRENT_BRANCH
   - git submodule update --init --recursive
   - sudo pip install PyOpenSSL
@@ -24,7 +25,7 @@ before_install:
   - $HOME/google-cloud-sdk/bin/gcloud auth activate-service-account $SRV_ACCOUNT --key-file $PROJECT_ID.p12
 
 after_success:
- - $HOME/google-cloud-sdk/bin/gcloud preview app deploy --version development ./app.yaml
+ - $HOME/google-cloud-sdk/bin/gcloud preview app deploy --version $CURRENT_BRANCH ./app.yaml
 
 # branch whitelist
 branches:
