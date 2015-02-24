@@ -9,7 +9,7 @@ subtitle: "New hotness from the HTML5 world"
       <ul class="clearfix">
         {% for post in paginator.posts %}
           <li>
-            <a href="{{ post.url | prepend: site.url }}">
+            <a href="{{ post.url | prepend: site.baseurl }}">
               <span class="left">
               {% for author in post.authors %}
                 {% include avatar.html author=author%}

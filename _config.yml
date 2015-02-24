@@ -1,12 +1,8 @@
 # Site settings
-title: HTML5 Rocks - Chrome updates
-description: >
-  "HTML5Rocks updates stream."
+title: "HTML5 Rocks - Chrome updates"
+description: "HTML5Rocks updates stream."
 baseurl: ""
-# TODO: change link.
-url: ""
-# url: "http://localhost:8080"
-#url: "http://devnook.github.io/updates.html5rocks.com.new"
+url: "http://updates.html5rocks.com"
 html5rocks_url: "http://www.html5rocks.com"
 markdown: kramdown
 permalink: /:year/:month/:title
