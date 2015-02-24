@@ -40,7 +40,7 @@ vertical-align: top;
 {% video //www.youtube.com/embed/qRolXPWqCSo %} {% endvideo %}
 
 <figure>
-<a href="https://www.google.com/intl/en/chrome/demos/speech.html"><img src="/images/AMIfv94vFbReH-fML8MVeEWIzsGjoySrVunSC8ZGf4P8nipO8i3o5Re9Xl9-N7Vv7TkHcrrDKC4P-rjnRWkQpBznASAP31V0chw2dmtpX2gAvd_DL02Ffm4M-Vdik6K--qptGoTxBjgQIWZ0gVVm_44CWB5UD1cgNQ" class="demopreview"></a>
+<a href="https://www.google.com/intl/en/chrome/demos/speech.html"><img src="{% asset_path 2013-01-14-voice-driven-web-apps-introduction-to-the-web-speech-api/web-speech-api-demo.jpg %}" alt="Web Speech API demo" class="demopreview" /></a>
 <figcaption><p><a href="https://www.google.com/intl/en/chrome/demos/speech.html">DEMO</a> / <a href="https://github.com/GoogleChrome/webplatform-samples/tree/master/webspeechdemo">SOURCE</a></p></figcaption>
 </figure>
 

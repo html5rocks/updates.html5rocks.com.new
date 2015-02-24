@@ -40,7 +40,7 @@ There are two problems with this:
 ### Using 2d canvas as a background
 
 <figure style="text-align: center;font-weight:bold;font-size:20px">
-<a href="http://html5-demos.appspot.com/static/css/webkit-canvas.html"><img src="/images/AMIfv96Uz9loUuqbn71jF6nv0Q1SbcvG5ltNxZP0At9YEUVd6pt7tTO_k-elVYi2wjiU7MEVPODfytg6UlJI_uAR93po9tMiO8q5br-dEFJbEPGcyfsIdoiaXKaUo1skrJ8N1wBNR7IUFF1aKXyOXgqAKwO3U6xhjw"></a>
+<a href="http://html5-demos.appspot.com/static/css/webkit-canvas.html"><img src="{% asset_path 2012-12-12-canvas-driven-background-images/canvas-demo.jpg %}"></a>
 <figcaption><a href="http://html5-demos.appspot.com/static/css/webkit-canvas.html">DEMO</a></figcaption>
 </figure>
 

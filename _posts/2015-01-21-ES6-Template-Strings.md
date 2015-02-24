@@ -53,7 +53,7 @@ As all string substitutions in Template Strings are JavaScript expressions, we c
     //=> JavaScript first appeared 20 years ago. Crazy!
 
     console.log(`The number of JS MVC frameworks is ${2 * (a + b)} and not ${10 * (a + b)}.`);
-    //=> The number of JS frameworks is 40 and not 2000.
+    //=> The number of JS frameworks is 20 and not 2000.
 
 They are also very useful for functions inside expressions:
 
@@ -123,24 +123,60 @@ returns a string with the appropriate variables substituted in, but with all HTM
 
 Our tagged template solution could thus be written as follows:
 
+    // HTML Escape helper utility
+    var util = (function () {
+      // Thanks to Andrea Giammarchi
+      var
+        reEscape = /[&<>'"]/g,
+        reUnescape = /&(?:amp|#38|lt|#60|gt|#62|apos|#39|quot|#34);/g,
+        oEscape = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        },
+        oUnescape = {
+          '&amp;': '&',
+          '&#38;': '&',
+          '&lt;': '<',
+          '&#60;': '<',
+          '&gt;': '>',
+          '&#62;': '>',
+          '&apos;': "'",
+          '&#39;': "'",
+          '&quot;': '"',
+          '&#34;': '"'
+        },
+        fnEscape = function (m) {
+          return oEscape[m];
+        },
+        fnUnescape = function (m) {
+          return oUnescape[m];
+        },
+        replace = String.prototype.replace
+      ;
+      return (Object.freeze || Object)({
+        escape: function escape(s) {
+          return replace.call(s, reEscape, fnEscape);
+        },
+        unescape: function unescape(s) {
+          return replace.call(s, reUnescape, fnUnescape);
+        }
+      });
+    }());
+     
+    // Tagged template function
     function html(pieces) {
         var result = pieces[0];
         var substitutions = [].slice.call(arguments, 1); 
         for (var i = 0; i < substitutions.length; ++i) {
-            result += escape(substitutions[i]) + pieces[i + 1];
+            result += util.escape(substitutions[i]) + pieces[i + 1];
         }
-
+     
         return result;
     }
-
-    function escape(s) {
-        return s.replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/'/g, "&#39;")
-                .replace(/"/g, "&quot;");
-    }
-    
+     
     var username = "Domenic Denicola";
     var tag = "& is a fun tag";
     console.log(html`<b>${username} says</b>: "${tag}"`);
@@ -164,7 +200,7 @@ Other possible uses include auto-escaping, formatting, localisation and in gener
 
 ## Summary
 
-Template Strings are in Chrome 41 beta+, IE Tech Preview, Firefox 35+ and io.js. Practically speaking if you would like to use them in production today, they're supported in major ES6 Transpilers, including [Tracuer](https://github.com/google/traceur-compiler/wiki/LanguageFeatures#template-literals) and 6to5. Check out our [Template Strings sample](https://github.com/GoogleChrome/samples/tree/gh-pages/template-literals-es6) over on the Chrome samples repo if you'd like to try them out. You may also be interested in [ES6 Equivalents in ES5](https://github.com/addyosmani/es6-equivalents-in-es5#template-literals), which demonstrates how to achieve some of the sugaring Template Strings bring using ES5 today.
+Template Strings are in Chrome 41 beta+, IE Tech Preview, Firefox 35+ and io.js. Practically speaking if you would like to use them in production today, they're supported in major ES6 Transpilers, including [Traceur](https://github.com/google/traceur-compiler/wiki/LanguageFeatures#template-literals) and 6to5. Check out our [Template Strings sample](https://github.com/GoogleChrome/samples/tree/gh-pages/template-literals-es6) over on the Chrome samples repo if you'd like to try them out. You may also be interested in [ES6 Equivalents in ES5](https://github.com/addyosmani/es6-equivalents-in-es5#template-literals), which demonstrates how to achieve some of the sugaring Template Strings bring using ES5 today.
 
 Template Strings bring many important capabilities to JavaScript. These include better ways to do string & expression interpolation, multiline strings and the ability to create your own DSLs.
 

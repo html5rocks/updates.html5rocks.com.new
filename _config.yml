@@ -16,7 +16,7 @@ paginate: 10
 paginate_path: "/page/:num"
 
 include: [samples]
-exclude: [ "app.yaml", "README.md" ]
+exclude: [ "app.yaml", "README.md", vendor ]
 
 gems: [jekyll-assets]
 assets:
