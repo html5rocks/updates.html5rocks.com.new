@@ -3,7 +3,7 @@
     <h2>Comments</h2>
     <div id="disqus_thread">
       <a href="#disqus_thread" class="load-comments"
-          data-disqus-identifier="http://updates.html5rocks.com{{page.url}}">0</a>
+          data-disqus-identifier="{{ page.url | prepend: site.baseurl | prepend: site.url }}">0</a>
     </div>
   </div>
 
@@ -18,8 +18,8 @@
   <script>
 
     var disqus_shortname = 'html5rocks';
-    var disqus_identifier = 'http://updates.html5rocks.com{{page.url}}';
-    var disqus_url = 'http://updates.html5rocks.com{{page.url}}';
+    var disqus_identifier = '{{ page.url | prepend: site.baseurl | prepend: site.url }}';
+    var disqus_url = '{{ page.url | prepend: site.baseurl | prepend: site.url }}';
     var disqus_developer = 0;
 
     var disqus_config = function () {
