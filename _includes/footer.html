@@ -4,13 +4,13 @@
     <h1>Next steps</h1>
     <aside class="panel share">
       <h2>Share</h2>
-        <a href="https://twitter.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/&amp;text=Getting Started with CSS Shapes&amp;lang=en&amp;via=ChromiumDev&amp;related=ChromiumDev" class="twitter" target="_blank">Twitter</a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="facebook" target="_blank">Facebook</a>
-        <a href="https://plus.google.com/share?url=http://www.html5rocks.com/tutorials/shapes/getting-started/" class="gplus" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Google+</a>
+        <a href="https://twitter.com/share?url={{ page.url | prepend: site.baseurl | prepend: site.url }}&amp;text={{page.description | truncate: 97, '...' | uri_escape }}&amp;lang=en&amp;via=ChromiumDev&amp;related=ChromiumDev" class="twitter" target="_blank">Twitter</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | prepend: site.baseurl | prepend: site.url }}" class="facebook" target="_blank">Facebook</a>
+        <a href="https://plus.google.com/share?url={{ page.url | prepend: site.baseurl | prepend: site.url }}" class="gplus" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Google+</a>
     </aside>
     <aside class="panel rss">
       <h2>Subscribe</h2>
-      <p>Enjoyed this article? Grab the <a href="/feeds/rss.xml">RSS feed</a> and stay up-to-date.</p>
+      <p>Enjoyed this article? Grab the <a href="{{ '/feeds/rss.xml' | prepend: site.baseurl | prepend: site.url }}">RSS feed</a> and stay up-to-date.</p>
     </aside>
     {% endif %}
     <p class="licensing">
