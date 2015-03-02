@@ -35,11 +35,11 @@ and seamlessly install your Web App as per the images below.
 
 
 <p style="text-align: center;">
-  <img style="width: 100%;" src="{% asset_path 2015-03-03/app-install-banner-io.png %}" alt="IO Site with install banner" />
+  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-03/app-install-banner-io.png %}" alt="IO Site with install banner" />
 </p>
 
 <p style="text-align: center;">
-  <img style="width: 100%;" src="{% asset_path 2015-03-03/app-install-banner-qr.png %}" alt="QR Code Scanner App with banner" />
+  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-03/app-install-banner-qr.png %}" alt="QR Code Scanner App with banner" />
 </p>>
 
 "This looks great, I want it on my site" I hear you shout. "Please tell me how 
