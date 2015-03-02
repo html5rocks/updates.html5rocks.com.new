@@ -15,6 +15,7 @@ which points to
 Make sure you have `ruby`, `jekyll` and `jekyll-assets` installed:
 [jekyllrb.com](http://jekyllrb.com/). Then run:
 
+    bundle install
     jekyll serve --watch
     
 ## Create a new post
