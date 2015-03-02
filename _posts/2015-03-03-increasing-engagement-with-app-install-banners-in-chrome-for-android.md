@@ -33,8 +33,14 @@ In Chrome 42 (M42 - that will soon be in Beta) we are introducing "App Install
 Banners".  App Install Banners give you the ability to have your users quickly 
 and seamlessly install your Web App as per the images below.
 
-<img src="image00.png" width="253" height="450" /><img src="image01.png" 
-width="252" height="449" />
+
+<p style="text-align: center;">
+  <img src="{% asset_path 2015-03-03/app-install-banner-io.png %}" alt="IO Site with install banner" />
+</p>
+
+<p style="text-align: center;">
+  <img src="{% asset_path2015-03-03/app-install-banner-qr.png %}" alt="QR Code Scanner App with banner" />
+</p>>
 
 "This looks great, I want it on my site" I hear you shout. "Please tell me how 
 to add it!".  The good news is if you meet the following criteria Chrome will 
