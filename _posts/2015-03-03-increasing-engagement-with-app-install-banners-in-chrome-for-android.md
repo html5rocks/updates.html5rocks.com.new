@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Offline-first, fast, with the sw-precache module"
-description: ""
+title: "Increasing engagment with Web App install banners"
+description: "Web App Manifest ✔︎, Service Worker✔.Get ready for Web App Install banners "
 article:
   written_on: 2015-03-03
   updated_on: 2015-03-03
