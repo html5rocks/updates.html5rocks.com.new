@@ -10,12 +10,20 @@ The recursive option allows you to checkout the /samples submodule,
 which points to
 [github.com/GoogleChrome/samples](https://github.com/GoogleChrome/samples).
 
+## First Time Set Up
+
+You need to do the following to get up and running to run locally. These steps only
+need to be run once
+
+    git submodule update --init --recursive
+    bundle install
+
+
 ## Run it locally
 
 Make sure you have `ruby`, `jekyll` and `jekyll-assets` installed:
 [jekyllrb.com](http://jekyllrb.com/). Then run:
 
-    bundle install
     jekyll serve --watch
     
 ## Create a new post
