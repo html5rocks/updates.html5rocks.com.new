@@ -54,29 +54,31 @@ Below is an example of how you register a service worker in your web app. When
 the registration has completed successfully we call **initialiseState()**, which 
 we'll cover shortly.
 
-    var isPushEnabled = false;
+{% highlight javascript %}
+var isPushEnabled = false;
 
-    …
+…
 
-    window.addEventListener('load', function() {  
-      var pushButton = document.querySelector('.js-push-button');  
-      pushButton.addEventListener('click', function() {  
-        if (isPushEnabled) {  
-          unsubscribe();  
-        } else {  
-          subscribe();  
-        }  
-      });
+window.addEventListener('load', function() {  
+  var pushButton = document.querySelector('.js-push-button');  
+  pushButton.addEventListener('click', function() {  
+    if (isPushEnabled) {  
+      unsubscribe();  
+    } else {  
+      subscribe();  
+    }  
+  });
 
-      // Check that service workers are supported, if so, progressively  
-      // enhance and add push messaging support, otherwise continue without it.  
-      if ('serviceWorker' in navigator) {  
-        navigator.serviceWorker.register('/service-worker.js')  
-        .then(initialiseState);  
-      } else {  
-        console.warn('Service workers aren\'t supported in this browser.');  
-      }  
-    });
+  // Check that service workers are supported, if so, progressively  
+  // enhance and add push messaging support, otherwise continue without it.  
+  if ('serviceWorker' in navigator) {  
+    navigator.serviceWorker.register('/service-worker.js')  
+    .then(initialiseState);  
+  } else {  
+    console.warn('Service workers aren\'t supported in this browser.');  
+  }  
+});
+{% endhighlight %}
 
 The service-worker.js file has the logic for handling a push message. Here we 
 are simply telling the browser that this JavaScript file is the service worker 
@@ -116,61 +118,65 @@ set the initial state to disabled. This also avoids any confusion should there
 be an issue with your page's JavaScript, for example the file can't be 
 downloaded or the user has disabled JavaScript.
 
-    <button class="js-push-button" disabled> 
-        Enable Push Messages  
-    </button>
+{% highlight html %}
+<button class="js-push-button" disabled> 
+  Enable Push Messages  
+</button>
+{% endhighlight %}
 
 With this initial state, we can perform the checks outlined above in the 
 **initialiseState()** method, i.e. after our service worker is registered.
 
-    // Once the service worker is registered set the initial state  
-    function initialiseState() {  
-      // Are Notifications supported in the service worker?  
-      if (!('showNotification' in ServiceWorkerRegistration.prototype)) {  
-        console.warn('Notifications aren\'t supported.');  
-        return;  
-      }
+{% highlight javascript %}
+// Once the service worker is registered set the initial state  
+function initialiseState() {  
+  // Are Notifications supported in the service worker?  
+  if (!('showNotification' in ServiceWorkerRegistration.prototype)) {  
+    console.warn('Notifications aren\'t supported.');  
+    return;  
+  }
 
-      // Check the current Notification permission.  
-      // If its denied, it's a permanent block until the  
-      // user changes the permission  
-      if (Notification.permission === 'denied') {  
-        console.warn('The user has blocked notifications.');  
-        return;  
-      }
+  // Check the current Notification permission.  
+  // If its denied, it's a permanent block until the  
+  // user changes the permission  
+  if (Notification.permission === 'denied') {  
+    console.warn('The user has blocked notifications.');  
+    return;  
+  }
 
-      // Check if push messaging is supported  
-      if (!('PushManager' in window)) {  
-        console.warn('Push messaging isn\'t supported.');  
-        return;  
-      }
+  // Check if push messaging is supported  
+  if (!('PushManager' in window)) {  
+    console.warn('Push messaging isn\'t supported.');  
+    return;  
+  }
 
-      // We need the service worker registration to check for a subscription  
-      navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {  
-        // Do we already have a push message subscription?  
-        serviceWorkerRegistration.pushManager.getSubscription()  
-          .then(function(subscription) {  
-            // Enable any UI which subscribes / unsubscribes from  
-            // push messages.  
-            var pushButton = document.querySelector('.js-push-button');  
-            pushButton.disabled = false;
+  // We need the service worker registration to check for a subscription  
+  navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {  
+    // Do we already have a push message subscription?  
+    serviceWorkerRegistration.pushManager.getSubscription()  
+      .then(function(subscription) {  
+        // Enable any UI which subscribes / unsubscribes from  
+        // push messages.  
+        var pushButton = document.querySelector('.js-push-button');  
+        pushButton.disabled = false;
 
-            if (!subscription) {  
-              // We aren't subscribed to push, so set UI  
-              // to allow the user to enable push  
-              return;  
-            }
+        if (!subscription) {  
+          // We aren't subscribed to push, so set UI  
+          // to allow the user to enable push  
+          return;  
+        }
 
-            // Set your UI to show they have subscribed for  
-            // push messages  
-            pushButton.textContent = 'Disable Push Messages';  
-            isPushEnabled = true;  
-          })  
-          .catch(function(err) {  
-            console.warn('Error during getSubscription()', err);  
-          });  
+        // Set your UI to show they have subscribed for  
+        // push messages  
+        pushButton.textContent = 'Disable Push Messages';  
+        isPushEnabled = true;  
+      })  
+      .catch(function(err) {  
+        console.warn('Error during getSubscription()', err);  
       });  
-    }
+  });  
+}
+{% endhighlight %}
 
 A brief overview of these steps:
 
@@ -236,18 +242,20 @@ subscribing to push messages.
 
 Below is a super-simple manifest file:
 
-    {  
-      "name": "Push Demo",  
-      "short_name": "Push Demo",  
-      "icons": [{  
-            "src": "images/icon-192x192.png",  
-            "sizes": "192x192"  
-          }],  
-      "start_url": "/index.html?homescreen=1",  
-      "display": "standalone",  
-      "gcm_sender_id": "123456789012",  
-      "gcm_user_visible_only": true  
-    }
+{% highlight json %}
+{  
+  "name": "Push Demo",  
+  "short_name": "Push Demo",  
+  "icons": [{  
+        "src": "images/icon-192x192.png",  
+        "sizes": "192x192"  
+      }],  
+  "start_url": "/index.html?homescreen=1",  
+  "display": "standalone",  
+  "gcm_sender_id": "123456789012",  
+  "gcm_user_visible_only": true  
+}
+{% endhighlight %}
 
 You'll need to swap out the **gcm\_sender\_id** with your **project number** 
 from the Google Developer Console mentioned in the previous step.
@@ -256,7 +264,9 @@ Once you have saved your manifest file in your project (manifest.json is a good
 name), reference it from your HTML with the following tag in the head of your 
 page.
 
-    <link rel="manifest" href="manifest.json"> 
+{% highlight html %}
+<link rel="manifest" href="manifest.json">
+{% endhighlight %}
 
 If you don't add a web manifest with these parameters you'll get an exception 
 when you attempt to subscribe the user to push messages, with the error 
@@ -288,47 +298,49 @@ user, since you'll need them to send push messages at a later date.
 
 The following code subscribes the user for push messaging:
 
-    function subscribe() {  
-      // Disable the button so it can't be changed while  
-      // we process the permission request  
-      var pushButton = document.querySelector('.js-push-button');  
-      pushButton.disabled = true;
+{% highlight javascript %}
+function subscribe() {  
+  // Disable the button so it can't be changed while  
+  // we process the permission request  
+  var pushButton = document.querySelector('.js-push-button');  
+  pushButton.disabled = true;
 
-      navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {  
-        serviceWorkerRegistration.pushManager.subscribe()  
-          .then(function(subscription) {  
-            // The subscription was successful  
-            isPushEnabled = true;  
-          pushButton.textContent = 'Disable Push Messages';  
-            pushButton.disabled = false;      
-              
-            // TODO: Send the subscription.subscriptionId and   
-            // subscription.endpoint to your server  
-            // and save it to send a push message at a later date  
-            // sendSubscriptionToServer is defined in subscription-controller.js  
-            // (This is so sendSubscriptionToServer can be imported in the  
-            // service-worker.js file)  
-            return sendSubscriptionToServer(subscription);  
-          })  
-          .catch(function(e) {  
-            if (Notification.permission === 'denied') {  
-              // The user denied the notification permission which  
-              // means we failed to subscribe and the user will need  
-              // to manually change the notification permission to  
-              // subscribe to push messages  
-              console.warn('Permission for Notifications was denied');  
-              pushButton.disabled = true;  
-            } else {  
-              // A problem occurred with the subscription; common reasons  
-              // include network errors, and lacking gcm_sender_id and/or  
-              // gcm_user_visible_only in the manifest.  
-              console.error('Unable to subscribe to push.', e);  
-              pushButton.disabled = false;  
-              pushButton.textContent = 'Enable Push Messages';  
-            }  
-          });  
+  navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {  
+    serviceWorkerRegistration.pushManager.subscribe()  
+      .then(function(subscription) {  
+        // The subscription was successful  
+        isPushEnabled = true;  
+      pushButton.textContent = 'Disable Push Messages';  
+        pushButton.disabled = false;      
+          
+        // TODO: Send the subscription.subscriptionId and   
+        // subscription.endpoint to your server  
+        // and save it to send a push message at a later date  
+        // sendSubscriptionToServer is defined in subscription-controller.js  
+        // (This is so sendSubscriptionToServer can be imported in the  
+        // service-worker.js file)  
+        return sendSubscriptionToServer(subscription);  
+      })  
+      .catch(function(e) {  
+        if (Notification.permission === 'denied') {  
+          // The user denied the notification permission which  
+          // means we failed to subscribe and the user will need  
+          // to manually change the notification permission to  
+          // subscribe to push messages  
+          console.warn('Permission for Notifications was denied');  
+          pushButton.disabled = true;  
+        } else {  
+          // A problem occurred with the subscription; common reasons  
+          // include network errors, and lacking gcm_sender_id and/or  
+          // gcm_user_visible_only in the manifest.  
+          console.error('Unable to subscribe to push.', e);  
+          pushButton.disabled = false;  
+          pushButton.textContent = 'Enable Push Messages';  
+        }  
       });  
-    }
+  });  
+}
+{% endhighlight %}
 
 At this point your web app is ready to receive a push message, although nothing 
 will happen until we add a push event listener to our service worker file.
@@ -340,22 +352,24 @@ message in the next section), a **push event** will be dispatched in your
 service worker, at which point you'll need to display a 
 [notification](https://notifications.spec.whatwg.org/).
 
-    self.addEventListener('push', function(event) {  
-      console.log('Received a push message', event);
+{% highlight javascript %}
+self.addEventListener('push', function(event) {  
+  console.log('Received a push message', event);
 
-      var title = 'Yay a message.';  
-      var body = 'We have received a push message.';  
-      var icon = '/images/icon-192x192.png';  
-      var tag = 'simple-push-demo-notification-tag';
+  var title = 'Yay a message.';  
+  var body = 'We have received a push message.';  
+  var icon = '/images/icon-192x192.png';  
+  var tag = 'simple-push-demo-notification-tag';
 
-      event.waitUntil(  
-        self.registration.showNotification(title, {  
-          body: body,  
-          icon: icon,  
-          tag: tag  
-        })  
-      );  
-    });
+  event.waitUntil(  
+    self.registration.showNotification(title, {  
+      body: body,  
+      icon: icon,  
+      tag: tag  
+    })  
+  );  
+});
+{% endhighlight %}
 
 This code registers a **push** event listener and displays a notification with a 
 predefined title, body text, icon and a notification tag.    
@@ -454,54 +468,55 @@ network isn't available at that time
 In the following code we fetch some data from an API, convert the response to an 
 object and use it to populate our notification.
 
-    self.addEventListener('push', function(event) {  
-      // Since there is no payload data with the first version  
-      // of push messages, we'll grab some data from  
-      // an API and use it to populate a notification  
-      event.waitUntil(  
-        fetch(SOME_API_ENDPOINT).then(function(response) {  
-          if (response.status !== 200) {  
-            // Either show a message to the user explaining the error  
-            // or enter a generic message and handle the   
-            // onnotificationclick event to direct the user to a web page  
-            console.log('Looks like there was a problem. Status Code: ' + 
-    response.status);  
+{% highlight javascript %}
+self.addEventListener('push', function(event) {  
+  // Since there is no payload data with the first version  
+  // of push messages, we'll grab some data from  
+  // an API and use it to populate a notification  
+  event.waitUntil(  
+    fetch(SOME_API_ENDPOINT).then(function(response) {  
+      if (response.status !== 200) {  
+        // Either show a message to the user explaining the error  
+        // or enter a generic message and handle the   
+        // onnotificationclick event to direct the user to a web page  
+        console.log('Looks like there was a problem. Status Code: ' + response.status);  
+      throw new Error();  
+      }
+
+      // Examine the text in the response  
+      return response.json().then(function(data) {  
+        if (data.error || !data.notification) {  
+          console.error('The API returned an error.', data.error);  
           throw new Error();  
-          }
+        }  
+          
+        var title = data.notification.title;  
+        var message = data.notification.message;  
+        var icon = data.notification.icon;  
+        var notificationTag = data.notification.tag;
 
-          // Examine the text in the response  
-          return response.json().then(function(data) {  
-            if (data.error || !data.notification) {  
-              console.error('The API returned an error.', data.error);  
-              throw new Error();  
-            }  
-              
-            var title = data.notification.title;  
-            var message = data.notification.message;  
-            var icon = data.notification.icon;  
-            var notificationTag = data.notification.tag;
+        return self.registration.showNotification(title, {  
+          body: message,  
+          icon: icon,  
+          tag: notificationTag  
+        });  
+      });  
+    }).catch(function(err) {  
+      console.error('Unable to retrieve data', err);
 
-            return self.registration.showNotification(title, {  
-              body: message,  
-              icon: icon,  
-              tag: notificationTag  
-            });  
-          });  
-        }).catch(function(err) {  
-          console.error('Unable to retrieve data', err);
-
-          var title = 'An error occured';
-          var message = 'We were unable to get the information for this push message';  
-          var icon = URL_TO_DEFAULT_ICON;  
-          var notificationTag = 'notification-error';  
-          return self.registration.showNotification(title, {  
-              body: message,  
-              icon: icon,  
-              tag: notificationTag  
-            });  
-        })  
-      );  
-    });  
+      var title = 'An error occured';
+      var message = 'We were unable to get the information for this push message';  
+      var icon = URL_TO_DEFAULT_ICON;  
+      var notificationTag = 'notification-error';  
+      return self.registration.showNotification(title, {  
+          body: message,  
+          icon: icon,  
+          tag: notificationTag  
+        });  
+    })  
+  );  
+});
+{% endhighlight %}  
       
 It's worth, once again, highlight that the **event.waitUntil()** takes a promise 
 chain which results in the promise return by **showNotification()** which means 
@@ -519,27 +534,32 @@ When the user clicks a notification, a **notificationclick** event is dispatched
 in your service worker. Within your handler, you can take appropriate action, 
 like focusing a tab or opening a window with a particular URL:
 
-    self.addEventListener('notificationclick', function(event) {  
-      console.log('On notification click: ', event.notification.tag);  
-      // Android doesn't close the notification when you click on it  
-      // See: http://crbug.com/463146  
-      event.notification.close();
+{% highlight javascript %}
+self.addEventListener('notificationclick', function(event) {  
+  console.log('On notification click: ', event.notification.tag);  
+  // Android doesn't close the notification when you click on it  
+  // See: http://crbug.com/463146  
+  event.notification.close();
 
-      // This looks to see if the current is already open and  
-      // focuses if it is  
-      event.waitUntil(clients.matchAll({  
-        type: "window"  
-      }).then(function(clientList) {  
-        for (var i = 0; i &lt; clientList.length; i++) {  
-          var client = clientList[i];  
-          if (client.url == '/' && 'focus' in client)  
-            return client.focus();  
-        }  
-        if (clients.openWindow)  
-          return clients.openWindow('/');  
-      }));
-
-    });
+  // This looks to see if the current is already open and  
+  // focuses if it is  
+  event.waitUntil(
+    clients.matchAll({  
+      type: "window"  
+    })
+    .then(function(clientList) {  
+      for (var i = 0; i &lt; clientList.length; i++) {  
+        var client = clientList[i];  
+        if (client.url == '/' && 'focus' in client)  
+          return client.focus();  
+      }  
+      if (clients.openWindow) {
+        return clients.openWindow('/');  
+      }
+    })
+  );
+});
+{% endhighlight %}
 
 This example opens the browser to the root of the site's origin, by focusing an 
 existing same-origin tab if one exists, and otherwise opening a new one.
@@ -585,50 +605,51 @@ object and to remove the subscriptionId from your servers (just so you aren't
 sending push messages which you know won't be received). The code below does 
 exactly this:
 
-    function unsubscribe() {  
-      var pushButton = document.querySelector('.js-push-button');  
-      pushButton.disabled = true;
+{% highlight javascript %}
+function unsubscribe() {  
+  var pushButton = document.querySelector('.js-push-button');  
+  pushButton.disabled = true;
 
-      navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {  
-        // To unsubscribe from push messaging, you need get the  
-        // subscription object, which you can call unsubscribe() on.  
-        serviceWorkerRegistration.pushManager.getSubscription().then(  
-          function(pushSubscription) {  
-            // Check we have a subscription to unsubscribe  
-            if (!pushSubscription) {  
-              // No subscription object, so set the state  
-              // to allow the user to subscribe to push  
-              isPushEnabled = false;  
-              pushButton.disabled = false;  
-            pushButton.textContent = 'Enable Push Messages';  
-              return;  
-            }  
-              
-            var subscriptionId = pushSubscription.subscriptionId;  
-            // TODO: Make a request to your server to remove  
-            // the subscriptionId from your data store so you   
-            // don't attempt to send them push messages anymore
+  navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {  
+    // To unsubscribe from push messaging, you need get the  
+    // subscription object, which you can call unsubscribe() on.  
+    serviceWorkerRegistration.pushManager.getSubscription().then(  
+      function(pushSubscription) {  
+        // Check we have a subscription to unsubscribe  
+        if (!pushSubscription) {  
+          // No subscription object, so set the state  
+          // to allow the user to subscribe to push  
+          isPushEnabled = false;  
+          pushButton.disabled = false;  
+        pushButton.textContent = 'Enable Push Messages';  
+          return;  
+        }  
+          
+        var subscriptionId = pushSubscription.subscriptionId;  
+        // TODO: Make a request to your server to remove  
+        // the subscriptionId from your data store so you   
+        // don't attempt to send them push messages anymore
 
-            // We have a subscription, so call unsubscribe on it  
-            pushSubscription.unsubscribe().then(function(successful) {  
-              pushButton.disabled = false;  
-              pushButton.textContent = 'Enable Push Messages';  
-              isPushEnabled = false;  
-            }).catch(function(e) {  
-              // We failed to unsubscribe, this can lead to  
-              // an unusual state, so may be best to remove   
-              // the users data from your data store and   
-              // inform the user that you have done so
+        // We have a subscription, so call unsubscribe on it  
+        pushSubscription.unsubscribe().then(function(successful) {  
+          pushButton.disabled = false;  
+          pushButton.textContent = 'Enable Push Messages';  
+          isPushEnabled = false;  
+        }).catch(function(e) {  
+          // We failed to unsubscribe, this can lead to  
+          // an unusual state, so may be best to remove   
+          // the users data from your data store and   
+          // inform the user that you have done so
 
-              console.log('Unsubscription error: ', e);  
-              pushButton.disabled = false;  
-            });  
-          }).catch(function(e) {  
-            console.error('Error thrown while unsubscribing from push messaging.', 
-    e);  
-          });  
+          console.log('Unsubscription error: ', e);  
+          pushButton.disabled = false;  
+        });  
+      }).catch(function(e) {  
+        console.error('Error thrown while unsubscribing from push messaging.', e);  
       });  
-    }
+  });  
+}
+{% endhighlight %}
 
 ## Handle Subscription Changes
 
@@ -637,36 +658,38 @@ invalid and provide a new subscription. This could be due to a fixed lifetime of
 a subscription, a user clearing their cookies or some other reason specific to 
 the push provider or the browser.
 
-    self.addEventListener('pushsubscriptionchange', function(event) {  
-      event.waitUntil(  
-        self.registration.pushManager.subscribe()  
+{% highlight javascript %}
+self.addEventListener('pushsubscriptionchange', function(event) {  
+  event.waitUntil(  
+    self.registration.pushManager.subscribe()  
+      .then(function(subscription) {  
+        // TODO: Send new subscriptionId and endpoint to   
+        // your server so that you can send a push message   
+        // at a later date sendSubscriptionToServer is   
+        // defined in subscription-controller.js  
+        return sendSubscriptionToServer(subscription);  
+      })  
+      .catch(function(error) {  
+        // Check whether we're still registered.  
+        self.registration.pushManager.getSubscription()  
           .then(function(subscription) {  
-            // TODO: Send new subscriptionId and endpoint to   
-            // your server so that you can send a push message   
-            // at a later date sendSubscriptionToServer is   
-            // defined in subscription-controller.js  
-            return sendSubscriptionToServer(subscription);  
+            if (subscription === null) {  
+              throw new Error("No subscription");  
+            }  
           })  
-          .catch(function(error) {  
-            // Check whether we're still registered.  
-            self.registration.pushManager.getSubscription()  
-              .then(function(subscription) {  
-                if (subscription === null) {  
-                  throw new Error("No subscription");  
-                }  
-              })  
-              .catch(function(err) {  
-                console.warn('Unable to re-subscribe user to push notifications');  
-                // TODO: Remove any previous subscription details from   
-                // your server since the user won't receive any of the   
-                // push messages. Since the PushSubscription has been   
-                // deleted, you need to have stored a copy of   
-                // subscriptionId or some other identifier in a cookie   
-                // or similar.  
-              });  
-          })  
-        );  
-    });
+          .catch(function(err) {  
+            console.warn('Unable to re-subscribe user to push notifications');  
+            // TODO: Remove any previous subscription details from   
+            // your server since the user won't receive any of the   
+            // push messages. Since the PushSubscription has been   
+            // deleted, you need to have stored a copy of   
+            // subscriptionId or some other identifier in a cookie   
+            // or similar.  
+          });  
+      })  
+    );  
+});
+{% endhighlight %}
 
 In the [Github 
 sample](https://github.com/GoogleChrome/samples/tree/gh-pages/push-messaging-and-notifications), 
@@ -772,6 +795,7 @@ meaning there is no sample to give on how to send a push message on your server
 for anything other than GCM.
 
 # FAQs
+
 ## Where are the specs?
 
 [https://slightlyoff.github.io/ServiceWorker/spec/service\_worker/](https://slightlyoff.github.io/ServiceWorker/spec/service_worker/)  
@@ -780,8 +804,7 @@ for anything other than GCM.
 
 ## Can I prevent duplicate notifications if my web presence has multiple origins, or if I have both a web and native presence?
 
-There isn't a solution to this at the moment, but you can follow progress [on 
-](https://crbug.com/402223)[C](https://crbug.com/402223)[hromium](https://crbug.com/402223).
+There isn't a solution to this at the moment, but you can follow progress [on Chromium](https://crbug.com/402223).
 
 The ideal scenario would be to have some kind of ID for a users device and then 
 on the server side match up the native app and web app subscription ID's and 
