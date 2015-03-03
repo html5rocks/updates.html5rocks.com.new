@@ -79,3 +79,19 @@ To include a sample, use `include_code` tag in your post:
 e.g.
 
     {% include_code css-shapes shape-outside-polygon %}
+
+## Useful Tidbits
+
+The following snippets can be used in your markdown files.
+
+### Syntax Highlighting
+
+    {% highlight javascript %}
+    console.log('Some example code');
+    {% endhighlight %}
+
+### Adding Images
+
+    <p style="text-align: center;">
+      <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-04-push-on-the-open-web/filename.png %}" alt="Alt text" />
+    </p>
