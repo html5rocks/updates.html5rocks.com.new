@@ -165,6 +165,9 @@ function initialiseState() {
           // to allow the user to enable push  
           return;  
         }
+        
+        // Keep your server in sync with the latest subscriptionId
+        sendSubscriptionToServer(subscription);
 
         // Set your UI to show they have subscribed for  
         // push messages  
