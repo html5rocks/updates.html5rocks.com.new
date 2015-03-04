@@ -438,10 +438,6 @@ When developing your backend logic, remember that the Authorization header and
 format of the POST body are specific to the GCM endpoint, so detect when the 
 endpoint is for GCM and conditionally add the header and format the POST body.
 
-Your server should also parse the response body of the POST for 
-error:NotRegistered and canonical\_id results, as explained in [GCM 
-documentation](https://developer.android.com/google/gcm/server-ref.html#interpret-downstream).
-
 A downside to the current implementation of the Push API in Chrome is that you 
 can't send any data with a push message. Nope, nothing. The reason for this is 
 that in a future implementation, payload data will have to be encrypted on your 
@@ -651,52 +647,22 @@ function unsubscribe() {
 }
 {% endhighlight %}
 
-## Handle Subscription Changes
+## Keeping the Subscription Up to Date
 
-There may come a time when the browser needs to make a **subscriptionId** 
-invalid and provide a new subscription. This could be due to a fixed lifetime of 
-a subscription, a user clearing their cookies or some other reason specific to 
-the push provider or the browser.
+Subscriptions may get out of sync between GCM and your server. Make sure
+your server parses the response body of the GCM API's send POST, looking for
+**error:NotRegistered** and **canonical_id** results, as explained in the GCM
+documentation.
 
-{% highlight javascript %}
-self.addEventListener('pushsubscriptionchange', function(event) {  
-  event.waitUntil(  
-    self.registration.pushManager.subscribe()  
-      .then(function(subscription) {  
-        // TODO: Send new subscriptionId and endpoint to   
-        // your server so that you can send a push message   
-        // at a later date sendSubscriptionToServer is   
-        // defined in subscription-controller.js  
-        return sendSubscriptionToServer(subscription);  
-      })  
-      .catch(function(error) {  
-        // Check whether we're still registered.  
-        self.registration.pushManager.getSubscription()  
-          .then(function(subscription) {  
-            if (subscription === null) {  
-              throw new Error("No subscription");  
-            }  
-          })  
-          .catch(function(err) {  
-            console.warn('Unable to re-subscribe user to push notifications');  
-            // TODO: Remove any previous subscription details from   
-            // your server since the user won't receive any of the   
-            // push messages. Since the PushSubscription has been   
-            // deleted, you need to have stored a copy of   
-            // subscriptionId or some other identifier in a cookie   
-            // or similar.  
-          });  
-      })  
-    );  
-});
-{% endhighlight %}
-
-In the [Github 
-sample](https://github.com/GoogleChrome/samples/tree/gh-pages/push-messaging-and-notifications), 
-the **sendSubscriptionToServer()** method is shared between the main page and 
-the service worker by using the script tag in index.html and using 
-**importScripts()** in the service worker. This way you can implement the logic 
-to share the subscription details with your server in one place.
+Subscriptions may also get out of sync between the Service Worker and your
+server. For example after subscribing/unsubscribing successfully, a flaky
+network connection may prevent you from updating your server; or a user might
+revoke notifications permission, which triggers an automatic unsubscribe. Handle
+such cases by checking the result of
+**serviceWorkerRegistration.pushManager.getSubscription()** periodically (e.g.
+on page load) and synchronizing it with the server. You may also wish to
+re-subscribe automatically if you no longer have a subscription and
+Notification.permission == 'granted'.
 
 In **sendSubscriptionToServer()** you will need to consider how you handle 
 failed network requests when updating the **subscriptionId**. One solution is
