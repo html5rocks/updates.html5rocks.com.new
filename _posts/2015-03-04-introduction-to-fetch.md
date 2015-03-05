@@ -17,7 +17,7 @@ permalink: /2015/03/introduction-to-fetch
 
 **fetch()** allows you to make network requests similar to XMLHttpRequest 
 (XHR). The main difference is that the Fetch API uses Promises, which enables a 
-simpler and cleaner API, avoiding callback hell and the complex API for 
+simpler and cleaner API, avoiding callback hell and having to remember the complex API of 
 XMLHttpRequest.
 
 The [Fetch API](https://fetch.spec.whatwg.org/) has been available in the 
@@ -131,7 +131,7 @@ headers you can view to \`Cache-Control\`, \`Content-Language\`,
 An "opaque" response is for a request made for a resource on a different origin 
 that doesn't return CORS headers. With an opaque response we won't be able to 
 read the data returned or view the status of the request, meaning we can't check 
-if the request was successful or not. With current fetch() implementation it's 
+if the request was successful or not. With the current **fetch()** implementation it's 
 not possible to make requests for resources on a different origin from the 
 window global scope. Find out why 
 [here](https://code.google.com/p/chromium/issues/detail?id=457157&q=fetch%20no-cors&colspec=ID%20Pri%20M%20Week%20ReleaseBlock%20Cr%20Status%20Owner%20Summary%20OS%20Modified), 
@@ -143,11 +143,10 @@ resolve. The modes you can set are as follows:
 
 * "same-origin" only succeeds for requests for assets on the same origin, all 
   other requests will reject. 
-* "cors" will allows requests on the same-origin and other origins which return the 
-  appropriate CORs headers
+* "cors" will allow requests for assets on the same-origin and other origins which return the 
+  appropriate CORs headers.
 * "cors-with-forced-preflight" will always perform a [preflight 
-  check](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Preflighted_requests) with a "cors" request
-  before making the actual request
+  check](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Preflighted_requests) before making the actual request.
 * "no-cors" is intended to make requests to other origins that do not have CORS 
   headers and result in an **opaque** response, but as stated, this isn't 
   possible in the window global scope at the moment.
@@ -175,8 +174,8 @@ fetch, this allows you to share logic across fetch requests.
 
 If you are working with a JSON API, you'll need to check the status and parse the JSON 
 for each response. You can simplify your code by defining the status and JSON 
-parsing in separate functions, freeing you to only worry about handling the final data and 
-the error case.
+parsing in separate functions which return promises, freeing you to only worry 
+about handling the final data and the error case.
 
 {% highlight javascript %}
 function status(response) {  
@@ -201,14 +200,14 @@ fetch('users.json')
   });
  {% endhighlight %}
 
-We define the **status** function which checks the** response.status** and 
+We define the **status** function which checks the **response.status** and 
 returns the result of 
 [Promise.resolve()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve) 
 or 
 [Promise.reject()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject), 
-both of which return a resolved or rejected Promise. This is the first method 
-called in our **fetch() **chain, if it resolves, we then call our **json() 
-**method which again returns a Promise from the **response.json()** call. After 
+which return a resolved or rejected Promise. This is the first method 
+called in our **fetch()** chain, if it resolves, we then call our **json()**
+method which again returns a Promise from the **response.json()** call. After 
 this we have an object of the parsed JSON. If the parsing fails the Promise is 
 rejected and the catch statement executes.
 
@@ -230,10 +229,8 @@ fetch(url, {
       "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"  
     },  
     body: 'foo=bar&lorem=ipsum'  
-  })  
-  .then(function (response) {  
-    return response.json();  
-  })  
+  })
+  .then(json)  
   .then(function (data) {  
     console.log('Request succeeded with JSON response', data);  
   })  
@@ -257,21 +254,16 @@ fetch(url, {
 
 ## How do I cancel a fetch() request?
 
-At the moment there is no way to cancel a fetch, but this is currently being 
-[discussed on this 
-Git](https://github.com/whatwg/fetch/issues/20)[H](https://github.com/whatwg/fetch/issues/20)[ub 
-](https://github.com/whatwg/fetch/issues/20)[i](https://github.com/whatwg/fetch/issues/20)[ssue](https://github.com/whatwg/fetch/issues/20). 
-H/T @jaffathecake for this link.
+At the moment there is no way to cancel a fetch, but this is being 
+[discussed on GitHub ](https://github.com/whatwg/fetch/issues/20). 
+H/T [@jaffathecake](https://twitter.com/jaffathecake) for this link.
 
 ## Is there a polyfill?
 
-[Git](https://github.com/github/fetch)[H](https://github.com/github/fetch)[ub 
-has a 
-](https://github.com/github/fetch)[p](https://github.com/github/fetch)[olyfill 
-for fetch](https://github.com/github/fetch). H/T @Nexii for pointing this out.
+[GitHub has a polyfill for fetch](https://github.com/github/fetch). 
+H/T [@Nexii](https://twitter.com/Nexii) for pointing this out.
 
 ## Why is "no-cors" supported in service workers but not the window?
 
-This is due to a security concern, you can [learn more 
-here](https://code.google.com/p/chromium/issues/detail?id=457157&q=fetch%20no-cors&colspec=ID%20Pri%20M%20Week%20ReleaseBlock%20Cr%20Status%20Owner%20Summary%20OS%20Modified).
+This is due to a security concern, you can [learn more here](https://code.google.com/p/chromium/issues/detail?id=457157&q=fetch%20no-cors&colspec=ID%20Pri%20M%20Week%20ReleaseBlock%20Cr%20Status%20Owner%20Summary%20OS%20Modified).
 
