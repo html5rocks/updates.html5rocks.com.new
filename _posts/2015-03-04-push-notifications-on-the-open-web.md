@@ -101,6 +101,9 @@ and they'll expect it to keep up to date with any changes that occur. In other
 words, if they enable push messages for your site, then leave and come back a 
 week later, your UI should show that push messages are already enabled.
 
+There are some [best practices in this doc](https://docs.google.com/document/d/1WNPIS_2F0eyDm5SS2E6LZ_75tk6XtBSnR1xNjWJ_DPE/edit?usp=sharing),
+we'll focus on the technical aspects in this article.
+
 At this point you may be thinking there are only two states to deal with, 
 enabled or disabled. There are however some other states surrounding 
 notifications which you need to take into account.  

@@ -28,8 +28,7 @@ There is also a rather fetching [polyfill by GitHub](https://github.com/github/f
 If you've never used 
 [Promises](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise) 
 before, [check out this great article](http://www.html5rocks.com/en/tutorials/es6/promises/) by Jake 
-Archibald. It covers what Promises are and how they compare to the more common 
-event callback pattern.
+Archibald.
 
 # Basic Fetch Request
 
@@ -88,7 +87,7 @@ We start by checking that the response status is 200 before parsing the response
 as JSON. 
 
 The response of a fetch() request is a 
-[S](https://streams.spec.whatwg.org/)[tream](https://streams.spec.whatwg.org/) 
+[Stream](https://streams.spec.whatwg.org/) 
 object, which means that when we call the json() method, a Promise is returned 
 since the reading of the stream will happen asynchronously.
 
@@ -113,7 +112,7 @@ fetch('users.json').then(function(response) {
 
 # Response Types
 
-When we make a fetch request, the response will be given a **response.****type** 
+When we make a fetch request, the response will be given a **response.type** 
 of "[basic](https://fetch.spec.whatwg.org/#concept-filtered-response-basic)", 
 "[cors](https://fetch.spec.whatwg.org/#concept-filtered-response-cors)" or 
 "[opaque](https://fetch.spec.whatwg.org/#concept-filtered-response-opaque)". 
@@ -124,9 +123,7 @@ When a request is made for a resource on the same origin, the response will have
 a "basic" type and there aren't any restrictions on what you can view from the 
 response. 
 
-If a request is made for a resource on another origin which returns [the 
-COR](http://enable-cors.org/)[S](http://enable-cors.org/)[ 
-headers](http://enable-cors.org/), then the type is "cors". "cors" and "basic" 
+If a request is made for a resource on another origin which returns [the CORs headers](http://enable-cors.org/), then the type is "cors". "cors" and "basic" 
 responses are almost identical except that a "cors" response restricts the 
 headers you can view to \`Cache-Control\`, \`Content-Language\`, 
 \`Content-Type\`, \`Expires\`, \`Last-Modified\`, and \`Pragma\`.
@@ -138,19 +135,18 @@ if the request was successful or not. With current fetch() implementation it's
 not possible to make requests for resources on a different origin from the 
 window global scope. Find out why 
 [here](https://code.google.com/p/chromium/issues/detail?id=457157&q=fetch%20no-cors&colspec=ID%20Pri%20M%20Week%20ReleaseBlock%20Cr%20Status%20Owner%20Summary%20OS%20Modified), 
-it should be added when the [Cache 
-API](https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#cache-objects) 
+it should be added when the [Cache API](https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#cache-objects) 
 is available in the window object.
 
 You can define a mode for a fetch request such that only certain requests will 
-resolve. The modes you can set are as follows:. 
+resolve. The modes you can set are as follows:
 
 * "same-origin" only succeeds for requests for assets on the same origin, all 
   other requests will reject. 
-* "cors" will allows requests on the same-origin and responses which have the 
-  appropriate CORs header
+* "cors" will allows requests on the same-origin and other origins which return the 
+  appropriate CORs headers
 * "cors-with-forced-preflight" will always perform a [preflight 
-  check](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Preflighted_requests) 
+  check](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Preflighted_requests) with a "cors" request
   before making the actual request
 * "no-cors" is intended to make requests to other origins that do not have CORS 
   headers and result in an **opaque** response, but as stated, this isn't 
@@ -177,9 +173,9 @@ fetch('http://some-site.com/cors-enabled/some.json', {mode: 'cors'})
 One of the great features of promises is the ability to chain them together. For 
 fetch, this allows you to share logic across fetch requests.
 
-If you are working with a JSON API, you'll need to check status and parse JSON 
+If you are working with a JSON API, you'll need to check the status and parse the JSON 
 for each response. You can simplify your code by defining the status and JSON 
-parsing in separate functions and only worry about handling the final data and 
+parsing in separate functions, freeing you to only worry about handling the final data and 
 the error case.
 
 {% highlight javascript %}
