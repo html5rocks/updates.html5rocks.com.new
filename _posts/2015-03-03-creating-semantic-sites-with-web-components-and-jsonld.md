@@ -27,7 +27,7 @@ Typically, JSON is a convenient way to inject data into a particular widget. Wit
 
 By combining web components with JSON-LD, we create a well-defined architecture for an application:
 
-* schema.org and JSON-LD represent the data layer, with schema.org providing the vocabulary for the data and JSON-LD constituing the format and transport for the data;
+* schema.org and JSON-LD represent the data layer, with schema.org providing the vocabulary for the data and JSON-LD constituting the format and transport for the data;
 * custom elements represent the presentation layer, configurable and separated from the data itself.
 
 ## Example
@@ -49,7 +49,7 @@ The best way to check how Google is reading and indexing this page is though the
   <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-03-creating-semantic-sites/tool.png %}" alt="Structured Data Testing Tool UI" />
 </p>
 
-You can read more about the tool and improvements it introduced in the Webmaster Central [blog post](http://googlewebmastercentral.blogspot.co.uk/2015/01/new-structured-data-testing-tool.html).
+You can read more about the tool and the improvements it introduced in the Webmaster Central [blog post](http://googlewebmastercentral.blogspot.co.uk/2015/01/new-structured-data-testing-tool.html).
 
 ## Linking components to a structured data source
 
