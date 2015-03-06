@@ -15,7 +15,7 @@ permalink: /2015/03/creating-semantic-sites-with-web-components-and-jsonld
 ---
 With the rising popularity of [web components](http://webcomponents.org/) and supporting libraries like [Polymer](https://www.polymer-project.org/), [custom elements](http://w3c.github.io/webcomponents/spec/custom/) become an attractive way to build UI features. The default encapsulation of custom elements makes them especially useful for creating independent widgets.
 
-While some of the widgets are self-contained, many of them rely on external data to present the content to the user - e.g. the current forecast for a weather widget or the address of a company for a map widget.
+While some of the widgets are self-contained, many of them rely on external data to present the content to the user - e.g., the current forecast for a weather widget or the address of a company for a map widget.
 
 In Polymer, custom elements are declarative, which means once they are imported into a project, it is very easy to include and configure them in HTML, e.g. by passing the data to populate the widget through an attribute.
 
@@ -43,7 +43,7 @@ It contains two widgets: a map with a pin for every office and a dropdown with t
 
 In this demo we are using [LocalBusiness](https://developers.google.com/webmasters/business-location-pages/) entities to express the meaning of our data, which is the geographical location of some of the Google Offices.
 
-The best way to check how Google is reading and indexing this page is though the new improved [Structured Data Testing Tool](https://developers.google.com/structured-data/testing-tool/). Submit the demo’s url in the *Fetch URL* section and click *Fetch and validate*. The section on the right will show you parsed data retrieved from the page along with any errors that may occur. It is a very convenient way to check if your JSON-LD markup is correct and processable by Google.
+The best way to check how Google is reading and indexing this page is though the new improved [Structured Data Testing Tool](https://developers.google.com/structured-data/testing-tool/). Submit the demo’s URL in the *Fetch URL* section and click *Fetch and validate*. The section on the right will show you parsed data retrieved from the page along with any errors that may occur. It is a very convenient way to check if your JSON-LD markup is correct and processable by Google.
 
 <p style="text-align: center;">
   <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-03-creating-semantic-sites/tool.png %}" alt="Structured Data Testing Tool UI" />
