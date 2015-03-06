@@ -3,8 +3,8 @@ layout: post
 title: "Creating semantic sites with Web Components and JSON-LD"
 description: "Add schema.org markup to your components and make them search engine friendly."
 article:
-  written_on: 2015-03-03
-  updated_on: 2015-03-03
+  written_on: 2015-03-09
+  updated_on: 2015-03-09
 authors:
   - ewagasperowicz
 tags:
@@ -27,7 +27,7 @@ Typically, JSON is a convenient way to inject data into a particular widget. Wit
 
 By combining web components with JSON-LD, we create a well-defined architecture for an application:
 
-* schema.org and JSON-LD represent the data layer, with schema.org providing the vocabulary for the data and JSON-LD constituing the format and transport for the data;
+* schema.org and JSON-LD represent the data layer, with schema.org providing the vocabulary for the data and JSON-LD constituting the format and transport for the data;
 * custom elements represent the presentation layer, configurable and separated from the data itself.
 
 ## Example
@@ -49,7 +49,7 @@ The best way to check how Google is reading and indexing this page is though the
   <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-03-creating-semantic-sites/tool.png %}" alt="Structured Data Testing Tool UI" />
 </p>
 
-You can read more about the tool and improvements it introduced in the Webmaster Central [blog post](http://googlewebmastercentral.blogspot.co.uk/2015/01/new-structured-data-testing-tool.html).
+You can read more about the tool and the improvements it introduced in the Webmaster Central [blog post](http://googlewebmastercentral.blogspot.co.uk/2015/01/new-structured-data-testing-tool.html).
 
 ## Linking components to a structured data source
 
@@ -67,7 +67,7 @@ This way we ensure that the data is easily accessible to other consumers support
 
 As a second step, we use two web components to display the data:
 
-* [address-dropdown-jsonld](https://github.com/PolymerLabs/structured-data-web-components/tree/master/autocomplete-jsonld) - This element creates a dropdown with all the locations passed in a “jsonld” attribute.
+* [address-dropdown-jsonld](https://github.com/PolymerLabs/structured-data-web-components/tree/master/address-dropdown-jsonld) - This element creates a dropdown with all the locations passed in a “jsonld” attribute.
 * [google-map-jsonld](https://github.com/PolymerLabs/structured-data-web-components/tree/master/google-map-jsonld) - This element creates a google map with a pin for every location passed in a “jsonld” attribute.
 
 In order to do so, we import them to our page using [HTML imports](https://www.polymer-project.org/platform/html-imports.html).
@@ -91,8 +91,8 @@ document.addEventListener('polymer-ready', function() {
     var jsonld = JSON.parse(
         document.querySelector(
             'script[type="application/ld+json"]').innerText);
-    document.querySelector('google-map-jsonld').jsonld = jsonld.stores;
-    document.querySelector('address-dropdown-jsonld').jsonld = jsonld.stores;
+    document.querySelector('google-map-jsonld').jsonld = jsonld['@graph'];
+    document.querySelector('address-dropdown-jsonld').jsonld = jsonld['@graph'];
   });
 {% endhighlight %}
 
