@@ -67,7 +67,7 @@ This way we ensure that the data is easily accessible to other consumers support
 
 As a second step, we use two web components to display the data:
 
-* [address-dropdown-jsonld](https://github.com/PolymerLabs/structured-data-web-components/tree/master/autocomplete-jsonld) - This element creates a dropdown with all the locations passed in a “jsonld” attribute.
+* [address-dropdown-jsonld](https://github.com/PolymerLabs/structured-data-web-components/tree/master/address-dropdown-jsonld) - This element creates a dropdown with all the locations passed in a “jsonld” attribute.
 * [google-map-jsonld](https://github.com/PolymerLabs/structured-data-web-components/tree/master/google-map-jsonld) - This element creates a google map with a pin for every location passed in a “jsonld” attribute.
 
 In order to do so, we import them to our page using [HTML imports](https://www.polymer-project.org/platform/html-imports.html).
@@ -91,8 +91,8 @@ document.addEventListener('polymer-ready', function() {
     var jsonld = JSON.parse(
         document.querySelector(
             'script[type="application/ld+json"]').innerText);
-    document.querySelector('google-map-jsonld').jsonld = jsonld.stores;
-    document.querySelector('address-dropdown-jsonld').jsonld = jsonld.stores;
+    document.querySelector('google-map-jsonld').jsonld = jsonld['@graph'];
+    document.querySelector('address-dropdown-jsonld').jsonld = jsonld['@graph'];
   });
 {% endhighlight %}
 
