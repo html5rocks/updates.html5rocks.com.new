@@ -3,8 +3,8 @@ layout: post
 title: "Introduction to fetch()"
 description: "The fetch() API is landing in the window object and is looking to replace XHRs"
 article:
-  written_on: 2015-03-04
-  updated_on: 2015-03-04
+  written_on: 2015-03-11
+  updated_on: 2015-03-11
 authors:
   - mattgaunt
 tags:
