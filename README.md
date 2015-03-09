@@ -10,6 +10,15 @@ The recursive option allows you to checkout the /samples submodule,
 which points to
 [github.com/GoogleChrome/samples](https://github.com/GoogleChrome/samples).
 
+## First Time Set Up
+
+You need to do the following to get up and running to run locally. These steps only
+need to be run once
+
+    git submodule update --init --recursive
+    bundle install
+
+
 ## Run it locally
 
 Make sure you have `ruby`, `jekyll` and `jekyll-assets` installed:
@@ -70,3 +79,19 @@ To include a sample, use `include_code` tag in your post:
 e.g.
 
     {% include_code css-shapes shape-outside-polygon %}
+
+## Useful Tidbits
+
+The following snippets can be used in your markdown files.
+
+### Syntax Highlighting
+
+    {% highlight javascript %}
+    console.log('Some example code');
+    {% endhighlight %}
+
+### Adding Images
+
+    <p style="text-align: center;">
+      <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-04-push-on-the-open-web/filename.png %}" alt="Alt text" />
+    </p>

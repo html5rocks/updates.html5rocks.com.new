@@ -58,6 +58,7 @@ Here’s a basic example of using <code>sw-precache</code> as part of a <code>gu
 {% highlight javascript %}
 gulp.task('generate-service-worker', function(callback) {
   var fs = require('fs');
+  var path = require('path');
   var swPrecache = require('sw-precache');
   var rootDir = 'app';
 

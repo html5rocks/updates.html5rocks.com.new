@@ -8,6 +8,7 @@ article:
 authors:
   - mattgaunt
 tags:
+  - virtual viewport
 permalink: /2015/01/virtual-viewport
 ---
 
