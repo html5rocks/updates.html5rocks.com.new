@@ -83,7 +83,7 @@ var detectInjection = function(knownHostsArray) {
 };
  
 window.addEventListener("load", function() {
-  var scripts = detectInjection(["paul.kinlan.me", "ssl.google-analytics.com", "www.google-analytics.com", "disqus.com", "paulkinlan.disqus.com"]);
+  var scripts = detectInjection(["updates.html5rocks.com", "ssl.google-analytics.com", "www.google-analytics.com", "disqus.com", "html5rocks.disqus.com", "fonts.googleapis.com"]);
  
   if(!!scripts == true && scripts.length > 0) {
     for(var scriptsIdx = 0; scriptsIdx < scripts.length; scriptsIdx++) {
