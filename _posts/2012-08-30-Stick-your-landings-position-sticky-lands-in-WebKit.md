@@ -50,7 +50,7 @@ To illustrate this feature in a practical setting, I've put together a [DEMO](ht
 
 ### Old approach: scroll events
 
-Until now, to achieve the sticky effect, sites setup `scroll` event listeners in JS. We actually use [this technique](https://github.com/html5rocks/www.html5rocks.com/blob/master/templates/base.html#L417) as well on html5rocks tutorials. On screens smaller than 1200px, our table of contents sidebar changes to `position: fixed` after a certain amount of scrolling.
+Until now, to achieve the sticky effect, sites setup `scroll` event listeners in JS. We actually use [this technique](https://github.com/html5rocks/www.html5rocks.com/blob/a8b383c59a5aceb5ae4588809adc4094ee767349/templates/base.html#L417) as well on html5rocks tutorials. On screens smaller than 1200px, our table of contents sidebar changes to `position: fixed` after a certain amount of scrolling.
 
 Here's the (now old way) to have a header that sticks to the top of the viewport when the user scrolls down, and falls back into place when the user scrolls up:
 
