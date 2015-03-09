@@ -731,6 +731,15 @@ worker.
   <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-04-push-on-the-open-web/service-worker-on-chrome-for-android.png %}" alt="Screenshot showing where service workers live in chrome inspect" />
 </p>
 
+# UX for Push Notifications
+
+The Chrome team has been putting together a document of best practices
+for push notifications UX as well as a document covering some
+of the edge cases when working with push notifications.
+
+- [Best Practices for Push Notifications Permissions UX](https://docs.google.com/document/d/1WNPIS_2F0eyDm5SS2E6LZ_75tk6XtBSnR1xNjWJ_DPE/edit?usp=sharing)
+- [Push Notifications Edge Cases and Mitigations](https://docs.google.com/document/d/1KbmuByY7mJsTtqS-Mh6cDBt463hmDdp-67rTcN-Gmn8/edit?usp=sharing)
+
 # Future of Push Messaging on Chrome and the Open Web
 
 This section goes into a little bit of detail surrounding some of the Chrome 
