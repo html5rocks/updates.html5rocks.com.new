@@ -38,7 +38,9 @@ Let’s consider a following example - a page that lists a couple of Google Offi
 It contains two widgets: a map with a pin for every office and a dropdown with the list of locations. It is important that both widgets present the same data to the user and that the page is readable to search engines.
 
 <p style="text-align: center;">
-  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-03-creating-semantic-sites/ui.png %}" alt="Web Components and JSON-LD demo page" />
+  <a href="http://polymerlabs.github.io/structured-data-web-components/demo/combined-demo.html">
+    <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-03-creating-semantic-sites/ui.png %}" alt="Web Components and JSON-LD demo page" />
+  </a>
 </p>
 
 In this demo we are using [LocalBusiness](https://developers.google.com/webmasters/business-location-pages/) entities to express the meaning of our data, which is the geographical location of some of the Google Offices.
@@ -46,7 +48,9 @@ In this demo we are using [LocalBusiness](https://developers.google.com/webmaste
 The best way to check how Google is reading and indexing this page is though the new improved [Structured Data Testing Tool](https://developers.google.com/structured-data/testing-tool/). Submit the demo’s URL in the *Fetch URL* section and click *Fetch and validate*. The section on the right will show you parsed data retrieved from the page along with any errors that may occur. It is a very convenient way to check if your JSON-LD markup is correct and processable by Google.
 
 <p style="text-align: center;">
-  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-03-creating-semantic-sites/tool.png %}" alt="Structured Data Testing Tool UI" />
+  <a href="https://developers.google.com/structured-data/testing-tool/?url=http://polymerlabs.github.io/structured-data-web-components/demo/combined-demo.html">
+    <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-03-creating-semantic-sites/tool.png %}" alt="Structured Data Testing Tool UI" />
+  </a>
 </p>
 
 You can read more about the tool and the improvements it introduced in the Webmaster Central [blog post](http://googlewebmastercentral.blogspot.co.uk/2015/01/new-structured-data-testing-tool.html).
