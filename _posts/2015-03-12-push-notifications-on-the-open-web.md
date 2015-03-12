@@ -15,10 +15,10 @@ permalink: /2015/03/push-notificatons-on-the-open-web
 ---
 
 If you ask a room of developers what mobile device features are missing from the 
-web, push messages are always high on the list.
+web, push notifications are always high on the list.
 
-Push messaging is a great feature that allows you to re-engage with your users 
-and provide a smooth user experience with timely and customised content.
+Push notifications allow your users to opt-in to timely updates from sites they 
+love and allow you to effectively re-engage them with customized, engaging content.
 
 As of Chrome version 42, the [Push API](http://w3c.github.io/push-api/) and 
 [Notification API](https://notifications.spec.whatwg.org) are available to 
