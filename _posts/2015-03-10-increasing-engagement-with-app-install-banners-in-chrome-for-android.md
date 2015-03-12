@@ -35,12 +35,8 @@ and seamlessly install your Web App as per the images below.
 
 
 <p style="text-align: center;">
-  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-03/app-install-banner-io.png %}" alt="IO Site with install banner" />
+  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-03/add-to-home-screen.gif %}" alt="IO Site with install banner" />
 </p>
-
-<p style="text-align: center;">
-  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-03/app-install-banner-qr.png %}" alt="QR Code Scanner App with banner" />
-</p>>
 
 "This looks great, I want it on my site" I hear you shout. "Please tell me how 
 to add it!".  The good news is if you meet the following criteria Chrome will 
@@ -89,7 +85,7 @@ label.
 
 **My app meets all the criteria, but I don't want the banner to display. Can I control this?**  
 Not right now. We are working on ways to give developers the ability to cancel 
-the display of the prompt.
+the display of the prompt. Follow our "[Intent to Implement](https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/HSSqpbYd8W8)" on blink-dev mailing list.
 
 **Can I detect if a user tapped "Add" at the prompt and added to home screen?**  
 Not right now. We are working on ways to give developers the ability to 
@@ -123,6 +119,7 @@ Because you need a service worker.
 Yes, Glad you asked: 
 
 * [Google I/O 2015 web app](https://events.google.com/io2015/)
+* [Chrome Dev Summit](https://developers.chrome.com/devsummit/)
 * [SVG OMG](https://jakearchibald.github.io/svgomg/) 
   [[Code](https://github.com/jakearchibald/svgomg)]
 * [QR Snapper](https://qrsnapper.appspot.com) 
