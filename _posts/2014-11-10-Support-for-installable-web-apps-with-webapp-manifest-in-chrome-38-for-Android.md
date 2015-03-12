@@ -37,28 +37,19 @@ You can call the manifest whatever you want.  Most people will probably just use
   "name": "Kinlan's Amazing Application ++",
   "icons": [
     {
-      "src": "launcher-icon-0-75x.png",
-      "sizes": "36x36"
-    },
-    {
-      "src": "launcher-icon-1x.png",
-      "sizes": "48x48"
-    },
-    {
-      "src": "launcher-icon-1-5x.png",
-      "sizes": "72x72"
-    },
-    {
       "src": "launcher-icon-2x.png",
-      "sizes": "96x96"
+      "sizes": "96x96",
+      "type": "image/png"
     },
     {
       "src": "launcher-icon-3x.png",
-      "sizes": "144x144"
+      "sizes": "144x144",
+      "type": "image/png"
     },
     {
       "src": "launcher-icon-4x.png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "type": "image/png"
     }
   ],
   "start_url": "index.html",
