@@ -262,7 +262,8 @@ Below is a super-simple manifest file:
   "short_name": "Push Demo",  
   "icons": [{  
         "src": "images/icon-192x192.png",  
-        "sizes": "192x192"  
+        "sizes": "192x192",
+        "type": "image/png" 
       }],  
   "start_url": "/index.html?homescreen=1",  
   "display": "standalone",  
