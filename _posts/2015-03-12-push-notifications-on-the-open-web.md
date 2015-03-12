@@ -3,8 +3,8 @@ layout: post
 title: "Push Notifications on the Open Web"
 description: "Push messaging and notifications are landing in Chrome 42."
 article:
-  written_on: 2015-03-04
-  updated_on: 2015-03-04
+  written_on: 2015-03-12
+  updated_on: 2015-03-12
 authors:
   - mattgaunt
 tags:
@@ -863,3 +863,19 @@ from using Notifications.permission and use the Permissions API instead.
 
 This issue only affects pages which aren't currently controlled by a service 
 worker. You can [learn more here](https://code.google.com/p/chromium/issues/detail?id=460903).
+
+## What if a notification is out of date by the time the users device received the push?
+
+You always have to show a notification when you receive a push message. 
+In the scenario where you want to send a notification but it's only useful
+for a certain period time, you can use the 'time_to_live' parameter on GCM
+so that GCM won't send the push message if it passes the expiry time.
+
+[More details can be found here](https://developer.android.com/google/gcm/server.html#ttl).
+
+## What happens if I send 10 push messages but only want the device to receive one?
+
+GCM has a 'collapse_key' parameter you can use to tell GCM to replace any pending
+message which has the same 'collapse_key', with the new message.
+
+[More details can be found here](https://developer.android.com/google/gcm/server.html#lifetime).
