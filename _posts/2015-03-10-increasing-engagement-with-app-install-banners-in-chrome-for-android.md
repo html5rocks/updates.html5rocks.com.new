@@ -29,7 +29,7 @@ as an Added to Homescreen app and if not, then tactically decide to give them an
 overlay that asked them to work around our poor UX.  This isn't great for users, 
 and it is not good for developers.
 
-In Chrome 42 (M42 - that will soon be in Beta) we are introducing "App Install 
+In Chrome 42 (M42 - that is now in Beta) we are introducing "App Install 
 Banners".  App Install Banners give you the ability to have your users quickly 
 and seamlessly install your Web App as per the images below.
 
@@ -51,6 +51,7 @@ manage the prompting of users:
   - The manifest defines how your app appears on the user's system and how it 
   should be launched - and you are required to have a \`short\_name\` and a 
   \`144x144\` png icon
+  - Your icon declartion's should include a mime type of `image/png`
 * You have a [service 
   worker](http://www.html5rocks.com/en/tutorials/service-worker/introduction/) 
   registered on your site. We recommend a [simple custom offline page](https://github.com/GoogleChrome/samples/blob/gh-pages/service-worker/custom-offline-page/service-worker.js) 
@@ -60,6 +61,22 @@ manage the prompting of users:
   (you need a service worker after all)
 * The user has visited your site twice over two separate days during the course 
   of two weeks.
+
+A sample manifest is [provided in our samples](https://github.com/GoogleChrome/samples/tree/gh-pages/app-install-banner) and one here for quick reference:
+
+  {
+    "short_name": "Kinlan's Amaze App",
+    "name": "Kinlan's Amazing Application ++",
+    "icons": [
+      {
+        "src": "launcher-icon-3x.png",
+        "sizes": "144x144",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "index.html",
+    "display": "standalone",
+  }
 
 If you are interested in the implementation, check out [crbug 
 452825](https://code.google.com/p/chromium/issues/detail?id=452825).  If you are 
