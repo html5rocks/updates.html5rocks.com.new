@@ -262,7 +262,8 @@ Below is a super-simple manifest file:
   "short_name": "Push Demo",  
   "icons": [{  
         "src": "images/icon-192x192.png",  
-        "sizes": "192x192"  
+        "sizes": "192x192",
+        "type": "image/png" 
       }],  
   "start_url": "/index.html?homescreen=1",  
   "display": "standalone",  
@@ -442,7 +443,7 @@ notification:
     "{\"registration_ids\":[\"<YOUR_SUBSCRIPTION_ID>\"]}"
 
 <p style="text-align: center;">
-  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-04-push-on-the-open-web/push-messaging-on-chrome.png %}" alt="Example of a push message from Chrome for Android" />
+  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-04-push-on-the-open-web/push-message.gif %}" alt="Example of a push message from Chrome for Android" />
 </p>
 
 When developing your backend logic, remember that the Authorization header and 
