@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Increasing engagment with Web App install banners"
+title: "Increasing engagement with Web App install banners"
 description: "Web App Manifest ✔︎, Service Worker✔.Get ready for Web App Install banners "
 article:
   written_on: 2015-03-10
