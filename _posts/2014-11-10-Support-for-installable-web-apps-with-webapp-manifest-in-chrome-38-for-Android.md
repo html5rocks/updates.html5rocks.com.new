@@ -52,7 +52,7 @@ You can call the manifest whatever you want.  Most people will probably just use
       "type": "image/png"
     }
   ],
-  "start_url": "index.html",
+  "start_url": "/index.html",
   "display": "standalone",
   "orientation": "landscape"
 }
@@ -69,7 +69,7 @@ Some interesting points in Chrome's implementation:
 Once you have the manifest created and it is hosted on your site all you need to do is add a `link` tag from all your pages that encompass your app as follows.
 
 {% highlight html %}
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="/manifest.json">
 {% endhighlight %}
 
 That's it.
