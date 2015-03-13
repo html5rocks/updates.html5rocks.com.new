@@ -109,8 +109,8 @@ service worker.
 We believe that when you add to the user's home screen you should be providing 
 an app-like experience.  A service worker, especially one that supports push 
 messaging or offline, is a strong indicator that you are developing a first 
-class device experience.  We recommend the following simple Service Worker as a 
-starting point. 
+class device experience.  We recommend the following [simple Service Worker as a 
+starting point](https://github.com/GoogleChrome/samples/blob/gh-pages/app-install-banner/service-worker.js). 
 
 **Why do I need SSL?**  
 Because you need a service worker.
