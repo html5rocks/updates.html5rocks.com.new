@@ -179,7 +179,7 @@ about handling the final data and the error case.
 
 {% highlight javascript %}
 function status(response) {  
-  if (response.status &gt;= 200 && response.status &lt; 300) {  
+  if (response.status >= 200 && response.status < 300) {  
     return Promise.resolve(response)  
   } else {  
     return Promise.reject(new Error(response.statusText))  
