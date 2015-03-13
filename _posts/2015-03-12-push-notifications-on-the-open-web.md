@@ -833,10 +833,15 @@ have begun work on [implementing the Push API](https://bugzilla.mozilla.org/show
 
 ## Can I remove a notification after a certain time period?
 
-At the moment this isn't possible and we are planning on adding support to get a 
-list of past notifications. If you have a use case to set an expiration when the 
-notification is created, we'd love to know what that is, so please add a comment 
-and we'll pass it back to the Chrome team.
+At the moment this isn't possible but we are planning on adding support to get a 
+list of currently visible notifications. If you have a use case to set an 
+expiration for notification after it's displayed created, we'd love to know 
+what that is, so please add a comment and we'll pass it back to the Chrome team.
+
+If you only need to stop a push notification from being sent to the user
+after a certain time period, and don't care how long the notification stays
+visible, then you can use GCM's time to live (ttl) parameter, 
+[learn more here](https://developer.android.com/google/gcm/server.html#ttl).
 
 ## What are the limitations of push messaging in Chrome 42?
 
