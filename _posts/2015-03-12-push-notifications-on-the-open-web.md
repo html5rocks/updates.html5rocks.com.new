@@ -512,7 +512,7 @@ self.addEventListener('push', function(event) {
     }).catch(function(err) {  
       console.error('Unable to retrieve data', err);
 
-      var title = 'An error occured';
+      var title = 'An error occurred';
       var message = 'We were unable to get the information for this push message';  
       var icon = URL_TO_DEFAULT_ICON;  
       var notificationTag = 'notification-error';  
@@ -768,7 +768,7 @@ Web Push Protocol with Chrome and GCM.
 
 Until then, you need to detect the endpoint 
 "[https://android.googleapis.com/gcm/send](https://android.googleapis.com/gcm/send)" 
-and handle it seperately from other endpoints, i.e. format the payload data in a 
+and handle it separately from other endpoints, i.e. format the payload data in a 
 specific way and add the Authorization key.
 
 ## How to Implement the Web Push Protocol?
@@ -807,7 +807,7 @@ The advantage of using push messages is that even if your page is closed, your
 service worker will be woken up and be able to show a notification. Web Sockets 
 and EventSource have their connection closed when the page or browser is closed.
 
-## What if I don't need backgound event delivery?
+## What if I don't need background event delivery?
 
 If you don't need background delivery then Web Sockets are a great option.
 
