@@ -60,19 +60,21 @@ manage the prompting of users:
 
 A sample manifest is [provided in our samples](https://github.com/GoogleChrome/samples/tree/gh-pages/app-install-banner) and one here for quick reference:
 
+{% highlight javascript %}
+{
+  "short_name": "Kinlan's Amaze App",
+  "name": "Kinlan's Amazing Application ++",
+  "icons": [
     {
-      "short_name": "Kinlan's Amaze App",
-      "name": "Kinlan's Amazing Application ++",
-      "icons": [
-        {
-          "src": "launcher-icon-3x.png",
-          "sizes": "144x144",
-          "type": "image/png"
-        }
-      ],
-      "start_url": "index.html",
-      "display": "standalone"
+      "src": "launcher-icon-3x.png",
+      "sizes": "144x144",
+      "type": "image/png"
     }
+  ],
+  "start_url": "index.html",
+  "display": "standalone"
+}
+{% endhighlight %}
 
 If you are interested in the implementation, check out [crbug 
 452825](https://code.google.com/p/chromium/issues/detail?id=452825).  If you are 
