@@ -591,7 +591,7 @@ URL for a particular notification tag, this way you can look it up in the
 An alternative approach (albeit somewhat unconventional) would be to use a 
 [fragment identifier](http://en.wikipedia.org/wiki/Fragment_identifier) on the 
 end of your icon URL. This way it won't affect the image's cachability while 
-giving you access to a short URL. (H/T to [Casey at GoRoost](https://goroost.com/) 
+giving you access to a short URL. (H/T to [Casey at Roost](https://goroost.com/) 
 for this idea.)
 
 The simplest way to overcome the temporary issue of only being able to open URLs 
