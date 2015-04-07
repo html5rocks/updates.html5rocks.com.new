@@ -36,4 +36,7 @@ The new names more accurately represent the behavior provided by each object. `K
 
 If you're using parts of the draft spec via the web-animations-next polyfill, you'll have to update your code within the deprecation period to reflect these new names. As per the [polyfill changes policy](https://github.com/web-animations/web-animations-js#breaking-changes), we aim to support an old version for three months and provide console warning statements if your site use deprecated features or names.
 
-If you're keen to try out these features, then watch out for an upcoming release of the polyfill to take advantage of these new names. Finally, be sure to subscribe to the [web-animations-changes](https://groups.google.com/forum/#!forum/web-animations-changes) group to hear about any other changes.
+If you're keen to try out these features, then watch out for the [v2 release][polyfill-releases] of the polyfill to take advantage of these new names. Finally, be sure to subscribe to the [web-animations-changes](https://groups.google.com/forum/#!forum/web-animations-changes) group to hear about any other changes.
+
+
+[polyfill-releases]: https://github.com/web-animations/web-animations-js/releases
