@@ -40,7 +40,7 @@ These changes are important for consitency, standardisation of the web platform 
 
 Sometimes developers will use `hasOwnProperty` to check for presence of an attribute on an object.  This will no longer work as [per the spec](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.5) because objects are not considered on the protoype chain.
 
-Chrome 42 and earlier 
+As of Chrome 42 and earlier the following would return true.
 
 {% highlight javascript %}
 > div = document.createElement("div");
@@ -49,7 +49,7 @@ Chrome 42 and earlier
 true
 {% endhighlight %}
 
-Chrome 43 onwards
+In Chrome 43 onwards it will return false
 
 {% highlight javascript %}
 > div = document.createElement("div");
@@ -98,7 +98,7 @@ Object {get: function, set: function, enumerable: false, configurable: false}
 
 JSON.stringify doesn’t serialize DOM Attributes on the prototype.  For example, this can affect your site if you are trying to serialize an object such as Push Notification's [PushSubscription](https://w3c.github.io/push-api/#pushsubscription-interface).
 
-Chrome 42 and earlier
+Chrome 42 and earlier the following would have worked:
 
 {% highlight javascript %}
 > JSON.stringify(subscription);
@@ -109,13 +109,15 @@ Chrome 42 and earlier
 }
 {% endhighlight %}
 
-Chrome 43 onwards will not serialize the elements.
+Chrome 43 onwards will not serialize the elements and you will be returned an empty object.
 
 {% highlight javascript %}
 > JSON.stringify(subscription);
 
 {}
 {% endhighlight %}
+
+You will have to provide your own serialization method.
 
 ### Writing to read-only properties in strict mode will throw an error
 
