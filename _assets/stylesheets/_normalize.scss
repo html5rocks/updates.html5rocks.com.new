@@ -7,7 +7,7 @@ html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10
 body { margin: 0;}
 body, button, input, select, textarea { font-family: sans-serif; color: #222; }
 
-a { color: #508B88; text-decoration: none;}
+a:link { color: #508B88; text-decoration: none;}
 a:visited { color: #508B88; }
 a:hover, a:focus { color: #f04530; }
 a:focus { outline: thin dotted; }
