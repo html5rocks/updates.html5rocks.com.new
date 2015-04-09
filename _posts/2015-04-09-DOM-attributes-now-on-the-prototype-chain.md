@@ -21,17 +21,19 @@ The new behavior is positive in many ways. It:
 * Allows you to efficiently create getters/setters on every DOM object. 
 * Increases the hackability of DOM programming. For example, it will enable you to implement Polyfills that allow you to efficiently emulate functionality missing in some browsers and JavaScript libraries that override default DOM attribute behaviors. 
 
-It can however cause some issues for developers, especially if you were relying on this behaviour because of legacy compatibility between Chrome and WebKit so we encourage you to check your site.
+It can however cause some issues for developers, especially if you were relying on this behaviour because of legacy compatibility between Chrome and WebKit so we encourage you to check your site and see the summary of changes.
 
 ## Summary of Changes
 
-### `hasOwnProprery` on a DOM Object instance will now return `false`
+### Using `hasOwnProprery` on a DOM Object instance will now return `false`
+
+Sometimes developers will use `hasOwnProperty` to check for presence of an attribute on an object.  This will no longer work as [per the spec](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.5) because objects are not considered on the protoype chain.
 
 Chrome 42 and earlier 
 
 {% highlight javascript %}
 > div = document.createElement("div");
-> div.hasOwnProperty("id");
+> div.hasOwnProperty("isContentEditable");
 
 true
 {% endhighlight %}
@@ -40,32 +42,24 @@ Chrome 43 onwards
 
 {% highlight javascript %}
 > div = document.createElement("div");
-> div.hasOwnProperty("id");
+> div.hasOwnProperty("isContentEditable");
 
 false
 {% endhighlight %}
 
-### `hasOwnProprery` on a DOM Object instance prototype will now return `true`
-
-Chrome 42 and earlier
+This now means if you want to see if `isContentEditable` is available on the element you will have follow the prototype chain on the DOM Object instance. For example HTMLDivElement inherits from HTMLElement which defines the `isContentEditable` attibute.
 
 {% highlight javascript %}
-> div.__proto__.__proto__.hasOwnProperty("id");
-
-false
-{% endhighlight %}
-
-Chrome 43 onwards
-
-{% highlight javascript %}
-> div.__proto__.__proto__.hasOwnProperty("id");
+> div.__proto__.__proto__.hasOwnProperty("isContentEditable");
 
 true
 {% endhighlight %}
 
 ### Object.getOwnPropertyDescriptor on DOM Object Instance will no longer return a property descriptor for Attributes.
 
-Chrome 42 and earlier
+If your site needs to get the property descriptor of an Attribute on DOM Objects, you will now need to follow the prototype chain.
+
+If you wanted to get the propery description in Chrome 42 and earlier you would have done:
 
 {% highlight javascript %}
 > Object.getOwnPropertyDescriptor(div, "id");
@@ -73,7 +67,7 @@ Chrome 42 and earlier
 Object {value: "", writable: true, enumerable: true, configurable: true}
 {% endhighlight %}
 
-Chrome 43 onwards
+Chrome 43 onwards will return `undefined` in this screnario.
 
 {% highlight javascript %}
 > Object.getOwnPropertyDescriptor(div, "id");
@@ -81,17 +75,7 @@ Chrome 43 onwards
 undefined
 {% endhighlight %}
 
-### Object.getOwnPropertyDescriptor through the __proto__ on an DOM Object instance will now return a property descriptor 
-
-Chrome 42 and earlier
-
-{% highlight javascript %}
-> Object.getOwnPropertyDescriptor(div.__proto__.__proto__, "id");  
-
-undefined
-{% endhighlight %}
-
-Chrome 43 onwards
+Which means to now get the property descriptor for the "id" attribute you will need to follow the prototype chain as follows:
 
 {% highlight javascript %}
 > Object.getOwnPropertyDescriptor(div.__proto__.__proto__, "id");
@@ -101,7 +85,7 @@ Object {get: function, set: function, enumerable: false, configurable: false}
 
 ### JSON.stringify will no longer serialize DOM Attributes
 
-JSON.stringify doesn’t serialize DOM Attributes on the prototype.  For example, this can affect your site if you are trying to serialize an object such as Push Notification’s [PushSubscription](https://w3c.github.io/push-api/#pushsubscription-interface).
+JSON.stringify doesn’t serialize DOM Attributes on the prototype.  For example, this can affect your site if you are trying to serialize an object such as Push Notification's [PushSubscription](https://w3c.github.io/push-api/#pushsubscription-interface).
 
 Chrome 42 and earlier
 
@@ -110,11 +94,11 @@ Chrome 42 and earlier
 
 {
   "endpoint": "https://something",
-  "subscriptionId": “SomeID”
+  "subscriptionId": "SomeID"
 }
 {% endhighlight %}
 
-Chrome 43 onwards
+Chrome 43 onwards will not serialize the elements.
 
 {% highlight javascript %}
 > JSON.stringify(subscription);
@@ -122,34 +106,34 @@ Chrome 43 onwards
 {}
 {% endhighlight %}
 
-
 ### Writing to read-only properties in strict mode will throw an error
+
+Writing to read-only properties is supposed to throw an exception when you are using strict mode. For example, take the following:
 
 {% highlight javascript %}
 function foo() {
   "use strict";
   var d = document.createElement("div");
+  console.log(d.isContentEditable);
   d.isContentEditable = 1;
   console.log(d.isContentEditable);
 }
 {% endhighlight %}
 
-Chrome 42 and earlier
+Chrome 42 and earlier the function would have continued and siliently carried on executing the function, although `isContentEditable` would have not been changed.
 
-{% highlight javascript %}
+{% highlight javascript %}// Chrome 42 and earlier behavior
 > foo();
 
 false // isContentEditable
+false // isContentEditable (after writing to read-only property)
 {% endhighlight %}
 
-Chrome 43 onwards
+Now in Chrome 43 and onwards there will be an exception thrown.
 
-{% highlight javascript %}
+{% highlight javascript %}// Chrome 43 and onwards behavior
 > foo();
 
+false
 Uncaught TypeError: Cannot set property isContentEditable of #<HTMLElement> which has only a getter
 {% endhighlight %}
-
-
-
-
