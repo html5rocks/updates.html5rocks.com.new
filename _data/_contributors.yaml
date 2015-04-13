@@ -1590,3 +1590,21 @@ robdodson:
   google: 118271135596408598424
   twitter: rob_dodson
   email: robdodson@google.com
+
+heathermahan:
+  name:
+    given: Heather
+    family: Mahan
+  org:
+    name: Independent
+    unit: Developer
+  address:
+    locality: San Jose
+    region: California
+    country: USA
+    lat: 37.42192
+    lon: -122.087824
+  homepage: https://github.com/heatheramahan
+  google: 108335678119817391642
+  twitter: heatheramahan
+  email: heatheramahan@gmail.com
