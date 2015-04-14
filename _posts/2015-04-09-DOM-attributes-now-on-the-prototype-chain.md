@@ -183,7 +183,7 @@ Follow the guidance, or leave a comment below and let's talk.
 
 ## I have seen a site with a problem, what should I do?
 
-Great question.  Most issues with sites will be based on the fact a site has chosen to do Attribute presence detection with the `getOwnProrperty` method, this is mostly done when a site owner has only targeted WebKit browsers such as Safari.  There are a couple of things that a developer can do:
+Great question.  Most issues with sites will be based on the fact a site has chosen to do Attribute presence detection with the `getOwnProperty` method, this is mostly done when a site owner has only targeted WebKit browsers such as Safari.  There are a couple of things that a developer can do:
 
 *  File an issue about the affected site on our (Chrome's) issue tracker
 *  File an issue on WebKit radar and reference https://bugs.webkit.org/show_bug.cgi?id=49739
