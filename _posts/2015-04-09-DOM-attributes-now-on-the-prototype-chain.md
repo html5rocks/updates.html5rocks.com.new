@@ -75,7 +75,6 @@ if("isContentEditable" in div) {
 {% endhighlight %}
 
 
-
 ### Object.getOwnPropertyDescriptor on DOM Object Instance will no longer return a property descriptor for Attributes.
 
 If your site needs to get the property descriptor of an Attribute on DOM Objects, you will now need to follow the prototype chain.
@@ -127,8 +126,7 @@ Chrome 43 onwards will not serialize the elements and you will be returned an em
 {}
 {% endhighlight %}
 
-You will have to provide your own serialization method.
-
+You will have to provide your own serialization method, for example you could do the following:
 
 {% highlight javascript %}
 function stringifyDOMObject(object)
