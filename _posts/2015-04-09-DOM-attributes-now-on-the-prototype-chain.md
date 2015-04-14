@@ -66,7 +66,7 @@ This now means if you want to see if `isContentEditable` is available on the ele
 true
 {% endhighlight %}
 
-If you are not locked in to using `hasOwnProperty`. We recommend to use the much simpler `in` operand.
+If you are not locked in to using `hasOwnProperty`. We recommend to use the much simpler `in` operand as this will check attributes on the entire prototype chain.
 
 {% highlight javascript %}
 if("isContentEditable" in div) {
