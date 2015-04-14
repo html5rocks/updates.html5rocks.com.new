@@ -5,6 +5,7 @@ description: "The support for cut and copy commands allows you to programmatical
 article:
   written_on: 2015-04-15
   updated_on: 2015-04-15
+published: false
 authors:
   - mattgaunt
 tags:

@@ -27,7 +27,7 @@ For example, a hypothetical W3C specification includes some new functionality ca
 Object.defineProperty(HTMLDivElement.prototype, "isSuperContentEditable", {
   get: function() { return true; },
   set: function() { /* some logic to set it up */ },
-}
+});
 {% endhighlight %}
 
 Prior to this change &mdash; for consistency with other DOM Attributes in Chrome &mdash; you would have had to create the new property on every instance, which for every `HTMLDivElement` on the page would be very inefficient.
