@@ -12,6 +12,7 @@ tags:
   - cut-and-copy
   - execCommand
 permalink: /2015/04/cut-and-copy-commands
+publish: false
 ---
 
 IE10 and above added support for the 'cut' and 'copy' commands through the 
