@@ -38,9 +38,9 @@ These changes are important for consistency, standardization of the web platform
 
 ### Using `hasOwnProprery` on a DOM Object instance will now return `false`
 
-Sometimes developers will use `hasOwnProperty` to check for presence of an attribute on an object.  This will no longer work as [per the spec](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.5) because objects are not considered on the prototype chain.
+Sometimes developers will use `hasOwnProperty` to check for presence of an attribute on an object.  This will no longer work as [per the spec](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.5) because DOM attributes are now part of the prototype chain and `hasOwnProperty` only inspects the current objects to see if it is defined on it.
 
-As of Chrome 42 and earlier the following would return true.
+Prior to and including Chrome 42 the following would return `true`.
 
 {% highlight javascript %}
 > div = document.createElement("div");
@@ -49,7 +49,7 @@ As of Chrome 42 and earlier the following would return true.
 true
 {% endhighlight %}
 
-In Chrome 43 onwards it will return false
+In Chrome 43 onwards it will return `false`.
 
 {% highlight javascript %}
 > div = document.createElement("div");
@@ -58,7 +58,7 @@ In Chrome 43 onwards it will return false
 false
 {% endhighlight %}
 
-This now means if you want to see if `isContentEditable` is available on the element you will have follow the prototype chain on the DOM Object instance. For example HTMLDivElement inherits from HTMLElement which defines the `isContentEditable` attribute.
+This now means if you want to see if `isContentEditable` is available on the element you will have follow the prototype chain on the DOM Object instance. For example `HTMLDivElement` inherits from `HTMLElement` which in turn inherits from `Element` which defines the `isContentEditable` attribute.
 
 {% highlight javascript %}
 > div.__proto__.__proto__.__proto__.hasOwnProperty("isContentEditable");
@@ -95,7 +95,7 @@ Chrome 43 onwards will return `undefined` in this scenario.
 undefined
 {% endhighlight %}
 
-Which means to now get the property descriptor for the "id" attribute you will need to follow the prototype chain as follows:
+Which means to now get the property descriptor for the "isContentEditable" attribute you will need to follow the prototype chain as follows:
 
 {% highlight javascript %}
 > Object.getOwnPropertyDescriptor(div.__proto__.__proto__.__proto__, "isContentEditable");
@@ -176,3 +176,10 @@ Now in Chrome 43 and onwards there will be an exception thrown.
 false
 Uncaught TypeError: Cannot set property isContentEditable of #<HTMLElement> which has only a getter
 {% endhighlight %}
+
+## I have a problem, what should I do?
+
+Follow the guidance, or leave a comment below and let's talk.
+
+## I have seen a site with a problem, what should I do?
+
