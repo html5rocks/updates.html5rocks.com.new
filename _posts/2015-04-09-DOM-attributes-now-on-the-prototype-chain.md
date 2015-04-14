@@ -13,7 +13,7 @@ tags:
 permalink: /2015/04/DOM-attributes-now-on-the-prototype
 ---
 
-The Chrome team recently [announced that we are moving DOM attributes to the prototype chain](https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/H0MGw0jkdn4).  This change, implemented in Chrome 43, brings Chrome inline with the spec and other browsers’ implementations, such as IE and Firefox.  WebKit based browsers, such as Safari, are currently not compatible with the spec. 
+The Chrome team recently [announced that we are moving DOM attributes to the prototype chain](https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/H0MGw0jkdn4).  This change, implemented in [Chrome 43](https://www.chromestatus.com/feature/6052436003258368) - (Beta as of mid April 2015) -  brings Chrome more in line with the [Web IDL Spec](https://heycam.github.io/webidl/#es-attributes ) and other browsers’ implementations, such as IE and Firefox.  WebKit based browsers, such as Safari, are currently not compatible with the spec. 
 
 The new behavior is positive in many ways. It:
 
@@ -182,4 +182,14 @@ Uncaught TypeError: Cannot set property isContentEditable of #<HTMLElement> whic
 Follow the guidance, or leave a comment below and let's talk.
 
 ## I have seen a site with a problem, what should I do?
+
+Great question.  Most issues with sites will be based on the fact a site has chosen to do Attribute presence detection with the `getOwnProrperty` method, this is mostly done when a site owner has only targeted WebKit browsers such as Safari.  There are a couple of things that a developer can do:
+
+*  File an issue about the affected site on our (Chrome's) issue tracker
+*  File an issue on WebKit radar and reference https://bugs.webkit.org/show_bug.cgi?id=49739
+
+## I am generally interested in following this change
+
+* Original bug from 2010: [https://code.google.com/p/chromium/issues/detail?id=43394](https://code.google.com/p/chromium/issues/detail?id=43394) - note: has most of the work on it.
+* [Code Review](https://codereview.chromium.org/984523003/) for commit
 
