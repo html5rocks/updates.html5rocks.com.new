@@ -21,7 +21,7 @@ The new behavior is positive in many ways. It:
 * Allows you to consistently and efficiently create getters/setters on every DOM Object. 
 * Increases the hackability of DOM programming. For example, it will enable you to implement Polyfills that allow you to efficiently emulate functionality missing in some browsers and JavaScript libraries that override default DOM attribute behaviors. 
 
-For example, a hypothetical W3C specification includes some new functionality called `isSuperContentEditable` and the Chrome Browser doesn't implement it, but it is possible to "polyfill" or emulate the feautre with a library.  As the library developer, you would naturally want to use the `prototype` as follows to create an efficient the Polyfill:
+For example, a hypothetical W3C specification includes some new functionality called `isSuperContentEditable` and the Chrome Browser doesn't implement it, but it is possible to "polyfill" or emulate the feature with a library.  As the library developer, you would naturally want to use the `prototype` as follows to create an efficient the Polyfill:
 
 {% highlight javascript %}
 Object.defineProperty(HTMLDivElement.prototype, "isSuperContentEditable", {
@@ -32,13 +32,13 @@ Object.defineProperty(HTMLDivElement.prototype, "isSuperContentEditable", {
 
 Prior to this change &mdash; for consistency with the rest of the attributes on the DOM Object in Chrome &mdash; you would have had to create the new property on every instance, which for every `HTMLDivElement` on the page would be very in-efficient.
 
-These changes are important for consitency, standardisation of the web platform and performance, yet they can cause some issues for developers. If you were relying on this behaviour because of legacy compatibility between Chrome and WebKit we encourage you to check your site and see the summary of changes below.
+These changes are important for consistency, standardization of the web platform and performance, yet they can cause some issues for developers. If you were relying on this behavior because of legacy compatibility between Chrome and WebKit we encourage you to check your site and see the summary of changes below.
 
 ## Summary of Changes
 
 ### Using `hasOwnProprery` on a DOM Object instance will now return `false`
 
-Sometimes developers will use `hasOwnProperty` to check for presence of an attribute on an object.  This will no longer work as [per the spec](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.5) because objects are not considered on the protoype chain.
+Sometimes developers will use `hasOwnProperty` to check for presence of an attribute on an object.  This will no longer work as [per the spec](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.5) because objects are not considered on the prototype chain.
 
 As of Chrome 42 and earlier the following would return true.
 
@@ -58,7 +58,7 @@ In Chrome 43 onwards it will return false
 false
 {% endhighlight %}
 
-This now means if you want to see if `isContentEditable` is available on the element you will have follow the prototype chain on the DOM Object instance. For example HTMLDivElement inherits from HTMLElement which defines the `isContentEditable` attibute.
+This now means if you want to see if `isContentEditable` is available on the element you will have follow the prototype chain on the DOM Object instance. For example HTMLDivElement inherits from HTMLElement which defines the `isContentEditable` attribute.
 
 {% highlight javascript %}
 > div.__proto__.__proto__.__proto__.hasOwnProperty("isContentEditable");
@@ -66,11 +66,21 @@ This now means if you want to see if `isContentEditable` is available on the ele
 true
 {% endhighlight %}
 
+If you are not locked in to using `hasOwnProperty`. We recommend to use the much simpler `in` operand.
+
+{% highlight javascript %}
+if("isContentEditable" in div) {
+  // We have support!!
+}
+{% endhighlight %}
+
+
+
 ### Object.getOwnPropertyDescriptor on DOM Object Instance will no longer return a property descriptor for Attributes.
 
 If your site needs to get the property descriptor of an Attribute on DOM Objects, you will now need to follow the prototype chain.
 
-If you wanted to get the propery description in Chrome 42 and earlier you would have done:
+If you wanted to get the property description in Chrome 42 and earlier you would have done:
 
 {% highlight javascript %}
 > Object.getOwnPropertyDescriptor(div, "isContentEditable");
@@ -78,7 +88,7 @@ If you wanted to get the propery description in Chrome 42 and earlier you would 
 Object {value: "", writable: true, enumerable: true, configurable: true}
 {% endhighlight %}
 
-Chrome 43 onwards will return `undefined` in this screnario.
+Chrome 43 onwards will return `undefined` in this scenario.
 
 {% highlight javascript %}
 > Object.getOwnPropertyDescriptor(div, "isContentEditable");
@@ -96,7 +106,7 @@ Object {get: function, set: function, enumerable: false, configurable: false}
 
 ### JSON.stringify will no longer serialize DOM Attributes
 
-JSON.stringify doesn’t serialize DOM Attributes on the prototype.  For example, this can affect your site if you are trying to serialize an object such as Push Notification's [PushSubscription](https://w3c.github.io/push-api/#pushsubscription-interface).
+JSON.stringify doesn't serialize DOM Attributes on the prototype.  For example, this can affect your site if you are trying to serialize an object such as Push Notification's [PushSubscription](https://w3c.github.io/push-api/#pushsubscription-interface).
 
 Chrome 42 and earlier the following would have worked:
 
@@ -119,6 +129,24 @@ Chrome 43 onwards will not serialize the elements and you will be returned an em
 
 You will have to provide your own serialization method.
 
+
+{% highlight javascript %}
+function stringifyDOMObject(object)
+{
+    function deepCopy(src) {
+        if (typeof src != "object")
+            return src;
+        var dst = Array.isArray(src) ? [] : {};
+        for (var property in src) {
+            dst[property] = deepCopy(src[property]);
+        }
+        return dst;
+    }
+    return JSON.stringify(deepCopy(object));
+}
+var s = stringifyDOMObject(domObject);
+{% endhighlight %}
+
 ### Writing to read-only properties in strict mode will throw an error
 
 Writing to read-only properties is supposed to throw an exception when you are using strict mode. For example, take the following:
@@ -133,7 +161,7 @@ function foo() {
 }
 {% endhighlight %}
 
-Chrome 42 and earlier the function would have continued and siliently carried on executing the function, although `isContentEditable` would have not been changed.
+Chrome 42 and earlier the function would have continued and silently carried on executing the function, although `isContentEditable` would have not been changed.
 
 {% highlight javascript %}// Chrome 42 and earlier behavior
 > foo();
