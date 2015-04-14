@@ -3,8 +3,8 @@ layout: post
 title: "DOM Attributes now on the prototype chain"
 description: "Chrome is becoming in line with the spec. Check your sites if you are assuming the WebKit logic for attribute propagation"
 article:
-  written_on: 2015-04-09
-  updated_on: 2015-04-09
+  written_on: 2015-04-14
+  updated_on: 2015-04-14
 authors:
   - paulkinlan
 tags:
@@ -19,9 +19,9 @@ The new behavior is positive in many ways. It:
 
 * Improves compatibility across the web (IE and Firefox do this already) via compliance with the spec.
 * Allows you to consistently and efficiently create getters/setters on every DOM Object. 
-* Increases the hackability of DOM programming. For example, it will enable you to implement Polyfills that allow you to efficiently emulate functionality missing in some browsers and JavaScript libraries that override default DOM attribute behaviors. 
+* Increases the hackability of DOM programming. For example, it will enable you to implement polyfills that allow you to efficiently emulate functionality missing in some browsers and JavaScript libraries that override default DOM attribute behaviors. 
 
-For example, a hypothetical W3C specification includes some new functionality called `isSuperContentEditable` and the Chrome Browser doesn't implement it, but it is possible to "polyfill" or emulate the feature with a library.  As the library developer, you would naturally want to use the `prototype` as follows to create an efficient the Polyfill:
+For example, a hypothetical W3C specification includes some new functionality called `isSuperContentEditable` and the Chrome Browser doesn't implement it, but it is possible to "polyfill" or emulate the feature with a library.  As the library developer, you would naturally want to use the `prototype` as follows to create an efficient polyfill:
 
 {% highlight javascript %}
 Object.defineProperty(HTMLDivElement.prototype, "isSuperContentEditable", {
@@ -30,13 +30,13 @@ Object.defineProperty(HTMLDivElement.prototype, "isSuperContentEditable", {
 }
 {% endhighlight %}
 
-Prior to this change &mdash; for consistency with the rest of the attributes on the DOM Object in Chrome &mdash; you would have had to create the new property on every instance, which for every `HTMLDivElement` on the page would be very in-efficient.
+Prior to this change &mdash; for consistency with other DOM Attributes in Chrome &mdash; you would have had to create the new property on every instance, which for every `HTMLDivElement` on the page would be very inefficient.
 
-These changes are important for consistency, standardization of the web platform and performance, yet they can cause some issues for developers. If you were relying on this behavior because of legacy compatibility between Chrome and WebKit we encourage you to check your site and see the summary of changes below.
+These changes are important for consistency, performance and standardization of the web platform, yet they can cause some issues for developers. If you were relying on this behavior because of legacy compatibility between Chrome and WebKit we encourage you to check your site and see the summary of changes below.
 
-## Summary of Changes
+## Summary of changes
 
-### Using `hasOwnProprery` on a DOM Object instance will now return `false`
+### Using `hasOwnProperty` on a DOM Object instance will now return `false`
 
 Sometimes developers will use `hasOwnProperty` to check for presence of an attribute on an object.  This will no longer work as [per the spec](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.5) because DOM attributes are now part of the prototype chain and `hasOwnProperty` only inspects the current objects to see if it is defined on it.
 
@@ -58,15 +58,15 @@ In Chrome 43 onwards it will return `false`.
 false
 {% endhighlight %}
 
-This now means if you want to see if `isContentEditable` is available on the element you will have follow the prototype chain on the DOM Object instance. For example `HTMLDivElement` inherits from `HTMLElement` which in turn inherits from `Element` which defines the `isContentEditable` attribute.
+This now means if you want to check that `isContentEditable` is available on the element you will to have check the prototype on the HTMLElement object. For example `HTMLDivElement` inherits from `HTMLElement` which defines the `isContentEditable` attribute.
 
 {% highlight javascript %}
-> div.__proto__.__proto__.__proto__.hasOwnProperty("isContentEditable");
+> HTMLElement.prototype.hasOwnProperty("isContentEditable");
 
 true
 {% endhighlight %}
 
-If you are not locked in to using `hasOwnProperty`. We recommend to use the much simpler `in` operand as this will check attributes on the entire prototype chain.
+You are not locked in to using `hasOwnProperty`. We recommend to use the much simpler `in` operand as this will check attributes on the entire prototype chain.
 
 {% highlight javascript %}
 if("isContentEditable" in div) {
@@ -77,7 +77,7 @@ if("isContentEditable" in div) {
 
 ### Object.getOwnPropertyDescriptor on DOM Object Instance will no longer return a property descriptor for Attributes.
 
-If your site needs to get the property descriptor of an Attribute on DOM Objects, you will now need to follow the prototype chain.
+If your site needs to get the property descriptor for an attribute on a DOM Object, you will now need to follow the prototype chain.
 
 If you wanted to get the property description in Chrome 42 and earlier you would have done:
 
@@ -98,7 +98,7 @@ undefined
 Which means to now get the property descriptor for the "isContentEditable" attribute you will need to follow the prototype chain as follows:
 
 {% highlight javascript %}
-> Object.getOwnPropertyDescriptor(div.__proto__.__proto__.__proto__, "isContentEditable");
+> Object.getOwnPropertyDescriptor(HTMLElement.prototype, "isContentEditable");
 
 Object {get: function, set: function, enumerable: false, configurable: false}
 {% endhighlight %}
@@ -118,7 +118,7 @@ Chrome 42 and earlier the following would have worked:
 }
 {% endhighlight %}
 
-Chrome 43 onwards will not serialize the elements and you will be returned an empty object.
+Chrome 43 onwards will not serialize the properties that are on defined on the protoype and you will be returned an empty object.
 
 {% highlight javascript %}
 > JSON.stringify(subscription);
