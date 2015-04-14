@@ -61,7 +61,7 @@ false
 This now means if you want to see if `isContentEditable` is available on the element you will have follow the prototype chain on the DOM Object instance. For example HTMLDivElement inherits from HTMLElement which defines the `isContentEditable` attibute.
 
 {% highlight javascript %}
-> div.__proto__.__proto__.hasOwnProperty("isContentEditable");
+> div.__proto__.__proto__.__proto__.hasOwnProperty("isContentEditable");
 
 true
 {% endhighlight %}
@@ -73,7 +73,7 @@ If your site needs to get the property descriptor of an Attribute on DOM Objects
 If you wanted to get the propery description in Chrome 42 and earlier you would have done:
 
 {% highlight javascript %}
-> Object.getOwnPropertyDescriptor(div, "id");
+> Object.getOwnPropertyDescriptor(div, "isContentEditable");
 
 Object {value: "", writable: true, enumerable: true, configurable: true}
 {% endhighlight %}
@@ -81,7 +81,7 @@ Object {value: "", writable: true, enumerable: true, configurable: true}
 Chrome 43 onwards will return `undefined` in this screnario.
 
 {% highlight javascript %}
-> Object.getOwnPropertyDescriptor(div, "id");
+> Object.getOwnPropertyDescriptor(div, "isContentEditable");
 
 undefined
 {% endhighlight %}
@@ -89,7 +89,7 @@ undefined
 Which means to now get the property descriptor for the "id" attribute you will need to follow the prototype chain as follows:
 
 {% highlight javascript %}
-> Object.getOwnPropertyDescriptor(div.__proto__.__proto__, "id");
+> Object.getOwnPropertyDescriptor(div.__proto__.__proto__.__proto__, "isContentEditable");
 
 Object {get: function, set: function, enumerable: false, configurable: false}
 {% endhighlight %}
