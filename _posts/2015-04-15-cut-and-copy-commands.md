@@ -35,7 +35,7 @@ user's clipboard.
 We add the email address in our HTML with a button to initiate the copying when it's clicked:
   
 {% highlight html %}
-<p>Email me at <a class="js-emaillink" href="mailto:matt@gauntface.co.uk">matt@example.co.uk</a></p>
+<p>Email me at <a class="js-emaillink" href="mailto:matt@example.co.uk">matt@example.co.uk</a></p>
 
 <p><button class="js-emailcopybtn"><img src="./images/copy-icon.png" /></button></p>
 {% endhighlight %}
