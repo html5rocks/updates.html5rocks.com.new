@@ -45,18 +45,23 @@ A simple example letting you autocapitalize sentences in a text area.
 
 [[Demo]]
 
+## What values can autocapitalize take?
+
 The following table shows the different states that an input element can be in:
 
 <!-- TODO: Fix formatting of cells -->
 <table>
+<thead>
 <tr>
-<td></td>
-<td>State</td>
-<td>Keywords</td>
+<th></th>
+<th>State</th>
+<th>Keywords</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td><code>&lt;input&gt;</code>
-<code>&lt;iinput autocapitalize=off>&gt;</code>
+<td><code>&lt;input&gt;</code><br>
+<code>&lt;input autocapitalize=off&gt;</code>
 </td>
 <td>No Capitalization</td>
 <td>none [default]</td>
@@ -81,25 +86,21 @@ The following table shows the different states that an input element can be in:
 <td>Sentences Capitalization</td>
 <td>sentences</td>
 </tr>
+</tbody>
 </table>
 
 
+For `HTMLInputElement`, the invalid value default is _Sentences Capitalization_ if the type of the element is type=`text` or type=`search`. Otherwise, it is _No Capitalization_.
 
-For `HTMLInputElement`, the invalid value default is _Sentences Capitalization 
-_if the state is Text or Search. Otherwise, it is No Capitalization.
-
-`<input autocapitalize="simon">` would be a text field with _Sentences 
-Capitalization_  
-`<input type="email" autocapitalize="simon">` would be a text field with No 
-Capitalization.  
-`<input>` would be a text field with No Capitalization.
+*  `<input autocapitalize="simon">` would be a text field with _Sentences Capitalization_  
+*  `<input type="email" autocapitalize="simon">` would be a text field with _No Capitalization_.  
+*  `<input>` would be a text field with _No Capitalization_.
 
 For `HTMLTextAreaElement`, the invalid value default is _Sentences 
 Capitalization_. This is a change from the default behaviour.
 
-`<textarea autocapitalize="terry"></textarea>` would be a text field 
-with _Sentences Capitalization_  
-`<textarea></textarea>` would be a text field with _No Capitalization_.
+*  `<textarea autocapitalize="terry"></textarea>` would be a text field with _Sentences Capitalization_  
+*  `<textarea></textarea>` would be a text field with _No Capitalization_.
 
 For _HTMLFor_mElement we have decided not to implement the attribute, we have 
 found that it is rarely used on pages today, and when it is used it is mostly 
