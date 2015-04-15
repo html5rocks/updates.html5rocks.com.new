@@ -5,7 +5,7 @@ description: "The support for cut and copy commands allows you to programmatical
 article:
   written_on: 2015-04-15
   updated_on: 2015-04-15
-published: false
+published: true
 authors:
   - mattgaunt
 tags:
@@ -33,41 +33,41 @@ For example's sake, let's add a button which copies an email address to the
 user's clipboard.
 
 We add the email address in our HTML with a button to initiate the copying when it's clicked:
+  
+{% highlight html %}
+<p>Email me at <a class="js-emaillink" href="mailto:matt@gauntface.co.uk">matt@example.co.uk</a></p>
 
-    <p>Email me at <a class="js-emaillink" href="mailto:matt@gauntface.co.uk">matt@example.co.uk</a></p>
-
-    <p>
-      <button class="js-emailcopybtn">
-        <img src="./images/copy-icon.png" />
-      </button>
-    </p>
+<p><button class="js-emailcopybtn"><img src="./images/copy-icon.png" /></button></p>
+{% endhighlight %}
 
 Then in our JavaScript, we want to add a click event handler to our button in 
 which we select the email address text from the `js-emaillink` anchor, execute a copy 
 command so that the email address is in the user's clipboard and then we 
 deselect the email address so the user doesn't see the selection occur.
-
-    var copyEmailBtn = document.querySelector('.js-emailcopybtn');  
-    copyEmailBtn.addEventListener('click', function(event) {  
-      // Select the email link anchor text  
-      var emailLink = document.querySelector('.js-emaillink');  
-      var range = document.createRange();  
-      range.selectNode(emailLink);  
-      window.getSelection().addRange(range);  
-        
-      try {  
-        // Now that we've selected the anchor text, execute the copy command  
-        var successful = document.execCommand('copy');  
-        var msg = successful ? 'successful' : 'unsuccessful';  
-        console.log('Copy email command was ' + msg);  
-      } catch(err) {  
-        console.log('Oops, unable to copy');  
-      }  
-        
-      // Remove the selections - NOTE: Should use   
-      // removeRange(range) when it is supported  
-      window.getSelection().removeAllRanges();  
-    });
+    
+{% highlight javascript %}
+var copyEmailBtn = document.querySelector('.js-emailcopybtn');  
+copyEmailBtn.addEventListener('click', function(event) {  
+  // Select the email link anchor text  
+  var emailLink = document.querySelector('.js-emaillink');  
+  var range = document.createRange();  
+  range.selectNode(emailLink);  
+  window.getSelection().addRange(range);  
+    
+  try {  
+    // Now that we've selected the anchor text, execute the copy command  
+    var successful = document.execCommand('copy');  
+    var msg = successful ? 'successful' : 'unsuccessful';  
+    console.log('Copy email command was ' + msg);  
+  } catch(err) {  
+    console.log('Oops, unable to copy');  
+  }  
+    
+  // Remove the selections - NOTE: Should use   
+  // removeRange(range) when it is supported  
+  window.getSelection().removeAllRanges();  
+});
+{% endhighlight %}
 
 What we are doing here is using a method of the [Selection 
 API](https://developer.mozilla.org/en-US/docs/Web/API/Selection), 
@@ -87,28 +87,31 @@ The 'cut' command can be used for text fields where you want to remove the text
 content and make it accessible via the clipboard.
 
 Using a textarea and a button in our HTML:
-
-    <p><textarea class="js-cuttextarea">Hello I'm some text</textarea></p>
-      
-    <p><button class="js-textareacutbtn" disable>Cut 
-Textarea</button></p>
+    
+{% highlight html %}
+<p><textarea class="js-cuttextarea">Hello I'm some text</textarea></p>
+  
+<p><button class="js-textareacutbtn" disable>Cut Textarea</button></p>
+{% endhighlight %}
 
 We can do the following to cut the content:
+    
+{% highlight javascript %}
+var cutTextareaBtn = document.querySelector('.js-textareacutbtn');
 
-    var cutTextareaBtn = document.querySelector('.js-textareacutbtn');
+cutTextareaBtn.addEventListener('click', function(event) {  
+  var cutTextarea = document.querySelector('.js-cuttextarea');  
+  cutTextarea.select();
 
-    cutTextareaBtn.addEventListener('click', function(event) {  
-      var cutTextarea = document.querySelector('.js-cuttextarea');  
-      cutTextarea.select();
-
-      try {  
-        var successful = document.execCommand('cut');  
-        var msg = successful ? 'successful' : 'unsuccessful';  
-        console.log('Cutting text command was ' + msg);  
-      } catch(err) {  
-        console.log('Oops, unable to cut);  
-      }  
-    });
+  try {  
+    var successful = document.execCommand('cut');  
+    var msg = successful ? 'successful' : 'unsuccessful';  
+    console.log('Cutting text command was ' + msg);  
+  } catch(err) {  
+    console.log('Oops, unable to cut');  
+  }  
+});
+{% endhighlight %}
 
 # queryCommandSupported and queryCommandEnabled
 
@@ -118,7 +121,9 @@ supported using the
 method. In our example above we could set the button disabled state based on 
 support like so:
 
+{% highlight javascript %}
 copyEmailBtn.disabled = !document.queryCommandSupported('copy');
+{% endhighlight %}
 
 The difference between 
 [document.queryCommandSupported()](https://dvcs.w3.org/hg/editing/raw-file/tip/editing.html#querycommandsupported()) 
