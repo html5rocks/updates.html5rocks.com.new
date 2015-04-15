@@ -5,7 +5,7 @@ description: "The Permissions API gives you a central place to check the permiss
 article:
   written_on: 2015-04-15
   updated_on: 2015-04-15
-published: false
+published: true
 authors:
   - mattgaunt
 tags:
@@ -25,7 +25,7 @@ you to check the current permission state via
 As the web platform grows in API's, there needs to be a single, standard way for 
 developers to check the status of a permission rather than having to remember 
 how each and every API works. The [Permission 
-API](https://w3c.github.io/permissions/), available in Chrome version 43, is 
+API](https://w3c.github.io/permissions/), available in [Chrome version 43](https://www.chromestatus.com/feature/6376494003650560), is 
 intended to be this single, standard way to check the permission status of an API.
 
 # permissions.query()
@@ -35,15 +35,17 @@ return a status of [granted (you have permission), denied (you are blocked from
 accessing the API) or 
 prompt](https://w3c.github.io/permissions/#h-status-of-a-permission) (user needs 
 to be prompted). For example:
-
-    // Check for Geolocation API permissions  
-    navigator.permissions.query({name:'geolocation'}).then(function(permissionStatus) 
-    {  
-      console.log('geolocation permission status is ', permissionStatus.status);  
-      permissionStatus.onchange = function() {  
-        console.log('geolocation permission status has changed to ', this.status);  
-      };  
-    });
+    
+{% highlight javascript %}
+// Check for Geolocation API permissions  
+navigator.permissions.query({name:'geolocation'}).then(function(permissionStatus) 
+{  
+  console.log('geolocation permission status is ', permissionStatus.status);  
+  permissionStatus.onchange = function() {  
+    console.log('geolocation permission status has changed to ', this.status);  
+  };
+});
+{% endhighlight %}
 
 The query method takes a 
 [PermissionDescriptor](https://w3c.github.io/permissions/#h-permission-descriptor) 
@@ -71,37 +73,45 @@ For the push permission, you can supply a `userVisible` parameter. This indicate
 whether you wish to show a notification for every push message or be able to 
 send silent push notifications (At the moment Chrome only supports push messages 
 with notifications). You'd use it like so:
-
-    navigator.permissions.query({name:'push', userVisible:true})
+    
+{% highlight javascript %}
+navigator.permissions.query({name:'push', userVisible:true})
+{% endhighlight %}
 
 Midi allows a `sysex` parameter. This indicates whether you need to and/or receive 
 system exclusive messages. For midi this would be:
-
-    navigator.permissions.query({name:'midi', sysex:true}). 
+    
+{% highlight javascript %}
+navigator.permissions.query({name:'midi', sysex:true})
+{% endhighlight %}
 
 # Requesting Permissions
 
 Requesting permission from the user depends on the specific API. For example, 
 geolocation would show a permission prompt when you call `getCurrentPosition()`.
-
-    navigator.geolocation.getCurrentPosition(function(position) {  
-      console.log('Geolocation permissions granted');  
-      console.log('Latitude:' + position.coords.latitude);  
-      console.log('Longitude:' + position.coords.longitude);  
-    });
+    
+{% highlight javascript %}
+navigator.geolocation.getCurrentPosition(function(position) {  
+  console.log('Geolocation permissions granted');  
+  console.log('Latitude:' + position.coords.latitude);  
+  console.log('Longitude:' + position.coords.longitude);  
+});
+{% endhighlight %}
 
 Whereas notifications would prompt the user when you call `requestPermission()`.
-
-    Notification.requestPermission(function(result) {  
-      if (result === 'denied') {  
-        console.log('Permission wasn\'t granted. Allow a retry.');  
-        return;  
-      } else if (result === 'default') {  
-        console.log('The permission request was dismissed.');  
-        return;  
-      }  
-      console.log('Permission was granted for notifications');  
-    });
+    
+{% highlight javascript %}
+Notification.requestPermission(function(result) {  
+  if (result === 'denied') {  
+    console.log('Permission wasn\'t granted. Allow a retry.');  
+    return;  
+  } else if (result === 'default') {  
+    console.log('The permission request was dismissed.');  
+    return;  
+  }  
+  console.log('Permission was granted for notifications');  
+});
+{% endhighlight %}
 
 The point here is that the Permission API allows a consistent way to monitor the 
 status of permissions while being able to support the range of APIs currently on 
