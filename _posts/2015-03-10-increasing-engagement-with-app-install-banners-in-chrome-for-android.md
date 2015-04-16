@@ -38,7 +38,7 @@ and seamlessly install your Web App as per the images below.
   <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-03/add-to-home-screen.gif %}" alt="IO Site with install banner" />
 </p>
 
-"This looks great, I want it on my site" I hear you shout. "Please tell me how 
+<span id="criteria">"This looks great, I want it on my site"</span> I hear you shout. "Please tell me how 
 to add it!".  The good news is if you meet the following criteria Chrome will 
 manage the prompting of users:
 

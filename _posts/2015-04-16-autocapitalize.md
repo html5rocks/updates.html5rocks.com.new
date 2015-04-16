@@ -5,6 +5,7 @@ description: ""
 article:
   written_on: 2015-04-16
   updated_on: 2015-04-16
+published: false
 authors:
   - paulkinlan
 tags:
@@ -86,6 +87,11 @@ The following table shows the different states that an input element can be in:
 <td>Sentences Capitalization</td>
 <td>sentences</td>
 </tr>
+<tr>
+<td><code>&lt;input autocapitalize=sentences&gt;</code></td>
+<td>Sentences Capitalization</td>
+<td>sentences</td>
+</tr>
 </tbody>
 </table>
 
@@ -99,8 +105,9 @@ For `HTMLInputElement`, the invalid value default is _Sentences Capitalization_ 
 For `HTMLTextAreaElement`, the invalid value default is _Sentences 
 Capitalization_. This is a change from the default behaviour.
 
-*  `<textarea autocapitalize="terry"></textarea>` would be a text field with _Sentences Capitalization_  
-*  `<textarea></textarea>` would be a text field with _No Capitalization_.
+*  `<textarea autocapitalize="terry"></textarea>` would be a text area with _Sentences Capitalization_  
+*  `<textarea></textarea>` would be a text area with _Sentence Capitalization_.
+*  `<textarea autocapitalize=none></textarea>` would be a text area with _No Capitalization_.
 
 For _HTMLFor_mElement we have decided not to implement the attribute, we have 
 found that it is rarely used on pages today, and when it is used it is mostly 
@@ -129,9 +136,9 @@ there a number of places where helping the user enter text helps a great deal.
 * Use `autocapitalization=characters` if you are expecting:
     * US states,
     * UK postal codes
-* Use `sentences` on TextAreas and input elements if you are expecting content 
-  that is entered in normal paragraph form you should set it to \`sentences\` - 
-  for example, a blog post.
+* Use `sentences` input elements if you are expecting content 
+  that is entered in normal paragraph form you should set it to \`sentences\` - for example, a blog post.
+* Use `none` on TextAreas if you are expecting content that should not be affected.  For example, entering code. 
 
 ## Other interesting links
 
