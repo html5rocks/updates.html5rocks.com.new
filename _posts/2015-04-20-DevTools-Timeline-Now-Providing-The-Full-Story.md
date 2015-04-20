@@ -3,8 +3,8 @@ layout: post
 title: "DevTools Timeline: Now Providing the Full Story"
 description: "We've upgraded the Timeline panel for Chrome DevTools to give developers more insight on their site’s runtime performance."
 article:
-  written_on: 2015-04-13
-  updated_on: 2015-04-13
+  written_on: 2015-04-20
+  updated_on: 2015-04-20
 authors:
   - paulbakaus
 tags:
@@ -29,10 +29,10 @@ If you’ve ever poked around in __Profiles__ panel, you’re probably familiar 
 
 Now, you can get this granular breakdown of your JavaScript execution in the __Timeline__ panel. By selecting the __JS Profiler__ capture option, you can see your JavaScript call stacks in the Timeline along with other browser events. Adding this feature to the Timeline helps streamline your debugging workflow. But more than that, it allows you to view your JavaScript in context and identify the parts of your code that affect page load time and rendering.
 
-In addition to the JavaScript profiler, we also integrated a Flame Chart view into the __Timeline__ panel. You can now view your app’s activity either as the classic waterfall of events or as a Flame Chart. The Flame Chart icon <img src="{% asset_path 2015-04-13-DevTools-Timeline-Now-Providing-The-Full-Story/flame-icon.png %}" /> allows you to toggle between these two views.
+In addition to the JavaScript profiler, we also integrated a Flame Chart view into the __Timeline__ panel. You can now view your app’s activity either as the classic waterfall of events or as a Flame Chart. The Flame Chart icon <img src="{% asset_path 2015-04-20-DevTools-Timeline-Now-Providing-The-Full-Story/flame-icon.png %}" /> allows you to toggle between these two views.
 
 <p style="text-align: center; text-align: center; margin: 2em 0 2em 0;">
-  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-04-13-DevTools-Timeline-Now-Providing-The-Full-Story/javascript-profiler.png %}" alt="JavaScript Profiler on Timeline" />
+  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-04-20-DevTools-Timeline-Now-Providing-The-Full-Story/javascript-profiler.png %}" alt="JavaScript Profiler on Timeline" />
   <span style="color: #999; display: block; margin-top: 1em;">Using the <strong>JS Profiler</strong> capture option and Flame Chart view to investigate call stacks in the Timeline.</span>
 </p>
 
@@ -51,7 +51,7 @@ __Tip__: Play back animations by clicking through frame bars on a Timeline recor
 You can zoom, rotate, and drag the layers model to explore its contents. Hovering over a layer reveals its current position on the page. Right-clicking on a layer lets you jump to the corresponding node in the __Elements__ panel. These features show you what was promoted to a layer. If you select a layer, you can also see why it was promoted in the row labeled __Compositing Reasons__.
 
 <p style="text-align: center; text-align: center; margin: 2em 0 2em 0;">
-  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-04-13-DevTools-Timeline-Now-Providing-The-Full-Story/compositing-reasons.png %}" alt="Compositing Reasons" />
+  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-04-20-DevTools-Timeline-Now-Providing-The-Full-Story/compositing-reasons.png %}" alt="Compositing Reasons" />
   <span style="color: #999; display: block; margin-top: 1em;">Inspecting a layer from <a href="http://tympanus.net/Development/ScatteredPolaroidsGallery/">Codrops' Scattered Polaroids Gallery</a> to reveal the browser’s reasons for compositing.</span>
 </p>
 
@@ -62,14 +62,14 @@ Last but not least, we’ve added the paint profiler to help you identify jank c
 For starters, it’s now easier to identify the visual content corresponding to each paint event. When you select a green paint event in the Timeline, the __Details__ pane shows you a preview of the actual pixels that were painted.
 
 <p style="text-align: center; text-align: center; margin: 2em 0 2em 0;">
-  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-04-13-DevTools-Timeline-Now-Providing-The-Full-Story/paint-capture.png %}" alt="Paint capture option" />
+  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-04-20-DevTools-Timeline-Now-Providing-The-Full-Story/paint-capture.png %}" alt="Paint capture option" />
   <span style="color: #999; display: block; margin-top: 1em;">Previewing pixels that the browser painted using the <strong>Paint</strong> capture option.</span>
 </p>
 
 If you really want to dive in, switch over to the __Paint Profiler__ pane. This profiler shows you the exact draw commands that the browser executed for the selected paint. To help you connect these native commands with actual content in your app, you can right-click on a __draw*__ call and jump straight to the corresponding node in the __Elements__ panel.
 
 <p style="text-align: center; text-align: center; margin: 2em 0 2em 0;">
-  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-04-13-DevTools-Timeline-Now-Providing-The-Full-Story/draw-calls.png %}" alt="Paint capture option" />
+  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-04-20-DevTools-Timeline-Now-Providing-The-Full-Story/draw-calls.png %}" alt="Paint capture option" />
   <span style="color: #999; display: block; margin-top: 1em;">Relating native browser <strong>draw*</strong> calls to DOM elements using the <strong>Paint Profiler</strong>.</span>
 </p>
 
