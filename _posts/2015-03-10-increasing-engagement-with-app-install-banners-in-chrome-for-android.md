@@ -38,8 +38,8 @@ and seamlessly install your Web App as per the images below.
   <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-03/add-to-home-screen.gif %}" alt="IO Site with install banner" />
 </p>
 
-"This looks great, I want it on my site" I hear you shout. "Please tell me how 
-to add it!".  The good news is if you meet the following criteria Chrome will 
+<span id="criteria">"This looks great, I want it on my site"</span> I hear you shout. "Please tell me how 
+to add it!".  The good news is if you currently meet the following criteria Chrome will 
 manage the prompting of users:
 
 * You have a [web app manifest 
@@ -57,6 +57,8 @@ manage the prompting of users:
   (you need a service worker after all)
 * The user has visited your site twice over two separate days during the course 
   of two weeks.
+
+**Note:** The criteria will change over time.  For more information read the [FAQ](#criteria-faq).
 
 A sample manifest is [provided in our samples](https://github.com/GoogleChrome/samples/tree/gh-pages/app-install-banner) and one here for quick reference:
 
@@ -83,7 +85,7 @@ the
 [Cr-UI-Browser-AppShortcuts](https://code.google.com/p/chromium/issues/list?q=label:Cr-UI-Browser-AppShortcuts) 
 label. 
 
-## Frequently Asked Questions
+## <span id="criteria-faq">Frequently Asked Questions</span>
 
 **My app meets all the criteria, but I don't want the banner to display. Can I control this?**  
 Not right now. We are working on ways to give developers the ability to cancel 
@@ -114,8 +116,17 @@ messaging or offline, is a strong indicator that you are developing a first
 class device experience.  We recommend the following [simple Service Worker as a 
 starting point](https://github.com/GoogleChrome/samples/blob/gh-pages/app-install-banner/service-worker.js). 
 
+**Will the criteria for App Banner activation change over time?**
+Yes.
+
+**How will the criteria for App Banner activation change over time?**
+We can't say specifics right now but as we better understand what makes an experience the user will want to install we will want to make sure the criteria are updated and also well understood for developers. 
+
+**What could one of the critria for App Banner activation be?**
+Again, it is hard to say.  One example could be: supporting offline scenarios in your app could indicate that your app is more resiliant to connectivity issues and therefore would offer a better launchable experience.
+
 **Why do I need SSL?**  
-Because you need a service worker.
+Because you need a service worker, and we believe it is the best option for the future of the platform.
 
 **Are there any good examples of this in action?**  
 Yes, Glad you asked: 
