@@ -6,7 +6,7 @@ article:
   written_on: 2015-04-20
   updated_on: 2015-04-20
 authors:
-  - paulbakaus
+  - heathermahan
 tags:
   - devtools
   - timeline
