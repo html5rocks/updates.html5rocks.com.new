@@ -38,7 +38,8 @@ with Safari on iOS.
 
 _autocapitalize_ will only apply to the following `HTMLInputElement` that have 
 the type attribute set to: `type="text"`, `type="search"`, `type="url"`, `type="tel"`, 
-`type="email"` or `type="password"`. The default is to **not** autocapitalize. 
+`type="email"` or `type="password"`. The default is to **not** autocapitalize for
+everything except `type=text` and `type=search` which will default to sentaces capitalization.
 
 A simple example letting you autocapitalize sentences in a text area.
 
