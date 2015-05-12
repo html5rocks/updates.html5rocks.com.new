@@ -69,13 +69,13 @@ name attribute: `{name:'notifications'}`.
 [midi](https://w3c.github.io/permissions/#h-midi) each have an additional 
 parameter that is specific to that API.
 
-For the push permission, you can supply a `userVisible` parameter. This indicates 
+For the push permission, you can supply a `userVisibleOnly` parameter. This indicates 
 whether you wish to show a notification for every push message or be able to 
 send silent push notifications (At the moment Chrome only supports push messages 
 with notifications). You'd use it like so:
     
 {% highlight javascript %}
-navigator.permissions.query({name:'push', userVisible:true})
+navigator.permissions.query({name:'push', userVisibleOnly:true})
 {% endhighlight %}
 
 Midi allows a `sysex` parameter. This indicates whether you need to and/or receive 
