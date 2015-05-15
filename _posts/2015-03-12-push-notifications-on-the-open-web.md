@@ -350,6 +350,10 @@ What this all means is that in Chrome 42 and 43, you need add the subscriptionId
 to the end of the PushSubscription.endpoint, so your server only needs one
 set of logic, you can do the following to send the right endpoint to your server:
 
+{% highlight javascript %}
+// This method handles the removal of subscriptionId
+// in Chrome 44 by concatenating the subscription Id
+// to the subscription endpoint
 function endpointWorkaround(pushSubscription) {
   // Make sure we only mess with GCM
   if (pushSubscription.endpoint.indexOf('https://android.googleapis.com/gcm/send') !== 0) {
@@ -360,13 +364,15 @@ function endpointWorkaround(pushSubscription) {
   // Chrome 42 + 43 will not have the subscriptionId attached
   // to the endpoint.
   if (pushSubscription.subscriptionId &&
-    !pushSubscription.endpoint.includes(subscriptionId)) {
+    !pushSubscription.endpoint.includes(pushSubscription.subscriptionId)) {
     // Handle version 42 where you have separate subId and Endpoint
     mergedEndpoint = pushSubscription.endpoint + '/' +
       pushSubscription.subscriptionId;
   }
   return mergedEndpoint;
 }
+{% endhighlight %}
+
 The following code subscribes the user for push messaging:
 
 {% highlight javascript %}
