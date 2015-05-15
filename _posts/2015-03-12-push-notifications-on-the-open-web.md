@@ -4,7 +4,7 @@ title: "Push Notifications on the Open Web"
 description: "Push messaging and notifications are landing in Chrome 42."
 article:
   written_on: 2015-03-12
-  updated_on: 2015-03-12
+  updated_on: 2015-05-15
 authors:
   - mattgaunt
 tags:
@@ -36,6 +36,25 @@ please check out the links above.
 
 We will also look at what will be added to the API in future versions of Chrome, 
 and finally we'll have an FAQ.
+
+# Things to Know Up Front
+
+Useful tid bits:
+
+* A **simple code example** can be found on [GoogleChrome Samples Repo](https://github.com/GoogleChrome/samples/tree/gh-pages/push-messaging-and-notifications).
+* When I refer to **'payload'**, I am talking about data that comes with a push message,
+i.e. data you send to a device from your server.
+* When I refer to **'notification data'**,
+I am referring to the data attribute on the Notification class in JavaScript. Notification
+data is a way to store information with a notification that you can retrieve in the
+`notificationclick` event, for example.
+* Looking for a **demo**? Look no further: [https://simple-push-demo.appspot.com](https://simple-push-demo.appspot.com).
+* There is a new standard which defines the API you'd use to send a push
+message to your users, but it's not fully formed at the moment, [learn more about it here](https://datatracker.ietf.org/doc/draft-thomson-webpush-protocol/). I
+cover how to get things working with GCM, as soon as the standard is more
+fully formed an another browser supports Push, I'll update this doc & the sample.
+
+Now that's out of the way - on with implementing push!
 
 # Implementing Push Messaging for Chrome
 
@@ -88,7 +107,7 @@ the code snippets.
 We then check that service workers are supported before registering the service-worker.js 
 file which has the logic for handling a push message. Here we 
 are simply telling the browser that this JavaScript file is the service worker 
-for our site.
+for your site.
 
 ## Set Up the Initial State
 
@@ -129,7 +148,7 @@ downloaded or the user has disabled JavaScript.
 </button>
 {% endhighlight %}
 
-With this initial state, we can perform the checks outlined above in the 
+With this initial state, we can perform the checks outlined above in an 
 **initialiseState()** method, i.e. after our service worker is registered.
 
 {% highlight javascript %}
@@ -213,15 +232,19 @@ use [Google Cloud Messaging (GCM)](https://developer.android.com/google/gcm/inde
 ## Make a Project on the Google Developer Console
 
 Chrome uses GCM to handle the sending and delivery of push messages, however, to 
-use the GCM API, you need to set up a project on the Google Developer Console. 
+use the GCM restful API, you need to set up a project on the Google Developer Console. 
 Follow the instructions in the [getting started 
 guide](https://developer.android.com/google/gcm/gs.html), making sure you 
 enable both "Google Cloud Messaging for Android" and "Google Cloud Messaging for 
 Chrome", and make a note of the **project number** and **API key** as you'll 
 need to use them later on.
 
-This step is specific to Chrome since it relies on GCM for handling push
-messages. We'll discuss how this would work in other browsers later on in the article.
+This step is **specific to Chrome** since it relies on GCM's restful API
+to send push messages. The end goal is for Chrome and GCM to support the 
+[Web Push Protocol](https://datatracker.ietf.org/doc/draft-thomson-webpush-protocol/).
+Other browsers are free to use any push service and these will hopefully implement
+the web push protocol, meaning there will only ever be one API standard you need to
+implement on your server.
 
 Below are screenshots highlighting where the project number and API keys are.  
 
@@ -234,25 +257,30 @@ Below are screenshots highlighting where the project number and API keys are.
 </p>
 
 The project number will be used in the Web App Manifest (see the next section) 
-as the **gcm\_sender\_id** parameter, and the **API Key** will be needed on your 
-server when you use GCM's restful API.
+as the **gcm\_sender\_id** parameter, and the **Public API Key** will be 
+needed on your server when you use GCM's restful API.
 
 ## Add a Web App Manifest
 
-For push, we need to add a manifest file with two fields, **gcm\_sender\_id** and **gcm\_user\_visible\_only**, to get the push subscription to succeed. These parameters 
-are only required by Chrome to use GCM.
+For push on Chrome, we need to add a manifest file and add the **gcm\_sender\_id**
+parameter, otherwise the push subscription will fail. These parameters 
+are only required by Chrome to use GCM, other browsers won't require a web
+app manifest.
 
 The **gcm\_sender\_id** (i.e. the project number) is used by Chrome when 
 establishing a subscription with GCM. This means that GCM can link a 
-subscriptionId to a corresponding project number which has has a 
-corresponding API key. This ensures that your server is permitted 
+subscriptionId to a corresponding project number and this can be matched 
+with the corresponding public API key. This ensures that your server is permitted 
 to send messages to the client web app by validating these three pieces of information
-against the projects whitelisted IP Addresses. 
+against the IP Addresses whitelisted in the project you set up on 
+console.developers.google.com. 
 
-The **gcm\_user\_visible\_only** parameter is used to indicate that **you 
-promise to show a notification whenever you receive a push**. 
-Not including this parameter or having a value of false will prevent you from 
-subscribing to push messages. 
+In Chrome version 42 a **gcm\_user\_visible\_only** parameter is 
+required to indicate that **you promise to show a notification 
+whenever you receive a push**. In Chrome version 44 and above, 
+this parameter is moved to the subscribe() method as 
+**userVisibleOnly**. Once Chrome version 44 is stable, this will
+no longer be required.
 
 Below is a super-simple manifest file:
 
@@ -290,72 +318,103 @@ permission denied".
 
 ## Subscribe to Push Messaging
 
-To subscribe, we just have to call the **subscribe()** method on the 
+To subscribe, we have to call the `subscribe()` method on the 
 [PushManager](http://w3c.github.io/push-api/#pushmanager-interface) object, 
 which you access through the 
 [ServiceWorkerRegistration](https://slightlyoff.github.io/ServiceWorker/spec/service_worker/#service-worker-registration-obj) 
 object.
 
-This will ask the user to give your origin permission to send push 
-notifications. Without this permission, you will not be able to successfully 
+This method takes an object to define options. You'll need to pass in a
+**{userVisibleOnly: true}** option to inform the browser that you 
+intend to always show a notification. At the moment there is no support
+for sending a notification without a notification.
+
+Calling the `subscribe()` method will result in the browser ask the user 
+to give your origin permission to send push notifications. 
+Without this permission, you will not be able to successfully 
 subscribe.
 
 If the [promise](http://www.html5rocks.com/en/tutorials/es6/promises/) returned 
 by the **subscribe()** method resolves, you'll be given a 
 [PushSubscription](http://w3c.github.io/push-api/#idl-def-PushSubscription) 
-object which will contain a **subscriptionId** and an **endpoint**. 
+object which will contain an **endpoint**. 
 
-The **subscriptionId** is used to identify the user to GCM and the **endpoint** will be 
-the URL of the GCM API endpoint to use.
+*** Supporting Pre-Chrome 44 Push
 
-Both the **subscriptionId** and **endpoint** should be saved on your server for each 
-user, since you'll need them to send push messages at a later date.
+When push was first implemented in Chrome 42, the spec also defined a subscriptionId,
+which Chrome used to define a ID of the device to GCM. The spec has since
+changed and removed subscriptionId, so in Chrome 44 the subscriptionId is appended to the endpoint, but also left in the PushSubscription object and in Chrome 45,
+the subscriptionId will be remove completely.
 
+What this all means is that in Chrome 42 and 43, you need add the subscriptionId
+to the end of the PushSubscription.endpoint, so your server only needs one
+set of logic, you can do the following to send the right endpoint to your server:
+
+function endpointWorkaround(pushSubscription) {
+  // Make sure we only mess with GCM
+  if (pushSubscription.endpoint.indexOf('https://android.googleapis.com/gcm/send') !== 0) {
+    return pushSubscription.endpoint;
+  }
+
+  var mergedEndpoint = pushSubscription.endpoint;
+  // Chrome 42 + 43 will not have the subscriptionId attached
+  // to the endpoint.
+  if (pushSubscription.subscriptionId &&
+    !pushSubscription.endpoint.includes(subscriptionId)) {
+    // Handle version 42 where you have separate subId and Endpoint
+    mergedEndpoint = pushSubscription.endpoint + '/' +
+      pushSubscription.subscriptionId;
+  }
+  return mergedEndpoint;
+}
 The following code subscribes the user for push messaging:
 
 {% highlight javascript %}
-function subscribe() {  
-  // Disable the button so it can't be changed while  
-  // we process the permission request  
-  var pushButton = document.querySelector('.js-push-button');  
+function subscribe() {
+  // Disable the button so it can't be changed while
+  // we process the permission request
+  var pushButton = document.querySelector('.js-push-button');
   pushButton.disabled = true;
 
-  navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {  
-    serviceWorkerRegistration.pushManager.subscribe()  
-      .then(function(subscription) {  
-        // The subscription was successful  
-        isPushEnabled = true;  
-        pushButton.textContent = 'Disable Push Messages';  
-        pushButton.disabled = false;      
-          
-        // TODO: Send the subscription.subscriptionId and   
-        // subscription.endpoint to your server  
-        // and save it to send a push message at a later date   
-        return sendSubscriptionToServer(subscription);  
-      })  
-      .catch(function(e) {  
-        if (Notification.permission === 'denied') {  
-          // The user denied the notification permission which  
-          // means we failed to subscribe and the user will need  
-          // to manually change the notification permission to  
-          // subscribe to push messages  
-          console.warn('Permission for Notifications was denied');  
-          pushButton.disabled = true;  
-        } else {  
-          // A problem occurred with the subscription; common reasons  
-          // include network errors, and lacking gcm_sender_id and/or  
-          // gcm_user_visible_only in the manifest.  
-          console.error('Unable to subscribe to push.', e);  
-          pushButton.disabled = false;  
-          pushButton.textContent = 'Enable Push Messages';  
-        }  
-      });  
-  });  
+  navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
+    serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true})
+      .then(function(subscription) {
+        // The subscription was successful
+        isPushEnabled = true;
+        pushButton.textContent = 'Disable Push Messages';
+        pushButton.disabled = false;
+
+        showCurlCommand(subscription);
+
+        // TODO: Send the subscription subscription.endpoint
+        // to your server and save it to send a push message
+        // at a later date
+        return sendSubscriptionToServer(subscription);
+      })
+      .catch(function(e) {
+        if (Notification.permission === 'denied') {
+          // The user denied the notification permission which
+          // means we failed to subscribe and the user will need
+          // to manually change the notification permission to
+          // subscribe to push messages
+          window.Demo.debug.log('Permission for Notifications was denied');
+          pushButton.disabled = true;
+        } else {
+          // A problem occurred with the subscription, this can
+          // often be down to an issue or lack of the gcm_sender_id
+          // and / or gcm_user_visible_only
+          window.Demo.debug.log('Unable to subscribe to push.', e);
+          pushButton.disabled = false;
+          pushButton.textContent = 'Enable Push Messages';
+        }
+      });
+  });
 }
 {% endhighlight %}
 
-At this point your web app is ready to receive a push message, although nothing 
-will happen until we add a push event listener to our service worker file.
+At this point your web app is almost ready to receive a push message, 
+although nothing will happen until we add a push event listener to 
+our service worker file.
 
 ## Service Worker Push Event Listener
 
@@ -391,13 +450,13 @@ method. This method takes a
 lifetime of an event handler until the promise is 
 [settled](https://github.com/domenic/promises-unwrapping/blob/master/docs/states-and-fates.md#states); 
 In this case, until the promise returned from **showNotification()** is 
-resolved.  
+resolved.
   
 The [notification tag](https://notifications.spec.whatwg.org/#tag) identifies 
-unique notifications. If we sent two push messages to the same subscriptionId, 
+unique notifications. If we sent two push messages to the same device, 
 with a short delay between them, and displayed a notification with the same tag 
 for both, the browser will display the first notification and replace it with 
-the second notification when the push message is received.
+the second notification when the second push message is received.
 
 If you want to show multiple notifications at once then use a different tag, or 
 no tag at all.    
@@ -409,23 +468,58 @@ this notification.
 
 We've subscribed to push messages and our service worker is ready to show a 
 notification, so it's time to send a push message through GCM.  
-  
-GCM has some [great docs on what you need to do to send a 
-message](https://developer.android.com/google/gcm/server.html). The key aspects 
-of their API are:
 
-* An **Authorization** header with a value of **key=&lt;YOUR\_API\_KEY&gt;**, 
-  where **&lt;YOUR\_API\_KEY&gt;** is the API key from the Google Developer 
-  Console.
-    * The API key is used by GCM to find the appropriate project number, match 
+This Chrome is the only browser who has implemented push messaging and it
+uses GCM to handle push messaging, we're going to look at how to use the GCM
+API at a high level. For other browsers and hopefully Chrome, you will interact
+with the the push service as defined by the 
+[Web Push Protocol](https://datatracker.ietf.org/doc/draft-thomson-webpush-protocol/),
+spec. However this standard is still in flux. 
+
+To use GCM, there are some [great docs on what you need to do to send a 
+push message](https://developer.android.com/google/gcm/server.html). 
+The key aspects of their API are:
+
+* You need to send an **Authorization** header with a value of 
+  **key=&lt;YOUR\_PUBLIC\_API\_KEY&gt;**, where 
+  **&lt;YOUR\_PUBLIC\_API\_KEY&gt;** is the API key from the 
+  Google Developer Console.
+    * The public API key is used by GCM to find the appropriate project number, match 
       it with the subscriptionId's project number, which you are trying to send 
-      a message too and finally ensuring that the server's IP address is 
+      a message too and finally ensure that the server's IP address is 
       whitelisted for that project.
 * An appropriate **Content-Type** header of **application/json** or 
   **application/x-www-form-urlencoded;charset=UTF-8** depending on whether you 
   send the data as JSON or form data.
-* An array of **registration\_ids** - these are just the subscriptionId's you'd 
-  have for the users you would like to send a push message to.
+* An array of **registration\_ids** - these are ID's, which you can 
+  extract from the PushSubscription.endpoint you would have sent to your server.
+
+To give you an idea of how to extract this on your server, here is some Python
+code used to get the registration ID:
+
+    endpoint = self.request.get("endpoint")
+    if endpoint.startswith('https://android.googleapis.com/gcm/send') :
+      headers = {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        'Authorization': 'key=AIzaSyBBh4ddPa96rQQNxqiq_qQj7sq1JdsNQUQ'
+      }
+      endpointParts = endpoint.split('/')
+      registrationId = endpointParts[len(endpointParts) - 1]
+       
+      endpoint = 'https://android.googleapis.com/gcm/send'
+
+      form_fields = {
+        "registration_id": registrationId
+      }
+      form_data = urllib.urlencode(form_fields)
+      result = urlfetch.fetch(url=endpoint,
+                            payload=form_data,
+                            method=urlfetch.POST,
+                            headers=headers)
+
+Essentially what we do here is if the endpoint is to GCM, we split
+the endpoint at the forward slashes. We then use the last element
+from the resulting array as the registration ID.
 
 Please do check out the docs about how to send push messages from your server, 
 but for a quick sanity check of your service worker you can use 
@@ -434,13 +528,13 @@ to send a push message to your browser (as long as you [whitelisted your IP
 address](https://developer.android.com/google/gcm/gs.html) on the Google 
 Developer Console).
 
-Swap out the **&lt;YOUR\_API\_KEY&gt;** and **&lt;YOUR\_SUBSCRIPTION\_ID&gt;** 
-in this cURL command, run it from a terminal and you should see a glorious 
-notification:
+Swap out the **&lt;YOUR\_PUBLIC\_API\_KEY&gt;** and 
+**&lt;YOUR\_REGISTRATION\_ID&gt;** in this cURL command, run it from a 
+terminal and you should see a glorious notification:
 
-    curl --header "Authorization: key=<YOUR_API_KEY>" --header 
+    curl --header "Authorization: key=<YOUR_PUBLIC_API_KEY>" --header 
     "Content-Type: application/json" https://android.googleapis.com/gcm/send -d 
-    "{\"registration_ids\":[\"<YOUR_SUBSCRIPTION_ID>\"]}"
+    "{\"registration_ids\":[\"<YOUR_REGISTRATION_ID>\"]}"
 
 <p style="text-align: center;">
   <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-03-04-push-on-the-open-web/push-message.gif %}" alt="Example of a push message from Chrome for Android" />
@@ -451,15 +545,15 @@ format of the POST body are specific to the GCM endpoint, so detect when the
 endpoint is for GCM and conditionally add the header and format the POST body.
 
 A downside to the current implementation of the Push API in Chrome is that you 
-can't send any data with a push message. Nope, nothing. The reason for this is 
-that in a future implementation, payload data will have to be encrypted on your 
+can't send a payload with a push message. Nope, nothing. The reason for this is 
+that in a future implementation, payload will have to be encrypted on your 
 server before it's sent to a push messaging endpoint. This way the endpoint, 
 whatever push provider it is, will not be able to easily view the content of the 
 push message. This also protects against other vulnerabilities like poor 
 validation of HTTPS certificates and man-in-the-middle attacks between your 
 server and the push provider. However, this encryption isn't supported yet, so 
-in the meantime you'll need to perform a fetch to get information needed to 
-populate a notification.
+in the meantime you'll need to perform a [fetch](http://updates.html5rocks.com/2015/03/introduction-to-fetch) 
+to get information needed to populate a notification.
 
 ## A More Complete Push Event Example
 
@@ -528,8 +622,8 @@ self.addEventListener('push', function(event) {
       
 It's worth, once again, highlighting that the **event.waitUntil()** takes a promise 
 which results in the promise returned by **showNotification()**, meaning
-that our event listener won't exit until the asynchronous fetch() call is complete, and 
-the notification is shown.
+that our event listener won't exit until the asynchronous fetch() call 
+is complete, and the notification is shown.
 
 You'll notice that we show a notification even when there is an error, that is 
 because if we don't, Chrome will show it's own generic 
@@ -548,7 +642,7 @@ self.addEventListener('notificationclick', function(event) {
   // See: http://crbug.com/463146  
   event.notification.close();
 
-  // This looks to see if the current is already open and  
+  // This looks to see if the current window is already open and  
   // focuses if it is  
   event.waitUntil(
     clients.matchAll({  
@@ -574,14 +668,15 @@ existing same-origin tab if one exists, and otherwise opening a new one.
 There are two parts of today's implementation of Notifications which require 
 some unpleasant work arounds:
 
-1. There is no easy way to stash data with the notification (i.e. what URL to 
-   open when a particular notification is clicked). There is a **data** 
-   attribute in the [Notification spec](https://notifications.spec.whatwg.org/#dom-notification-data), but 
-   [it's not implemented yet](https://crbug.com/442129).
-1. You can only open a URL which is on the same origin as your service worker 
-   ([This will hopefully be addressed soon](https://code.google.com/p/chromium/issues/detail?id=457187)).
+1. There is was no easy way to stash data with a notification in Chrome 42 
+   (i.e. what URL to open when a particular notification is clicked). 
+   In Chrome 44 the **data** attribute defined in the [Notification spec](https://notifications.spec.whatwg.org/#dom-notification-data) was implemented.
+  1. Until Chrome 44 is in stable, you'll need to handle both cases.
+1. In Chrome 42 you could only open a URL which is on the same origin as 
+   your service worker, this was changed in Chrome 43 so that you could open
+   any URL.
 
-**But don't worry,** there are ways to overcome these issues.
+**But don't worry,** there are ways to overcome these issues for Chrome 42.
 
 To get around not being able to tie data to your notification, you can use 
 [IndexedDB](http://www.html5rocks.com/en/tutorials/indexeddb/todo/) to save a 
@@ -594,20 +689,29 @@ end of your icon URL. This way it won't affect the image's cachability while
 giving you access to a short URL. (H/T to [Casey at Roost](https://goroost.com/) 
 for this idea.)
 
-The simplest way to overcome the temporary issue of only being able to open URLs 
-on the same origin, is to have a page on your domain which performs a redirect.
+You can feature detect if Notification.data is supported with the following code:
+
+    if (Notification.prototype.hasOwnProperty('data')) {
+      // Data is supported :)
+    } else {
+      // No data here, time to use something else :(
+    }
+
+The simplest way to overcome the issue of only being able to open URLs 
+on the same origin in Chrome 42, is to have a page on your domain which 
+performs a redirect.
 
 ## Unsubscribe a User's Device
 
-You've subscribed a user's device and they're receiving push messages, but how can you  
-unsubscribe them?
+You've subscribed a user's device and they're receiving push messages, 
+but how can you unsubscribe them?
 
 The main things required to unsubscribe a users device is to call the 
 **unsubscribe()** method on the 
 [PushSubscription](http://w3c.github.io/push-api/#idl-def-PushSubscription) 
-object and to remove the subscriptionId from your servers (just so you aren't 
-sending push messages which you know won't be received). The code below does 
-exactly this:
+object and to remove the PushSubscription date from your servers 
+(just so you aren't sending push messages which you know won't be received). 
+The code below does exactly this:
 
 {% highlight javascript %}
 function unsubscribe() {  
@@ -628,10 +732,9 @@ function unsubscribe() {
           pushButton.textContent = 'Enable Push Messages';  
           return;  
         }  
-          
-        var subscriptionId = pushSubscription.subscriptionId;  
-        // TODO: Make a request to your server to remove  
-        // the subscriptionId from your data store so you   
+
+        // TODO: Make a request to your server to remove
+        // the users data from your data store so you
         // don't attempt to send them push messages anymore
 
         // We have a subscription, so call unsubscribe on it  
@@ -674,14 +777,12 @@ re-subscribe automatically if you no longer have a subscription and
 Notification.permission == 'granted'.
 
 In **sendSubscriptionToServer()** you will need to consider how you handle 
-failed network requests when updating the **subscriptionId**. One solution is
-to track the state of the **subscriptionId** and **endpoint** in a cookie 
+failed network requests when updating the PushSubscription data. One solution is
+to track the state of the **endpoint** in a cookie 
 to determine whether your server needs the latest details or not. 
 
 All of the above steps results in a full implementation of push messaging on the 
-web in Chrome 42. There are still spec'd features that will make things easier 
-(like notifications having data tied to them), but this release enables you to 
-start building push messaging into your web apps today.
+web in Chrome.
 
 ## How to Debug Your Web App
 
@@ -750,21 +851,16 @@ will differ from other browser implementations.
 ## Web Push Protocol and Endpoints
 
 The beauty of the Push API standard is that you should be able to take the 
-**subscriptionId** and **endpoint**,  pass them to your server and send push 
-messages by implementing the [Web Push Protocol](https://www.google.com/url?q=https%3A%2F%2Fmartinthomson.github.io%2Fdrafts%2Fdraft-thomson-webpush-http2.html&sa=D&sntz=1&usg=AFQjCNHCUAHdar4D3qx3glRhWMusvGZz8g).
+**endpoint**,  pass it to your server and send push 
+messages by implementing the [Web Push Protocol](https://datatracker.ietf.org/doc/draft-thomson-webpush-protocol/).
 
 The Web Push Protocol is a new standard which push providers can implement, 
 allowing developers to not have to worry about who the push provider is. The 
 idea is that this avoids the need to sign up for API keys and send specially 
-formatted data, like we have to with GCM.
+formatted data, like you have to with GCM.
 
-At the moment Chrome is the only implementation of the Push API and GCM does not 
-support the Web Push Protocol, which is the reason why Chrome requires the 
-**gcm\_sender\_id** and you need to use the restful API for GCM with a specific 
-format for the body of the request and the **Authorization** header.
-
-The end goal is to move away from requiring these steps and to move to using the 
-Web Push Protocol with Chrome and GCM. 
+The end goal is to move away from requiring these Chrome / GCM specific steps
+and to move to using the Web Push Protocol with Chrome and GCM. 
 
 Until then, you need to detect the endpoint 
 "[https://android.googleapis.com/gcm/send](https://android.googleapis.com/gcm/send)" 
@@ -773,17 +869,18 @@ specific way and add the Authorization key.
 
 ## How to Implement the Web Push Protocol?
 
-At the moment there is no push service which implements the Web Push Protocol 
-meaning there is no sample to give on how to send a push message on your server 
-for anything other than GCM.
+At the moment there is no push service which implements the latest
+version of the Web Push Protocol, meaning there is no sample to 
+give on how to send a push message on your server for anything 
+other than GCM.
 
 # FAQs
 
 ## Where are the specs?
 
-[https://slightlyoff.github.io/ServiceWorker/spec/service\_worker/](https://slightlyoff.github.io/ServiceWorker/spec/service_worker/)  
-[https://w3c.github.io/push-api/](https://w3c.github.io/push-api/)  
-[https://notifications.spec.whatwg.org/](https://notifications.spec.whatwg.org/)
+- [https://slightlyoff.github.io/ServiceWorker/spec/service\_worker/](https://slightlyoff.github.io/ServiceWorker/spec/service_worker/)  
+- [https://w3c.github.io/push-api/](https://w3c.github.io/push-api/)  
+- [https://notifications.spec.whatwg.org/](https://notifications.spec.whatwg.org/)
 
 ## Can I prevent duplicate notifications if my web presence has multiple origins, or if I have both a web and native presence?
 
@@ -833,42 +930,52 @@ have begun work on [implementing the Push API](https://bugzilla.mozilla.org/show
 
 ## Can I remove a notification after a certain time period?
 
-At the moment this isn't possible but we are planning on adding support to get a 
-list of currently visible notifications. If you have a use case to set an 
-expiration for notification after it's displayed created, we'd love to know 
-what that is, so please add a comment and we'll pass it back to the Chrome team.
+At the moment this isn't possible, but as of Chrome 44 you can get a list
+of currently visible notifications and perform actions on them accordingly.
+If you have a use case to set an expiration for notification after it's 
+displayed, we'd love to know what that is, so please add a comment and we'll 
+pass it back to the Chrome team.
 
 If you only need to stop a push notification from being sent to the user
 after a certain time period, and don't care how long the notification stays
 visible, then you can use GCM's time to live (ttl) parameter, 
 [learn more here](https://developer.android.com/google/gcm/server.html#ttl).
 
-## What are the limitations of push messaging in Chrome 42?
+## What are the limitations of push messaging in Chrome?
 
 There are a few limitations outlined in this post:
 
-* Data can't be sent in a push message.
+* There is a range of changes from the initial version in Chrome 42 to Chrome 44
+  (See the next Q for more info).
+* You can't send a payload with a push message.
 * Chrome's usage of GCM as a push service creates a number of proprietary 
   requirements. We're working together to see if some of these can be lifted in 
   the future.
-* You have to show a notification when you receive a push message.
-* There is no way to add **data** to a notification. The **data** parameter 
-  isn't implemented in Chrome yet, but [is in the spec](https://notifications.spec.whatwg.org/#data).
+* You **have** to show a notification when you receive a push message.
 * Chrome on desktop has the caveat that if Chrome isn't running, push messages 
   won't be received. This differs from Chrome OS and Android where push messages 
   will always be received. This is something we hope to resolve in the future.
 
+## What changes exist in the Push API since Chrome 42
+
+* In Chrome 43+, you can open any URL with clients.openWindow(),
+  however in Chrome 42 you could only open URL on the same origin
+* In Chrome 44 [Notification.data and Notification.get()](https://www.chromestatus.com/feature/5736434757533696) were implemented. The lack of Notification.data
+  required the use of IndexDB or hacks to get around it and there
+  is no alternative for Notification.get() before Chrome version 44.
+* In Chrome 42 the PushSubscription object had a subscriptionId variable
+  on it. In Chrome 44+, the subscriptionId (a.k.a the GCM registration ID),
+  is appended to the PushSubscription.endpoint. In Chrome 44 a warning is shown 
+  but subscriptionId is still in the PushSubscription object and in Chrome 45 the subscriptionId varaible will be removed.
+
 ## Shouldn't we be using the Permissions API?
 
 The 
-[Permission API](https://w3c.github.io/permissions/) is still being spec'd and isn't 
-implemented in Chrome yet. When it is available in Chrome, you should move away 
-from using Notifications.permission and use the Permissions API instead.
-
-## Why doesn't Chrome open up the previous tab when I click a notification?
-
-This issue only affects pages which aren't currently controlled by a service 
-worker. You can [learn more here](https://code.google.com/p/chromium/issues/detail?id=460903).
+[Permission API](https://w3c.github.io/permissions/) was added to Chrome
+in version 43 and you can [learn more about the API in this article](http://updates.html5rocks.com/2015/04/permissions-api-for-the-web). For future proofing your
+app you should use the Permission API and it's `onchange` event makes managing
+state much easier, however you need to account for browsers which may not support
+the Permission API but implement the Push API.
 
 ## What if a notification is out of date by the time the users device received the push?
 
