@@ -104,12 +104,9 @@ function showNotification(title, body, icon, data) {
     tag: 'simple-push-demo-notification',  
     data: data  
   };  
-  if (self.registration.showNotification) {  
-    self.registration.showNotification(title, notificationOptions);  
-    return;  
-  } else {  
-    new Notification(title, notificationOptions);  
-  }  
+  
+  self.registration.showNotification(title, notificationOptions);  
+  return;  
 }
 
 self.addEventListener('push', function(event) {  
@@ -119,7 +116,7 @@ self.addEventListener('push', function(event) {
   // of Push notifications, here we'll grab some data from  
   // an API and use it to populate a notification  
   event.waitUntil(  
-    fetch(API\_ENDPOINT).then(function(response) {  
+    fetch(API_ENDPOINT).then(function(response) {  
       if (response.status !== 200) {  
         console.log('Looks like there was a problem. Status Code: ' +  
           response.status);  
@@ -182,7 +179,7 @@ self.addEventListener('notificationclick', function(event) {
     var url = event.notification.data.url;  
     event.waitUntil(clients.openWindow(url));  
   } else {  
-    event.waitUntil(getIdb().get(KEY\_VALUE\_STORE\_NAME, 
+    event.waitUntil(getIdb().get(KEY_VALUE_STORE_NAME, 
 event.notification.tag).then(function(url) {  
       // At the moment you cannot open third party URL's, a simple trick  
       // is to redirect to the desired URL from a URL on your domain  
@@ -216,8 +213,7 @@ when a new push arrives.
 var notificationCount = 1;  
 for (var i = 0; i &lt; notifications.length; i++) {  
   var existingNotification = notifications[i];  
-  if (existingNotification.data && existingNotification.data.notificationCount) 
-{  
+  if (existingNotification.data && existingNotification.data.notificationCount) {  
     notificationCount += existingNotification.data.notificationCount;  
   } else {  
     notificationCount++;  
@@ -248,7 +244,9 @@ will allow it :( but the Chrome engineering team are aware of this use case.
 
 On desktop you can create a notification with the following code:
 
+{% highlight javascript %}
 new Notification('Hello', {body: 'Yay!'});
+{% endhighlight %}
 
 This was never supported on Android due to restrictions of the platform: 
 specifically, Chrome can't support the callbacks on the Notification object, 
