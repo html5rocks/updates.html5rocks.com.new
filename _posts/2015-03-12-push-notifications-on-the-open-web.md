@@ -279,7 +279,7 @@ required to indicate that **you promise to show a notification
 whenever you receive a push**. In Chrome version 44 and above, 
 this parameter is moved to the `subscribe()` method as 
 a parameter you pass in, **userVisibleOnly**. Once Chrome version
-44 is stable `gcm\_user\_visible\_only` will no longer be required.
+44 is stable `gcm_user_visible_only` will no longer be required.
 
 Below is a super-simple manifest file:
 
