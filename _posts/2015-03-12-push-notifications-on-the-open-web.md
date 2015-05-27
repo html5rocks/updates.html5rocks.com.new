@@ -279,7 +279,7 @@ required to indicate that **you promise to show a notification
 whenever you receive a push**. In Chrome version 44 and above, 
 this parameter is moved to the `subscribe()` method as 
 a parameter you pass in, **userVisibleOnly**. Once Chrome version
-44 is stable `gcm\_user\_visible\_only` will no longer be required.
+44 is stable `gcm_user_visible_only` will no longer be required.
 
 Below is a super-simple manifest file:
 
@@ -989,6 +989,9 @@ There are a few limitations outlined in this post:
   on it. In Chrome 44+, the subscriptionId (a.k.a the GCM registration ID),
   is appended to the PushSubscription.endpoint. In Chrome 44 a warning is shown 
   but subscriptionId is still in the PushSubscription object and in Chrome 45 the subscriptionId variable will be removed.
+* In Chrome 42 and 43 you needed to include 'gcm_user_visible: true' in your
+  web app manifest. In Chrome 44 this is no longer needed but you need to pass
+  in 'userVisibleOnly' as an option to the subscribe method, like so: `subscribe({userVisibleOnly: true})`
 
 ## Shouldn't we be using the Permissions API?
 
