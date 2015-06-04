@@ -168,12 +168,10 @@ It is simple to integrate into any manifest.  Just add a `related_applications` 
 ## <span id="criteria-faq">Frequently Asked Questions</span>
 
 **My app meets all the criteria, but I don't want the banner to display. Can I control this?**  
-Not right now. We are working on ways to give developers the ability to cancel 
-the display of the prompt. Follow our "[Intent to Implement](https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/HSSqpbYd8W8)" on blink-dev mailing list.
+Yes, you can prevent the banner from displaying.  See "[Cancelling the prompt](#cancel)".
 
 **Can I detect if a user tapped "Add" at the prompt and added to home screen?**  
-Not right now. We are working on ways to give developers the ability to 
-understand whether the user has gestured Install or Cancel.
+Yes you can, see "[Did a user install our web app](#action)".
 
 **If a user dismisses the banner, will it appear again?**  
 No.  Not unless the user clears their history.  We want to make sure users have 
