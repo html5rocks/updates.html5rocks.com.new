@@ -44,7 +44,10 @@ We've found that by correctly using autocomplete attributes on your forms, users
 complete them up to 30% faster. And since _autocomplete_ is part of the [WHATWG 
 ](https://html.spec.whatwg.org/multipage/forms.html#autofill)[HTML](https://html.spec.whatwg.org/multipage/forms.html#autofill) 
 standard, we hope that other browsers will support it in the near future.  
-<img src="https://lh4.googleusercontent.com/kAeKrmA7eJhyxqcrilDShud36JNwpz04hFJIv7zYc0tPziwrx3q1Gqmas1OeSTVlcD-HOgteBWHbQPs=w1338-h685-rw" width="301" height="538" />  
+
+<p style="text-align: center;">
+  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-06-05-checkout-faster-with-autofill/autofill-1.gif %}" alt="autofill git to show the power of fast and easy form filling" />
+</p>
 
 In the past, many developers would add _autocomplete="off"_ to their form fields 
 to prevent the browser from performing any kind of autocomplete functionality. 
@@ -222,5 +225,7 @@ You can see it in action over at:
 Or check the code: 
 [https://github.com/greenido/Product-Site-101](https://github.com/greenido/Product-Site-101)
 
-<img src="https://lh3.googleusercontent.com/oFnGbUaJq6iUyIX8yA0iITmjH7IUQ2oB-mI_87UMglzE7eS0u60wc90kamXDqKGERh4qSduSRc3dJas=w1338-h685-rw" width="212" height="314" />
+<p style="text-align: center;">
+  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-06-05-checkout-faster-with-autofill/autofill-ex.png %}" alt="An example to a form that use autocomplete tags" />
+</p>
 
