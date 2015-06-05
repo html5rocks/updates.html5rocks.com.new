@@ -46,7 +46,7 @@ complete them up to 30% faster. And since _autocomplete_ is part of the [WHATWG
 standard, we hope that other browsers will support it in the near future.  
 
 <p style="text-align: center;">
-  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-06-05-checkout-faster-with-autofill/autofill-1.gif %}" alt="autofill git to show the power of fast and easy form filling" />
+  <img style="max-width: 60%; height: auto;" src="{% asset_path 2015-06-05-checkout-faster-with-autofill/autofill-1.gif %}" alt="autofill git to show the power of fast and easy form filling" />
 </p>
 
 In the past, many developers would add _autocomplete="off"_ to their form fields 
@@ -226,6 +226,6 @@ Or check the code:
 [https://github.com/greenido/Product-Site-101](https://github.com/greenido/Product-Site-101)
 
 <p style="text-align: center;">
-  <img style="max-width: 100%; height: auto;" src="{% asset_path 2015-06-05-checkout-faster-with-autofill/autofill-ex.png %}" alt="An example to a form that use autocomplete tags" />
+  <img style="max-width: 60%; height: auto;" src="{% asset_path 2015-06-05-checkout-faster-with-autofill/autofill-ex.png %}" alt="An example to a form that use autocomplete tags" />
 </p>
 
