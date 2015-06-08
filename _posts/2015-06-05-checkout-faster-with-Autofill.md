@@ -5,7 +5,6 @@ description: "Help users checkout faster with Autofill. We’ve found that by co
 article:
   written_on: 2015-06-05
   updated_on: 2015-06-05
-published: false
 authors:
   - idogreen
 tags:
@@ -15,8 +14,6 @@ tags:
 permalink: /2015/06/checkout-faster-with-Autofill
 
 ---
-
-### Help users checkout faster with Autofill
 
 People hate filling out web forms, especially on mobile devices. They can be 
 slow and frustrating to complete and often contain multi-page steps and 
@@ -37,14 +34,17 @@ accuracy.
 Autocomplete attributes are a way for you, the developer, to control how the 
 browser should populate a given form field.  For example, if you are expecting a 
 street address you can hint to the browser that you are expecting it by using 
-_autocomplete="address-line1"_. This prevents the browser from incorrectly 
+`autocomplete="address-line1"`. This prevents the browser from incorrectly 
 guessing form fields on your website which can result in a poor user experience.
 
 We've found that by correctly using autocomplete attributes on your forms, users 
 complete them up to 30% faster. And since _autocomplete_ is part of the [WHATWG 
 ](https://html.spec.whatwg.org/multipage/forms.html#autofill)[HTML](https://html.spec.whatwg.org/multipage/forms.html#autofill) 
 standard, we hope that other browsers will support it in the near future.  
-<img src="https://lh4.googleusercontent.com/kAeKrmA7eJhyxqcrilDShud36JNwpz04hFJIv7zYc0tPziwrx3q1Gqmas1OeSTVlcD-HOgteBWHbQPs=w1338-h685-rw" width="301" height="538" />  
+
+<p style="text-align: center;">
+  <img style="max-width: 60%; height: auto;" src="{% asset_path 2015-06-05-checkout-faster-with-autofill/autofill-1.gif %}" alt="autofill git to show the power of fast and easy form filling" />
+</p>
 
 In the past, many developers would add _autocomplete="off"_ to their form fields 
 to prevent the browser from performing any kind of autocomplete functionality. 
@@ -56,46 +56,48 @@ kinds of information where it would not be useful to have the browser remember
 what was submitted previously.
 
 The most common _autocomplete_ attributes are shown in the table below and are 
-documented in [Web 
-Fundamentals](https://developers.google.com/web/fundamentals/input/?hl=en). I've 
+documented in [Web Fundamentals](https://developers.google.com/web/fundamentals/input/?hl=en). I've 
 marked (red) the ones that are critical for credit cards and the checkout 
 process.
 
 ### Common Attributes
 
 <table>
+<thead>
 <tr>
-<td markdown="block">
-**Content type**
-</td>
-<td markdown="block">
-**name attribute**
-</td>
-<td markdown="block">
-**autocomplete attribute**
-</td>
+<th>
+Content type
+</th>
+<th>
+name attribute
+</th>
+<th>
+autocomplete attribute
+</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td markdown="block">
 **Credit Card**
 </td>
 <td markdown="block">
-**ccname**  
-**cardnumber**  
-**cvc**  
-**ccmonth**  
-**ccyear**  
-**exp-date**  
-**card-type**
+* ccname
+* cardnumber  
+* cvc
+* ccmonth  
+* ccyear  
+* exp-date  
+* card-type
 </td>
 <td markdown="block">
-* **cc-name**
-* **cc-number**
-* **cc-csc**
-* **cc-exp-month**
-* **cc-exp-year**
-* **cc-exp**
-* **cc-type**
+* cc-name
+* cc-number
+* cc-csc
+* cc-exp-month
+* cc-exp-year
+* cc-exp
+* cc-type
 </td>
 </tr>
 <tr>
@@ -103,10 +105,10 @@ process.
 Name
 </td>
 <td markdown="block">
-name  
-fname  
-mname  
-lname
+* name  
+* fname  
+* mname  
+* lname
 </td>
 <td markdown="block">
 * name (full name)
@@ -170,6 +172,7 @@ ext
 tel
 </td>
 </tr>
+</tbody>
 </table>
 
    
@@ -184,23 +187,23 @@ continuous form.
 
 ### An example of a payment form
 
-Code snippet:
-
-&lt;label for="frmNameCC"&gt;Name on card&lt;/label&gt;  
-&lt;input name="ccname" id="frmNameCC" required placeholder="Full Name" 
-autocomplete="cc-name"&gt;    
-&lt;label for="frmCCNum"&gt;Card Number&lt;/label&gt;  
-&lt;input name="cardnumber" id="frmCCNum" required autocomplete="cc-number"&gt;    
-&lt;label for="frmCCCVC"&gt;CVC&lt;/label&gt;  
-&lt;input name="cvc" id="frmCCCVC" required autocomplete="cc-csc"&gt;  
+{% highlight javascript %}
+<label for="frmNameCC">Name on card</label>  
+<input name="ccname" id="frmNameCC" required placeholder="Full Name" 
+autocomplete="cc-name">    
+<label for="frmCCNum">Card Number</label>  
+<input name="cardnumber" id="frmCCNum" required autocomplete="cc-number">    
+<label for="frmCCCVC">CVC</label>  
+<input name="cvc" id="frmCCCVC" required autocomplete="cc-csc"> 
   
-&lt;label for="frmCCExp"&gt;Expiry&lt;/label&gt;  
-&lt;input name="cc-exp" id="frmCCExp" required placeholder="MM-YYYY" 
-autocomplete="cc-exp"&gt;
+<label for="frmCCExp">Expiry</label>  
+<input name="cc-exp" id="frmCCExp" required placeholder="MM-YYYY" 
+autocomplete="cc-exp">
+{% endhighlight %}
 
 **Forms best practices**
 
-1. **Use ****_labels_**** on form inputs**, and ensure they're visible when the 
+1. **Use _labels_on form inputs**, and ensure they're visible when the 
    field is in focus. The label element provides direction to the user, telling 
    them what information is needed in a form element. Each label is associated 
    with an input element by placing it inside the label element. Applying labels 
@@ -222,5 +225,7 @@ You can see it in action over at:
 Or check the code: 
 [https://github.com/greenido/Product-Site-101](https://github.com/greenido/Product-Site-101)
 
-<img src="https://lh3.googleusercontent.com/oFnGbUaJq6iUyIX8yA0iITmjH7IUQ2oB-mI_87UMglzE7eS0u60wc90kamXDqKGERh4qSduSRc3dJas=w1338-h685-rw" width="212" height="314" />
+<p style="text-align: center;">
+  <img style="max-width: 60%; height: auto;" src="{% asset_path 2015-06-05-checkout-faster-with-autofill/autofill-ex.png %}" alt="An example to a form that use autocomplete tags" />
+</p>
 
