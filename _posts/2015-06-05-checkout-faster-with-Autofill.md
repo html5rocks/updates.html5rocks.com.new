@@ -63,38 +63,41 @@ process.
 ### Common Attributes
 
 <table>
+<thead>
 <tr>
-<td markdown="block">
-**Content type**
-</td>
-<td markdown="block">
-**name attribute**
-</td>
-<td markdown="block">
-**autocomplete attribute**
-</td>
+<th>
+Content type
+</th>
+<th>
+name attribute
+</th>
+<th>
+autocomplete attribute
+</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td markdown="block">
 **Credit Card**
 </td>
 <td markdown="block">
-**ccname**  
-**cardnumber**  
-**cvc**  
-**ccmonth**  
-**ccyear**  
-**exp-date**  
-**card-type**
+* ccname
+* cardnumber  
+* cvc
+* ccmonth  
+* ccyear  
+* exp-date  
+* card-type
 </td>
 <td markdown="block">
-* **cc-name**
-* **cc-number**
-* **cc-csc**
-* **cc-exp-month**
-* **cc-exp-year**
-* **cc-exp**
-* **cc-type**
+* cc-name
+* cc-number
+* cc-csc
+* cc-exp-month
+* cc-exp-year
+* cc-exp
+* cc-type
 </td>
 </tr>
 <tr>
@@ -102,10 +105,10 @@ process.
 Name
 </td>
 <td markdown="block">
-name  
-fname  
-mname  
-lname
+* name  
+* fname  
+* mname  
+* lname
 </td>
 <td markdown="block">
 * name (full name)
@@ -169,6 +172,7 @@ ext
 tel
 </td>
 </tr>
+</tbody>
 </table>
 
    
@@ -199,7 +203,7 @@ autocomplete="cc-exp">
 
 **Forms best practices**
 
-1. **Use ****_labels_**** on form inputs**, and ensure they're visible when the 
+1. **Use _labels_on form inputs**, and ensure they're visible when the 
    field is in focus. The label element provides direction to the user, telling 
    them what information is needed in a form element. Each label is associated 
    with an input element by placing it inside the label element. Applying labels 
