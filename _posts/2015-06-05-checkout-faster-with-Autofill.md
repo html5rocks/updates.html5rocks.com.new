@@ -62,9 +62,7 @@ kinds of information where it would not be useful to have the browser remember
 what was submitted previously.
 
 The most common _autocomplete_ attributes are shown in the table below and are 
-documented in [Web Fundamentals](https://developers.google.com/web/fundamentals/input/?hl=en). I've 
-marked (red) the ones that are critical for credit cards and the checkout 
-process.
+documented in [Web Fundamentals](https://developers.google.com/web/fundamentals/input/?hl=en).
 
 ### Common Attributes
 
@@ -226,16 +224,16 @@ continuous form.
 
 {% highlight javascript %}
 <label for="frmNameCC">Name on card</label>  
-<input name="ccname" id="frmNameCC" required placeholder="Full Name" 
-autocomplete="cc-name">    
+<input name="ccname" id="frmNameCC" required placeholder="Full Name" autocomplete="cc-name">    
+
 <label for="frmCCNum">Card Number</label>  
 <input name="cardnumber" id="frmCCNum" required autocomplete="cc-number">    
+
 <label for="frmCCCVC">CVC</label>  
 <input name="cvc" id="frmCCCVC" required autocomplete="cc-csc"> 
   
 <label for="frmCCExp">Expiry</label>  
-<input name="cc-exp" id="frmCCExp" required placeholder="MM-YYYY" 
-autocomplete="cc-exp">
+<input name="cc-exp" id="frmCCExp" required placeholder="MM-YYYY" autocomplete="cc-exp">
 {% endhighlight %}
 
 **Forms best practices**
