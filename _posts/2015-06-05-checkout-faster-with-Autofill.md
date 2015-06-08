@@ -68,65 +68,78 @@ process.
 
 ### Common Attributes
 
+#### Credit Card
+
 <table>
-<thead>
-<tr>
-<th>
-Content type
-</th>
-<th>
-name attribute
-</th>
-<th>
-autocomplete attribute
-</th>
-</tr>
-</thead>
-<tbody>
 <tr>
 <td markdown="block">
-Credit Card
+**name attribute**
 </td>
 <td markdown="block">
-* ccname
-* cardnumber  
-* cvc
-* ccmonth  
-* ccyear  
-* exp-date  
-* card-type
-</td>
-<td markdown="block">
-* cc-name
-* cc-number
-* cc-csc
-* cc-exp-month
-* cc-exp-year
-* cc-exp
-* cc-type
+**autocomplete attribute**
 </td>
 </tr>
 <tr>
 <td markdown="block">
-Name
+**ccname**  
+**cardnumber**  
+**cvc**  
+**ccmonth**  
+**ccyear**  
+**exp-date**  
+**card-type**
 </td>
 <td markdown="block">
-* name  
-* fname  
-* mname  
-* lname
+**cc-name**  
+**cc-number**  
+**cc-csc**  
+**cc-exp-month**  
+**cc-exp-year**  
+**cc-exp**  
+**cc-type**
+</td>
+</tr>
+</table>
+
+#### Name
+
+<table>
+<tr>
+<td markdown="block">
+**name attribute**
 </td>
 <td markdown="block">
-* name (full name)
-* given-name (first name)
-* additional-name (middle name)
-* family-name (last name)
+**autocomplete attribute**
 </td>
 </tr>
 <tr>
 <td markdown="block">
-Email
+name  
+fname  
+mname  
+lname
 </td>
+<td markdown="block">
+name (full name)  
+given-name (first name)  
+additional-name (middle name)  
+family-name (last name)
+</td>
+</tr>
+</table>
+
+#### Email
+
+<table>
+<tr>
+<td markdown="block">
+**name attribute**
+</td>
+<td markdown="block">
+**autocomplete attribute**
+</td>
+</tr>
+<tr>
 <td markdown="block">
 email
 </td>
@@ -134,10 +147,20 @@ email
 email
 </td>
 </tr>
+</table>
+
+#### Address
+
+<table>
 <tr>
 <td markdown="block">
-Address
+**name attribute**
 </td>
+<td markdown="block">
+**autocomplete attribute**
+</td>
+</tr>
+<tr>
 <td markdown="block">
 address  
 city  
@@ -150,21 +173,30 @@ postal
 country
 </td>
 <td markdown="block">
-* For one address input:
-    * street-address
-* For two address inputs:
-    * address-line1
-    * address-line2
-* address-level1 (state or province)
-* address-level2 (city)
-* postal-code (zip code)
-* country
+For one address input: street-address  
+For two address inputs: address-line1 , address-line2  
+address-level1 (state or province)  
+address-level2 (city)  
+postal-code (zip code)  
+country
+</td>
+</tr>
+</table>
+
+ 
+
+#### Phone
+
+<table>
+<tr>
+<td markdown="block">
+**name attribute**
+</td>
+<td markdown="block">
+**autocomplete attribute**
 </td>
 </tr>
 <tr>
-<td markdown="block">
-Phone
-</td>
 <td markdown="block">
 phone  
 mobile  
@@ -178,7 +210,6 @@ ext
 tel
 </td>
 </tr>
-</tbody>
 </table>
 
    
