@@ -213,8 +213,8 @@ tel
    
 The autocomplete attributes can be accompanied with a section name, such as:
 
-* **shipping **given-name
-* **billing **street-address<br/>
+* **shipping** - given-name
+* **billing**  - street-address<br/>
 
 It is recommended because it will make your markup easier to parse and 
 understand. The browser will autofill different sections separately and not as a 
