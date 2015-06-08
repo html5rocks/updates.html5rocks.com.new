@@ -5,7 +5,6 @@ description: "Help users checkout faster with Autofill. We’ve found that by co
 article:
   written_on: 2015-06-05
   updated_on: 2015-06-05
-published: false
 authors:
   - idogreen
 tags:
@@ -15,8 +14,6 @@ tags:
 permalink: /2015/06/checkout-faster-with-Autofill
 
 ---
-
-### Help users checkout faster with Autofill
 
 People hate filling out web forms, especially on mobile devices. They can be 
 slow and frustrating to complete and often contain multi-page steps and 
@@ -37,7 +34,7 @@ accuracy.
 Autocomplete attributes are a way for you, the developer, to control how the 
 browser should populate a given form field.  For example, if you are expecting a 
 street address you can hint to the browser that you are expecting it by using 
-_autocomplete="address-line1"_. This prevents the browser from incorrectly 
+`autocomplete="address-line1"`. This prevents the browser from incorrectly 
 guessing form fields on your website which can result in a poor user experience.
 
 We've found that by correctly using autocomplete attributes on your forms, users 
@@ -59,8 +56,7 @@ kinds of information where it would not be useful to have the browser remember
 what was submitted previously.
 
 The most common _autocomplete_ attributes are shown in the table below and are 
-documented in [Web 
-Fundamentals](https://developers.google.com/web/fundamentals/input/?hl=en). I've 
+documented in [Web Fundamentals](https://developers.google.com/web/fundamentals/input/?hl=en). I've 
 marked (red) the ones that are critical for credit cards and the checkout 
 process.
 
@@ -187,19 +183,19 @@ continuous form.
 
 ### An example of a payment form
 
-Code snippet:
-
-&lt;label for="frmNameCC"&gt;Name on card&lt;/label&gt;  
-&lt;input name="ccname" id="frmNameCC" required placeholder="Full Name" 
-autocomplete="cc-name"&gt;    
-&lt;label for="frmCCNum"&gt;Card Number&lt;/label&gt;  
-&lt;input name="cardnumber" id="frmCCNum" required autocomplete="cc-number"&gt;    
-&lt;label for="frmCCCVC"&gt;CVC&lt;/label&gt;  
-&lt;input name="cvc" id="frmCCCVC" required autocomplete="cc-csc"&gt;  
+{% highlight javascript %}
+<label for="frmNameCC">Name on card</label>  
+<input name="ccname" id="frmNameCC" required placeholder="Full Name" 
+autocomplete="cc-name">    
+<label for="frmCCNum">Card Number</label>  
+<input name="cardnumber" id="frmCCNum" required autocomplete="cc-number">    
+<label for="frmCCCVC">CVC</label>  
+<input name="cvc" id="frmCCCVC" required autocomplete="cc-csc"> 
   
-&lt;label for="frmCCExp"&gt;Expiry&lt;/label&gt;  
-&lt;input name="cc-exp" id="frmCCExp" required placeholder="MM-YYYY" 
-autocomplete="cc-exp"&gt;
+<label for="frmCCExp">Expiry</label>  
+<input name="cc-exp" id="frmCCExp" required placeholder="MM-YYYY" 
+autocomplete="cc-exp">
+{% endhighlight %}
 
 **Forms best practices**
 
