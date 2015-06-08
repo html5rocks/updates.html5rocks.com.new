@@ -15,6 +15,12 @@ permalink: /2015/06/checkout-faster-with-Autofill
 
 ---
 
+<style type="text/css">
+td {
+  padding: 0.75em;
+  background: rgba(162, 186, 194, 0.58);
+}
+</style>
 People hate filling out web forms, especially on mobile devices. They can be 
 slow and frustrating to complete and often contain multi-page steps and 
 validation issues. This leads to high user drop-off and frustration. To help 
@@ -79,7 +85,7 @@ autocomplete attribute
 <tbody>
 <tr>
 <td markdown="block">
-**Credit Card**
+Credit Card
 </td>
 <td markdown="block">
 * ccname
