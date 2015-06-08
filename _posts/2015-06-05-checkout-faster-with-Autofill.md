@@ -223,16 +223,16 @@ continuous form.
 ### An example of a payment form
 
 {% highlight javascript %}
-<label for="frmNameCC">Name on card</label>  
-<input name="ccname" id="frmNameCC" required placeholder="Full Name" autocomplete="cc-name">    
+<label for="frmNameCC">Name on card</label>
+<input name="ccname" id="frmNameCC" required placeholder="Full Name" autocomplete="cc-name">
 
-<label for="frmCCNum">Card Number</label>  
-<input name="cardnumber" id="frmCCNum" required autocomplete="cc-number">    
+<label for="frmCCNum">Card Number</label>
+<input name="cardnumber" id="frmCCNum" required autocomplete="cc-number">
 
-<label for="frmCCCVC">CVC</label>  
-<input name="cvc" id="frmCCCVC" required autocomplete="cc-csc"> 
+<label for="frmCCCVC">CVC</label>
+<input name="cvc" id="frmCCCVC" required autocomplete="cc-csc">
   
-<label for="frmCCExp">Expiry</label>  
+<label for="frmCCExp">Expiry</label>
 <input name="cc-exp" id="frmCCExp" required placeholder="MM-YYYY" autocomplete="cc-exp">
 {% endhighlight %}
 
