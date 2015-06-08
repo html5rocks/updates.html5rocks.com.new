@@ -81,22 +81,22 @@ process.
 </tr>
 <tr>
 <td markdown="block">
-**ccname**  
-**cardnumber**  
-**cvc**  
-**ccmonth**  
-**ccyear**  
-**exp-date**  
-**card-type**
+ccname 
+cardnumber  
+cvc  
+ccmonth  
+ccyear  
+exp-date  
+card-type
 </td>
 <td markdown="block">
-**cc-name**  
-**cc-number**  
-**cc-csc**  
-**cc-exp-month**  
-**cc-exp-year**  
-**cc-exp**  
-**cc-type**
+cc-name  
+cc-number  
+cc-csc  
+cc-exp-month  
+cc-exp-year  
+cc-exp  
+cc-type
 </td>
 </tr>
 </table>
