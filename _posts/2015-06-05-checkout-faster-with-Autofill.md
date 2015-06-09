@@ -21,6 +21,10 @@ td {
   padding-right: 0.7em;
   background: rgba(162, 186, 194, 0.58);
 }
+.highlight .err {
+  color: #E28964;
+  background-color: #333333;
+}
 </style>
 People hate filling out web forms, especially on mobile devices. They can be 
 slow and frustrating to complete and often contain multi-page steps and 
