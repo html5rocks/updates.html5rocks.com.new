@@ -17,7 +17,8 @@ permalink: /2015/06/checkout-faster-with-Autofill
 
 <style type="text/css">
 td {
-  padding: 0.75em;
+  padding-left: 0.7em;
+  padding-right: 0.7em;
   background: rgba(162, 186, 194, 0.58);
 }
 </style>
@@ -79,7 +80,7 @@ documented in [Web Fundamentals](https://developers.google.com/web/fundamentals/
 </tr>
 <tr>
 <td markdown="block">
-ccname 
+ccname<br>
 cardnumber  
 cvc  
 ccmonth  
