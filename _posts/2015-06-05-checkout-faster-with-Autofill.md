@@ -217,10 +217,10 @@ country
 <input name="ship-address" required id="frmAddressS" placeholder="123 Any Street" autocomplete="shipping street-address">
 
 <label for="frmCityS">City</label>
-<input name="ship-city" required id="frmCityS" placeholder="New York" autocomplete="shipping locality">
+<input name="ship-city" required id="frmCityS" placeholder="New York" autocomplete="shipping address-level2">
 
 <label for="frmStateS">State</label>
-<input name="ship-state" required id="frmStateS" placeholder="NY" autocomplete="shipping region">
+<input name="ship-state" required id="frmStateS" placeholder="NY" autocomplete="shipping address-level1">
 
 <label for="frmZipS">Zip</label>
 <input name="ship-zip" required id="frmZipS" placeholder="10011" autocomplete="shipping postal-code">
