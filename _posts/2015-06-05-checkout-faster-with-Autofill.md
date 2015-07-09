@@ -11,7 +11,7 @@ tags:
   - forms
   - autofill
   - monetization
-permalink: /2015/06/checkout-faster-with-Autofill
+permalink: /2015/06/checkout-faster-with-autofill
 
 ---
 

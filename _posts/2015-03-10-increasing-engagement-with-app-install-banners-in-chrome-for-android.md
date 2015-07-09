@@ -107,7 +107,7 @@ that they are engaging with your site).
 
 ## <span id="action">Did a user install our web app</span>
 
-A recetent addtion in Chrome 43 (Beta as of May 2015) is the ability to discern if the user clicked "Yes" or "No" to the App install banner.
+A recent addition in Chrome 43 (Beta as of May 2015) is the ability to discern if the user clicked "Yes" or "No" to the App install banner.
 
 The `beforeinstallprompt` event will return a promise called `userChoice` that will resolve when the user
 actions the prompt.  The promise will return an object with a value of `dismissed` on the `outcome`
@@ -137,9 +137,9 @@ This is a good tool for understanding how your users interact with your app inst
 
 ## <span id="native">Native app install banner</span>
 
-A new powerful feature for native app developers also landed in Chrome 43 Beta.  Native App isntall banners are similar to Web app install banners, but instead of adding to the Homescreen will let the user inline install your native app.
+A new powerful feature for native app developers also landed in Chrome 43 Beta.  Native App install banners are similar to Web app install banners, but instead of adding to the Homescreen will let the user inline install your native app.
 
-The criteria is similar to the Web App install banner except for the need of a Serivce Worker:
+The criteria is similar to the Web App install banner except for the need of a Service Worker:
 
 * You have a [web app manifest 
   file](http://updates.html5rocks.com/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android) 
