@@ -13,6 +13,19 @@
           {% if page.subtitle %}<h2>{{page.subtitle}}</h2>{% endif %}
         </section>
       </section>
+      <section class="movingBanner">
+        <section class="container">
+          <h1>We're moving!</h1>
+          <h2>
+            Get this and all of the latest at 
+            {% if page.permalink %}
+            <a href="https://developers.google.com/web/updates{{page.permalink}}">developers.google.com/web/updates</a>
+            {% else %}
+            <a href="https://developers.google.com/web/updates/">developers.google.com/web/updates</a>
+            {% endif %}
+          </h2>
+        </section>
+      </section>
       {{content}}
     </div>
     {% include footer.html %}
