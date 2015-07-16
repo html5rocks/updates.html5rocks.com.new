@@ -1,6 +1,7 @@
 ---
 layout: null
 ---
+<!-- NOTE - this file is no longer requestable, requests will be redirected to DevSite -->
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>{{ site.title | xml_escape }}</title>
