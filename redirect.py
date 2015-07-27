@@ -15,11 +15,19 @@
 
 import webapp2
 
-class RedirectFeed(webapp2.RequestHandler):
-    def get(self, url):
-      newFeedURL = "https://developers.google.com/web/updates/feed.xml"
+class RedirectRSSFeed(webapp2.RequestHandler):
+    def get(self):
+      newFeedURL = "https://developers.google.com/web/updates/rss.xml"
       self.redirect(newFeedURL, permanent=True)
 
+
+class RedirectAtomFeed(webapp2.RequestHandler):
+    def get(self):
+      newFeedURL = "https://developers.google.com/web/updates/atom.xml"
+      self.redirect(newFeedURL, permanent=True)
+
+
 app = webapp2.WSGIApplication([
-    ('/feeds/(.*)', RedirectFeed)
+    ('/feeds/rss.xml', RedirectRSSFeed),
+    ('/feeds/.*', RedirectAtomFeed)
 ], debug=False)
