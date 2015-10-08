@@ -13,67 +13,9 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
 
-- url: /manifest.json
-  mime_type: application/json
-  static_files: _site/manifest.json
-  upload: _site/manifest.json
-  http_headers:
-    Access-Control-Allow-Origin: "*"
+- url: /(.+)
+  script: main.app
 
-- url: /feeds/(.*)
-  script: redirect.app
-
-- url: /assets/(.+)
-  static_files: _site/assets/\1
-  upload: _site/assets/(.+)
-  http_headers:
-    Access-Control-Allow-Origin: "*"
-
-- url: /samples/styles/(.+)
-  static_files: _site/samples/styles/\1
-  upload: _site/(.+)
-  http_headers:
-    Access-Control-Allow-Origin: "*"
-
-- url: /samples/(\w+)/(.+)
-  mime_type: text/html
-  static_files: _site/samples/\1/index.html
-  upload: _site/(.+)
-  http_headers:
-    Access-Control-Allow-Origin: "*"
-
-- url: /(\d+)/(\d+)/(.+)
-  mime_type: text/html
-  static_files: _site/\1/\2/\3/index.html
-  upload: _site/(.+)
-  http_headers:
-    Access-Control-Allow-Origin: "*"
-
-- url: /page/1
-  mime_type: text/html
-  static_files: _site/index.html
-  upload: _site/index.html
-  http_headers:
-    Access-Control-Allow-Origin: "*"
-
-- url: /(\w+)/(\w+)
-  mime_type: text/html
-  static_files: _site/\1/\2/index.html
-  upload: _site/(.+)
-  http_headers:
-    Access-Control-Allow-Origin: "*"
-
-- url: /
-  mime_type: text/html
-  static_files: _site/index.html
-  upload: _site/index.html
-  http_headers:
-    Access-Control-Allow-Origin: "*"
-
-- url: /.*
-  mime_type: text/html
-  static_files: _site/404.html
-  upload: _site/404.html
 
 skip_files:
 - ^(.*/)?#.*#$
