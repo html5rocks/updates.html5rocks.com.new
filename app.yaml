@@ -13,7 +13,7 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
 
-- url: /(.+)
+- url: /(.*)
   script: main.app
 
 

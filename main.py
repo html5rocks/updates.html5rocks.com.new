@@ -38,7 +38,7 @@ class RedirectHandler(webapp2.RequestHandler):
     else:
       path_part = path
     
-    logging.info("ERROR: " + fundamentals_url % path_part)
+    logging.info("Info: " + fundamentals_url % path_part)
     
     return self.redirect(fundamentals_url % path_part, permanent=True)
 
@@ -55,5 +55,6 @@ class RedirectAtomFeed(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/feeds/rss.xml', RedirectRSSFeed),
     ('/feeds/.*', RedirectAtomFeed),
-    ('/(.*)', RedirectHandler)
+    ('/(.*)', RedirectHandler),
+    ('/', RedirectHandler)
 ], debug=True)
